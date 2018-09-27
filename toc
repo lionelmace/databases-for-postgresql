@@ -1,0 +1,43 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="databases-for-postgresql" audience="service" href="/docs/services/databases-for-postgresql/index.html"}
+Databases For PostgreSQL
+
+	{: .navgroup id="learn"}
+	index.md
+	getting-started.md
+
+	{: .topicgroup}
+	The Service Dashboard
+		dashboard-overview.md
+        dashboard-settings.md
+		dashboard-backups.md
+	{: .navgroup-end}
+
+	{: .navgroup id="howto"}
+	howto-provisioning.md
+	howto-getting-connection-strings.md
+	howto-using-ibmcloud-cli.md
+	howto-migration.md
+	
+	{: .topicgroup}
+	Connecting to Databases for PostgreSQL
+		connecting-external.md
+		connecting-ibmcloud-app.md
+
+	{: .topicgroup}
+	Administering PostgreSQL
+		admin-password.md
+		admin-connecting.md
+		admin-extensions.md
+	{: .navgroup-end}
+
+	{: .navgroup id="reference"}
+	reference-architecture.md
+	reference-security.md
+	reference-versions.md
+	reference-access-management.md
+	reference-activity-tracker.md
+	reference-key-protect.md
+	{: .navgroup-end}
