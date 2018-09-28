@@ -27,21 +27,15 @@ lastupdated: "2018-09-27"
 - Backups are included in the service. Backups reside in {{site.data.keyword.cloud_notm}} Object Storage and are also encrypted.
 - {{site.data.keyword.databases-for-postgresql}} is configured with replication, so the data exists with multiple copies and each copy resides on a different cluster and host. Where available, those clusters are also spread in different availability zones within the region where the service is deployed.
  
-## SOC 2 Type 2 Certification
+## SOC 2 Type 1 Certification
 
-{{site.data.keyword.IBM_notm}} provides a Service Organization Controls (SOC) 2 Type 2 report 
-for {{site.data.keyword.databases-for-postgresql}}. The reports evaluate IBM's operational controls according to the criteria set by the American Institute of Certified Public Accountants (AICPA) Trust Services Principles. 
-The Trust Services Principles define adequate control systems and establish industry standards 
-for service providers such as IBM Cloud to safeguard their customers' data and information.
+{{site.data.keyword.IBM_notm}} provides a Service Organization Controls (SOC) 2 Type 1 report for {{site.data.keyword.databases-for-postgresql}}. The reports evaluate IBM's operational controls according to the criteria set by the American Institute of Certified Public Accountants (AICPA) Trust Services Principles. The Trust Services Principles define adequate control systems and establish industry standards for service providers such as IBM Cloud to safeguard their customers' data and information.
 
-You can request an SOC 2 Type 2 report from the customer portal 
-or contact your sales representative. Alternatively, you can open 
-a support ticket with 
-[IBM Cloud support](https://watson.service-now.com/wcp){:new_window}
+You can request an SOC 2 Type 1 report from the customer portal or contact your sales representative. Alternatively, you can open a support ticket with [IBM Cloud support](https://watson.service-now.com/wcp){:new_window}
 
 ## General Data Protection Regulation (GDPR) 
 
-If you have an account with IBM Cloud, your personal data is held by {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.IBM_notm}} Data Processing Addendum (Addendum) applies to the processing of client's personal data by {{site.data.keyword.IBM_notm}} on behalf of client in order to provide {{site.data.keyword.IBM_notm}} standard services.
+If you have an account with IBM Cloud, your personal data is held by {{site.data.keyword.cloud_notm}}. The {{site.data.keyword.IBM_notm}} Data Processing Addendum (Addendum) applies to the processing of client's personal data by {{site.data.keyword.IBM_notm}} on behalf of client in order to provide {{site.data.keyword.IBM_notm}} standard services.  
 [IBM DPA](https://www.ibm.com/support/customer/zz/en/dpa.html){:new_window}
 
 {{site.data.keyword.databases-for-postgresql}} processes limited client Personal Information (PI) in the course of running the service and optimizing the user experience. 
