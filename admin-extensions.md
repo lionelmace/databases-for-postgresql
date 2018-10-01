@@ -19,7 +19,7 @@ In PostgreSQL, extensions are modules that supply extra functions, operators, or
 
 Get a list of all the extensions installed on a database by using the `\dx` command.
 
-For example, the output for `\dx` when run on the {{site.data.keyword.databases-for-postgresql_}} default database shows the only installed extension.
+For example, the output for `\dx` when run on the {{site.data.keyword.databases-for-postgresql}} default database shows the only installed extension.
 ```
 ibmclouddb=> \dx
                  List of installed extensions
