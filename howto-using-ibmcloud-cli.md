@@ -36,7 +36,7 @@ Use `ibmcloud cdb help` for a list of commands and usage, or see the [documentat
 If you need to open a connection directly to your PostgreSQL, the `ibmcloud cdb deployment-connections` command handles everything that is involved in creating the client connection. For example, to connect to a deployment named  "example-postgres", use the following command.
 
 ```
-ibmcloud cdb deployment-connections example-postgres -start
+ibmcloud cdb deployment-connections example-postgres --start
 ```
 Or
 ```

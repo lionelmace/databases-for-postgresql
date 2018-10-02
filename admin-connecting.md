@@ -36,7 +36,7 @@ A [table](./working-connection-strings#the-cli-section) with a breakdown of all 
 The `ibmcloud cdb deployment-connections` command handles everything that is involved in creating a command line client connection. For example, to connect to a deployment named  "example-postgres", use the following command.
 
 ```
-ibmcloud cdb deployment-connections example-postgres -start
+ibmcloud cdb deployment-connections example-postgres --start
 ```
 Or
 ```
