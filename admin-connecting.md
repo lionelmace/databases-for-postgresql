@@ -27,9 +27,9 @@ Install the command line client for PostgreSQL, `psql`. To use `psql`, the Postg
 
 ## `psql` Connection Strings
 
-{{site.data.keyword.databases-for-postresql_full}} provides connection strings specifically for CLI clients. They contain all the relevant pieces of connection information. You can get the admin connection strings by following the steps in the [Getting your Connection Strings](./working-connection-strings) page. 
+{{site.data.keyword.databases-for-postresql_full}} provides connection strings specifically for CLI clients. They contain all the relevant pieces of connection information. You can get the admin connection strings by following the steps in the [Getting your Connection Strings](./howto-getting-connection-strings) page. 
 
-A [table](./working-connection-strings#the-cli-section) with a breakdown of all the CLI connection information is also included for reference.
+A [table](./howto-getting-connection-strings#the-cli-section) with a breakdown of all the CLI connection information is also included for reference.
 
 ## Connecting with `psql`
 
