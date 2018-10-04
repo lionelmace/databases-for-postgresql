@@ -57,7 +57,7 @@ The command template is:
 ibmcloud resource service-instance-create <service-name> <service-id> <service-plan-id> <region>
 ```
 
-More information about this command, in general, is available in the [CLI reference for resource groups](/docs/cli/reference/ibmcloud/cli_resource_group.html#ibmcloud_resource_service_instance_create).
+More information about this command, in general, is available in the [CLI reference for resource groups](https://console.{DomainName}/docs/cli/reference/ibmcloud/cli_resource_group.html#ibmcloud_resource_service_instance_create).
 
 In the specific case of creating a {{site.data.keyword.databases-for-postgresql}} deployment, set the service name (quote any name with spaces in it). Then, set `databases-for-postgresql` as the service ID. Enter `standard` for the service plan ID and `us-south` for the region.
 

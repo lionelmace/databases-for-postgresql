@@ -46,7 +46,7 @@ ibmcloud cdb cxn example-postgres -s
 If you don't specify a user, the `deployment-connections` command uses the admin user by default. In order to connect with the admin user, you have to [set its password](./admin-password.html).
 {: .tip}
 
-The command prompts for the password and then runs the `psql` command line client to connect to the database. For more information about connecting to PostgreSQL directly, see the [Connecting as an Admin](./admin-connecting) page.
+The command prompts for the password and then runs the `psql` command line client to connect to the database. For more information about connecting to PostgreSQL directly, see the [Connecting as an Admin](./admin-connecting.html) page.
 
 ## The {{site.data.keyword.cloud_notm}} CLI and IAM
 
