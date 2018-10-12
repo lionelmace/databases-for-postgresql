@@ -22,7 +22,7 @@ The _Scale Resources_ panel shows the current size and resource allocation for y
 
 **Storage** - Storage shows the amount of disk space that is allocated to your service. Each member gets an equal share of the allocated space. Your data is replicated across two data members in the PostgreSQL cluster, so the total amount of storage you use is approximately twice the size of your data set.
 
-The minimum storage of a PostgreSQL deployment is 10240 MB, adjustable in step sizes of 1024 MB. This equates to an initial size of 5120 MB per member with 512 MB increments available.
+The minimum storage of a PostgreSQL deployment is 10240 MB, adjustable in step sizes of 2048 MB. This equates to an initial size of 5120 MB per member with 1024 MB increments available.
 
 You cannot scale down storage. If your data set size has decreased, you can recover space by backing up and restoring to a new deployment.
 {: .tip} 
@@ -62,7 +62,7 @@ Count   2
 |   Allocation              10240mb
 |   Allocation per member   5120mb
 |   Minimum                 10240mb
-|   Step Size               2048mb
+|   Step Size               1024mb
 |   Adjustable              true
 ```
 
