@@ -37,7 +37,7 @@ All {{site.data.keyword.databases-for-postgresql}} connections are TLS/SSL enabl
 
 ## Access Management
 
-{{site.data.keyword.databases-for-postgresql}} is an IAM-integrated service. Access to the service is governed by the roles and attributes that are consistent with IAM-integrated services across {{site.data.keyword.cloud_notm}}. For more information about IAM, see the [What is IAM?](https://console.{DomainName}/docs/iam/index.html#iamoverview) documentation. For more information on how IAM affects access to {{site.data.keyword.databases-for-postgresql}}, see [Managing Access](./access-management.html).
+{{site.data.keyword.databases-for-postgresql}} is an IAM-integrated service. Access to the service is governed by the roles and attributes that are consistent with IAM-integrated services across {{site.data.keyword.cloud_notm}}. For more information about IAM, see the [What is IAM?](https://{DomainName}/docs/iam/index.html#iamoverview) documentation. For more information on how IAM affects access to {{site.data.keyword.databases-for-postgresql}}, see [Managing Access](./access-management.html).
 
 Database-level access can be managed through PostgreSQL's native [user management and database roles](https://www.postgresql.org/docs/current/static/database-roles.html).
 

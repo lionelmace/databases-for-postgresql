@@ -19,7 +19,7 @@ To create an {{site.data.keyword.databases-for-postgresql_full}} deployment, you
 
 ## Using the catalog
 
-You can create a {{site.data.keyword.databases-for-postgresql}} service from the [{{site.data.keyword.databases-for-postgresql}} page](https://console.{DomainName}/catalog/services/databases-for-postgresql/) in the {{site.data.keyword.cloud_notm}} catalog.
+You can create a {{site.data.keyword.databases-for-postgresql}} service from the [{{site.data.keyword.databases-for-postgresql}} page](https://{DomainName}/catalog/services/databases-for-postgresql/) in the {{site.data.keyword.cloud_notm}} catalog.
 
 ![Catalog Deployment Page](images/catalog-deployment.png)
 
@@ -47,7 +47,7 @@ The database takes some time to deploy. The user is navigated back to the {{site
 
 ## Using the Command Line
 
-The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line. For more information, see [Download and install {{site.data.keyword.cloud_notm}} CLI](https://console.{DomainName}/docs/cli/reference/bluemix_cli/download_cli.html).
+The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line. For more information, see [Download and install {{site.data.keyword.cloud_notm}} CLI](https://{DomainName}/docs/cli/reference/bluemix_cli/download_cli.html).
 
 To create a {{site.data.keyword.databases-for-postgresql}} deployment, you use the CLI to request a service instance with a `databases-for-postgresql` service ID.
 
@@ -57,7 +57,7 @@ The command template is:
 ibmcloud resource service-instance-create <service-name> <service-id> <service-plan-id> <region>
 ```
 
-More information about this command, in general, is available in the [CLI reference for resource groups](https://console.{DomainName}/docs/cli/reference/ibmcloud/cli_resource_group.html#ibmcloud_resource_service_instance_create).
+More information about this command, in general, is available in the [CLI reference for resource groups](https://{DomainName}/docs/cli/reference/ibmcloud/cli_resource_group.html#ibmcloud_resource_service_instance_create).
 
 In the specific case of creating a {{site.data.keyword.databases-for-postgresql}} deployment, set the service name (quote any name with spaces in it). Then, set `databases-for-postgresql` as the service ID. Enter `standard` for the service plan ID and `us-south` for the region.
 
@@ -96,8 +96,8 @@ ibmcloud resource service-instance-create example-psql databases-for-postgresql 
 
 You can provision new deployments by using the Resource Controller API. However, in order to use the Resource Controller API, you need some additional preparation.
 
-1. [Obtain an IAM token from your API token](https://console.bluemix.net/apidocs/resource-controller#authentication).
-2. You need to know the ID of the resource group that you would like to deploy to. This information is available through the [{{site.data.keyword.cloud_notm}} CLI](https://console.bluemix.net/docs/cli/reference/ibmcloud/cli_resource_group.html#ibmcloud_resource_groups). You can find a list of resource groups with `ibmcloud resource groups` and the ID of a resource group with `ibmcloud resource group`. 
+1. [Obtain an IAM token from your API token](https://{DomainName}/apidocs/resource-controller#authentication).
+2. You need to know the ID of the resource group that you would like to deploy to. This information is available through the [{{site.data.keyword.cloud_notm}} CLI](https://{DomainName}/docs/cli/reference/ibmcloud/cli_resource_group.html#ibmcloud_resource_groups). You can find a list of resource groups with `ibmcloud resource groups` and the ID of a resource group with `ibmcloud resource group`. 
 3. You need to know the region that you would like to deploy to.
 
 Once you have all the information, the create request is a `POST` to the `https://resource-controller.bluemix.net/v2/resource_instances` endpoint.
@@ -114,9 +114,11 @@ curl -X POST \
     "resource_plan_id": "databases-for-postgresql-standard"
   }'
 ```
+
 The parameters `name`, `target`, `resource_group`, and `resource_plan_id` are all required. You can send in the same additional parameters to the API as the CLI: `backup_id`, `version`, `key_protect_key`, and `members_memory_allocation_mb`. Add the parameters that you need to the request body.
 
 Sample Response (formatted)
+
 ```
 {
   "id": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/274074dce64e9c423ffc238516c755e1:5269c1f5-0c91-4b7a-9266-6083dfd86c96::",
@@ -158,8 +160,8 @@ Sample Response (formatted)
 }
 ```
 
-More information on the Resource Controller API is found in its [API Reference](https://console.bluemix.net/apidocs/resource-controller#create-provision-a-new-resource-instance
-).
+More information on the Resource Controller API is found in its [API Reference](https://{DomainName}/apidocs/resource-controller#create-provision-a-new-resource-instance)
+.
 
 
 

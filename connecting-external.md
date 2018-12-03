@@ -19,7 +19,7 @@ Your applications and drivers use connection strings to make a connection to {{s
 
 The easiest way to get connection strings for an application is to create a set of _Service Credentials_ specifically for your application to connect with. Doing so also returns all the connection information as JSON in a click-to-copy field. Full documentation on generating and retrieving connection strings is on the [Getting Connection Strings](./howto-getting-connection-strings.html) page.
 
-Other options for getting connection strings are through the [CLI cloud databases plug-in](./howto-getting-connection-strings.html#generating-connection-strings-from-the-command-line), and the [cloud databases API](https://console.{DomainName}/apidocs/cloud-databases-api). A [table](./howto-getting-connection-strings.html#the-postgresql-section) with a breakdown of all the connection information is included for reference.
+Other options for getting connection strings are through the [CLI cloud databases plug-in](./howto-getting-connection-strings.html#generating-connection-strings-from-the-command-line), and the [cloud databases API](https://{DomainName}/apidocs/cloud-databases-api). A [table](./howto-getting-connection-strings.html#the-postgresql-section) with a breakdown of all the connection information is included for reference.
 
 ## Connecting with a language's driver
 
