@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017,2018
-lastupdated: "2018-09-27"
+lastupdated: "2018-12-03"
 ---
 
 {:new_window: target="_blank"}
@@ -14,7 +14,21 @@ lastupdated: "2018-09-27"
 
 # Getting your Connection Strings
 
-In order to connect to {{site.data.keyword.databases-for-postgresql_full}}, you need some connection strings.
+In order to connect to {{site.data.keyword.databases-for-postgresql_full}}, you need some connection strings. A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with an admin user, and after [setting the root password](./howto-admin-password), you can use its connection strings to connect to your deployment.
+
+The simplest way to retrieve connection information is from the [cloud databases plug-in](./howto-using-ibmcloud-cli.html). Use the `ibmcloud cdb deployment-connections` command to display a formatted connection URI for any user on your deployment. For example, to retrieve a connection string for the admin user on a deployment named  "example-postgres", use the following command.
+
+```
+ibmcloud cdb deployment-connections -u admin
+```
+Or
+```
+ibmcloud cdb cxn example-postgres -u admin
+```
+
+## Generating Connection Strings for additional users
+
+Access to your {{site.data.keyword.databases-for-postgresql}} deployment is not just limited to the root user. You can create additional users and retrieve connection strings specific to them by using the _Service Credentials_ panel, the {{site.data.keyword.IBM_notm}} CLI, or through the {{site.data.keyword.IBM_notm}} {{site.data.keyword.databases-for}} API. 
 
 ## Generating Connection Strings from _Service Credentials_
 
@@ -36,9 +50,26 @@ If you manage your service through the {{site.data.keyword.cloud_notm}} CLI and 
 
 `ibmcloud cdb user-create example-deployment <newusername> <newpassword>`
 
-The response contains the task `ID`, `Deployment ID`, `Description`, `Created At`, `Status`, and `Progress Percentage` fields.  You can use the task ID to track the progress of user creation with the `cdb task-show` command.
+The response contains the task `ID`, `Deployment ID`, `Description`, `Created At`, `Status`, and `Progress Percentage` fields.  The `Status` and `Progress Percentage` fields update when the task is complete.
 
-`ibmcloud cdb task-show <taskID>`
+Once the task has finished, you can retrieve the new user's connection strings with the `ibmcloud cdb deployment-connections` command.
+
+```
+ibmcloud cdb deployment-connections example-deployment -u <newusername>
+```
+Or
+```
+ibmcloud cdb cxn example-deployment -u <newusername>
+```
+
+Full connection information is returned by the `ibmcloud cdb deployment-connections` command with the `--all` flag. To retrieve all the connection information for a deployment named  "example-deployment", use the following command.
+
+```
+ibmcloud cdb deployment-connections example-deployment -u <newusername> --all
+```
+
+If you don't specify a user, the `deployment-connections` commands return information for the root user by default.
+{: .tip}
 
 ### Generating _Service Credentials_ for existing users.
 
@@ -49,38 +80,17 @@ Enter the user name and password in the JSON field _Add Inline Configuration Par
 Generating credentials from an existing user does not check for or create that user.
 {: tip}
 
-## Getting your Connection Strings
-
-The simplest way to retrieve connection information is from the [cloud databases plug-in](./howto-using-ibmcloud-cli.html). Use the `ibmcloud cdb deployment-connections` command to display a formatted connection URI for any user on your deployment. For example, to retrieve a connection string for the admin user on a deployment named  "example-postgres", use the following command.
-
-```
-ibmcloud cdb deployment-connections -u admin
-```
-Or
-```
-ibmcloud cdb cxn example-postgres -u admin
-```
-
-Full connection information is returned by the `ibmcloud cdb deployment-connections` command with the `--all` flag. To retrieve all the connection information for a deployment named  "example-postgres", use the following command.
-
-```
-ibmcloud cdb deployment-connections example-postgres --all
-```
-
-If you don't specify a user, the `deployment-connections` commands return information for the admin user by default.
-{: .tip}
-
 ## Connection String Breakdown
 
 ### The PostgreSQL Section
 
-The "postgresql" section contains information that is suited to applications that make connections to PostgreSQL.
+The "postgres" section contains information that is suited to applications that make connections to PostgreSQL.
 
 Field Name|Index|Description
 ----------|-----|-----------
 `Type`||Type of connection - for PostgreSQL, it is "URI"
 `Scheme`||Scheme for a URI - for PostgreSQL, it is "postgresql"
-`Path`||Path for a URI - for PostgreSQL, it is the database name
+`Path`||Path for a URI - for PostgreSQL, it is the database name. The default is `ibmclouddb`.
 `Authentication`|`Username`|The username that you use to connect.
 `Authentication`|`Password`|A password for the user - might be shown as `$PASSWORD`
 `Authentication`|`Method`|How authentication takes place; "direct" authentication is handled by the driver.
@@ -105,18 +115,9 @@ Field Name|Index|Description
 `Certificate`|Base64|A self-signed certificate that is used to confirm that an application is connecting to the appropriate server. It is base64 encoded.
 `Certificate`|Name|The allocated name for the self-signed certificate.
 `Type`||The type of package that uses this connection information; in this case `cli`. 
-{: caption="Table 1. `psql`/`cli` connection information" caption-side="top"}
+{: caption="Table 2. `psql`/`cli` connection information" caption-side="top"}
 
 * `0...` indicates that there might be one or more of these entries in an array.
-
-## Using the self-signed certificate
-
-1. Copy the certificate information from the Base64 field of the connection information. 
-2. Decode the Base64 string into text and save it to a file. (You can use the Name that is provided or your own file name).
-
-### CLI plug-in support for the self-signed certificate
-
-You can display the decoded certificate for your deployment with the CLI plug-in with the command `ibmcloud cdb deployment-cacert "your-service-name"`. It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the `ROOTCERT` environment variable.
 
 ## Generating Connection Strings via API
 

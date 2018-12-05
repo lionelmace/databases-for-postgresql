@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2018
-lastupdated: "2018-09-27"
+lastupdated: "2018-12-03"
 ---
 
 {:shortdesc: .shortdesc}
@@ -13,9 +13,9 @@ lastupdated: "2018-09-27"
 
 # Key Protect
 
-{{site.data.keyword.databases-for-postgresql_full}} encrypts your data by default by using randomly generated keys. If you need to control the encryption keys, you can use [{{site.data.keyword.keymanagementservicelong_notm}}](/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage encryption keys. Then, you can associate those keys with your {{site.data.keyword.databases-for-postgresql}} deployment to encrypt your databases.
+{{site.data.keyword.databases-for-postgresql_full}} encrypts your data by default by using randomly generated keys. If you need to control the encryption keys, you can use [{{site.data.keyword.keymanagementservicelong_notm}}](https://{DomainName}/docs/services/keymgmt/keyprotect_about.html) to create, add, and manage encryption keys. Then, you can associate those keys with your {{site.data.keyword.databases-for-postgresql}} deployment to encrypt your databases.
 
-To get started, you need [{{site.data.keyword.keymanagementserviceshort}}](https://{DomianName}/catalog/services/key-protect) provisioned on your {{site.data.keyword.cloud_notm}} account.
+To get started, you need [{{site.data.keyword.keymanagementserviceshort}}](https://{DomainName}/catalog/services/key-protect) provisioned on your {{site.data.keyword.cloud_notm}} account.
 
 ## Creating or adding a key in {{site.data.keyword.keymanagementserviceshort}}
 

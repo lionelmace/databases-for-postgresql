@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017,2018
-lastupdated: "2018-09-27"
+lastupdated: "2018-12-03"
 ---
 
 {:new_window: target="_blank"}
@@ -11,7 +11,7 @@ lastupdated: "2018-09-27"
 {:pre: .pre}
 {:tip: .tip}
 
-# Using Command line Tools for {{site.data.keyword.databases-for-postgresql}}
+# Using the {{site.data.keyword.cloud_notm}} CLI for {{site.data.keyword.databases-for-postgresql}}
 
 Use the {{site.data.keyword.cloud_notm}} CLI and the cloud databases plug-in to access and manage {{site.data.keyword.databases-for-postgresql_full}}.
 

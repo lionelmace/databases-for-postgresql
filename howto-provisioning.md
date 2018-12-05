@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-09-27"
+lastupdated: "2018-12-03"
 ---
 
 {:shortdesc: .shortdesc}
@@ -114,54 +114,9 @@ curl -X POST \
     "resource_plan_id": "databases-for-postgresql-standard"
   }'
 ```
-
 The parameters `name`, `target`, `resource_group`, and `resource_plan_id` are all required. You can send in the same additional parameters to the API as the CLI: `backup_id`, `version`, `key_protect_key`, and `members_memory_allocation_mb`. Add the parameters that you need to the request body.
 
-Sample Response (formatted)
-
-```
-{
-  "id": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/274074dce64e9c423ffc238516c755e1:5269c1f5-0c91-4b7a-9266-6083dfd86c96::",
-  "guid": "5269c1f5-0c91-4b7a-9266-6083dfd86c96",
-  "url": "/v2/resource_instances/5269c1f5-0c91-4b7a-9266-6083dfd86c96",
-  "created_at": "2018-10-23T15:50:57.839880242Z",
-  "updated_at": "2018-10-23T15:50:57.839880242Z",
-  "deleted_at": null,
-  "name": "my-api-instance",
-  "region_id": "us-south",
-  "account_id": "274074dce64e9c423ffc238516c755e1",
-  "resource_plan_id": "databases-for-postgresql-standard",
-  "resource_group_id": "6ac1aa3b70a84f1e98ea0d9c4687dc99",
-  "resource_group_crn": "crn:v1:bluemix:public:resource-controller::a/274074dce64e9c423ffc238516c755e1::resource-group:6ac1aa3b70a84f1e98ea0d9c4687dc99",
-  "target_crn": "crn:v1:bluemix:public:globalcatalog::::deployment:databases-for-postgresql-standard%3Aus-south",
-  "crn": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/274074dce64e9c423ffc238516c755e1:5269c1f5-0c91-4b7a-9266-6083dfd86c96::",
-  "state": "inactive",
-  "type": "service_instance",
-  "sub_type": "Public",
-  "resource_id": "databases-for-postgresql",
-  "dashboard_url": "https://console.us-south.databases.cloud.ibm.com/?instance_id=crn%3Av1%3Abluemix%3Apublic%3Adatabases-for-postgresql%3Aus-south%3Aa%2F274074dce64e9c423ffc238516c755e1%3A5269c1f5-0c91-4b7a-9266-6083dfd86c96%3A%3A\\u0026platform=ibm",
-  "last_operation": {
-    "type": "create",
-    "state": "in progress",
-    "description": null,
-    "updated_at": "2018-10-23T15:50:57.839880242Z"
-  },
-  "resource_aliases_url": "/v2/resource_instances/5269c1f5-0c91-4b7a-9266-6083dfd86c96/resource_aliases",
-  "resource_bindings_url": "/v2/resource_instances/5269c1f5-0c91-4b7a-9266-6083dfd86c96/resource_bindings",
-  "resource_keys_url": "/v2/resource_instances/5269c1f5-0c91-4b7a-9266-6083dfd86c96/resource_keys",
-  "plan_history": [
-    {
-      "resource_plan_id": "databases-for-postgresql-standard",
-      "start_date": "2018-10-23T15:50:57.839880242Z"
-    }
-  ],
-  "migrated": false,
-  "controlled_by": ""
-}
-```
-
-More information on the Resource Controller API is found in its [API Reference](https://{DomainName}/apidocs/resource-controller#create-provision-a-new-resource-instance)
-.
+More information on the Resource Controller API is found in its [API Reference](https://{DomainName}/apidocs/resource-controller#create-provision-a-new-resource-instance).
 
 
 

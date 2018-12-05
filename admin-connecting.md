@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017,2018
-lastupdated: "2018-09-27"
+lastupdated: "2018-12-03"
 ---
 
 {:new_window: target="_blank"}
@@ -27,9 +27,20 @@ Install the command line client for PostgreSQL, `psql`. To use `psql`, the Postg
 
 ## `psql` Connection Strings
 
-{{site.data.keyword.databases-for-postresql_full}} provides connection strings specifically for CLI clients. They contain all the relevant pieces of connection information. You can get the admin connection strings by following the steps in the [Getting your Connection Strings](./howto-getting-connection-strings.html) page. 
+{{site.data.keyword.databases-for-postresql_full}} provides connection strings specifically for CLI clients. The information that you need to make a connection with `psql` is in the "cli" section of your [connection strings](./howto-getting-connection-strings.html). The table contains a breakdown for reference.
 
-A [table](./howto-getting-connection-strings#the-cli-section) with a breakdown of all the CLI connection information is also included for reference.
+Field Name|Index|Description
+----------|-----|-----------
+`Bin`||The recommended binary to create a connection; in this case it is `psql`.
+`Composed`||A formatted command to establish a connection to your deployment. The command combines the `Bin` executable, `Environment` variable settings, and uses `Arguments` as command line parameters.
+`Environment`||A list of key/values you set as environment variables.
+`Arguments`|0...|The information that is passed as arguments to the command shown in the Bin field.
+`Certificate`|Base64|A self-signed certificate that is used to confirm that an application is connecting to the appropriate server. It is base64 encoded.
+`Certificate`|Name|The allocated name for the self-signed certificate.
+`Type`||The type of package that uses this connection information; in this case `cli`. 
+{: caption="Table 1. `psql`/`cli` connection information" caption-side="top"}
+
+* `0...` indicates that there might be one or more of these entries in an array.
 
 ## Connecting with `psql`
 
@@ -50,4 +61,11 @@ If you have not installed the cloud databases plug-in, connect to your PostgreSQ
 ```
 PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'host=4a8148fa-3806-4f9c-b3fc-6467f11b13bd.8f7bfd7f3faa4218aec56e069eb46187.databases.appdomain.cloud port=32325 dbname=ibmclouddb user=admin sslmode=verify-full'
 ```
+## Using the self-signed certificate
 
+1. Copy the certificate information from the Base64 field of the connection information. 
+2. Decode the Base64 string into text and save it to a file. (You can use the Name that is provided or your own file name).
+
+### CLI plug-in support for the self-signed certificate
+
+You can display the decoded certificate for your deployment with the CLI plug-in with the command `ibmcloud cdb deployment-cacert "your-service-name"`. It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the `ROOTCERT` environment variable.
