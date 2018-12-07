@@ -108,13 +108,13 @@ The alias name can be the same as the database service instance name. For exampl
   applications:
   - name:    example-helloworld-nodejs
     routes:
-    - route: example-helloworld-nodejs.appdomain.cloud
+    - route: example-helloworld-nodejs.mybluemix.net
     memory:  128M
     services:
       - example-psql
   ```
 
-2. Change the `route` value to something unique. The route that you choose determines the subdomain of your application's URL:  `<route>.appdomain.cloud`.
+2. Change the `route` value to something unique. The route that you choose determines the subdomain of your application's URL:  `<route>.mybluemix.net`.
 3. Change the `name` value. The name that you choose is displayed in your {{site.data.keyword.cloud_notm}} dashboard.
 4. Update the `services` value to match the alias of the service you created in [Create a Cloud Foundry alias for the database service](#create-alias).
 
@@ -138,7 +138,7 @@ If your application is not listed, repeat Steps 7 and 8, making sure that you en
 
 ## Step 10. Use the app
 
-Now, when you visit `<route>.appdomain.cloud/` you can see the contents of your {{site.data.keyword.databases-for-postgresql}} collection. As you add words and their definitions, they are added to the database and displayed. If you stop and restart the app, you'll see any words and definitions you've already added are now listed.
+Now, when you visit `<route>.mybluemix.net/` you can see the contents of your {{site.data.keyword.databases-for-postgresql}} collection. As you add words and their definitions, they are added to the database and displayed. If you stop and restart the app, you'll see any words and definitions you've already added are now listed.
 
 ## Running the app locally
 
