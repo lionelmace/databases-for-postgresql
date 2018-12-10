@@ -14,12 +14,12 @@ lastupdated: "2018-12-03"
 
 # Getting your Connection Strings
 
-In order to connect to {{site.data.keyword.databases-for-postgresql_full}}, you need some connection strings. A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with an admin user, and after [setting the root password](./howto-admin-password), you can use its connection strings to connect to your deployment.
+In order to connect to {{site.data.keyword.databases-for-postgresql_full}}, you need some connection strings. A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with an admin user, and after [setting the admin password](./howto-admin-password), you can use its connection strings to connect to your deployment.
 
 The simplest way to retrieve connection information is from the [cloud databases plug-in](./howto-using-ibmcloud-cli.html). Use the `ibmcloud cdb deployment-connections` command to display a formatted connection URI for any user on your deployment. For example, to retrieve a connection string for the admin user on a deployment named  "example-postgres", use the following command.
 
 ```
-ibmcloud cdb deployment-connections -u admin
+ibmcloud cdb deployment-connections example-postgres -u admin
 ```
 Or
 ```
@@ -28,7 +28,7 @@ ibmcloud cdb cxn example-postgres -u admin
 
 ## Generating Connection Strings for additional users
 
-Access to your {{site.data.keyword.databases-for-postgresql}} deployment is not just limited to the root user. You can create additional users and retrieve connection strings specific to them by using the _Service Credentials_ panel, the {{site.data.keyword.IBM_notm}} CLI, or through the {{site.data.keyword.IBM_notm}} {{site.data.keyword.databases-for}} API. 
+Access to your {{site.data.keyword.databases-for-postgresql}} deployment is not just limited to the admin user. You can create additional users and retrieve connection strings specific to them by using the _Service Credentials_ panel, the {{site.data.keyword.IBM_notm}} CLI, or through the {{site.data.keyword.IBM_notm}} {{site.data.keyword.databases-for}} API. 
 
 ## Generating Connection Strings from _Service Credentials_
 
@@ -68,7 +68,7 @@ Full connection information is returned by the `ibmcloud cdb deployment-connecti
 ibmcloud cdb deployment-connections example-deployment -u <newusername> --all
 ```
 
-If you don't specify a user, the `deployment-connections` commands return information for the root user by default.
+If you don't specify a user, the `deployment-connections` commands return information for the admin user by default.
 {: .tip}
 
 ### Generating _Service Credentials_ for existing users.
