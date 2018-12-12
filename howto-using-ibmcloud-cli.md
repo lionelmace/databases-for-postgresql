@@ -25,7 +25,7 @@ You can install just the stand-alone package from the [Installing the stand-alon
 
 ## The cloud databases plug-in
 
-Once you have the {{site.data.keyword.cloud_notm}} CLI, [login](https://{DomianName}/docs/cli/reference/ibmcloud/bx_cli.html#ibmcloud_login) and grab the cloud databases plug-in. 
+Once you have the {{site.data.keyword.cloud_notm}} CLI, [login](https://{DomainName}/docs/cli/reference/ibmcloud/bx_cli.html#ibmcloud_login) and grab the cloud databases plug-in. 
 
 `ibmcloud plugin install cloud-databases`
 

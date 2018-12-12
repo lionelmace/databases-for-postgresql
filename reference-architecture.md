@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2018
-lastupdated: "2018-12-03"
+lastupdated: "2018-12-12"
 ---
 
 {:new_window: target="_blank"}
@@ -26,6 +26,10 @@ Database storage for {{site.data.keyword.databases-for-postgresql}} is provided 
 ### Full-disk Encryption
 
 All {{site.data.keyword.databases-for-postgresql}} services all have encryption at rest. Both your data and your backups reside on servers that have volume-level encryption enabled. If your environment requires that you control the encryption keys, [Key Protect integration](./reference-key-protect.html) is available.
+
+### Connection Limits 
+
+{{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to 100. Connections to the database consume resources, so in order to raise this limit you might have to [scale your deployment](./dashboard-settings.html#scaling-resources) and [open a support ticket](https://cloud.ibm.com/unifiedsupport/cases/add). 
 
 ## Portals
 

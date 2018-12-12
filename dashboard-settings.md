@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2018
-lastupdated: "2018-12-03"
+lastupdated: "2018-12-12"
 ---
 
 {:new_window: target="_blank"}
@@ -111,3 +111,11 @@ The *Description* can be any user-significant text for identifying the whitelist
 
 To remove an IP address or netmask from the Whitelist, click *Remove*.
 When all entries on the whitelist are removed, the whitelist is disabled and all IP addresses are accepted by the TCP access portals.
+
+## Caution Area
+
+Adjusting the settings in the **Caution Area** are likely (or are intended) to cause downtime, database restarts, or service interruptions. Please use caution when clicking these buttons.
+
+### Kill All Connections
+
+Clicking on the **Kill Connections** button closes all open connections to the database. It's useful if you suspect you have zombie connections or have exhausted your [available connections](./reference-architecture.html#connection-limits). If you find you are regularly exhausting your available connections, you might have to [scale your deployment](./dashboard-settings.html#scaling-resources) and [open a support ticket](https://cloud.ibm.com/unifiedsupport/cases/add) to raise your connection limit.
