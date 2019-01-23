@@ -46,7 +46,7 @@ The {{site.data.keyword.cloud_notm}} command line interface provides in interact
 
 ## PostgreSQL Database Administration
 
-Although {{site.data.keyword.databases-for-postgresql}} is a managed service, you can still access your PostgreSQL databases directly with `psql`. Your deployment comes with a default admin user, so [set the admin password](./admin-password.html) and use it to [connect with `psql`](./admin-connecting.html). You can use `psql` to [install extensions](./admin-extensions.html), manage database roles and privileges, and many other administrative functions.
+Although {{site.data.keyword.databases-for-postgresql}} is a managed service, you can still access your PostgreSQL databases directly with `psql`. Your deployment comes with a default admin user, so [set the admin password](./admin-password.html) and use it to [connect with `psql`](./admin-connecting.html). You can use `psql` to [install extensions](./admin-extensions.html), set up [logical replication](./admin-logical-replication.html), manage database roles and privileges, and many other administrative functions.
 
 ## Connecting to {{site.data.keyword.databases-for-postgresql}}
 

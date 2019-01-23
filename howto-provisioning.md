@@ -131,7 +131,7 @@ The `name`, `location`, `service`, and `plan` fields are all required. The `reso
 
 You can send any needed [additional parameters](#list-of-additional-parameters) in the `parameters` field as a JSON object.
 
-More information about this specific I{{site.data.keyword.cloud_notm}} provider configuration is available under the [Cloud Foundry Resources, `resource_instance`](https://ibm-cloud.github.io/tf-ibm-docs/v0.14.0/r/resource_instance.html) documentation.
+More information about this specific {{site.data.keyword.cloud_notm}} provider configuration is available under the [Cloud Foundry Resources, `resource_instance`](https://ibm-cloud.github.io/tf-ibm-docs/v0.14.0/r/resource_instance.html) documentation.
 
 ## List of Additional Parameters
 

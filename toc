@@ -32,6 +32,7 @@ Databases For PostgreSQL
 		admin-password.md
 		admin-connecting.md
 		admin-extensions.md
+		admin-logical-replication.md
 	{: .navgroup-end}
 
 	{: .navgroup id="reference"}
