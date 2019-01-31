@@ -13,6 +13,7 @@ lastupdated: "2018-12-03"
 
 
 # Connecting with `psql`
+{: #connecting-psql}
 
 You can access your PostgreSQL database directly from its command line client, `psql`. You can use `psql` for direct interaction and monitoring of the data structures that are created within the database. It is also useful for testing and monitoring the queries and performance, installing and modifying scripts, and other management activities.
 
@@ -42,7 +43,7 @@ Field Name|Index|Description
 
 * `0...` indicates that there might be one or more of these entries in an array.
 
-## Connecting with `psql`
+## Connecting
 
 The `ibmcloud cdb deployment-connections` command handles everything that is involved in creating a command line client connection. For example, to connect to a deployment named  "example-postgres", use the following command.
 
