@@ -19,7 +19,7 @@ You can access your PostgreSQL database directly from its command line client, `
 
 The admin user comes with the PostgreSQL default role [`pg_monitor`](https://www.postgresql.org/docs/10/static/default-roles.html), allowing access to PostgreSQL monitoring views and functions. By default, the admin user does not have permissions on objects that are created by other users.
 
-You have to set the admin password before you use it to connect to the database. For more information, see the [Setting the Admin Password](./admin-password.html) page.
+You have to set the admin password before you use it to connect to the database. For more information, see the [Setting the Admin Password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password) page.
 {: .tip}
 
 ## Installing `psql`
@@ -28,7 +28,7 @@ Install the command line client for PostgreSQL, `psql`. To use `psql`, the Postg
 
 ## `psql` Connection Strings
 
-{{site.data.keyword.databases-for-postresql_full}} provides connection strings specifically for CLI clients. The information that you need to make a connection with `psql` is in the "cli" section of your [connection strings](./howto-getting-connection-strings.html). The table contains a breakdown for reference.
+{{site.data.keyword.databases-for-postresql_full}} provides connection strings specifically for CLI clients. The information that you need to make a connection with `psql` is in the "cli" section of your [connection strings](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings). The table contains a breakdown for reference.
 
 Field Name|Index|Description
 ----------|-----|-----------
@@ -57,7 +57,7 @@ ibmcloud cdb cxn example-postgres -s
 
 The command prompts for the admin password and then runs the `psql` command line client to connect to the database.
 
-If you have not installed the cloud databases plug-in, connect to your PostgreSQL databases using `psql` by giving it the "composed" connection string. It provides environment variables `PGPASSWORD` and `PGSSLROOTCERT`. Set `PGPASSWORD` to the admin's password and `PGSSLROOTCERT` to the path or file name for the self-signed certificate.  
+If you have not installed the cloud databases plug-in, connect to your PostgreSQL databases using `psql` by giving it the "composed" connection string. It provides environment variables `PGPASSWORD` and `PGSSLROOTCERT`. Set `PGPASSWORD` to the admin's password and `PGSSLROOTCERT` to the path or file name for the self-signed certificate. 
 
 ```
 PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'host=4a8148fa-3806-4f9c-b3fc-6467f11b13bd.8f7bfd7f3faa4218aec56e069eb46187.databases.appdomain.cloud port=32325 dbname=ibmclouddb user=admin sslmode=verify-full'

@@ -13,6 +13,7 @@ lastupdated: "2018-12-12"
 {:tip: .tip}
 
 # Settings
+{: #dashboard-settings}
 
 Manage your {{site.data.keyword.databases-for-postgresql_full}} service through these available settings.
 
@@ -118,4 +119,4 @@ Adjusting the settings in the **Caution Area** are likely (or are intended) to c
 
 ### Kill All Connections
 
-Clicking on the **Kill Connections** button closes all open connections to the database. It's useful if you suspect you have zombie connections or have exhausted your [available connections](./reference-architecture.html#connection-limits). If you find you are regularly exhausting your available connections, you might have to [scale your deployment](./dashboard-settings.html#scaling-resources) and [open a support ticket](https://cloud.ibm.com/unifiedsupport/cases/add) to raise your connection limit.
+Clicking on the **Kill Connections** button closes all open connections to the database. It's useful if you suspect you have zombie connections or have exhausted your [available connections](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-architecture#connection-limits). If you find you are regularly exhausting your available connections, you might have to [scale your deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-settings#scaling-resources) and [open a support ticket](https://cloud.ibm.com/unifiedsupport/cases/add) to raise your connection limit.

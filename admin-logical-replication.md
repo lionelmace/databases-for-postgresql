@@ -14,6 +14,7 @@ lastupdated: "2019-01-14"
 
 
 # Using Logical Replication
+{: #logical-replication}
 
 {{site.data.keyword.databases-for-postgresql_full}} supports [logical replication](https://www.postgresql.org/docs/current/logical-replication.html) from an external PostgreSQL instance to your deployment. You can set up your external PostgreSQL as a publisher, your {{site.data.keyword.databases-for-postgresql}} deployment as a subscriber, and replicate your data across from an external database into your deployment.
 
@@ -40,7 +41,7 @@ To configure your {{site.data.keyword.databases-for-postgresql}} deployment and 
 
 **Note** Native PostgreSQL subscription commands require superuser privileges, which are not available on {{site.data.keyword.databases-for-postgresql}} deployments. Instead, your deployment includes a set of functions that can be used to set and manage logical replication for the subscription. 
 
-Only the [admin user](./admin-connecting.html) that is provided by {{site.data.keyword.databases-for-postgresql}} has permissions to run the following replication commands that allow you to subscribe and replicate content from an external PostgreSQL publisher.
+Only the admin user that is provided by {{site.data.keyword.databases-for-postgresql}} has permissions to run the following replication commands that allow you to subscribe and replicate content from an external PostgreSQL publisher.
 {: .tip}
 
 ### Subscriber Functions

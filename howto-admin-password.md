@@ -12,6 +12,7 @@ lastupdated: "2018-12-03"
 {:tip: .tip}
 
 # Setting the Admin Password
+{: #admin-password}
 
 The {{site.data.keyword.databases-for-postgresql_full}} service is provisioned with an admin user, so you can manage PostgreSQL by using its command line tool, `psql`.
 
