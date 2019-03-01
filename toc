@@ -32,7 +32,8 @@ Databases For PostgreSQL
 		connecting-psql.md
 
 	{: .topicgroup}
-	Administering PostgreSQL
+	Configuring PostgreSQL
+		changing-config.md
 		admin-extensions.md
 		admin-logical-replication.md
 	{: .navgroup-end}

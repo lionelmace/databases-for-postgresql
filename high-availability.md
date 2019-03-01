@@ -43,7 +43,7 @@ If you are planning on running operations that might put a spike in the usual RA
 FATAL: remaining connection slots are reserved for
 non-replication superuser connections
 ```
-your application is exceeding this connection limit. The recommended solution is to make use of connection pooling. It is possible to raise the connection limit, but connections to the database consume resources. To raise the connection limit, you might have to [scale your deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-settings#scaling-resources) and then you must [open a support ticket](https://cloud.ibm.com/unifiedsupport/cases/add). 
+your application is exceeding this connection limit. The recommended solution is to make use of connection pooling. It is possible to raise the connection limit, but connections to the database consume resources. To raise the connection limit, you might have to [scale your deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-settings#scaling-resources) and then [change the PostgreSQL configuration](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration#changing-configuration).
 
 ### Connection Pooling
 
