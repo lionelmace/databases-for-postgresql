@@ -38,7 +38,7 @@ If you are planning on running operations that might put a spike in the usual RA
 
 ## Connection Limits 
 
-{{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **100**. If you see a string of connection failures and the error,
+{{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. If you see a string of connection failures and the error,
 ```
 FATAL: remaining connection slots are reserved for
 non-replication superuser connections

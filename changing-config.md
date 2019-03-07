@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2019
-lastupdated: "2019-02-28"
+lastupdated: "2019-03-06"
 ---
 
 {:new_window: target="_blank"}
@@ -43,6 +43,7 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
 
 Setting|Default|Notes
 ----------|-----|-----------
-[`max_connections`](https://www.postgresql.org/docs/current/runtime-config-connection.html#max_connections)|100|[You may need to scale before increasing max connections.](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability#connection-limits)
+[`max_connections`](https://www.postgresql.org/docs/current/runtime-config-connection.html#max_connections)|115|[You may need to scale before increasing max connections.](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability#connection-limits)
+[`max_prepared_transactions`](https://www.postgresql.org/docs/current/runtime-config-resource.html#max_prepared_transactions)|0|The default value of `0` disables use of [prepared transactions](https://www.postgresql.org/docs/current/sql-prepare-transaction.html) and is strongly recommended unless you need to use them.
 {: caption="Table 1. Configuration Settings for PostgreSQL" caption-side="top"}
 
