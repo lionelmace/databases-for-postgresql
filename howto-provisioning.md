@@ -45,7 +45,7 @@ The database takes some time to deploy, and you are navigated back to your {{sit
 
 ## Using the Command Line
 
-The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line. For more information, see [Download and install {{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install_use).
+The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line. For more information, see [Download and install {{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
 To create a {{site.data.keyword.databases-for-postgresql}} deployment, you use the CLI to request a service instance with a `databases-for-postgresql` service ID.
 
