@@ -3,6 +3,9 @@
 Copyright:
   years: 2018
 lastupdated: "2018-12-05"
+
+subcollection: databases-for-postgresql
+
 ---
 
 {:new_window: target="_blank"}

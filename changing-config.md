@@ -2,6 +2,9 @@
 copyright:
   years: 2019
 lastupdated: "2019-03-06"
+
+subcollection: databases-for-postgresql
+
 ---
 
 {:new_window: target="_blank"}

@@ -3,6 +3,9 @@
 copyright:
   years: 2019
 lastupdated: "2019-03-14"
+
+subcollection: databases-for-postgresql
+
 ---
 
 {:shortdesc: .shortdesc}
