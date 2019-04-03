@@ -36,7 +36,7 @@ When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are
 
 When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are automatically given an admin user to access and manage PostgreSQL. Once you [set the admin password](/docs/services/databases-for-postgresql), you can use it to connect to your deployment.
 
-When a user creates a resource in a database, like a table, all users that are in the same group have access to that resource. Resources created by admin are accessible by other users in `ibm-cloud-base-user`.
+When admin creates a resource in a database, like a table, admin owns that object. Resources created by admin are not accessible by other users, unless you expressly grant permissions to them.
 
 The biggest difference between the admin user and any other users you add to your deployment is the [`pg_monitor`](https://www.postgresql.org/docs/current/default-roles.html) role. The `pg_monitor` role provides a set of permissions that makes the admin user appropriate for monitoring the database server.
 
@@ -47,7 +47,7 @@ The biggest difference between the admin user and any other users you add to you
 
 Users that you [create through the _Service Credentials_ panel](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#generating-connection-strings-from-service-credentials) are members of `ibm-cloud-base-user`. They are able to login, create users, and create databases.
 
-When a user creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` will be accessible to other users in `ibm-cloud-base-user`, including the admin user.
+When a user in a group creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` will be accessible to other users in `ibm-cloud-base-user`, including the admin user.
 
 ## Users created through the CLI and the API
 
