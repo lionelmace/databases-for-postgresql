@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019
-lastupdated: "2019-03-14"
+lastupdated: "2019-04-03"
 
 subcollection: databases-for-postgresql
 
@@ -26,6 +26,7 @@ Role name | Attributes | Member of
 `admin` | Create role, Create DB | {pg_monitor,ibm-cloud-base-user}
 `ibm` | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 `ibm-cloud-base-user` | Create role, Create DB, Cannot login | {}
+`ibm-cloud-base-user-ro` | Create role, Create DB, Cannot login | {ibm-cloud-base-user}
 `ibm-replication` | Replication | {}
 `service_credentials_1` | Create role, Create DB | {ibm-cloud-base-user}
 {: caption="Table 1. Users in a PostgreSQL deployment" caption-side="top"}
@@ -51,15 +52,19 @@ When a user in a group creates a resource in a database, like a table, all users
 
 ## Users created through the CLI and the API
 
-Users that you create through the Cloud Databases API anf the CloudDatabases CLI will also be members of `ibm-cloud-database-base-user`. They are able to login, create users, and create databases.
+Users that you create through the Cloud Databases API and the CloudDatabases CLI will also be members of `ibm-cloud-database-base-user`. They are able to login, create users, and create databases.
 
 When a user creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` will be accessible to other users in `ibm-cloud-base-user`, including the admin user.
 
-Users created directly from the API and CLI do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=messages-for-postgresql-connection-strings#generating-service-credentials-for-existing-users) if you choose.
+Users created directly from the API and CLI do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#generating-service-credentials-for-existing-users) if you choose.
+
+## The read-only user
+
+The `ibm-cloud-base-user-ro` manages privileges for users that are created to access read-only replicas. More information can be found on the [Configuring Read-only Replicas](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) page.
 
 ## Users created with `psql`
 
-You can bypass creating users through IBM Cloud entirely, and create users directly in PostgreSQL with `psql`. This allows you to make use of PostgreSQL's native [role and user management](https://www.postgresql.org/docs/current/database-roles.html). Users/roles created in `psql` have to have all of their privileges set manually.  
+You can bypass creating users through IBM Cloud entirely, and create users directly in PostgreSQL with `psql`. This allows you to make use of PostgreSQL's native [role and user management](https://www.postgresql.org/docs/current/database-roles.html). Users/roles created in `psql` have to have all of their privileges set manually, as well as privileges to the objects that they create. 
 
 Users created directly in PostgreSQL do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=messages-for-postgresql-connection-strings#generating-service-credentials-for-existing-users) if you choose. 
 

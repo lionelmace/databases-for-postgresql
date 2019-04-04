@@ -36,6 +36,7 @@ Databases For PostgreSQL
 		changing-config.md
 		howto-user-management.md
 		admin-extensions.md
+		read-replica.md
 		admin-logical-replication.md
 	{: .navgroup-end}
 
