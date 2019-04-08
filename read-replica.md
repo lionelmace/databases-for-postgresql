@@ -71,7 +71,7 @@ For example, to provision a read-only replica through the CLI,
 ```
 ibmcloud resource service-instance-create <replica_name> databases-for-postgresql standard <region> \
 -p \ '{
-  "remote_leader_crn": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71819::",
+  "remote_leader_id": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71819::",
   "members_memory_allocation_mb": "2048",
   "members_disk_allocation_mb": "10280"
 }'
@@ -88,7 +88,7 @@ curl -X POST \
     "target": "<region>",
     "resource_group": "<your_resource_group_id>",
     "resource_plan_id": "databases-for-postgresql-standard",
-    "remote_leader_crn": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71819::",
+    "remote_leader_id": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71819::",
     "members_memory_allocation_mb": "2048",
     "members_disk_allocation_mb": "10280"
   }'
