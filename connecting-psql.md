@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017,2018
-lastupdated: "2018-12-03"
+  years: 2017,2019
+lastupdated: "2019-04-10"
 
 subcollection: databases-for-postgresql
 
@@ -31,7 +31,9 @@ Install the command line client for PostgreSQL, `psql`. To use `psql`, the Postg
 
 ## `psql` Connection Strings
 
-{{site.data.keyword.databases-for-postresql_full}} provides connection strings specifically for CLI clients. The information that you need to make a connection with `psql` is in the "cli" section of your [connection strings](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings). The table contains a breakdown for reference.
+Connection strings are displayed in the _Connections_ panel of your deployment's _Overview_, and can also be retrieved from the [cloud databases CLI plugin](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployment-connections), and the [API](https://{DomainName}/apidocs/cloud-databases-api#discover-connection-information-for-a-deployment-f-e81026).
+
+The information that you need to make a connection with `psql` is in the "cli" section of your connection strings. The table contains a breakdown for reference.
 
 Field Name|Index|Description
 ----------|-----|-----------
@@ -67,8 +69,10 @@ PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'ho
 ```
 ## Using the self-signed certificate
 
-1. Copy the certificate information from the Base64 field of the connection information. 
-2. Decode the Base64 string into text and save it to a file. (You can use the Name that is provided or your own file name).
+1. Copy the certificate information from the _Connections_ panel or the Base64 field of the connection information. 
+2. If needed, decode the Base64 string into text. 
+3. Save the certificate  to a file. (You can use the Name that is provided or your own file name).
+4. Provide the path to the certificate to the `ROOTCERT` environment variable.
 
 ### CLI plug-in support for the self-signed certificate
 
