@@ -28,26 +28,25 @@ A {{site.data.keyword.databases-for-postgresql}} Standard plan deploys as one hi
 
 Resources | Breakdown | Price
 -------|-------|-------
-10 GB-Month disk | 2 members x 10 GB x $0.58 | $11.60
+5 GB-Month disk | 2 members x 5 GB x $0.58 | $5.80
 1 GB-Month RAM | 2 members x 1 GB  x $5 | $10
 {: caption="Table 1. Pricing example for two data members" caption-side="top"}
 
-Total per month = $21.60/Month
-Total per hour = $.03/Hour
+Total per month = $15.80/Month
+Total per hour = $.02/Hour
 
-All prices here are in US dollars. To see pricing in your local currency, you can to use the [pricing calculator](https://{DomainName}/pricing/configure/service/databases-for-postgresql).
+All prices here are in US dollars. To see pricing in your local currency, you can to use the pricing calculator.
 {: .tip}
-
 
 ## Using the Pricing Calculator
 
-For pricing estimation, input your total consumption across two data members into the calculator. This is roughly double the size of your data because your data is replicated to both members. For example, 10 GB of disk and 1 GB of RAM across two data members would be priced at 20 GB of disk and 2 GB of RAM respectively. 
+For pricing estimation, use the **Add to Estimate** button at the bottom of the [{{site.data.keyword.databases-for-postgresql}} catalog page](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Input your total consumption across two data members into the calculator. This is roughly double the size of your data because your data is replicated to both members. For example, 5 GB of disk and 1 GB of RAM across two data members would be priced at 10 GB of disk and 2 GB of RAM respectively. 
 
-![Pricing calculator estimation with 10 GB of disk and 1 GB of RAM, per member](images/pricing-calc.png)
+![Pricing calculator estimation with 5 GB of disk and 1 GB of RAM, per member](images/pricing-calc.png)
 
 ## Backups Pricing
 
-Users also receive their total disk space purchased, per database, in free backup storage. For example, in a month, if you have a {{site.data.keyword.databases-for-postgresql}} deployment that has provisioned 10 GB of disk per member, which has two data members, you receive 20 GB of backup storage free for that month. If your backup storage utilization is greater than 20 GB for the month in this scenario, each gigabyte is charged at an overage $0.03/month. Most deployments will not ever go over the allotted credit.
+Users also receive their total disk space purchased, per database, in free backup storage. For example, in a month, if you have a {{site.data.keyword.databases-for-postgresql}} deployment that has provisioned 5 GB of disk per member, which has two data members, you receive 10 GB of backup storage free for that month. If your backup storage utilization is greater than 10 GB for the month in this scenario, each gigabyte is charged at an overage $0.03/month. Most deployments will not ever go over the allotted credit.
 
 ## Scaling per Member
 

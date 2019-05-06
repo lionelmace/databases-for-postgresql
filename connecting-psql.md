@@ -27,7 +27,9 @@ You have to set the admin password before you use it to connect to the database.
 
 ## Installing `psql`
 
-Install the command line client for PostgreSQL, `psql`. To use `psql`, the PostgreSQL client tools need to be installed on the local system. They can be installed with the full PostgreSQL package that is provided from postgresql.org, or from your operating systems packages. For more information about `psql`, see the [PostgreSQL documentation](https://www.postgresql.org/docs/current/static/app-psql.html).
+Install the command line client for PostgreSQL, `psql`. To use `psql`, the PostgreSQL client tools need to be installed on the local system. They can be installed with the full PostgreSQL package that is provided from [postgresql.org](https://www.postgresql.org/download/), or as a [package from your operating system's package manager](https://www.compose.com/articles/postgresql-tips-installing-the-postgresql-client/). 
+
+For more information about `psql`, see the [PostgreSQL documentation](https://www.postgresql.org/docs/current/static/app-psql.html).
 
 ## `psql` Connection Strings
 
