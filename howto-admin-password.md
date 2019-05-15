@@ -43,5 +43,3 @@ curl -X PATCH `https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
 ```
 
 For more information, see the [API Reference](https://{DomainName}/apidocs/cloud-databases-api#set-database-level-user-s-password).
-
-
