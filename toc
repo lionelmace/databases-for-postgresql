@@ -27,7 +27,6 @@ Databases For PostgreSQL
 	
 	{: .topicgroup}
 	Connecting to Databases for PostgreSQL
-		howto-getting-connection-strings.md
 		connecting-external.md
 		connecting-ibmcloud-app.md
 		connecting-psql.md
