@@ -76,7 +76,7 @@ The example graph shows the memory usage for all data members of a deployment.
 
 ![An example graph that shows memory usage for a deployment](images/monitoring-example-graph.png)
 
-Once the is graph configured, click the _Save_ icon and give it a name. It appears in your list of dashboards.
+Once the graph is configured, click the _Save_ icon and give it a name. It appears in your list of dashboards.
 
 ## Configuring Alerts
 

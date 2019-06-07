@@ -55,7 +55,7 @@ Ruby on Rails|Rails|[Rails Guide](http://edgeguides.rubyonrails.org/configuring.
 Python|`Psycopg2`|[Link](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial)
 C#|`ODBC`|[Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_PostgreSQL_Database_Server_via_ODBC)
 Go|`pq`|[Link](https://godoc.org/github.com/lib/pq)
-Node|`node-postgres`|[Link](https://github.com/brianc/node-postgres/wiki/Example)
+Node|`node-postgres`|[Link](https://node-postgres.com/)
 Java|`JDBC driver`|[Link](https://jdbc.postgresql.org/documentation/head/index.html)
 {: caption="Table 2. PostgreSQL drivers" caption-side="top"}
 

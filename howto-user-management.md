@@ -37,7 +37,7 @@ When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are
 
 When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are automatically given an admin user to access and manage PostgreSQL. Once you [set the admin password](/docs/services/databases-for-postgresql), you can use it to connect to your deployment.
 
-When admin creates a resource in a database, like a table, admin owns that object. Resources created by admin are not accessible by other users, unless you expressly grant permissions to them.
+When admin creates a resource in a database, like a table, admin owns that object. Resources that are created by admin are not accessible by other users, unless you expressly grant permissions to them.
 
 The biggest difference between the admin user and any other users you add to your deployment is the [`pg_monitor`](https://www.postgresql.org/docs/current/default-roles.html) role. The `pg_monitor` role provides a set of permissions that makes the admin user appropriate for monitoring the database server.
 
@@ -46,17 +46,17 @@ The biggest difference between the admin user and any other users you add to you
 
 ## _Service Credential_ Users
 
-Users that you [create through the _Service Credentials_ panel](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#generating-connection-strings-from-service-credentials) are members of `ibm-cloud-base-user`. They are able to login, create users, and create databases.
+Users that you [create through the _Service Credentials_ panel](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#generating-connection-strings-from-service-credentials) are members of `ibm-cloud-base-user`. They are able to log in, create users, and create databases.
 
-When a user in a group creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` will be accessible to other users in `ibm-cloud-base-user`, including the admin user.
+When a user in a group creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` are accessible to other users in `ibm-cloud-base-user`, including the admin user.
 
 ## Users created through the CLI and the API
 
-Users that you create through the Cloud Databases API and the Cloud Databases CLI will also be members of `ibm-cloud-database-base-user`. They are able to login, create users, and create databases.
+Users that you create through the Cloud Databases API and the Cloud Databases CLI will also be members of `ibm-cloud-database-base-user`. They are able to log in, create users, and create databases.
 
-When a user creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` will be accessible to other users in `ibm-cloud-base-user`, including the admin user.
+When a user creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` are accessible to other users in `ibm-cloud-base-user`, including the admin user.
 
-Users created directly from the API and CLI do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#generating-service-credentials-for-existing-users) if you choose.
+Users that are created directly from the API and CLI do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#generating-service-credentials-for-existing-users) if you choose.
 
 ## The read-only user
 
@@ -66,11 +66,11 @@ The `ibm-cloud-base-user-ro` manages privileges for users that are created to ac
 
 You can bypass creating users through IBM Cloud entirely, and create users directly in PostgreSQL with `psql`. This allows you to make use of PostgreSQL's native [role and user management](https://www.postgresql.org/docs/current/database-roles.html). Users/roles created in `psql` have to have all of their privileges set manually, as well as privileges to the objects that they create. 
 
-Users created directly in PostgreSQL do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=messages-for-postgresql-connection-strings#generating-service-credentials-for-existing-users) if you choose. 
+Users that are created directly in PostgreSQL do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=messages-for-postgresql-connection-strings#generating-service-credentials-for-existing-users) if you choose. 
 
-Note that these users will not be integrated with IAM controls, even if added to _Service Credentials_.
+Note that these users are not integrated with IAM controls, even if added to _Service Credentials_.
 {: .tip}
 
 ## The `ibm` and `ibm-replication` Users
 
-If you run the `\du` command with your admin account, you might notice two users named `ibm` and `ibm-replication`. These users are internal administrative accounts that manage replication, metrics, and other functions that ensure the stability of your deployment. The `ibm` and the `ibm-replication` accounts are the only superusers on your deployment. A superuser account is not available for you to use.
+If you run the `\du` command with your admin account, you might notice two users that are named `ibm` and `ibm-replication`. These users are internal administrative accounts that manage replication, metrics, and other functions that ensure the stability of your deployment. The `ibm` and the `ibm-replication` accounts are the only superusers on your deployment. A superuser account is not available for you to use.

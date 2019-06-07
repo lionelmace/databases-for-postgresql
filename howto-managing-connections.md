@@ -18,7 +18,7 @@ subcollection: databases-for-postgresql
 # Managing PostgreSQL Connections
 {: #managing-connections}
 
-Connections to your {{site.data.keyword.databases-for-postgresql_full}} deployment use resources, so it is important to consider how many connections you need when tuning your deployment's performance. PostgreSQL uses a `max_connections` setting to limit the number of connections (and resources consumed by connections) to prevent run-away connection behavior to overwhelm your deployment's resources.
+Connections to your {{site.data.keyword.databases-for-postgresql_full}} deployment use resources, so it is important to consider how many connections you need when tuning your deployment's performance. PostgreSQL uses a `max_connections` setting to limit the number of connections (and resources that are consumed by connections) to prevent run-away connection behavior to overwhelm your deployment's resources.
 
 You can check the value of `max_connections` with your [admin user](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user) and [`psql`](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 ```
@@ -32,7 +32,7 @@ ibmclouddb=> SHOW max_connections;
 Many of the queries rely on the admin user's role as `pg_monitor`, which is only available in PostgreSQL 10 and above. Users on PostgreSQL 9.x, might not have permissions to run all of the queries in these docs.
 {: .tip}
 
-## Connection Limits 
+## PostgreSQL Connection Limits 
 
 At provision, {{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. If the number of connections to the database exceeds the 100 connection limit, new connections fail and return an error.
 ```
@@ -46,7 +46,7 @@ You can check the number of connections to your deployment with the admin user, 
 SELECT count(distinct(numbackends)) FROM pg_stat_database;
 ```
 
-If you need to figure out where the connections are going you can breakdown the connections by database.
+If you need to figure out where the connections are going, you can break down the connections by database.
 ```sql
 SELECT datname, numbackends FROM pg_stat_database;
 ```
@@ -58,7 +58,7 @@ SELECT * FROM pg_stat_activity WHERE datname='ibmclouddb';
 
 ## Terminating Connections
 
-If you find connections that need to be reset or closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). `pg_cancel_backend` cancels a connection's current query without terminating the connection, and without stopping any other queries it might be running.
+If you find connections that need to be reset or closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). `pg_cancel_backend` cancels a connection's current query without terminating the connection, and without stopping any other queries that it might be running.
 ```sql
 SELECT pg_cancel_backend(pid);
 ```
@@ -88,11 +88,11 @@ Alternatively, you can use a third-party tool such as [PgBouncer](https://pgboun
 
 ## Raising the Connection Limit
 
-PostgreSQL allocates some amount of memory on a per connection basis. It is important to consider the total amount of memory available to your deployment before increasing the connection limit. To raise the connection limit, first you might want to [scale your deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-settings#scaling-resources) to ensure you have enough memory to accommodate more connections.
+PostgreSQL allocates some amount of memory on a per connection basis. It is important to consider the total amount of memory that is available to your deployment before increasing the connection limit. To raise the connection limit, first you might want to [scale your deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-settings#scaling-resources) to ensure that you have enough memory to accommodate more connections.
 
 Next, change the value of `max_connections` on your deployment. To make permanent changes to the [PostgreSQL configuration](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration#changing-configuration), you want to use the {{site.data.keyword.databases-for}} [cli-plugin](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployment-configuration) or [API](https://{DomainName}/apidocs/cloud-databases-api#change-your-database-configuration) to write the changes to the configuration file for your deployment. 
 
-For example, to raise `max_connections` to 215, it might be a good idea to scale your deployment to at least 2 GB of RAM per data member, for a total of 4 GB of RAM for your deployment. Once the scaling operation has finished, then set the connection limit. In the CLI,
+For example, to raise `max_connections` to 215, it might be a good idea to scale your deployment to at least 2 GB of RAM per data member, for a total of 4 GB of RAM for your deployment. Once the scaling operation has finishes, then set the connection limit. In the CLI,
 ```
 ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
 
