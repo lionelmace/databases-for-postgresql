@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="databases-for-postgresql" category="databases" audience="service" arm="4146381" href="/docs/services/databases-for-postgresql/index.html" path="services/databases-for-postgresql"}
+{: .toc subcollection="databases-for-postgresql" audience="service" category="databases" arm="4146381" href="/docs/services/databases-for-postgresql/index.html" path="services/databases-for-postgresql"}
 Databases For PostgreSQL
 
 	{: .navgroup id="learn"}
@@ -36,7 +36,7 @@ Databases For PostgreSQL
 		howto-resources-scaling.md
 		howto-managing-connections.md
 
-	howto-backups.md
+	/cloud-databases/cloud-databases-dashboard-backups
 	/cloud-databases/cloud-databases-whitelisting
 
 	{: .topicgroup}
