@@ -186,7 +186,7 @@ To understand more about how the [sample app](https://github.com/IBM-Cloud/cloud
 To start exploring your {{site.data.keyword.databases-for-postgresql}} service, see the following topics about the service dashboard:
 
 - [Dashboard Overview](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-overview)
-- [Backups](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-backups)
+- [Backups](/docs/services/databases-for-postgresql?topic=cloud-databases-dashboard-backups)
 - [Creating Users and Getting Connection Strings](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings)
 
 [ibm_cloud_signup_url]: https://ibm.biz/databases-for-postgresql-signup
