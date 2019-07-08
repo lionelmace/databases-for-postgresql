@@ -42,6 +42,9 @@ If you find that your deployment is suffering from performance issues due to a l
 
 The amount of memory allocated to the database's shared buffer pool is **not** adjusted automatically when you scale your deployment. Its recommended to be set to 25% of the deployment's total memory. You can manually tune the shared buffer pool through the [`shared_buffer`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS) setting in your [PostgreSQL's configuration](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration). It is not auto-tuned because changing the `shared_buffer` requires a database restart.
 
+**Dedicated Cores** - 
+If you provisioned your deployment with dedicated cores, you can increase the CPU allocation to the deployment. This option is not available on deployments that were not provisioned with an initial CPU allocation.
+
 ## Scaling via the UI
 
 Adjust the slider to increase or decrease the resources that are allocated to your service. The slider controls how much memory or disk is allocated per member. The UI shows the total allocated memory or disk for the position of the slider. Click **Scale** to trigger the scaling operations and return to the dashboard overview. 
