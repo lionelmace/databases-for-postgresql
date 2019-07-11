@@ -44,6 +44,7 @@ Databases For PostgreSQL
 		changing-config.md
 		admin-extensions.md
 		read-replica.md
+		howto-wal2json.md
 		admin-logical-replication.md
 	{: .navgroup-end}
 

@@ -82,3 +82,22 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
   - Options - Minimum value of 100
   - Notes - The number of milliseconds to wait before checking for deadlock and the duration where lock waits are logged. Logs available through the [logging integration](/docs/services/databases-for-postgresql?topic=cloud-databases-logging). Setting this too low negatively impacts performance.
 
+### WAL Settings
+
+The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plugin](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plugin should leave these settings at the default.
+
+[`wal_level`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
+  - Default - `hot_standby`
+  - Restarts Database - **YES**
+  - Notes - Controls WAL level. Allowed values are `hot_standby` or `logical`. Set to logical to use logical decoding. If you are not using logical decoding, using `logical` increases the WAL size, which has several disadvantages and no real advantage. If you check your configuration using `SHOW wal_level;` in `psql`, note that as of version 9.6 the value `hot_standby` is mapped to `replica`.
+
+[`max_replication_slots`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
+  - Default - `10`
+  - Restarts Database - **YES**
+  - Notes - The maximum number of simultaneously defined replication slots. The default and minimum number of slots is 10. 20 slots are reserved for internal use by your deployment for High-Availability (HA) purposes. To use slots, you need to set the value above 20 and have 1 slot per consumer. It is recommended to add one additional slot over the minimum per expected consumer. Using `wal2json` and not increasing this may impact HA and/or read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
+
+[`max_wal_senders`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
+  - Default - `12`
+  - Restarts Database - **YES**
+  - Notes - The maximum number of simultaneously running WAL sender processes. The default and minimum is 12. One `wal_sender` per consumer is required.  20 slots are reserved for internal use by your deployment for High-Availability (HA) purposes. You need to set the value above 20 and it is recommended to add one additional `wal_sender` over the minimum per expected consumer. Using `wal2json` and not increasing `max_wal_senders` may impact HA and/or read replicas. If you are not using `wal2json`, you should leave this setting at the default.
+
