@@ -18,7 +18,7 @@ subcollection: databases-for-postgresql
 # Managing PostgreSQL Connections
 {: #managing-connections}
 
-Connections to your {{site.data.keyword.databases-for-postgresql_full}} deployment use resources, so it is important to consider how many connections you need when tuning your deployment's performance. PostgreSQL uses a `max_connections` setting to limit the number of connections (and resources that are consumed by connections) to prevent run-away connection behavior to overwhelm your deployment's resources.
+Connections to your {{site.data.keyword.databases-for-postgresql_full}} deployment use resources, so it is important to consider how many connections you need when tuning your deployment's performance. PostgreSQL uses a `max_connections` setting to limit the number of connections (and resources that are consumed by connections) to prevent run-away connection behavior from overwhelming your deployment's resources.
 
 You can check the value of `max_connections` with your [admin user](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user) and [`psql`](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 ```
