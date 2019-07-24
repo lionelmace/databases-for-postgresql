@@ -31,7 +31,7 @@ Role name | Attributes | Member of
 `service_credentials_1` | Create role, Create DB | {ibm-cloud-base-user}
 {: caption="Table 1. Users in a PostgreSQL deployment" caption-side="top"}
 
-When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are automatically given an admin user to access and manage PostgreSQL. You can also add users in the _Service Credentials_ panel, which allows users for PostgreSQL to be integrated with your {{site.data.keyword.cloud_notm}} account and [IAM](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-iam).
+When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are automatically given an admin user to access and manage PostgreSQL.
 
 ## The `admin` user
 
