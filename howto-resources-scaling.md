@@ -4,6 +4,8 @@ Copyright:
   years: 2019
 lastupdated: "2019-04-08"
 
+keywords: postgresql, databases, scaling
+
 subcollection: databases-for-postgresql
 
 ---

@@ -3,6 +3,8 @@ copyright:
   years: 2017,2019
 lastupdated: "2019-05-03"
 
+keywords: postgresql, databases
+
 subcollection: databases-for-postgresql
 
 ---

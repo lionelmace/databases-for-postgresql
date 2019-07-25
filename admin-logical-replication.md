@@ -4,6 +4,8 @@ Copyright:
   years: 2019
 lastupdated: "2019-01-14"
 
+keywords: postgresql, databases
+
 subcollection: databases-for-postgresql
 
 ---
@@ -16,7 +18,7 @@ subcollection: databases-for-postgresql
 {:tip: .tip}
 
 
-# Using Logical Replication
+# Databases for PostgreSQL as a Logical Replication Destination
 {: #logical-replication}
 
 {{site.data.keyword.databases-for-postgresql_full}} supports [logical replication](https://www.postgresql.org/docs/current/logical-replication.html) from an external PostgreSQL instance to your deployment. You can set up your external PostgreSQL as a publisher, your {{site.data.keyword.databases-for-postgresql}} deployment as a subscriber, and replicate your data across from an external database into your deployment.

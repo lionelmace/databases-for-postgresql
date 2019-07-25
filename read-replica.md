@@ -4,6 +4,8 @@ Copyright:
   years: 2019
 lastupdated: "2019-04-03"
 
+keywords: postgresql, databases, replica
+
 subcollection: databases-for-postgresql
 
 ---

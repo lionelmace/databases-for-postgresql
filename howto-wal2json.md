@@ -4,6 +4,8 @@ Copyright:
   years: 2019
 lastupdated: "2019-07-10"
 
+keywords: postgresql, databases, wal2json
+
 subcollection: databases-for-postgresql
 
 ---

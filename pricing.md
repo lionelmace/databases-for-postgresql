@@ -3,6 +3,8 @@ copyright:
   years: 2017,2018
 lastupdated: "2018-12-07"
 
+keywords: postgresql, databases, pricing
+
 subcollection: databases-for-postgresql
 
 ---
