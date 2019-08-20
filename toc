@@ -1,12 +1,12 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="databases-for-postgresql" audience="service" category="databases" arm="4146381" href="/docs/services/databases-for-postgresql/index.html" path="services/databases-for-postgresql"}
+{: .toc subcollection="databases-for-postgresql" audience="service" category="databases" arm="4146381" href="/docs/services/databases-for-postgresql?topic=databases-for-postgresql-getting-started" path="services/databases-for-postgresql"}
 Databases For PostgreSQL
 
 	{: .navgroup id="learn"}
-	index.md
 	getting-started.md
+	[What is Databases for PostgreSQL](https://www.ibm.com/cloud/databases-for-postgresql)
 
 	{: .topicgroup}
 	Service Overview
