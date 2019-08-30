@@ -37,7 +37,7 @@ curl -X PATCH https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{i
 
 2. Set a password for the `repl` user. Any user's password can be changes using the {{site.data.keyword.databases-for}} CLI plug-in [cdb deployment-user-password](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployment-user-password) command or {{site.data.keyword.databases-for}} API [/deployments/{id}/users/{username}](https://cloud.ibm.com/apidocs/cloud-databases-api#set-database-level-user-s-password) endpoint. The `repl` user has REPLICATION privileges and the `wal2json` plugin uses it after you set a password for it.
 
-3. Create a replication slot on the database from the {{site.data.keyword.databases-for}} API. Send a POST request to the [`/deployments/{id}/postgresql/logical_replication_slots`]() endpoint.
+3. Create a replication slot on the database from the {{site.data.keyword.databases-for}} API. Send a POST request to the [`/deployments/{id}/postgresql/logical_replication_slots`](https://cloud.ibm.com/apidocs/cloud-databases-api#create-a-new-logical-replication-slot) endpoint.
 ```
 curl -X POST https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/postgresql/logical_replication_slots   -H 'Authorization: Bearer <>'
   -H 'Content-Type: application/json' 
