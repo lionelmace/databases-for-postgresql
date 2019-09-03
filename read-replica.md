@@ -62,12 +62,12 @@ If a deployment is a leader and has a read-only replica that is already attached
 
 You can provision a read-only replica from the leader's _Settings_ panel by clicking **Create Read-Only Replica**. The source instance is automatically filled in. The read-only replica's name is auto-generated in the _Service Name_ field, but you can rename it freely. You can choose the region to deploy it in, and its initial memory allocation. Disk size is automatically calculated from the size of the leader deployment. The read-only replica is automatically provisioned with the same version as the leader. 
 
-If you use [Key Protect](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-key-protect), Bring Your Own Key (BYOK) is supported only when provisioning from the CLI and API. Otherwise, the read-only replica is encrypted with a generated key. 
+If you use [Key Protect](/docs/services/databases-for-postgresql?topic=cloud-databases-key-protect), Bring Your Own Key (BYOK) is supported only when provisioning from the CLI and API. Otherwise, the read-only replica is encrypted with a generated key. 
 {: .tip}
 
 ### Provisioning through the API or the CLI
 
-Provisioning a read-only replica through the CLI and the API works similarly to [provisioning a standard {{site.data.keyword.databases-for-postgresql}} deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-provisioning). Provisioning is handled by the Resource Controller, and it uses a parameter `{"remote_leader_id": "crn:v1:..."}` to specify the leader of the replica you are provisioning.
+Provisioning a read-only replica through the CLI and the API works similarly to [provisioning a standard {{site.data.keyword.databases-for-postgresql}} deployment](/docs/services/databases-for-postgresql?topic=cloud-databases-provisioning). Provisioning is handled by the Resource Controller, and it uses a parameter `{"remote_leader_id": "crn:v1:..."}` to specify the leader of the replica you are provisioning.
 
 For example, to provision a read-only replica through the CLI,
 ```
@@ -108,7 +108,7 @@ On the _Settings_ tab of a read-only replica, the _Replication_ panel contains i
 
 Replication status is not automatically monitored, you have to monitor replication.
 
-You can check the replication status of a read-only replica with `psql`, but only from its leader. [Connect to the leader deployment with `psql`](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) using the [admin credentials](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-roles-privileges#the-admin-user). Once you are connected run either
+You can check the replication status of a read-only replica with `psql`, but only from its leader. [Connect to the leader deployment with `psql`](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) using the [admin credentials](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user). Once you are connected run either
 - for PostgreSQL version 10 and above `SELECT * from pg_stat_replication;`
 Or
 - for PostgreSQL version 9.x and below `SELECT * FROM get_pg_stat_replication();`
@@ -136,7 +136,7 @@ When you create a user through the read-only replica, it gets first created on t
 
 Read-only replica users are able connect to the replicas and execute reads. Read-only replica users are not able to connect and execute operations on the leader.
 
-Read-only replica users are assigned privileges by the leader, and are assigned the `ibm-cloud-base-user-ro` role, and are members of the `ibm-cloud-base-user` group. They have access to all of the objects that are created by other members of this group, including any users on the leader that were created through _Service Credentials_, the CLI, or the API. Consistent with privileges of the `ibm-cloud-base-user`, the read-only replica user does not have access to objects created by the admin user, or other users created through `psql`. For more information, see the [PostgreSQL Roles and Privileges](/docs/services/databases-for-postgresq?topic=databases-for-postgresql-roles-privileges) page.
+Read-only replica users are assigned privileges by the leader, and are assigned the `ibm-cloud-base-user-ro` role, and are members of the `ibm-cloud-base-user` group. They have access to all of the objects that are created by other members of this group, including any users on the leader that were created through _Service Credentials_, the CLI, or the API. Consistent with privileges of the `ibm-cloud-base-user`, the read-only replica user does not have access to objects created by the admin user, or other users created through `psql`. For more information, see the [PostgreSQL Roles and Privileges](/docs/services/databases-for-postgresq?topic=databases-for-postgresql-user-management) page.
 
 Write operations on the read-only replica for all users are not filtered or rejected, but fail at DB level.
 {: .tip}

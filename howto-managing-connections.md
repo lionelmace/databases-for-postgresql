@@ -90,7 +90,7 @@ Alternatively, you can use a third-party tool such as [PgBouncer](https://pgboun
 
 ## Raising the Connection Limit
 
-PostgreSQL allocates some amount of memory on a per connection basis. It is important to consider the total amount of memory that is available to your deployment before increasing the connection limit. To raise the connection limit, first you might want to [scale your deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-settings#scaling-resources) to ensure that you have enough memory to accommodate more connections.
+PostgreSQL allocates some amount of memory on a per connection basis. It is important to consider the total amount of memory that is available to your deployment before increasing the connection limit. To raise the connection limit, first you might want to [scale your deployment](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling) to ensure that you have enough memory to accommodate more connections.
 
 Next, change the value of `max_connections` on your deployment. To make permanent changes to the [PostgreSQL configuration](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration#changing-configuration), you want to use the {{site.data.keyword.databases-for}} [cli-plugin](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployment-configuration) or [API](https://{DomainName}/apidocs/cloud-databases-api#change-your-database-configuration) to write the changes to the configuration file for your deployment. 
 
