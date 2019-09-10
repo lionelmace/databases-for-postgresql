@@ -30,6 +30,7 @@ Role name | Attributes | Member of
 `ibm-cloud-base-user` | Create role, Create DB, Cannot login | {}
 `ibm-cloud-base-user-ro` | Create role, Create DB, Cannot login | {ibm-cloud-base-user}
 `ibm-replication` | Replication | {}
+`repl` | Replication | {}
 `service_credentials_1` | Create role, Create DB | {ibm-cloud-base-user}
 {: caption="Table 1. Users in a PostgreSQL deployment" caption-side="top"}
 
@@ -63,6 +64,10 @@ Users that are created directly from the API and CLI do not appear in _Service C
 ## The read-only user
 
 The `ibm-cloud-base-user-ro` manages privileges for users that are created to access read-only replicas. More information can be found on the [Configuring Read-only Replicas](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) page.
+
+## The `repl` user
+
+The `repl` user has Replication privileges and is used if you enable the [`wal2json` plugin](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-wal2json) on your deployment. In the process of enabling `wal2json`, you set the `repl` user's password, which allows the `wal2json` plugin to use it.
 
 ## Users created with `psql`
 
