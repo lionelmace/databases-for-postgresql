@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017,2018
-lastupdated: "2018-12-03"
+  years: 2017,2019
+lastupdated: "2019-09-10"
 
 keywords: postgresql, databases
 
@@ -62,64 +62,66 @@ Database extensions in PostgreSQL are managed per database. If you have multiple
 If there is a newer version of an extension available than the one you currently have installed, use the `ALTER EXTENSION` to upgrade it.
 
 ## Available Extensions
+
+This list is what is returned from a {{site.data.keyword.databases-for-postgresql}} deployment running PostgreSQL version 10. For a list of available extensions on your deployment, use `SELECT name FROM pg_available_extensions;` in `psql`.
+
 ```
 ibmclouddb=> SELECT name FROM pg_available_extensions;
-             name
+              name
 ------------------------------
- pg_buffercache
- plperl
+ refint
+ uuid-ossp
+ sslinfo
+ pg_stat_statements
+ unaccent
+ hstore_plperlu
+ pg_freespacemap
+ pg_visibility
+ moddatetime
+ cube
+ fuzzystrmatch
+ earthdistance
+ pageinspect
+ tablefunc
  tsm_system_time
- plpgsql
- file_fdw
+ plperl
+ postgres_fdw
+ intarray
  ltree
  pgrowlocks
- hstore_plperlu
- postgres_fdw
- dict_xsyn
- intarray
- hstore
- insert_username
- lo
- bloom
- refint
- dblink
- tablefunc
- timetravel
- hstore_plperl
  dict_int
- btree_gist
- pg_freespacemap
- earthdistance
- pg_visibility
- uuid-ossp
- intagg
- pg_prewarm
- btree_gin
- isn
- pg_trgm
- tcn
- tsm_system_rows
+ file_fdw
+ hstore_plperl
+ lo
  seg
- cube
- pgstattuple
- moddatetime
- citext
- amcheck
- sslinfo
- pgcrypto
- pg_stat_statements
+ isn
+ plpgsql
  chkpass
- unaccent
+ insert_username
+ btree_gist
+ tsm_system_rows
  autoinc
- pageinspect
- fuzzystrmatch
- postgis_tiger_geocoder
+ dblink
+ bloom
+ pg_trgm
+ btree_gin
+ xml2
+ pg_prewarm
+ intagg
+ hstore
+ amcheck
+ pgcrypto
+ timetravel
+ tcn
+ pg_buffercache
+ citext
+ dict_xsyn
+ pgstattuple
+ postgis_topology
  postgis
  address_standardizer
+ postgis_tiger_geocoder
  address_standardizer_data_us
- postgis_topology
- plv8
- plls
- plcoffee
  pgrouting
+(54 rows)
  ```
