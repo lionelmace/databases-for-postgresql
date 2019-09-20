@@ -32,8 +32,6 @@ A read-only replica is set up to replicate all of your data from the leader depl
 
 - Backups are disabled on read-only replicas. Backups are taken only on leader deployments.
 
-- Read-replication is not currently compatible with IP whitelisting. If you have a whitelist, you need to remove it to create a read-only replica. Likewise, if you need to use a whitelist, you have to delete all read-only replicas first.
-
 - Read replication is not supported into or out of EU Cloud-enabled regions (currently `eu-de`). It is supported within those regions.
 
 - There is a limit of 5 read-only replicas per leader.
