@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2019
-lastupdated: "2019-04-08"
+lastupdated: "2019-09-07"
 
 keywords: postgresql, databases, scaling
 
@@ -45,7 +45,10 @@ If you find that your deployment is suffering from performance issues due to a l
 The amount of memory allocated to the database's shared buffer pool is **not** adjusted automatically when you scale your deployment. Its recommended to be set to 25% of the deployment's total memory. You can manually tune the shared buffer pool through the [`shared_buffer`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS) setting in your [PostgreSQL's configuration](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration). It is not auto-tuned because changing the `shared_buffer` requires a database restart.
 
 **Dedicated Cores** - 
-If you provisioned your deployment with dedicated cores, you can increase the CPU allocation to the deployment. This option is not available on deployments that were not provisioned with an initial CPU allocation.
+You can enable or increase the CPU allocation to the deployment. With dedicated cores, your resource group is given a single-tenant host with a guaranteed minimum reserve of cpu shares. Your deployment is then allocated the number of CPUs you specify. The default of 0 dedicated cores uses compute resources on shared hosts.
+
+A few scaling operations can be more long running than others. Enabling dedicated cores moves your deployment to its own host and can take longer than just adding more cores. Similarly, drastically increasing RAM or Disk can take longer than smaller increases to account for provisioning more underlying hardware resources.
+{: .tip}
 
 ## Scaling via the UI
 
@@ -62,16 +65,22 @@ For example, the command to view the resource groups for a deployment named "exa
 `ibmcloud cdb deployment-groups example-deployment`
 
 This produces the output:
-
 ```
 Group   member
 Count   2
 |
 +   Memory
-|   Allocation              2048mb
-|   Allocation per member   1024mb
+|   Allocation              4096mb
+|   Allocation per member   2048mb
 |   Minimum                 2048mb
 |   Step Size               256mb
+|   Adjustable              true
+|
++   CPU
+|   Allocation              6
+|   Allocation per member   3
+|   Minimum                 6
+|   Step Size               2
 |   Adjustable              true
 |
 +   Disk
@@ -82,7 +91,7 @@ Count   2
 |   Adjustable              true
 ```
 
-The deployment has two members, with 2048 MB of RAM and 10240 MB of disk allocated in total. The "per member" allocation is 1024 MB of RAM and 5120 MB of disk. The minimum value is the lowest the total allocation can be set. The step size is the smallest amount by which the total allocation can be adjusted.
+The deployment has two members, with 4096 MB of RAM and 10240 MB of disk allocated in total. The "per member" allocation is 2048 MB of RAM and 5120 MB of disk. The minimum value is the lowest the total allocation can be set. The step size is the smallest amount by which the total allocation can be adjusted.
 
 The `cdb deployment-groups-set` command allows either the total RAM or total disk allocation to be set, in MB. For example, to scale the memory of the "example-deployment" to 2048 MB of RAM for each memory member (for a total memory of 4096 MB), you use the command:  
 `ibmcloud cdb deployment-groups-set example-deployment member --memory 4096`
