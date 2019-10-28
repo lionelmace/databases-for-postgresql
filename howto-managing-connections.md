@@ -60,14 +60,12 @@ SELECT * FROM pg_stat_activity WHERE datname='ibmclouddb';
 
 ## Terminating Connections
 
-If you find connections that need to be reset or closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). `pg_cancel_backend` cancels a connection's current query without terminating the connection, and without stopping any other queries that it might be running.
-```sql
-SELECT pg_cancel_backend(pid);
+If you find connections that need to be reset or closed, the admin user can use
 ```
-`pg_terminate_backend` stops the entire process and closes the connection. 
-```sql
-SELECT pg_terminate_backend(pid);
+SELECT public.pg_kill_connection(<pid>);
 ```
+to stop the entire process and close the connection. This command is an alias for [`pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). You cannot use `pg_terminate_backend` directly, as it requires superuser privileges to terminate other users connections. 
+
 The `pid` of a process is found from the `pg_stat_activity` table.
 
 ### Killing All Connections
