@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2019
-lastupdated: "2019-04-03"
+lastupdated: "2019-11-01"
 
 keywords: postgresql, databases, replica
 
@@ -102,7 +102,7 @@ On the _Settings_ tab of a read-only replica, the _Replication_ panel contains i
 
 ![Replication Panel of a read-only replica](images/replica-roreplica.png)
 
-## Checking Replication Status
+### Checking Replication Status
 
 Replication status is not automatically monitored, you have to monitor replication.
 
@@ -111,24 +111,7 @@ You can check the replication status of a read-only replica with `psql`, but onl
 Or
 - for PostgreSQL version 9.x and below `SELECT * FROM get_pg_stat_replication();`
 
-## Resyncing a Read-only Replica
-
-If you need to resync a read-only replica, click the **Resync Read-Only Replica** button. Resyncing is a disruptive operation and performing a resync tears down and rebuilds the data in the read-only replica. The read-only replica is not able to perform any other operations or run any queries while a resync is running. Queries are not rerouted to the leader, so any connections to the read-only replica fail until it is finished resyncing. 
-
-The amount of time it takes to resync a read-only replica varies, but the process can be very long running.
-{: .tip}
-
-## Promoting a Read-only Replica
-
-A read-only replica is able to be promoted to an independent cluster that can accept write operations as well as read operations. If something happens to the leader deployment, the read-only replica can be promoted to a stand-alone cluster and start accepting writes from your application. 
-
-Upon promotion, the read-only replica terminates its connection to the leader and becomes a stand-alone {{site.data.keyword.databases-for-postgresql}} deployment. The deployment can start accepting and executing read and write operations, backups are enabled, and it is issued its own admin user. A new data member is added so the deployment becomes a cluster with two data members. This increases the cost as it is billed at the same per member consumption rate, but the deployment has two members instead of one.
-
-When promoting a read-only replica, you have the option to skip the initial backup that would normally be taken upon promotion. Skipping the initial backup means that your replica becomes available more quickly, but there is no immediate backup available. You can start an on-demand backup once the promotion process is complete.
-
-Once a read-only replica is promoted to an independent deployment, it is not possible to revert it back to a read-only replica or have it rejoin a leader.
-
-## Read-only Replica Users
+### Read-only Replica Users
 
 Any user on the leader can log into and execute reads on a read-only replica with the same privileges that they have on the leader. You can also create users with access to the read-only replica from the read-only replica.
 
@@ -141,7 +124,48 @@ Read-only replica users are assigned privileges by the leader, and are assigned 
 Write operations on the read-only replica for all users are not filtered or rejected, but fail at DB level.
 {: .tip}
 
-## Read-only Replicas and the API
 
-In addition to being able to provision a read-only replica from the Resource Controller API, the {{site.data.keyword.databases-for}} API has endpoints for managing your read-only replica. You can get information on leaders, read-only replicas, and promote read-only replicas from the `/deployments/{id}/remotes` endpoint. You can resync a read-only replica from the `/deployments/{id}/remotes/resync` endpoint. For more information about the {{site.data.keyword.cloud_notm}} databases API, see the [API reference](https://{DomainName}/apidocs/cloud-databases-api) page.
+## Resyncing a Read-only Replica
 
+If you need to resync a read-only replica, click the **Resync Read-Only Replica** button. Resyncing is a disruptive operation and performing a resync tears down and rebuilds the data in the read-only replica. The read-only replica is not able to perform any other operations or run any queries while a resync is running. Queries are not rerouted to the leader, so any connections to the read-only replica fail until it is finished resyncing. 
+
+The amount of time it takes to resync a read-only replica varies, but the process can be very long running.
+{: .tip}
+
+To kick off a resync through the CLI, use the [cdb read-replica-resync](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#read-replica-resync) command.
+```
+ibmcloud cdb read-replica-resync <deployment name>
+```
+
+To kick off a resync through the API, send a POST to the [/deployments/{id}/remotes/resync](https://cloud.ibm.com/apidocs/cloud-databases-api#resync-read-only-replica) endpoint.
+```
+curl -X POST \
+  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/resync \
+  -H 'Authorization: Bearer <>' 
+```
+
+## Promoting a Read-only Replica
+
+A read-only replica is able to be promoted to an independent cluster that can accept write operations as well as read operations. If something happens to the leader deployment, the read-only replica can be promoted to a stand-alone cluster and start accepting writes from your application. 
+
+To promote a read-only replica from the UI, click the **Promote Read-Only Replica** button.
+
+Upon promotion, the read-only replica terminates its connection to the leader and becomes a stand-alone {{site.data.keyword.databases-for-postgresql}} deployment. The deployment can start accepting and executing read and write operations, backups are enabled, and it is issued its own admin user. A new data member is added so the deployment becomes a cluster with two data members. This increases the cost as it is billed at the same per member consumption rate, but the deployment has two members instead of one.
+
+When promoting a read-only replica, you have the option to skip the initial backup that would normally be taken upon promotion. Skipping the initial backup means that your replica becomes available more quickly, but there is no immediate backup available. You can start an on-demand backup once the promotion process is complete.
+
+Once a read-only replica is promoted to an independent deployment, it is not possible to revert it back to a read-only replica or have it rejoin a leader.
+
+To promote through the CLI, use the [cdb read-replica-promote](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#read-replica-promote) command.
+```
+ibmcloud cdb read-replica-promote <deployment name>
+```
+
+To promote through the API, send a PATCH to the [/deployments/{id}/remotes](https://cloud.ibm.com/apidocs/cloud-databases-api#modify-read-only-replication-on-a-deployment) endpoint. Setting the leader to the empty string is what initializes the promotion.
+```
+curl -X PATCH \
+  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes \
+  -H 'Authorization: Bearer <>'  \
+ -H 'Content-Type: application/json' \
+ -d '{"remotes": {"leader": ""}}' \ 
+```
