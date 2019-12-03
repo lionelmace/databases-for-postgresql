@@ -70,7 +70,7 @@ For more information about the {{site.data.keyword.cloud_notm}} databases API, s
 
 The _Settings_ tab contains the UI for many of the tunable settings for your deployment. You can 
 - [scale](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling)
-- [manage read-replicas](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-replicas)
+- [manage read-replicas](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas)
 - [configure public and private endpoints](/docs/services/databases-for-postgresql?topic=cloud-databases-service-endpoints)
 - [change the admin password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password)
 - [implement or modify an IP whitelist](/docs/services/databases-for-postgresql?topic=cloud-databases-whitelisting)

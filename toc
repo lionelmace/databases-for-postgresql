@@ -7,29 +7,24 @@ Databases For PostgreSQL
 	{: .navgroup id="learn"}
 	getting-started.md
 	[What is Databases for PostgreSQL](https://www.ibm.com/cloud/databases-for-postgresql)
-
-	{: .topicgroup}
-	Service Overview
-		dashboard-overview.md
-		high-availability.md
-		security-compliance.md
-		pricing.md
-	
-	/cloud-databases/cloud-databases-tutorial-k8s-app
+	learn-dashboard-overview.md
+	learn-high-availability.md
+	learn-security-compliance.md
+	learn-pricing.md
 	{: .navgroup-end}
 
 	{: .navgroup id="howto"}
 	/cloud-databases/cloud-databases-provisioning
-	howto-migration.md
-	howto-admin-password.md	
+	howto-admin-password.md
 	howto-getting-connection-strings.md
-	howto-user-management.md	
 	
 	{: .topicgroup}
 	Connecting to Databases for PostgreSQL
 		connecting-external.md
 		connecting-ibmcloud-app.md
 		connecting-psql.md
+
+	howto-user-management.md
 
 	{: .topicgroup}
 	Managing Resources
@@ -41,12 +36,21 @@ Databases For PostgreSQL
 	/cloud-databases/cloud-databases-whitelisting
 
 	{: .topicgroup}
+	Replication
+		howto-read-replica.md
+		howto-logical-replication.md
+
+	{: .topicgroup}
+	Migrating PostgreSQL
+		howto-migration.md
+
+	{: .topicgroup}
 	Configuring PostgreSQL
-		changing-config.md
-		admin-extensions.md
-		read-replica.md
+		howto-changing-config.md
+		howto-extensions.md
 		howto-wal2json.md
-		admin-logical-replication.md
+
+	/cloud-databases/cloud-databases-tutorial-k8s-app
 	{: .navgroup-end}
 
 	{: .navgroup id="reference"}

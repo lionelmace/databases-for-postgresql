@@ -49,7 +49,7 @@ The biggest difference between the admin user and any other users you add to you
 
 ## _Service Credential_ Users
 
-Users that you [create through the _Service Credentials_ panel](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#generating-connection-strings-from-service-credentials) are members of `ibm-cloud-base-user`. They are able to log in, create users, and create databases.
+Users that you [create through the _Service Credentials_ panel](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#creating-users-in-service-credentials) are members of `ibm-cloud-base-user`. They are able to log in, create users, and create databases.
 
 When a user in a group creates a resource in a database, like a table, all users that are in the same group have access to that resource.  Resources created by any of the users in `ibm-cloud-base-user` are accessible to other users in `ibm-cloud-base-user`, including the admin user.
 

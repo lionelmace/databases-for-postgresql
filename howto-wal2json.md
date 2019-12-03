@@ -35,7 +35,7 @@ curl -X PATCH https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{i
       }'
 ```
 
-2. Set a password for the [`repl` user](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-repl-user). Any user's password can be changed using the {{site.data.keyword.databases-for}} CLI plug-in [cdb deployment-user-password](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployment-user-password) command or {{site.data.keyword.databases-for}} API [/deployments/{id}/users/{username}](https://cloud.ibm.com/apidocs/cloud-databases-api#set-database-level-user-s-password) endpoint. The `repl` user has REPLICATION privileges and the `wal2json` plugin uses it after you set a password for it.
+2. Set a password for the [`repl` user](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-repl-user). Any user's password can be changed by using the {{site.data.keyword.databases-for}} CLI plug-in [`cdb deployment-user-password`](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployment-user-password) command or {{site.data.keyword.databases-for}} API [`/deployments/{id}/users/{username}`](https://cloud.ibm.com/apidocs/cloud-databases-api#set-database-level-user-s-password) endpoint. The `repl` user has REPLICATION privileges and the `wal2json` plugin uses it after you set a password for it.
 
 3. Create a replication slot on the database from the {{site.data.keyword.databases-for}} API. Send a POST request to the [`/deployments/{id}/postgresql/logical_replication_slots`](https://cloud.ibm.com/apidocs/cloud-databases-api#create-a-new-logical-replication-slot) endpoint.
 ```
@@ -48,7 +48,7 @@ curl -X POST https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id
         }
       }'
 ```
-The plugin type must be `wal2json`. The database must be an existing database. The slot name may only contain lower case letters, numbers, and the underscore character. You can check the existence of the replication slot by connecting to any database and running 
+The plugin type must be `wal2json`. The database must be an existing database. The slot name can only contain lower case letters, numbers, and the underscore character. You can check the existence of the replication slot by connecting to any database and running 
 ```
 SELECT * FROM pg_replication_slots WHERE slot_name = '<slot_name>';
 ```
@@ -58,14 +58,14 @@ SELECT * FROM pg_replication_slots WHERE slot_name = '<slot_name>';
 PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT> --slot <SLOT NAME> --start -o pretty-print=1 -f -
 ```
 
-5. Create a table on `ibmclouddb` and insert some data. You should see the inserts come out in the terminal that is running `pg_recvlogical`. Note that table creates will not appear.
+5. Create a table on `ibmclouddb` and insert some data. You should see that the inserts come out in the terminal that is running `pg_recvlogical`. Note that table creates do not appear.
 
-## Considerations
+## Wal2json Considerations
 
-- Setting `wal_level` to `logical` increases the size of the WAL files because PostgreSQL needs more data to accomplish logical decoding. If you aren't using `wal2json`, you should leave `wal_level` at the default. Larger WAL files potentially means more disk space is required, there can be decrease in write throughput, there is greater potential for replication lag to affect HA and read-only replicas, and longer times to restore from a backup.
+- Setting `wal_level` to `logical` increases the size of the WAL files because PostgreSQL needs more data to accomplish logical decoding. If you aren't using `wal2json`, you should leave `wal_level` at the default. Larger WAL files potentially mean that more disk space is required, there can be decrease in write throughput, there is greater potential for replication lag to affect HA and read-only replicas, and longer times to restore from a backup.
     
 - Logical decoding has a set of restrictions on what replicates. Some of these include schema/DDL, sequences, TRUNCATE, and Large Objects.
 
-- Logical replication slots do not sync between a primary (leader) and a replica. In the event of controlled switchover or failover, the slot will be recreated on the new leader automatically, but it does not maintain the place in the replication stream that it was prior to switchover or failover. This can result in downstream consumers missing changes. Systems have be able to detect when failover happens and and resync as needed.
+- Logical replication slots do not sync between a primary (leader) and a replica. In the event of controlled switchover or failover, the slot is recreated on the new leader automatically, but it does not maintain the place in the replication stream that it was prior to switchover or failover. This can result in downstream consumers missing changes. Systems have to be able to detect when failover happens and and resync as needed.
 
-- If you create a logical replication slot, and you do not have a consumer connected and consuming the changes, you run the risk of running your deployment out of disk space. The replication slot tells PostgreSQL to keep all the transaction logs that have the changes the consumer needs. If nothing is consuming those changes, PostgreSQL continues collecting them until it is out of disk space. You can monitor disk space with the [monitoring integration](/docs/services/databases-for-postgresql?topic=cloud-databases-monitoring). If you run out of space, you can [scale up disk](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling), which allows the database to start. Then, you can either start consuming the changes or drop the slot.
+- If you create a logical replication slot, and a consumer is not connected and consuming the changes, you run the risk of running your deployment out of disk space. The replication slot tells PostgreSQL to keep all the transaction logs that have the changes that the consumer needs. If nothing is consuming those changes, PostgreSQL continues collecting them until it is out of disk space. You can monitor disk space with the [monitoring integration](/docs/services/databases-for-postgresql?topic=cloud-databases-monitoring). If you run out of space, you can [scale up disk](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling), which allows the database to start. Then, you can either start consuming the changes or drop the slot.
