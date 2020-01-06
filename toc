@@ -43,6 +43,7 @@ Databases For PostgreSQL
 	{: .topicgroup}
 	Migrating PostgreSQL
 		howto-migration.md
+		howto-migration-compose.md
 
 	{: .topicgroup}
 	Configuring PostgreSQL
