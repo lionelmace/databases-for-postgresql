@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017,2019
-lastupdated: "2019-04-10"
+lastupdated: "2019-12-17"
 
 keywords: postgresql, databases
 
@@ -13,6 +13,9 @@ subcollection: databases-for-postgresql
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
+{:generic: .ph data-hd-programlang='generic'}
+{:java: .ph data-hd-programlang='java'}
+{:python: .ph data-hd-programlang='python'}
 {:pre: .pre}
 
 # Connecting an external application
@@ -42,24 +45,111 @@ Field Name|Index|Description
 
 * `0...` indicates that there might be one or more of these entries in an array.
 
+
+
 Many PostgreSQL drivers are able to make a connection to your deployment when given the URI-formatted connection string found in the "composed" field of the connection information. For example,
+{: generic}
 ```
 postgres://ibm_cloud_30399dec_4835_4967_a23d_30587a08d9a8:$PASSWORD@981ac415-5a35-4ac7-b6bb-fb609326dc42.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud:32704/ibmclouddb?sslmode=verify-full
 ```
+{: generic}
 
-PostgreSQL has a vast array of language drivers. The table covers a few of the most common.
 
-Language|Driver|Examples
-----------|-----------
-PHP|`pgsql`|[Link](http://php.net/manual/en/pgsql.examples-basic.php)
-Ruby|`ruby-pg`|[Link](https://github.com/ged/ruby-pg)
-Ruby on Rails|Rails|[Rails Guide](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-postgresql-database)
-Python|`Psycopg2`|[Link](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial)
-C#|`ODBC`|[Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_PostgreSQL_Database_Server_via_ODBC)
-Go|`pq`|[Link](https://godoc.org/github.com/lib/pq)
-Node|`node-postgres`|[Link](https://node-postgres.com/)
-Java|`JDBC driver`|[Link](https://jdbc.postgresql.org/documentation/head/index.html)
-{: caption="Table 2. PostgreSQL drivers" caption-side="top"}
+
+This example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html) to connect to your database.
+{: java}
+
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+import java.util.logging.*;
+
+public class PGConnect {
+
+    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    private Connection connect() {
+
+        final String url = "jdbc:postgresql://host:port/ibmclouddb";
+
+        Properties props = new Properties();
+        props.setProperty("user","admin");
+        props.setProperty("password","mypassword123");
+        props.setProperty("ssl","true");
+        props.setProperty("sslmode","verify-full");
+        props.setProperty("sslrootcert", "/path/to/cert");
+
+        Connection conn = null;
+        while (conn == null) {
+            try {
+                conn = DriverManager.getConnection(url, props);
+                System.out.println("Connected to PG");
+            } catch (SQLException e) {
+                System.out.printf("%s\n", e);
+                LOGGER.info("Not connected, retying ...");
+            }
+        }
+
+        return conn;
+
+    }
+
+    public static void main(String[] args) {
+
+        PGConnect icd = new PGConnect();
+
+        try {
+            Connection connection = icd.connect();
+            Statement stmt = connection.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT * from pg_database");
+            while (rs.next()) {
+                System.out.println("DB Name: " + rs.getString(1));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }   
+    }
+}
+```
+{: java}
+
+
+
+This example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
+{: python}
+
+```python
+import psycopg2
+
+try:
+  conn = psycopg2.connect(
+    host="hostname.databases.appdomain.cloud",
+    port= 31525,
+    user="username",
+    password="password",
+    sslmode="verify-full",
+    sslrootcert="/path/to/cert/ca-certificate.crt",
+    database="ibmclouddb")
+except: 
+  print("Unable to connect to database")
+
+cur = conn.cursor()
+cur.execute("SELECT datname FROM pg_database")
+rows = cur.fetchall()
+
+print("List of databases:")
+for row in rows:
+    print("  ",row[0])
+```
+{: python}
+
+
 
 ## Driver TLS and self-signed certificate support
 
@@ -76,10 +166,17 @@ All connections to {{site.data.keyword.databases-for-postgresql}} are TLS 1.2 en
 
 You can display the decoded certificate for your deployment with the CLI plug-in with the command `ibmcloud cdb deployment-cacert "your-service-name"`. It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the driver.
 
+## Other Drivers
 
+PostgreSQL has a vast array of language drivers. The table covers a few of the most common.
 
+Language|Driver|Examples
+----------|-----------
+PHP|`pgsql`|[Link](http://php.net/manual/en/pgsql.examples-basic.php)
+Ruby|`ruby-pg`|[Link](https://github.com/ged/ruby-pg)
+Ruby on Rails|Rails|[Rails Guide](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-postgresql-database)
+C#|`ODBC`|[Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_PostgreSQL_Database_Server_via_ODBC)
+Go|`pq`|[Link](https://godoc.org/github.com/lib/pq)
+Node|`node-postgres`|[Link](https://node-postgres.com/)
+{: caption="Table 2. PostgreSQL drivers" caption-side="top"}
 
-
-
-
- 
