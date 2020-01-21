@@ -60,7 +60,7 @@ PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT> 
 
 5. Create a table on `ibmclouddb` and insert some data. You should see that the inserts come out in the terminal that is running `pg_recvlogical`. Note that table creates do not appear.
 
-## Wal2json Considerations and tips
+## Wal2json Considerations and Tips
 
 - Setting `wal_level` to `logical` increases the size of the WAL files because PostgreSQL needs more data to accomplish logical decoding. If you aren't using `wal2json`, you should leave `wal_level` at the default. Larger WAL files potentially mean that more disk space is required, there can be decrease in write throughput, there is greater potential for replication lag to affect HA and read-only replicas, and longer times to restore from a backup.
 
@@ -70,7 +70,7 @@ PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT> 
 
 - If you create a logical replication slot, and a consumer is not connected and consuming the changes, you run the risk of running your deployment out of disk space. The replication slot tells PostgreSQL to keep all the transaction logs that have the changes that the consumer needs. If nothing is consuming those changes, PostgreSQL continues collecting them until it is out of disk space. You can monitor disk space with the [monitoring integration](/docs/services/databases-for-postgresql?topic=cloud-databases-monitoring). If you run out of space, you can [scale up disk](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling), which allows the database to start. Then, you can either start consuming the changes or drop the slot.
 
-- You can check how much disk space is being used by a given replication slot and whether that replication slot has an active consumer. Use the `admin` user to run one of the following commands.
+- You can check how much disk space is being used by a given replication slot and whether that replication slot has an active consumer. Use the `admin` user to run one of the following commands.  
 **PostgreSQL 10.x and above**
 ```
 SELECT slot_name, pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(),restart_lsn)) AS lag, active from pg_replication_slots WHERE slot_type='logical';
