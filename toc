@@ -44,6 +44,8 @@ Databases For PostgreSQL
 	Migrating PostgreSQL
 		howto-migration.md
 		howto-migration-compose.md
+	
+	howto-upgrading.md
 
 	{: .topicgroup}
 	Configuring PostgreSQL
