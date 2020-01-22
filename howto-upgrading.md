@@ -3,7 +3,7 @@ copyright:
   years: 2020
 lastupdated: "2020-01-10"
 
-keyowrds: postgresql, databases, upgrading
+keyowrds: postgresql, databases, upgrading, major versions, changing versions
 
 subcollection: databases-for-postgresql
 
@@ -22,7 +22,7 @@ subcollection: databases-for-postgresql
 
 Once a major version of a database is at its End Of Life (EOL), it is a good idea to upgrade to a current major version. 
 
-You can find the available versions of PostgreSQL on the [{{site.data.keyword.databases-for-postgresql_full}} the catalog]() page, from the cloud databases cli plugin command [`ibmcloud cdb deployables-show`](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployables-show), or from the cloud databases API [`/deployables`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-all-deployable-databases) endpoint.
+You can find the available versions of PostgreSQL on the [{{site.data.keyword.databases-for-postgresql_full}} the catalog](https://cloud.ibm.com/catalog/services/databases-for-postgresql) page, from the cloud databases cli plugin command [`ibmcloud cdb deployables-show`](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployables-show), or from the cloud databases API [`/deployables`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-all-deployable-databases) endpoint.
 
 Upgrading is handled through [restoring a backup](/docs/services/databases-for-postgresql?topic=cloud-databases-dashboard-backups#restoring-a-backup) of your data into a new deployment. Restoring from a backup has a number of advantages:
 
