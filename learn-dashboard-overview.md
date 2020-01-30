@@ -4,7 +4,7 @@ Copyright:
   years: 2018, 2019
 lastupdated: "2019-04-10"
 
-keywords: postgresql, databases
+keywords: postgresql, databases, API endpoint, settings, scaling, backups
 
 subcollection: databases-for-postgresql
 
@@ -66,19 +66,24 @@ Many API calls require the ID of the database deployment. The database deploymen
 
 For more information about the {{site.data.keyword.cloud_notm}} databases API, see the [API reference](https://{DomainName}/apidocs/cloud-databases-api) page.
 
+## Resources
+
+The resources tab contains information and configuration options on the size and resource usage of your deployment. You can 
+- [Scale disk, memory, and CPU](/docs/services/databases-for-mongodb?topic=databases-for-postgresql-resources-scaling)
+- [Configure Autoscaling](/docs/services/databases-for-mongodb?topic=databases-for-postgresql-autoscaling)
+
+## Backups
+
+The _Backups_ tab is the UI for managing your deployments backups. All of the available backups are listed with their timestamps. Click on a backup to grab its ID or to restore it into a new deployment. More information is on the [Managing Backups](/docs/services/databases-for-postgresql?topic=cloud-databases-dashboard-backups) page.
+
 ## Settings
 
 The _Settings_ tab contains the UI for many of the tunable settings for your deployment. You can 
-- [scale](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling)
 - [manage read-replicas](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas)
 - [configure public and private endpoints](/docs/services/databases-for-postgresql?topic=cloud-databases-service-endpoints)
 - [change the admin password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password)
 - [implement or modify an IP whitelist](/docs/services/databases-for-postgresql?topic=cloud-databases-whitelisting)
 - [kill all connections](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) (active, idle, and zombie) to your PostgreSQL database.
-
-## Backups
-
-The _Backups_ tab is the UI for managing your deployments backups. All of the available backups are listed with their timestamps. Click on a backup to grab its ID or to restore it into a new deployment. More information is on the [Managing Backups](/docs/services/databases-for-postgresql?topic=cloud-databases-dashboard-backups) page.
 
 ## Observability
 
