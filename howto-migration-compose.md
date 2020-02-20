@@ -193,7 +193,7 @@ curl -X PATCH \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes \
   -H 'Authorization: Bearer <>'  \
  -H 'Content-Type: application/json' \
- -d '{"remotes": {"leader": "", "skip_initial_backup": true}}' \
+ -d '{"remotes": {"leader": ""}, "skip_initial_backup": true}' \
 ```
 
 After the promotion is complete, you can switch your applications to connect to your {{site.data.keyword.databases-for-postgresql}} deployment and get back up and running.
