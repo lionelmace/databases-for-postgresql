@@ -1,10 +1,10 @@
 ---
 
 Copyright:
-  years: 2019
-lastupdated: "2019-04-25"
+  years: 2019, 2020
+lastupdated: "2020-02-18"
 
-keywords: postgresql, databases
+keywords: postgresql, databases, connection limits, terminating connections, connection pooling
 
 subcollection: databases-for-postgresql
 
@@ -60,13 +60,19 @@ SELECT * FROM pg_stat_activity WHERE datname='ibmclouddb';
 
 ## Terminating Connections
 
-If you find connections that need to be reset or closed, the admin user can use
-```
-SELECT public.pg_kill_connection(<pid>);
-```
-to stop the entire process and close the connection. This command is an alias for [`pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). You cannot use `pg_terminate_backend` directly, as it requires superuser privileges to terminate other users connections. 
+If you are on PostgreSQL 9.6 and above, your admin user has the `pg_signal_backend` role. If you find connections that need to be reset or closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). The `pid` of a process is found from the `pg_stat_activity` table.
 
-The `pid` of a process is found from the `pg_stat_activity` table.
+- `pg_cancel_backend` cancels a connection's current query without terminating the connection, and without stopping any other queries that it might be running.
+  ```sql
+  SELECT pg_cancel_backend(pid);
+  ```
+
+- `pg_terminate_backend` stops the entire process and closes the connection. 
+  ```sql
+  SELECT pg_terminate_backend(pid);
+  ```
+
+The admin user does have the power to reset or close the connections for any user on the deployment except superusers. Be careful not to terminate replication connections from the `ibm-replication` user, as it interferes with the high-availability of your deployment.
 
 ### Killing All Connections
 

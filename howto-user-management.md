@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-04-03"
+  years: 2019, 2020
+lastupdated: "2020-02-18"
 
-keywords: postgresql, databases
+keywords: postgresql, databases, admin, superuser, roles, service credentials
 
 subcollection: databases-for-postgresql
 
@@ -25,7 +25,7 @@ PostgreSQL uses a system of roles to manage database permissions. Roles are used
 
 Role name | Attributes | Member of
 ----------|----------|---------
-`admin` | Create role, Create DB | {pg_monitor,ibm-cloud-base-user}
+`admin` | Create role, Create DB | {pg_monitor,pg_signal_backend,ibm-cloud-base-user}
 `ibm` | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 `ibm-cloud-base-user` | Create role, Create DB, Cannot login | {}
 `ibm-cloud-base-user-ro` | Create role, Create DB, Cannot login | {ibm-cloud-base-user}
@@ -42,10 +42,31 @@ When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are
 
 When admin creates a resource in a database, like a table, admin owns that object. Resources that are created by admin are not accessible by other users, unless you expressly grant permissions to them.
 
-The biggest difference between the admin user and any other users you add to your deployment is the [`pg_monitor`](https://www.postgresql.org/docs/current/default-roles.html) role. The `pg_monitor` role provides a set of permissions that makes the admin user appropriate for monitoring the database server.
+The biggest difference between the admin user and any other users you add to your deployment is the [`pg_monitor`](https://www.postgresql.org/docs/current/default-roles.html) and [`pg_signal_backend`](https://www.postgresql.org/docs/current/default-roles.html) roles. The `pg_monitor` role provides a set of permissions that makes the admin user appropriate for monitoring the database server. The `pg_signal_backend` role provides the admin user the ability to send signals to cancel queries and connections initiated by other users. It does not provide the ability to send signals to processes owned by superusers.
 
-`pg_monitor` is only available in PostgreSQL 10 and above.
+`pg_monitor` is only available in PostgreSQL 10 and above. `pg_signal_backend` is only available in PostgreSQL 9.6 and above.
 {: .tip} 
+
+You can also use the admin user to grant these two roles to other users on your deployment.
+
+If you want to expose the ability to cancel queries to other database users, you can grant the `pg_signal_backend` role from the admin user. For example, 
+```sql
+GRANT pg_signal_backend TO joe;
+``` 
+to allow the user `joe` to cancel backends. You can also grant `pg_signal_backend` to all the users with the `ibm-cloud-base-user` role with 
+```sql
+GRANT pg_signal_backend TO "ibm-cloud-base-user";
+``` 
+Be aware this privilege allows the user or users to terminate any connections to the database, so assign it with care.
+
+Similarly, if you want to setup a specific monitoring user, `mary`, you can use
+```
+GRANT pg_monitor TO mary;
+```
+You can also grant `pg_signal_backend` to all the users with the `ibm-cloud-base-user` role with 
+```sql
+GRANT pg_monitor TO "ibm-cloud-base-user";
+```
 
 ## _Service Credential_ Users
 
