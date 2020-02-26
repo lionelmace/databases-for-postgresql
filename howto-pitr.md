@@ -1,8 +1,10 @@
 ---
 
 copyright:
-  years: 2019
-lastupdated: "2019-09-20"
+  years: 2019, 2020
+lastupdated: "2020-02-26"
+
+keywords: postgresql, databases, point in time recovery, backups, restore
 
 subcollection: databases-for-postgresql
 
