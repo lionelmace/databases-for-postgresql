@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="databases-for-postgresql" audience="service" category="databases" arm="4146381" href="/docs/services/databases-for-postgresql?topic=databases-for-postgresql-getting-started" path="services/databases-for-postgresql"}
+{: .toc subcollection="databases-for-postgresql" audience="service" category="databases" href="/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-started" path="databases-for-postgresql"}
 Databases For PostgreSQL
 
 	{: .navgroup id="learn"}
