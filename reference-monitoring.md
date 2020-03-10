@@ -3,7 +3,7 @@ copyright:
   years: 2020
 lastupdated: "2020-03-02"
 
-keywords: postgresql, sysdig, monitoring, metrics
+keywords: postgresql, sysdig, monitoring, metrics, iops, disk usage, memory usage, connection usage
 
 subcollection: databases-for-postgresql
 
@@ -15,9 +15,15 @@ subcollection: databases-for-postgresql
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:important: .important}
 
 # Sysdig Monitoring Integration
-{: #monitoring}
+{: #sysdig-monitoring}
+
+Sysdig monitoring is currently only available for deployments in the `eu-gb` region. 
+{: important}
+
+To see your {{site.data.keyword.databases-for-postgresql_full}} dashboards in Sysdig, you have to [Enable Platform Metrics](/docs/Monitoring-with-Sysdig?topic=Sysdig-platform_metrics_enabling) in the same region as your deployment. If you have deployments in more than one region, you have to provision Sysdig and enable platform metics in each region.
 
 ## Available Metrics
 {: metrics-by-plan}
@@ -30,13 +36,13 @@ subcollection: databases-for-postgresql
 | [IO utilization in percent 60 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_60m) | 
 | [IOPS read & write total count for an instance](#ibm_databases_for_postgresql_disk_iops_read_write_total) | 
 | [Max allowed memory for an instance](#ibm_databases_for_postgresql_memory_limit_bytes) | 
-| [Page faults](#ibm_databases_for_postgresql_total_connections) | 
 | [Read replica replication lag](#ibm_databases_for_postgresql_read_replica_replication_lag_bytes) | 
+| [The total number of PostgreSQL connections being used](#ibm_databases_for_postgresql_total_connections) | 
 | [Total disk space for an instance](#ibm_databases_for_postgresql_disk_total_bytes) | 
 | [Used CPU for an instance](#ibm_databases_for_postgresql_cpu_used_percent) | 
 | [Used disk space for an instance](#ibm_databases_for_postgresql_disk_used_bytes) | 
 | [Used memory for an instance](#ibm_databases_for_postgresql_memory_used_bytes) | 
-{: caption="Table 1: Available Metrics Reference Table" caption-side="top"}
+{: caption="Table 1: Available Metrics" caption-side="top"}
 
 ### IO utilization in percent 15 minute average
 {: #ibm_databases_for_postgresql_disk_io_utilization_percent_average_15m}
@@ -116,19 +122,6 @@ The maximum amount of memory available to your deployment
 | `Segment By` | `Service instance` |
 {: caption="Table 7: Max allowed memory for an instance metric metadata" caption-side="top"}
 
-### Page faults
-{: #ibm_databases_for_postgresql_total_connections}
-
-The number of times per second that MongoDB had to request data from disk. Scale RAM to reduce the number of disk requests
-
-| Metadata | Description |
-|----------|-------------|
-| `Metric Name` | `ibm_databases_for_postgresql_total_connections`|
-| `Metric Type` | `gauge` |
-| `Value Type`  | `count` |
-| `Segment By` | `Service instance` |
-{: caption="Table 8: Page faults metric metadata" caption-side="top"}
-
 ### Read replica replication lag
 {: #ibm_databases_for_postgresql_read_replica_replication_lag_bytes}
 
@@ -140,7 +133,20 @@ How far behind a PostgreSQL read-only replica is, in bytes
 | `Metric Type` | `gauge` |
 | `Value Type`  | `count` |
 | `Segment By` | `Service instance` |
-{: caption="Table 9: Read replica replication lag metric metadata" caption-side="top"}
+{: caption="Table 8: Read replica replication lag metric metadata" caption-side="top"}
+
+### The total number of PostgreSQL connections being used
+{: #ibm_databases_for_postgresql_total_connections}
+
+The total number of PostgreSQL connections being used
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_total_connections`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `count` |
+| `Segment By` | `Service instance` |
+{: caption="Table 9: The total number of PostgreSQL connections being used metric metadata" caption-side="top"}
 
 ### Total disk space for an instance
 {: #ibm_databases_for_postgresql_disk_total_bytes}
