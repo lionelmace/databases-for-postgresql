@@ -82,6 +82,11 @@ In the UI, on the _Settings_ tab, there is a button to kill all connections to y
 
 ![Kill All Connections UI](images/settings-kill-connections.png)
 
+The CLI command to kill connections to the deployment is 
+```
+ibmcloud cdb deployment-kill-connections <deployment name or CRN>
+```
+
 You can also use the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api#kill-connections-to-a-postgresql-deployment) to perform the kill all connections operation.
 
 ## Connection Pooling

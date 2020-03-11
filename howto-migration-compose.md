@@ -181,11 +181,8 @@ You can either perform the promotion by using the UI of your deployment, the pro
 
 If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-replica-promote`](https://cloud.ibm.com/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#read-replica-promote) command. 
 ```
-ibmcloud cdb read-replica-promote <your-new-deployment-name> 
+ibmcloud cdb read-replica-promote <your-new-deployment-name> --skip_initial_backup
 ```
-
-The CLI doesn't currently support the `--skip_initial_backup` flag. If minimizing downtime is important, start the promotion by using the UI or API.
-{: .tip}
 
 To promote through the {{site.data.keyword.databases-for}} API, use the [`/deployments/{id}/remotes`](https://cloud.ibm.com/apidocs/cloud-databases-api#modify-read-only-replication-on-a-deployment) endpoint. Setting the "leader" to the empty string is what starts the promotion.
 ```

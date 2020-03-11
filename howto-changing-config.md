@@ -29,6 +29,11 @@ to either the CLI or to the API.
 
 ## Using the CLI
 
+You can check the current configuration of your deployment with 
+```
+ibmcloud cdb deployment-configuration-schema <deployment name or CRN>
+```
+
 To change your configuration through the {{site.data.keyword.databases-for}} cli-plugin, use `deployment-configuration` command. 
 ```
 ibmcloud cdb deployment-configuration <deployment name or CRN> [@JSON_FILE | JSON_STRING]
