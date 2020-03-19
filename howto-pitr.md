@@ -19,7 +19,7 @@ subcollection: databases-for-postgresql
 # Point-in-time Recovery
 {: #pitr}
 
-{{site.data.keyword.databases-for-postgresql_full}} offers Point-In-Time Recovery (PITR) for any time in the last 7 days. The deployment performs continuous incremental backups and can replay transactions to bring a new deployment restored from a backup to any point in that 7 day window you need.
+{{site.data.keyword.databases-for-postgresql_full}} offers Point-In-Time Recovery (PITR) for any time in the last 7 days. The deployment performs continuous incremental backups and can replay transactions to bring a new deployment that is restored from a backup to any point in that 7-day window you need.
 
 The _Backups_ tab of your deployment's UI keeps all your PITR information under _Point-in-Time_.
 
@@ -50,7 +50,7 @@ It is very important that you do not delete the source deployment while the back
 
 ### In the UI
 
-To initiate a PITR, enter the time you would like to restore back to in UTC. If you just want to restore to the most recent available time, select that option. Clicking **Restore** brings up the options for your recovery. Enter a name, select the version, region, and allocated resources for the new deployment. Click **Recover** to start the process.
+To initiate a PITR, enter the time that you want to restore back to in UTC. If you just want to restore to the most recent available time, select that option. Clicking **Restore** brings up the options for your recovery. Enter a name, select the version, region, and allocated resources for the new deployment. Click **Recover** to start the process.
 
 ![Recovery Options Dialog](images/pitr-dialog.png)
 
@@ -94,17 +94,17 @@ curl -X POST \
     "point_in_time_recovery_deployment_id":"<DEPLOYMENT_ID>"
   }'
 ```
-The parameters `name`, `target`, `resource_group`, and `resource_plan_id` are all required. The `target` is the region where you want the new deployment to be located, which can be a different region from the source deployment. Cross-region restores are supported, with the exception of restoring a `eu-de` backup to another region.
+The parameters `name`, `target`, `resource_group`, and `resource_plan_id` are all required. The `target` is the region where you want the new deployment to be located, which can be a different region from the source deployment. Cross-region restores are supported, except for restoring a `eu-de` backup to another region.
 
 For PITR, use the `point_in_time_recovery_time` and `point_in_time_recovery_deployment_id` parameters. The `point_in_time_recovery_deployment_id` is the source deployment's ID and `point_in_time_recovery_time` is the timestamp in UTC you want to restore to. If you want to restore to the latest available point-in-time use `"point_in_time_recovery_time":" "`.
 
-If you need to adjust resources or use a Key Protect key, add the optional parameters `key_protect_key`, `members_disk_allocation_mb`, `members_memory_allocation_mb`, and/or `members_cpu_allocation_count`, and their desired values to the body of the request
+If you need to adjust resources or use a Key Protect key, add the optional parameters `key_protect_key`, `members_disk_allocation_mb`, `members_memory_allocation_mb`, and/or `members_cpu_allocation_count`, and their values to the body of the request.
 
 ## Verifying PITR
 
 In order to verify the correct recovery time, you have to check the database logs. Checking the database logs requires the [Logging Integration](/docs/services/databases-for-postgresql?topic=cloud-databases-logging) to be set up on your deployment.
 
-When you perform a recovery, your data is restored from the most recent incremental backup and any outstanding transactions from the WAL log are used to catch your database up to the time you recovered to. After the recovery is finished, and the transactions are run, the logs display a message. You can check that your logs have the message
+When you perform a recovery, your data is restored from the most recent incremental backup and any outstanding transactions from the WAL log are used to catch your database up to the time you recovered to. After the recovery is finished, and the transactions are run, the logs display a message. You can check that your logs have the message,
 ```
 LOG:  last completed transaction was at log time 2019-09-03 19:40:48.997696+00
 ```
@@ -113,4 +113,4 @@ There are two scenarios where recovery does not show up in the logs.
 1. Your deployment has a recent full backup and there is no activity after the backup was taken that needs to be replayed.
 2. If you entered a time to recover to that is **after** the current time or is past latest available point-in-time recovery point.
 
-In both cases the recovery is usually still successful, but there won't be an entry in the logs to check the exact time the database was restored to.
+In both cases the recovery is usually still successful, but there won't be an entry in the logs to check the exact time that the database was restored to.

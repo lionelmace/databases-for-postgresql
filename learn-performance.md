@@ -38,5 +38,6 @@ You can set the amount of memory that is dedicated to the databases' shared buff
 Allocating larger amounts of memory (outside of the shared buffer pool) to your deployment still benefits performance. For example, PostgreSQL fills memory with cached disk pages for performance. You don't have to allocate memory to PostgreSQL directly for PostgreSQL to use it.
 
 ## Connection Limits 
+{. #connection-limits-performance}
 
 {{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. After the connection limit has been reached, any attempts at starting a new connection results in an error. To prevent overwhelming your deployment with connections, use connection pooling, or scale your deployment and increase its connection limit. For more information, see the [Managing PostgreSQL Connections](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) page.

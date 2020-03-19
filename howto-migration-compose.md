@@ -109,7 +109,7 @@ The `target` is the region where you would like your {{site.data.keyword.databas
 
 ## Performing the Migration
 
-Once provisioning is finished, you have a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replica) of your Compose deployment. Replication begins as soon as the provisioning is complete.
+Once provisioning is finished, you have a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) of your Compose deployment. Replication begins as soon as the provisioning is complete.
 
 You can access the {{site.data.keyword.databases-for-postgresql}} deployment in a few different ways.
 - The deployment's UI is accessible by clicking its name from the [Resource List](https://cloud.ibm.com/resources) in your IBM Cloud account.

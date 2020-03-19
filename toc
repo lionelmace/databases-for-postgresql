@@ -1,12 +1,12 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="databases-for-postgresql" audience="service" category="databases" href="/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-started" path="databases-for-postgresql"}
+{: .toc subcollection="databases-for-postgresql" audience="service" category="databases" href="/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-started" console-page="/catalog/services/databases-for-postgresql" product-page="https://www.ibm.com/cloud/databases-for-postgresql" path="databases-for-postgresql"}
 Databases For PostgreSQL
 
 	{: .navgroup id="learn"}
 	getting-started.md
-	[What is Databases for PostgreSQL](https://www.ibm.com/cloud/databases-for-postgresql)
+	[What is PostgreSQL](https://www.ibm.com/cloud/learn/postgresql)
 	learn-dashboard-overview.md
 	learn-high-availability.md
 	learn-performance.md
