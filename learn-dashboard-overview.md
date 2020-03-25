@@ -69,8 +69,8 @@ For more information about the {{site.data.keyword.cloud_notm}} databases API, s
 ## Resources
 
 The resources tab contains information and configuration options on the size and resource usage of your deployment. You can 
-- [Scale disk, memory, and CPU](/docs/services/databases-for-mongodb?topic=databases-for-postgresql-resources-scaling)
-- [Configure Autoscaling](/docs/services/databases-for-mongodb?topic=databases-for-postgresql-autoscaling)
+- [Scale disk, memory, and CPU](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling)
+- [Configure Autoscaling](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-autoscaling)
 
 ## Backups
 
