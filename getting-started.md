@@ -1,8 +1,10 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-12-03"
+  years: 2018, 2020
+lastupdated: "2020-03-27"
+
+keywords: pgAdmin, postgresql gui
 
 subcollection: databases-for-postgresql
 
@@ -16,173 +18,88 @@ subcollection: databases-for-postgresql
 {:tip: .tip}
 
 
-# Getting Started Tutorial
+# Getting Started
 {: #getting-started}
 
-This tutorial uses a [sample app](https://github.com/IBM-Cloud/clouddatabases-helloworld-cloudfoundry-examples/tree/node/postgresql) to demonstrate how to connect a Cloud Foundry application in {{site.data.keyword.cloud_notm}} to an {{site.data.keyword.databases-for-postgresql_full}} service. The application creates, reads from, and writes to a database that uses data that is supplied through the app's web interface.
-{: shortdesc}
-
-If you have already created your deployment and just want to connect to your PostgreSQL databases, you can skip to [setting your administrator password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password) and then start using a [command line tool to connect](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
-{: .tip}
+This tutorial is a short introduction to using an {{site.data.keyword.databases-for-postgresql_full}} deployment. [pgAdmin](https://www.pgadmin.org/) is an open-source administration platform for PostgreSQL, and provides many tools for managing your data and databases. [Download and install](https://www.pgadmin.org/download/) the version that is appropriate to your environment, and then follow the steps to connect it to your {{site.data.keyword.databases-for-postgresql}} deployment.
 
 ## Before you begin
 
-Make sure that you have an [{{site.data.keyword.cloud_notm}} account][ibm_cloud_signup_url]{:new_window}.
+- You need to have an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/registration){:new_window}.
+- And a {{site.data.keyword.databases-for-postgresql}} deployment. You can provision one from the [{{site.data.keyword.cloud_notm}} catalog](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Give your deployment a memorable name that appears in your account's Resource List.
+- [Set the Admin Password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your deployment.
+- An installation of [pgAdmin4](https://www.pgadmin.org/download/).
 
-You also need to install [Node.js](https://nodejs.org/) and [Git](https://git-scm.com/downloads).
+## Connecting with pgAdmin
 
-## Step 1. Create a {{site.data.keyword.databases-for-postgresql}} service instance
-{: #create-service}
+pgAdmin runs as a server and you connect to it through a browser. When the server is started, it runs on localhost, at default `http://127.0.0.1:53113/browser/`.
 
-You can create a {{site.data.keyword.databases-for-postgresql}} service from the [{{site.data.keyword.databases-for-postgresql}} page](https://cloud.ibm.com/catalog/services/databases-for-postgresql/) in the {{site.data.keyword.cloud_notm}} catalog.
+When you first open pgAdmin, you get a prompt for setting a Master Password. This password is different from your deployment's password; it'll be used specifically for pgAdmin to store passwords to your PostgreSQL servers or PostgreSQL deployments.
 
-Choose a service name, region, organization and space to provision the service in, and for the **Select a database version** field, choose _Latest Preferred Version_. In this example, the service name is "example-psql".
+The _Dashboard_ panel has a _Welcome_ screen. From the _Quick Links_, click _Add New Server_.
 
-Click **Create** to provision your service. Provisioning can take a while to complete. You are taken back to your {{site.data.keyword.cloud_notm}} _Dashboard_ while the service is provisioning. 
+![The pgAdmin Welcome](images/getting-started-pgAdmin-welcome.png)
 
-You are not able to connect an application to the service until provisioning is finished.
+On your deployment's _Manage_ page, there is a panel with all the relevant connection information.
+
+![Connections panel](images/getting-started-connections-panel.png)
+
+Back in pgAdmin, provide pgAdmin with the information it needs to connect to your deployment. 
+
+First, fill out the _Connection_ information, 
+- For _Host name/address_, use the _Hostname_ of your deployment.
+- For the _Port_, use the _Port_ of your deployment.
+- The _Maintenance database_ remains `postgres`.
+- For _Username_ and _Password_, use the `admin` credentials that you set after provisioning your deployment. You can choose to have pgAdmin save the password.
+- The _Role_ and _Service_ fields can be left empty.
+
+![Completed Connection information](images/getting-started-connection-info.png)
+
+Then, configure the _SSL_ settings.
+- Copy the certificate information from the _Connections_ panel.
+- Save the certificate  to a file. (You can use the Name that is provided or your own file name).
+- Set the _SSL mode_ field to _Verify-CA_.
+- In the _Root certificate_ field, select the file where you saved your deployment's certificate.
+
+![Completed SSL settings](images/getting-started-ssl-settings.png)
+
+Back on the _General_ tab, give your deployment a name and add any comments you want to describe or identify your deployment in pgAdmin.
+
+![General Tab](images/getting-started-pgAdmin-general.png)
+
+If the _Connect now?_ field is checked, pgAdmin attempts to connect to your deployment when you click the **Save** button.
+
+## Using pgAdmin
+
+Once pgAdmin connects, your deployment appears in the _Servers_ list and you get a _Dashboard_ with information and statistics. 
+
+![pgAdmin Dashboard](images/getting-started-pgAdmin-Dashboard.png)
+
+In the list of databases in the _Browser_, there is both the `postgres` database, which you are connected to, and the `ibmclouddb` database, which is the default database for all {{site.data.keyword.databases-for-postgresql}} deployments. Click `ibmclouddb` to connect to it and expand the information about it.
+
+Now you can use pgAdmin to view, administrate, and manage your data and databases in your {{site.data.keyword.databases-for-postgresql}} deployment. A complete guide can be found in the [pgAdmin documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.html).
+
+Administrative features that require a superuser are not available through pgAdmin because there is no superuser access available to end-users of a {{site.data.keyword.databases-for-postgresql}} deployment.
 {: .tip}
 
-## Step 2. Clone the Hello World sample app from GitHub
+## Next Steps
 
-Clone the Hello World app to your local environment from your terminal by using the following command:
+If you are just using PostgreSQL for the first time, it is a good idea to take a tour through the [official PostgreSQL documentation](https://www.postgresql.org/docs/). 
 
-```
-git clone -b node git@github.com:IBM-Cloud/clouddatabases-helloworld-cloudfoundry-examples.git
-```
+You can connect to and manage your databases and data with PostgreSQL's command-line tool [`psql`](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 
-## Step 3. Install the app dependencies
+Looking for more tools on managing your deployment? You can connect to your deployment with [IBM Cloud CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli) and the [Cloud Databases CLI plug-in](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference). Or use the [Cloud Databases API](https://cloud.ibm.com/apidocs/cloud-databases-api).
 
-Use npm to install dependencies.
+If you are planning to use {{site.data.keyword.databases-for-postgresql}} for your applications, check out some of our other documentation pages.
+- [Connecting an external application](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-external-app)
+- [Connecting an IBM Cloud application](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-ibmcloud-app)
 
-1. From your terminal, change the directory to where the sample app is located.
+Also, to ensure the stability of your applications and your database, check out the pages on 
+- [High-Availability](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-high-availability)
+- [Performance](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-performance)
 
-2. Install the dependencies listed in the `package.json` file.
-  
-  ```
-  npm install
-  ```
 
-## Step 4. Download and install the {{site.data.keyword.cloud_notm}} CLI tool
 
-The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line. For more information, see [Download and install {{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
-## Step 5. Connect to {{site.data.keyword.cloud_notm}}
 
-1. Connect to {{site.data.keyword.cloud_notm}} in the command line tool and follow the prompts to log in.
 
-  ```
-  ibmcloud login
-  ```
-
-  If you have a federated user ID, use the `ibmcloud login --sso` command to log in with your single sign-on ID. See [Logging in with a federated ID](/docs/iam?topic=iam-federated_id) to learn more.
-  {: .tip}
-
-2. Make sure that you are targeting the correct {{site.data.keyword.cloud_notm}} org and space.
-
-  ```
-  ibmcloud target --cf
-  ```
-
-  Choose from the options provided, by using the same values that you used when you created the service.
-
-## Step 6. Create a Cloud Foundry alias for the database service.
-{: #create-alias}
-
-Make the database service discoverable by Cloud Foundry applications by giving it a Cloud Foundry alias. 
-
-`ibmcloud resource service-alias-create alias-name --instance-name instance-name`
-
-The alias name can be the same as the database service instance name. For example, use this command for database that was created in step 1.
-
-`ibmcloud resource service-alias-create example-psql --instance-name example-psql`
-
-## Step 7. Update the app's manifest file
-{: #update-manifest}
-
-{{site.data.keyword.cloud_notm}} uses a manifest file - `manifest.yml` to associate an application with a service. Follow these steps to create your manifest file.
-
-1. In an editor, open a new file and add the following text:
-
-  ```
-  ---
-  applications:
-  - name:    example-helloworld-nodejs
-    routes:
-    - route: example-helloworld-nodejs.us-south.cf.appdomain.cloud
-    memory:  128M
-    services:
-      - example-psql
-  ```
-
-2. Change the `route` value to something unique. The route that you choose determines the subdomain of your application's URL:  `<route>.{region}.cf.appdomain.cloud`.
-3. Change the `name` value. The name that you choose is displayed in your {{site.data.keyword.cloud_notm}} dashboard.
-4. Update the `services` value to match the alias of the service you created in [Create a Cloud Foundry alias for the database service](#create-alias).
-
-## Step 8. Push the app to {{site.data.keyword.cloud_notm}}.
-
-This step fails if the service is not finished provisioning from Step 1. You can check its progress on your {{site.data.keyword.cloud_notm}} _Dashboard_.
-{: .tip}
-
-When you push the app, it is automatically bound to the service specified in the manifest file.
-
-```
-ibmcloud cf push
-```
-
-## Step 9. Check that the app is connected to your {{site.data.keyword.databases-for-postgresql}} service
-
-1. Go to your {{site.data.keyword.databases-for-postgresql}} service dashboard
-2. Select _Connections_ from the dashboard menu. Your application is be listed under _Connected Applications_.
-
-If your application is not listed, repeat Steps 7 and 8, making sure that you entered the correct details in [manifest.yml](#update-manifest).
-
-## Step 10. Use the app
-
-Now, when you visit `<route>.{region}.cf.appdomian.cloud/` you can see the contents of your {{site.data.keyword.databases-for-postgresql}} collection. As you add words and their definitions, they are added to the database and displayed. If you stop and restart the app, you'll see any words and definitions you've already added are now listed.
-
-## Running the app locally
-
-Instead of pushing the app into {{site.data.keyword.cloud_notm}} you can run it locally to test the connection to your {{site.data.keyword.databases-for-postgresql}} service instance. To connect to the service, you need to create a set of service credentials.
-
-1. From your {{site.data.keyword.cloud_notm}} dashboard, open your {{site.data.keyword.databases-for-postgresql}} service instance.
-2. Select _Service Credentials_ from the main menu to open the Service Credentials view.
-3. Click **New Credential**.
-4. Choose a name for your credentials and click **Add**.
-5. Your new credentials are now listed. Click **View credentials** in the corresponding row of the table to view the credentials, and click the **Copy** icon to copy your credentials.
-6. In your editor of choice, create a new file with the following JSON, inserting your credentials as shown.
-
-  ```
-  {
-    "services": {
-      "databases-for-postgresql": [
-        {
-          "credentials": INSERT YOUR CREDENTIALS HERE
-        }
-      ]
-    }
-  }
-  ```
-7. Save the file as `vcap-local.json` in the directory where the sample app is located.
-
-To avoid accidentally exposing your credentials when you push an application to GitHub or {{site.data.keyword.cloud_notm}}, make sure that the file that contains your credentials is listed in the relevant ignore file. If you open `.cfignore` and `.gitignore` in your application directory, you can see that `vcap-local.json` is listed in both. It is not included in the files that are uploaded when you push the app to either GitHub or {{site.data.keyword.cloud_notm}}.
-{: .tip}
-
-Now start the local server.
-```
-npm start
-```
-
-The app is now running at http://localhost:8080. You can add words and definitions to your {{site.data.keyword.databases-for-postgresql}} database. When you stop and restart the app, any added words are displayed when you refresh the page.
-
-## Next steps
-
-To understand more about how the [sample app](https://github.com/IBM-Cloud/clouddatabases-helloworld-cloudfoundry-examples/tree/node/postgresql) works, you can read the application's readme file, or the code comments in `server.js`, which give some information about the app's functions.
-
-To start exploring your {{site.data.keyword.databases-for-postgresql}} service, see the following topics about the service dashboard:
-
-- [Dashboard Overview](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-overview)
-- [Backups](/docs/services/databases-for-postgresql?topic=cloud-databases-dashboard-backups)
-- [Creating Users and Getting Connection Strings](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings)
-
-[ibm_cloud_signup_url]: https://ibm.biz/databases-for-postgresql-signup
