@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-02-18"
+lastupdated: "2020-04-01"
 
-keywords: postgresql, databases, admin, superuser, roles, service credentials
+keywords: admin, superuser, roles, service credentials
 
 subcollection: databases-for-postgresql
 
@@ -23,16 +23,7 @@ subcollection: databases-for-postgresql
 
 PostgreSQL uses a system of roles to manage database permissions. Roles are used to give a single user or a group of users a set of privileges. You can determine roles, groups, and privileges for all roles across your deployment by using the `psql` command `\du`.
 
-Role name | Attributes | Member of
-----------|----------|---------
-`admin` | Create role, Create DB | {pg_monitor,pg_signal_backend,ibm-cloud-base-user}
-`ibm` | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
-`ibm-cloud-base-user` | Create role, Create DB, Cannot login | {}
-`ibm-cloud-base-user-ro` | Create role, Create DB, Cannot login | {ibm-cloud-base-user}
-`ibm-replication` | Replication | {}
-`repl` | Replication | {}
-`service_credentials_1` | Create role, Create DB | {ibm-cloud-base-user}
-{: caption="Table 1. Users in a PostgreSQL deployment" caption-side="top"}
+![Table Results from \du command](images/user_management_du.png)
 
 When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are automatically given an admin user to access and manage PostgreSQL.
 
@@ -90,15 +81,19 @@ The `ibm-cloud-base-user-ro` manages privileges for users that are created to ac
 
 The `repl` user has Replication privileges and is used if you enable the [`wal2json` plugin](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-wal2json) on your deployment. In the process of enabling `wal2json`, you set the `repl` user's password, which allows the `wal2json` plugin to use it.
 
+## Other `ibm` Users
+
+If you run the `\du` command with your admin account, you might notice users that are named `ibm`,  `ibm-cloud-base-user`, and `ibm-replication`.
+
+The `ibm-cloud-base-user` is used as a template to manage group roles for other users. It is used to manage the users created through the CLI and API as well as enable the integration with the _Service Credentials_ user creation on IBM Cloud. A user that is a member of `ibm-cloud-base-user` inherits the create role and create database attributes from `ibm-cloud-base-user`. The `ibm-cloud-base-user` is not able to log in.
+
+The `ibm` and the `ibm-replication` accounts are the only superusers on your deployment. A superuser account is not available for you to use. These users are internal administrative accounts that manage replication, metrics, and other functions that ensure the stability of your deployment.
+
 ## Users created with `psql`
 
-You can bypass creating users through IBM Cloud entirely, and create users directly in PostgreSQL with `psql`. This allows you to make use of PostgreSQL's native [role and user management](https://www.postgresql.org/docs/current/database-roles.html). Users/roles created in `psql` have to have all of their privileges set manually, as well as privileges to the objects that they create. 
+You can bypass creating users through IBM Cloud entirely, and create users directly in PostgreSQL with `psql`. This allows you to make use of PostgreSQL's native [role and user management](https://www.postgresql.org/docs/current/database-roles.html). Users/roles created in `psql` have to have all of their privileges set manually, as well as privileges to the objects that they create.
 
 Users that are created directly in PostgreSQL do not appear in _Service Credentials_, but you can [add them](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings#adding-users-to-_service-credentials_) if you choose. 
 
 Note that these users are not integrated with IAM controls, even if added to _Service Credentials_.
 {: .tip}
-
-## The `ibm` and `ibm-replication` Users
-
-If you run the `\du` command with your admin account, you might notice two users that are named `ibm` and `ibm-replication`. These users are internal administrative accounts that manage replication, metrics, and other functions that ensure the stability of your deployment. The `ibm` and the `ibm-replication` accounts are the only superusers on your deployment. A superuser account is not available for you to use.

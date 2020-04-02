@@ -88,10 +88,12 @@ Once the task has finished, you can retrieve the new user's connection strings, 
 
 ### Adding users to _Service Credentials_
 
-Creating a new user from the CLI or API doesn't automatically populate that user's connection strings into _Service Credentials_. If you want to add them there, you can create a new credential with the existing user information. Enter the user name and password in the JSON field under _Add Inline Configuration Parameters_. For example, {"existing_credentials":{"username":"Robert","password":"supersecure"}}. Basically, you send in the username and password, and _Service Credentials_ generates the connection strings with the credentials filled in.
+Creating a new user from the CLI doesn't automatically populate that user's connection strings into _Service Credentials_. If you want to add them there, you can create a new credential with the existing user information.
 
-Generating credentials from an existing user does not check for or create that user. 
-{: .tip}
+Enter the user name and password in the JSON field _Add Inline Configuration Parameters_, or specify a file where the JSON information is stored. For example, putting `{"existing_credentials":{"username":"Robert","password":"supersecure"}}` in the field generates _Service Credentials_ with the username "Robert" and password "supersecure" filled into connection strings.
+
+Generating credentials from an existing user does not check for or create that user.
+{: tip}
 
 ## Connection String Breakdown
 
