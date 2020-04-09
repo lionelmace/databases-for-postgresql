@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2017,2019
-lastupdated: "2019-12-17"
+  years: 2017,2020
+lastupdated: "2020-04-09"
 
-keywords: postgresql, databases
+keywords: postgresql drivers, python, java, javascript, certificate
 
 subcollection: databases-for-postgresql
 
@@ -16,6 +16,7 @@ subcollection: databases-for-postgresql
 {:generic: .ph data-hd-programlang='generic'}
 {:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
+{:javascript: .ph data-hd-programlang='javascript'}
 {:pre: .pre}
 
 # Connecting an external application
@@ -149,6 +150,47 @@ for row in rows:
 ```
 {: python}
 
+
+This example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
+{: javascript}
+
+```javascript
+const pg = require("pg");
+const fs = require("fs");
+
+let connectionString = "postgres://<username>:<password>@<host>:<port>/<database>?sslmode=verify-full";
+let caCert = fs.readFileSync('/path/to/cert');
+
+// set up a client with your PostgreSQL connection string
+let client = new pg.Client({ connectionString: connectionString,
+    // set up the TLS options
+    ssl: {
+        ca: caCert,
+        rejectUnauthorized: true
+    }
+ });
+
+ client.connect(function(err) {
+    if (err) {
+        console.log(err);
+        process.exit(1);
+    } else {
+        // query for the names of the databases
+        client.query(
+            "SELECT datname FROM pg_database;",
+            function(err, result) {
+                if (err) {
+                    console.log(err);
+                }
+                // return the names of the databases
+                console.log(result.rows);
+                client.end();
+            }
+        );
+    }
+});
+```
+{: javascript}
 
 
 ## Driver TLS and self-signed certificate support
