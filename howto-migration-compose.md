@@ -58,7 +58,7 @@ ibmcloud resource service-instance-create <your-new-deployment-name> databases-f
   "source_username":"admin",
   "source_password": "your-compose-admin-password",
   "source_host":"sl-us-south-1-portal.52.dblayer.com",
-  "source_port":"25417"
+  "source_port":"25417",
   "version":"9.6",
   "members_memory_allocation_mb": "8192",
   "members_disk_allocation_mb": "20480"
