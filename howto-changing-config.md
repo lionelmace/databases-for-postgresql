@@ -91,6 +91,19 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
 
 ### WAL Settings
 
+[`archive_timeout`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
+  - Default - `1800`
+  - Restarts database - No
+  - Options - Minimum value of 300
+  - Notes - The number of seconds to wait before forcing a switch to the next WAL file. If the amount of seconds has passed and if there has been database activity, the server switches to a new segment. Effectively limits the amount of time data can remain unarchived.
+
+[`log_min_duration_statement`](https://www.postgresql.org/docs/current/runtime-config-logging.html)
+  - Default - `100`
+  - Restarts database - No
+  - Options - Minimum value of 100
+  - Notes - Statements that take longer than the specified number of milliseconds are logged.
+
+
 The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plugin](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plugin should leave these settings at the default.
 
 [`wal_level`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
@@ -107,4 +120,5 @@ The next three settings `wal_level`, `max_replication_slots` and `max_wal_sender
   - Default - `12`
   - Restarts database - **YES**
   - Notes - The maximum number of simultaneously running WAL sender processes. The default and minimum is 12. One `wal_sender` per consumer is required.  20 slots are reserved for internal use by your deployment for High-Availability (HA) purposes. You need to set the value above 20 and it is recommended to add one additional `wal_sender` over the minimum per expected consumer. Using `wal2json` and not increasing `max_wal_senders` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
+
 
