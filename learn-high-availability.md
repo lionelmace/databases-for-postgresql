@@ -23,7 +23,7 @@ subcollection: databases-for-postgresql
 
 {{site.data.keyword.databases-for-postgresql}} provides replication, fail-over, and high-availability features to protect your databases and data from infrastructure maintenance, upgrades, and failures. Deployments contain a cluster with two data members, a leader and a replica. Both members contain a copy of your data by using asynchronous replication, with a distributed consensus mechanism to maintain cluster state and handle failovers. If the leader becomes unreachable, the cluster initiates a failover and the replica is promoted to leader. The replica rejoins the cluster and your cluster continues to operate normally. 
 
-You can extend high-availability to more regions and spread to more replicas by adding [read-only replicas](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas). 
+You can extend high-availability to more regions and spread to more replicas by adding [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas). 
 
 ## Application-level High-Availability
 
@@ -38,7 +38,7 @@ Several minutes of database unavailability or connection interruption are not ex
 ## Connection Limits
 {. #connection-limits-ha}
 
-{{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. After the connection limit has been reached, any attempts at starting a new connection results in an error. To prevent overwhelming your deployment with connections, use connection pooling, or scale your deployment and increase its connection limit. For more information, see the [Managing PostgreSQL Connections](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) page.
+{{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. After the connection limit has been reached, any attempts at starting a new connection results in an error. To prevent overwhelming your deployment with connections, use connection pooling, or scale your deployment and increase its connection limit. For more information, see the [Managing PostgreSQL Connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) page.
 
 ## SLA
 

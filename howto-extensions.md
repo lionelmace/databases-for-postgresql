@@ -19,7 +19,7 @@ subcollection: databases-for-postgresql
 # Managing PostgreSQL Extensions
 {: #extensions}
 
-In PostgreSQL, extensions are modules that supply extra functions, operators, or types. Many extensions are available in {{site.data.keyword.databases-for-postgresql_full}}. In order to use them, you need to [set the admin password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your service and use it to [connect with `psql` ](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
+In PostgreSQL, extensions are modules that supply extra functions, operators, or types. Many extensions are available in {{site.data.keyword.databases-for-postgresql_full}}. In order to use them, you need to [set the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your service and use it to [connect with `psql` ](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 
 ## Listing Installed Extensions
 
@@ -71,7 +71,7 @@ If there is a newer version of an extension available than the one you currently
   ```
 - For `pg_repack` to run reliably, your deployment should be on PostgreSQL 9.6 and above.
 - Any user can run `pg_repack`, but the command is only be able to repack a table that they have permissions on.
-- `pg_repack` needs to take an exclusive lock on objects it is reorganizing at the end of the reorganization. If it can't get this lock after a certain period, it cancels all conflicting queries. If it can't do so, the reorg will fail. By default, only the admin user on PostgreSQL 9.6 and greater has the ability to cancel conflicting queries. If you want to expose the ability to cancel queries to other database users, you can grant the `pg_signal_backend` role [from the admin user](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user).
+- `pg_repack` needs to take an exclusive lock on objects it is reorganizing at the end of the reorganization. If it can't get this lock after a certain period, it cancels all conflicting queries. If it can't do so, the reorg will fail. By default, only the admin user on PostgreSQL 9.6 and greater has the ability to cancel conflicting queries. If you want to expose the ability to cancel queries to other database users, you can grant the `pg_signal_backend` role [from the admin user](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user).
 
 ## Available Extensions
 

@@ -27,7 +27,7 @@ This tutorial is a short introduction to using an {{site.data.keyword.databases-
 
 - You need to have an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/registration){:new_window}.
 - And a {{site.data.keyword.databases-for-postgresql}} deployment. You can provision one from the [{{site.data.keyword.cloud_notm}} catalog](https://cloud.ibm.com/catalog/services/databases-for-postgresql). Give your deployment a memorable name that appears in your account's Resource List.
-- [Set the Admin Password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your deployment.
+- [Set the Admin Password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your deployment.
 - An installation of [pgAdmin4](https://www.pgadmin.org/download/).
 
 ## Connecting with pgAdmin
@@ -86,17 +86,17 @@ Administrative features that require a superuser are not available through pgAdm
 
 If you are just using PostgreSQL for the first time, it is a good idea to take a tour through the [official PostgreSQL documentation](https://www.postgresql.org/docs/). 
 
-You can connect to and manage your databases and data with PostgreSQL's command-line tool [`psql`](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
+You can connect to and manage your databases and data with PostgreSQL's command-line tool [`psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 
 Looking for more tools on managing your deployment? You can connect to your deployment with [IBM Cloud CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli) and the [Cloud Databases CLI plug-in](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference). Or use the [Cloud Databases API](https://cloud.ibm.com/apidocs/cloud-databases-api).
 
 If you are planning to use {{site.data.keyword.databases-for-postgresql}} for your applications, check out some of our other documentation pages.
-- [Connecting an external application](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-external-app)
-- [Connecting an IBM Cloud application](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-ibmcloud-app)
+- [Connecting an external application](/docs/databases-for-postgresql?topic=databases-for-postgresql-external-app)
+- [Connecting an IBM Cloud application](/docs/databases-for-postgresql?topic=databases-for-postgresql-ibmcloud-app)
 
 Also, to ensure the stability of your applications and your database, check out the pages on 
-- [High-Availability](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-high-availability)
-- [Performance](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-performance)
+- [High-Availability](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability)
+- [Performance](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance)
 
 
 

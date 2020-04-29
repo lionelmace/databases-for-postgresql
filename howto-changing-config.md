@@ -81,13 +81,13 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
 [`effective_io_concurrency`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-EFFECTIVE-IO-CONCURRENCY)
   - Default - `12`
   - Restarts database - No
-  - Notes - It is recommended to leave this setting at the default. Only increase it you have profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-high-availability#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
+  - Notes - It is recommended to leave this setting at the default. Only increase it you have profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
 
 [`deadlock_timeout`](https://www.postgresql.org/docs/current/runtime-config-locks.html)
   - Default - 10000
   - Restarts database - No
   - Options - Minimum value of 100
-  - Notes - The number of milliseconds to wait before checking for deadlock and the duration where lock waits are logged. Logs available through the [logging integration](/docs/services/databases-for-postgresql?topic=cloud-databases-logging). Setting this number too low negatively impacts performance.
+  - Notes - The number of milliseconds to wait before checking for deadlock and the duration where lock waits are logged. Logs available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). Setting this number too low negatively impacts performance.
 
 ### WAL Settings
 
@@ -104,7 +104,7 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
   - Notes - Statements that take longer than the specified number of milliseconds are logged.
 
 
-The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plugin](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plugin should leave these settings at the default.
+The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plugin](/docs/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plugin should leave these settings at the default.
 
 [`wal_level`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
   - Default - `hot_standby`

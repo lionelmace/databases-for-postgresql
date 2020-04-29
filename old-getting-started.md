@@ -22,7 +22,7 @@ subcollection: databases-for-postgresql
 This tutorial uses a [sample app](https://github.com/IBM-Cloud/clouddatabases-helloworld-cloudfoundry-examples/tree/node/postgresql) to demonstrate how to connect a Cloud Foundry application in {{site.data.keyword.cloud_notm}} to an {{site.data.keyword.databases-for-postgresql_full}} service. The application creates, reads from, and writes to a database that uses data that is supplied through the app's web interface.
 {: shortdesc}
 
-If you have already created your deployment and just want to connect to your PostgreSQL databases, you can skip to [setting your administrator password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password) and then start using a [command line tool to connect](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
+If you have already created your deployment and just want to connect to your PostgreSQL databases, you can skip to [setting your administrator password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) and then start using a [command line tool to connect](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 {: .tip}
 
 ## Before you begin
@@ -34,7 +34,7 @@ You also need to install [Node.js](https://nodejs.org/) and [Git](https://git-sc
 ## Step 1. Create a {{site.data.keyword.databases-for-postgresql}} service instance
 {: #create-service}
 
-You can create a {{site.data.keyword.databases-for-postgresql}} service from the [{{site.data.keyword.databases-for-postgresql}} page](https://cloud.ibm.com/catalog/services/databases-for-postgresql/) in the {{site.data.keyword.cloud_notm}} catalog.
+You can create a {{site.data.keyword.databases-for-postgresql}} service from the [{{site.data.keyword.databases-for-postgresql}} page](https://cloud.ibm.com/catalog/databases-for-postgresql/) in the {{site.data.keyword.cloud_notm}} catalog.
 
 Choose a service name, region, organization and space to provision the service in, and for the **Select a database version** field, choose _Latest Preferred Version_. In this example, the service name is "example-psql".
 
@@ -181,8 +181,8 @@ To understand more about how the [sample app](https://github.com/IBM-Cloud/cloud
 
 To start exploring your {{site.data.keyword.databases-for-postgresql}} service, see the following topics about the service dashboard:
 
-- [Dashboard Overview](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-dashboard-overview)
-- [Backups](/docs/services/databases-for-postgresql?topic=cloud-databases-dashboard-backups)
-- [Creating Users and Getting Connection Strings](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-connection-strings)
+- [Dashboard Overview](/docs/databases-for-postgresql?topic=databases-for-postgresql-dashboard-overview)
+- [Backups](/docs/databases-for-postgresql?topic=cloud-databases-dashboard-backups)
+- [Creating Users and Getting Connection Strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings)
 
 [ibm_cloud_signup_url]: https://ibm.biz/databases-for-postgresql-signup

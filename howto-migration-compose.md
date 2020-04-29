@@ -39,7 +39,7 @@ Pick one of the connection strings from your Compose deployment to have the repl
 
 Compose deployments support having only one read-only replica connected at a time. 
 
-If you use whitelists to limit connections to your Compose deployment, you need to either disable the whitelist before you create the read-only replica or whitelist the range of IP addresses that your new {{site.data.keyword.databases-for-postgresql}} uses. Use the subnets listed on the [Whitelisting](/docs/services/databases-for-postgresql?topic=cloud-databases-whitelisting#whitelisting-cloud-databases-in-your-environment) page, and add all the ranges for the region where your {{site.data.keyword.databases-for-postgresql}} deployment lives to your Compose whitelist.
+If you use whitelists to limit connections to your Compose deployment, you need to either disable the whitelist before you create the read-only replica or whitelist the range of IP addresses that your new {{site.data.keyword.databases-for-postgresql}} uses. Use the subnets listed on the [Whitelisting](/docs/databases-for-postgresql?topic=cloud-databases-whitelisting#whitelisting-cloud-databases-in-your-environment) page, and add all the ranges for the region where your {{site.data.keyword.databases-for-postgresql}} deployment lives to your Compose whitelist.
 
 ## Setting Up on IBM Cloud
 
@@ -77,7 +77,7 @@ ibmcloud resource service-instance-create <your-new-deployment-name> databases-f
 - `members_memory_allocation_mb` - The total amount of memory you need for the {{site.data.keyword.databases-for-postgresql}} deployment. If omitted the minimum allocation of 4096 MB.
 - `members_disk_allocation_mb` - The total amount of disk space you need for the {{site.data.keyword.databases-for-postgresql}} deployment. If omitted the minimum allocation of 10240 MB.
 
-This command kicks off provisioning a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replica) of your Compose deployment. 
+This command kicks off provisioning a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replica) of your Compose deployment. 
 
 
 ### Provisioning through the Resource Controller API
@@ -109,7 +109,7 @@ The `target` is the region where you would like your {{site.data.keyword.databas
 
 ## Performing the Migration
 
-Once provisioning is finished, you have a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) of your Compose deployment. Replication begins as soon as the provisioning is complete.
+Once provisioning is finished, you have a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) of your Compose deployment. Replication begins as soon as the provisioning is complete.
 
 You can access the {{site.data.keyword.databases-for-postgresql}} deployment in a few different ways.
 - The deployment's UI is accessible by clicking its name from the [Resource List](https://cloud.ibm.com/resources) in your IBM Cloud account.
@@ -143,7 +143,7 @@ The goal is to make sure that replication catches up after the initial subscript
 During the migration, the Compose deployment might scale. While the replica is subscribed to the deployment, transaction logs on the Compose deployment are kept to catch the replica up later. The extra logs might cause the Compose deployment to grow and scale. As the replication catches up, you might be able to scale the deployment back down.
 
 ### Things to note on the Replica
-If you use the [Logging Integration](/docs/services/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you may see logs that contain
+If you use the [Logging Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you may see logs that contain
 ```
 2019-11-13 22:02:00 UTC [1207]: [1-1] user=ibm,db=postgres,client=127.0.0.1 ERROR:  could not get commit timestamp data
 2019-11-13 22:02:00 UTC [1207]: [2-1] user=ibm,db=postgres,client=127.0.0.1 HINT:  Make sure the configuration parameter "track_commit_timestamp" is set on the master server.
@@ -162,7 +162,7 @@ If the command does not return a result, run the following command against Compo
 SELECT pg_create_physical_replication_slot('ibm_cloud_databases_migration');
 ```
 
-If replication does not start catching up, check the [logs](/docs/services/databases-for-postgresql?topic=cloud-databases-logging) on the {{site.data.keyword.databases-for-postgresql}} deployment for the following error message.
+If replication does not start catching up, check the [logs](/docs/databases-for-postgresql?topic=cloud-databases-logging) on the {{site.data.keyword.databases-for-postgresql}} deployment for the following error message.
 ```
 2019-11-25 17:04:16 UTC [296409]: [2-1] user=,db=,client= FATAL: could not receive data from WAL stream: ERROR: requested WAL segment 0000000C0000372C000000C5 has already been removed
 ```

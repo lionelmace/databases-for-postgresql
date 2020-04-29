@@ -24,7 +24,7 @@ You can access your PostgreSQL database directly from its command line client, `
 
 The admin user comes with the PostgreSQL default role [`pg_monitor`](https://www.postgresql.org/docs/10/static/default-roles.html), allowing access to PostgreSQL monitoring views and functions. By default, the admin user does not have permissions on objects that are created by other users.
 
-You have to set the admin password before you use it to connect to the database. For more information, see the [Setting the Admin Password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password) page.
+You have to set the admin password before you use it to connect to the database. For more information, see the [Setting the Admin Password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) page.
 {: .tip}
 
 ## Installing `psql`

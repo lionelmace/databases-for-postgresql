@@ -24,7 +24,7 @@ In order to connect to {{site.data.keyword.databases-for-postgresql_full}}, you 
 
 ![Connections panel on the Dashboard Overview](images/connections_panel.png)
 
-A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with an admin user, and after [setting the admin password](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-admin-password), you can use its connection strings to connect to your deployment.
+A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with an admin user, and after [setting the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password), you can use its connection strings to connect to your deployment.
 {: .tip}
 
 **CLI**  
@@ -52,7 +52,7 @@ Access to your {{site.data.keyword.databases-for-postgresql}} deployment is not 
 
 All users on your deployment can use the connection strings, including connection strings for either public or private endpoints.
 
-When you create a user, it is assigned certain database roles and privileges. These privileges include the ability to login, create databases, and create other users. For more information, see the [Managing Users, Roles, and Privileges](/docs/services/databases-for-postgresql?topic=databases-for-postgresql-user-management) page.
+When you create a user, it is assigned certain database roles and privileges. These privileges include the ability to login, create databases, and create other users. For more information, see the [Managing Users, Roles, and Privileges](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management) page.
 
 ### Creating Users in _Service Credentials_
 
