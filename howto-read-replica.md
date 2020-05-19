@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2019, 2020
-lastupdated: "2020-02-06"
+lastupdated: "2020-05-19"
 
 keywords: postgresql, databases, read-only replica, resync, promote, cross-region replication
 
@@ -163,11 +163,25 @@ To promote through the CLI, use the [`cdb read-replica-promote`](/docs/databases
 ibmcloud cdb read-replica-promote <deployment name>
 ```
 
-To promote through the API, send a PATCH to the [`/deployments/{id}/remotes`](https://cloud.ibm.com/apidocs/cloud-databases-api#modify-read-only-replication-on-a-deployment) endpoint. Setting the leader to the empty string is what initializes the promotion.
+To promote through the API, send a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#modify-read-only-replication-on-a-deployment) endpoint.
 ```
-curl -X PATCH \
-  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes \
+curl -X POST \
+  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
   -H 'Authorization: Bearer <>'  \
  -H 'Content-Type: application/json' \
- -d '{"remotes": {"leader": ""}}' \ 
+ -d '{"promotion": {}}' \ 
 ```
+
+To promote and skip the initial backup after the promotion, also set `skip_initial_backup` in the json body.
+```
+curl -X POST \
+  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
+  -H 'Authorization: Bearer <>'  \
+ -H 'Content-Type: application/json' \
+ -d '{"promotion": {"skip_initial_backup": true}}' \ 
+ ```
+
+
+### Upgrading while Promoting
+
+If you need to upgrade to a new major version of the database, you can do so when promoting a read-only replica to a stand-alone deployment. Full documentation on your upgrading options, is on the [Upgrading to a New Major Version](/docs/databases-for-postgresql?topic=databases-for-postgresql-upgrading) page.
