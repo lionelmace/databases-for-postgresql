@@ -113,7 +113,7 @@ Once provisioning is finished, you have a {{site.data.keyword.databases-for-post
 
 You can access the {{site.data.keyword.databases-for-postgresql}} deployment in a few different ways.
 - The deployment's UI is accessible by clicking its name from the [Resource List](https://cloud.ibm.com/resources) in your IBM Cloud account.
-- You can use the [Cloud Databases CLI Plugin](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference). The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line, and the plugin contains the commands that you use to communicate with your database deployments. 
+- You can use the [Cloud Databases CLI Plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference). The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line, and the plugin contains the commands that you use to communicate with your database deployments. 
 - Or you can also use the [{{site.data.keyword.databases-for}} API](https://{DomainName}/apidocs/cloud-databases-api)
 
 Most importantly, you can access the PostgreSQL database directly using `psql`, which can be used to monitor the replication status.
@@ -179,7 +179,7 @@ To get the {{site.data.keyword.databases-for-postgresql}} deployment up and mini
 
 You can either perform the promotion by using the UI of your deployment, the promotion button is on the _Settings_ tab, in the _Replication_ section.
 
-If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-replica-promote`](https://cloud.ibm.com/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#read-replica-promote) command. 
+If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-replica-promote`](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-promote) command. 
 ```
 ibmcloud cdb read-replica-promote <your-new-deployment-name> --skip_initial_backup
 ```

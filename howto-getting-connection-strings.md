@@ -28,7 +28,7 @@ A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with 
 {: .tip}
 
 **CLI**  
-You can also grab connection strings from the [CLI](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#deployment-connections).
+You can also grab connection strings from the [CLI](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections).
 ```
 ibmcloud cdb deployment-connections example-deployment -u <newusername> [--endpoint-type <endpoint type>]
 ```

@@ -134,7 +134,7 @@ If you need to resync a read-only replica, click the **Resync Read-Only Replica*
 The amount of time it takes to resync a read-only replica varies, but the process can be very long running.
 {: .tip}
 
-To start a resync through the CLI, use the [`cdb read-replica-resync`](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#read-replica-resync) command.
+To start a resync through the CLI, use the [`cdb read-replica-resync`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-resync) command.
 ```
 ibmcloud cdb read-replica-resync <deployment name>
 ```
@@ -158,7 +158,7 @@ When you promote a read-only replica, you can skip the initial backup that would
 
 Once a read-only replica is promoted to an independent deployment, it is not possible to revert it back to a read-only replica or have it rejoin a leader.
 
-To promote through the CLI, use the [`cdb read-replica-promote`](/docs/databases-cli-plugin?topic=cloud-databases-cli-cdb-reference#read-replica-promote) command.
+To promote through the CLI, use the [`cdb read-replica-promote`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-promote) command.
 ```
 ibmcloud cdb read-replica-promote <deployment name>
 ```
