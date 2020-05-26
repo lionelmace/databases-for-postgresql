@@ -181,17 +181,17 @@ You can either perform the promotion by using the UI of your deployment, the pro
 
 If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-replica-promote`](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-promote) command. 
 ```
-ibmcloud cdb read-replica-promote <your-new-deployment-name> --skip_initial_backup
+ibmcloud cdb read-replica-promote <your-new-deployment-name> --skip-initial-backup
 ```
 
-To promote through the {{site.data.keyword.databases-for}} API, use the [`/deployments/{id}/remotes`](https://cloud.ibm.com/apidocs/cloud-databases-api#modify-read-only-replication-on-a-deployment) endpoint. Setting the "leader" to the empty string is what starts the promotion.
+To promote through the API and skip the initial backup after the promotion, send a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#promote-read-only-replica-to-a-full-deployment) endpoint.
 ```
-curl -X PATCH \
-  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes \
+curl -X POST \
+  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
   -H 'Authorization: Bearer <>'  \
  -H 'Content-Type: application/json' \
- -d '{"remotes": {"leader": ""}, "skip_initial_backup": true}' \
-```
+ -d '{"promotion": {"skip_initial_backup": true}}' \ 
+ ```
 
 After the promotion is complete, you can switch your applications to connect to your {{site.data.keyword.databases-for-postgresql}} deployment and get back up and running.
 
