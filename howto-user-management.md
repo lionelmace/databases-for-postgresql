@@ -29,7 +29,7 @@ When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are
 
 ## The `admin` user
 
-When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are automatically given an admin user to access and manage PostgreSQL. Once you [set the admin password](/docs/databases-for-postgresql), you can use it to connect to your deployment.
+When you provision a new deployment in {{site.data.keyword.cloud_notm}}, you are automatically given an admin user to access and manage PostgreSQL. Once you [set the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password), you can use it to connect to your deployment.
 
 When admin creates a resource in a database, like a table, admin owns that object. Resources that are created by admin are not accessible by other users, unless you expressly grant permissions to them.
 
