@@ -32,11 +32,13 @@ You can also grab connection strings from the [CLI](/docs/databases-cli-plugin?t
 ```
 ibmcloud cdb deployment-connections example-deployment -u <newusername> [--endpoint-type <endpoint type>]
 ```
+{: pre}
 
 Full connection information is returned by the `ibmcloud cdb deployment-connections` command with the `--all` flag. To retrieve all the connection information for a deployment named  "example-deployment", use the following command.
 ```
 ibmcloud cdb deployment-connections example-deployment -u <newusername> --all [--endpoint-type <endpoint type>]
 ```
+{: pre}
 
 If you don't specify a user, the `deployment-connections` commands return information for the admin user by default. If you don't specify an endpoint type, the connection string returns the public endpoint by default. If your deployment only has a private endpoint, you have to specify `--endpoint-type private` or the commands return an error. The user and endpoint type is not enforced. You can use any user on your deployment with either endpoint (if both exist on your deployment).
 
@@ -45,6 +47,7 @@ To retrieve user's connection strings from the API, use the [`/users/{userid}/co
 ```
 curl -X GET -H "Authorization: Bearer $APIKEY" 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/users/{userid}/connections/{endpoint_type}'
 ```
+{: pre}
 
 ## Additional Users and Connection Strings
 
@@ -71,6 +74,7 @@ If you manage your service through the {{site.data.keyword.cloud_notm}} CLI and 
 ```
 ibmcloud cdb user-create example-deployment <newusername> <newpassword>
 ```
+{: pre}
 
 Once the task has finished, you can retrieve the new user's connection strings with the `ibmcloud cdb deployment-connections` command.
 
@@ -83,6 +87,7 @@ curl -X POST 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{i
 -H "Content-Type: application/json" \
 -d '{"username":"jane_smith", "password":"newsupersecurepassword"}'
 ```
+{: pre}
 
 Once the task has finished, you can retrieve the new user's connection strings, from the `/users/{userid}/connections` endpoint.
 

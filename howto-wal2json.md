@@ -34,6 +34,7 @@ curl -X PATCH https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{i
         }
       }'
 ```
+{: pre}
 
 2. Set a password for the [`repl` user](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-repl-user). Any user's password can be changed by using the {{site.data.keyword.databases-for}} CLI plug-in [`cdb deployment-user-password`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-user-password) command or {{site.data.keyword.databases-for}} API [`/deployments/{id}/users/{username}`](https://cloud.ibm.com/apidocs/cloud-databases-api#set-database-level-user-s-password) endpoint. The `repl` user has REPLICATION privileges and the `wal2json` plugin uses it after you set a password for it.
 
@@ -48,15 +49,18 @@ curl -X POST https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id
         }
       }'
 ```
+{: pre}
 The plugin type must be `wal2json`. The database must be an existing database. The slot name can only contain lower case letters, numbers, and the underscore character. You can check the existence of the replication slot by connecting to any database and running 
 ```
 SELECT * FROM pg_replication_slots WHERE slot_name = '<slot_name>';
 ```
+{: pre}
 
 4. To test the plugin run `pg_recvlogical` from the terminal. The command is available with an installation of PostgreSQL. Use the host and port from your deployment, and the database and slot name you created via the API,
 ```
 PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT> --slot <SLOT NAME> --start -o pretty-print=1 -f -
 ```
+{: pre}
 
 5. Create a table on `ibmclouddb` and insert some data. You should see that the inserts come out in the terminal that is running `pg_recvlogical`. Note that table creates do not appear.
 
@@ -75,8 +79,10 @@ PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT> 
 ```
 SELECT slot_name, pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(),restart_lsn)) AS lag, active from pg_replication_slots WHERE slot_type='logical';
 ```
+{: pre}
 **PostgreSQL 9.x**
 ```
 SELECT slot_name, pg_size_pretty(pg_xlog_location_diff(pg_current_xlog_location(),restart_lsn)) AS lag, active FROM pg_replication_slots WHERE slot_type='logical';
 ```
+{: pre}
 Checking to see that your replication slot has a consumer and isn't running your deployment out of disk space can help troubleshoot if you see higher than expected disk usage on your deployment.

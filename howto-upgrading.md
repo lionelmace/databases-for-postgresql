@@ -39,6 +39,8 @@ When you upgrade and restore from backup through the  {{site.data.keyword.cloud_
 ```
 ibmcloud resource service-instance-create <service-name> <service-id> <service-plan-id> <region>
 ```
+{: pre}
+
 The parameters `service-name`, `service-id`, `service-plan-id`, and `region` are all required. You also supply the `-p` with the version and backup ID parameters in a JSON object. The new deployment is automatically sized with the same disk and memory as the source deployment at the time of the backup.
 
 ```
@@ -48,6 +50,7 @@ ibmcloud resource service-instance-create example-upgrade databases-for-postgres
   "version":11
 }'
 ```
+{: pre}
 
 ### Upgrading through the API
 
@@ -66,6 +69,7 @@ curl -X POST \
     "version":11
   }'
 ```
+{: pre}
 
 ## Upgrading from a Read-only Replica
 
@@ -84,6 +88,8 @@ curl -X POST \
     }
 }' \
 ```
+{: pre}
+
 `skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup after running the promotion. You're new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
 
 ### Dry-running the Upgrade
@@ -104,6 +110,7 @@ curl -X POST \
     }
 }' \
 ```
+{: pre}
 
 ## Changelog for Major PostgreSQL Versions
 

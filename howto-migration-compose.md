@@ -64,6 +64,8 @@ ibmcloud resource service-instance-create <your-new-deployment-name> databases-f
   "members_disk_allocation_mb": "20480"
  }'
 ```
+{: pre}
+
 **Required**  
 - `<your-new-deployment-name>` - The name you want your {{site.data.keyword.databases-for-postgresql}} deployment to have.
 - `<region>` - The region where you want your {{site.data.keyword.databases-for-postgresql}} deployment to live in.
@@ -105,6 +107,8 @@ curl -X POST \
     "members_disk_allocation_mb": "20480"
     }'
 ```
+{: pre}
+
 The `target` is the region where you would like your {{site.data.keyword.databases-for-postgresql}} deployment to live in. The `resource_group` is the ID of resource group on your IBM Cloud account where you want your {{site.data.keyword.databases-for-postgresql}} deployment to live in.
 
 ## Performing the Migration
@@ -126,16 +130,19 @@ On the Compose deployment run
 ```
 SELECT pg_current_xlog_flush_location();
 ```
+{: pre}
 
 On the {{site.data.keyword.databases-for-postgresql}} replica run
 ```
 SELECT pg_last_xlog_replay_location();
 ```
+{: pre}
 
 These commands output a PostgreSQL logical sequence number (`lsn`). If the two `lsn` match, the replica is caught up and synced to the Compose deployment. If the two `lsn` do not match, the replica still has to catch up. If you want to compare how far apart they are, you can run the following command on either member
 ```
 SELECT pg_size_pretty(pg_xlog_location_diff('<Output_from_Compose>','<Output_from_replica>'));
 ```
+{: pre}
 
 The goal is to make sure that replication catches up after the initial subscription (which might take a while), but after that you want to check that replication is close to up-to-date. When the replication is in sync or close to synced, you can shut down your applications that are writing to the Compose database. Perform a last check to ensure that the replica is completely caught up and all your data is migrated over.
 
@@ -156,11 +163,13 @@ If replication is lagging and does not appear to catch up, check the following. 
 ```
 SELECT count(*) FROM pg_replication_slots WHERE slot_name = 'ibm_cloud_databases_migration';
 ```
+{: pre}
 
 If the command does not return a result, run the following command against Compose as the admin user.
 ```
 SELECT pg_create_physical_replication_slot('ibm_cloud_databases_migration');
 ```
+{: pre}
 
 If replication does not start catching up, check the [logs](/docs/databases-for-postgresql?topic=cloud-databases-logging) on the {{site.data.keyword.databases-for-postgresql}} deployment for the following error message.
 ```
@@ -183,6 +192,7 @@ If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-rep
 ```
 ibmcloud cdb read-replica-promote <your-new-deployment-name> --skip-initial-backup
 ```
+{: pre}
 
 To promote through the API and skip the initial backup after the promotion, send a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#promote-read-only-replica-to-a-full-deployment) endpoint.
 ```
@@ -192,6 +202,7 @@ curl -X POST \
  -H 'Content-Type: application/json' \
  -d '{"promotion": {"skip_initial_backup": true}}' \ 
  ```
+{: pre}
 
 After the promotion is complete, you can switch your applications to connect to your {{site.data.keyword.databases-for-postgresql}} deployment and get back up and running.
 
@@ -201,18 +212,20 @@ On your new {{site.data.keyword.databases-for-postgresql}} deployment, certain P
 ```
 SELECT name, version FROM pg_available_extension_versions; 
 ```
+{: pre}
 and then update the extension appropriately.
 ```
 ALTER EXTENSION postgis UPDATE TO '2.4.6';
 ```
+{: pre}
 
 On the Compose deployment, you might have to perform a few actions post-migration to clean up the replication slots and log archive settings. This is especially true if the promotion fails, or if you create a replica and then delete it without promoting it.
 
 1. Connect to the `template1` database on your Compose deployment as the `admin` user.
 2. Run the following commands.
-  - `SELECT pg_drop_replication_slot('ibm_cloud_databases_migration');` 
-  - `DROP ROLE ibm;`
-  - `SELECT public.set_wal_keep_segments(0);` (specifying 0 sets it back to the default of 16 internally)
+  - ```SELECT pg_drop_replication_slot('ibm_cloud_databases_migration');``` {: pre}
+  - ```DROP ROLE ibm;```{: pre}
+  - ```SELECT public.set_wal_keep_segments(0);``` {: pre} (specifying 0 sets it back to the default of 16 internally)
 
 You should also now be able to scale your Compose deployment back down to a pre-migration size if you experienced it growing during the migration.
 

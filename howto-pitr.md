@@ -29,6 +29,7 @@ Included information is the earliest time for a PITR. To discover the earliest r
 ```
 ibmcloud cdb postgresql earliest-pitr-timestamp <deployment name or CRN>
 ```
+{: pre}
 
 To discover the earliest recovery point through the API, use the [`/deployments/{id}/point_in_time_recovery_data`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-earliest-point-in-time-recovery-timestamp) endpoint to find the earliest PITR time. 
 ```
@@ -38,6 +39,7 @@ To discover the earliest recovery point through the API, use the [`/deployments/
     }
 }
 ```
+{: pre}
 
 ## Recovery
 
@@ -64,6 +66,7 @@ For PITR, use the `point_in_time_recovery_time` and `point_in_time_recovery_depl
 ```
 ibmcloud resource service-instance-create <SERVICE_INSTANCE_NAME> <service-id> <region> -p '{"point_in_time_recovery_deployment_id":"DEPLOYMENT_ID", "point_in_time_recovery_time":"TIMESTAMP"}'
 ```
+{: pre}
 
 A pre-formatted command for a specific backup or PITR is available in detailed view of the backup.
 {: .tip}
@@ -73,6 +76,7 @@ Optional parameters are available when restoring through the CLI. Use them if yo
 ibmcloud resource service-instance-create <SERVICE_INSTANCE_NAME> <service-id> standard <region> <--service-endpoints SERVICE_ENDPOINTS_TYPE> -p
 '{"point_in_time_recovery_deployment_id":"DEPLOYMENT_ID", "point_in_time_recovery_time":"TIMESTAMP","key_protect_key":"KEY_PROTECT_KEY_CRN", "members_disk_allocation_mb":"DESIRED_DISK_IN_MB", "members_memory_allocation_mb":"DESIRED_MEMORY_IN_MB", "members_cpu_allocation_count":"NUMBER_OF_CORES"}'
 ```
+{: pre}
 
 ### In the API
 
@@ -94,6 +98,8 @@ curl -X POST \
     "point_in_time_recovery_deployment_id":"<DEPLOYMENT_ID>"
   }'
 ```
+{: pre}
+
 The parameters `name`, `target`, `resource_group`, and `resource_plan_id` are all required. The `target` is the region where you want the new deployment to be located, which can be a different region from the source deployment. Cross-region restores are supported, except for restoring a `eu-de` backup to another region.
 
 For PITR, use the `point_in_time_recovery_time` and `point_in_time_recovery_deployment_id` parameters. The `point_in_time_recovery_deployment_id` is the source deployment's ID and `point_in_time_recovery_time` is the timestamp in UTC you want to restore to. If you want to restore to the latest available point-in-time use `"point_in_time_recovery_time":" "`.

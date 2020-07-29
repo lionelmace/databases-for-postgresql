@@ -83,6 +83,7 @@ For example, the command to view the resource groups for a deployment named "exa
 ```
 ibmcloud cdb deployment-groups example-deployment
 ```
+{: pre}
 
 This produces the output,
 ```
@@ -117,6 +118,7 @@ The `cdb deployment-groups-set` command allows either the total RAM or total dis
 ```
 ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
 ```
+{: pre}
 
 ## Scaling in the API
 
@@ -126,6 +128,7 @@ To view the current and scalable resources on a deployment, use
 ```
 curl -X GET -H "Authorization: Bearer $APIKEY" 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups'
 ```
+{: pre}
 
 To scale the memory of a deployment to 2048 MB of RAM for each memory member (for a total memory of 4096 MB).
 ```
@@ -137,6 +140,7 @@ curl -X PATCH 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
       }
     }'
 ```
+
 
 More information is in the [API Reference](https://{DomainName}/apidocs/cloud-databases-api#get-currently-available-scaling-groups-from-a-depl).
 

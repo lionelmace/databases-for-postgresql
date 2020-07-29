@@ -30,6 +30,7 @@ For example, the following command dumps the PostgreSQL "compose" database that 
 ```shell
 pg_dump -h sl-eu-lon-2-portal.4.dblayer.com -p 17980 -d compose -U admin -f dump.sql
 ```
+{: pre}
 
 The `pg_dump` command has many options and it is recommended that you [consult the official documentation](https://www.postgresql.org/docs/9.6/static/backup-dump.html) and [command reference](https://www.postgresql.org/docs/9.6/static/app-pgdump.html) for a fuller view of its capabilities.
 
@@ -42,12 +43,14 @@ See the [Connecting with `psql`](/docs/databases-for-postgresql?topic=databases-
 ```shell
 PGPASSWORD=yourpasswordhere PGSSLROOTCERT=cert.crt psql 'host=c7798cf6-e5d2-4513-b17f-3d3fa67d8291.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud port=32484 dbname=ibmclouddb user=admin sslmode=verify-full' -f dump.sql
 ```
+{: pre}
 
 As noted in that [Connecting with `psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) documentation, the {{site.data.keyword.databases-for}} CLI plug-in simplifies connecting. The previous `psql` import can be performed as:
 
 ```shell
 ibmcloud cdb deployment-connections example-psql -s -- -f dump.sql
 ```
+{: pre}
 
 The command automatically uses the admin user, if no user is specified. It also interactively prompts for the password. The TLS certificate is automatically retrieved and used. The `-s` starts `psql` (or whatever command has been configured) once the details are established from the API. Anything after the `--` is passed to the command.
 

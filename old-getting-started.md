@@ -50,6 +50,7 @@ Clone the Hello World app to your local environment from your terminal by using 
 ```
 git clone -b node git@github.com:IBM-Cloud/clouddatabases-helloworld-cloudfoundry-examples.git
 ```
+{: pre}
 
 ## Step 3. Install the app dependencies
 
@@ -62,6 +63,7 @@ Use npm to install dependencies.
   ```
   npm install
   ```
+  {: pre}
 
 ## Step 4. Download and install the {{site.data.keyword.cloud_notm}} CLI tool
 
@@ -74,6 +76,7 @@ The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate wit
   ```
   ibmcloud login
   ```
+  {: pre}
 
   If you have a federated user ID, use the `ibmcloud login --sso` command to log in with your single sign-on ID. See [Logging in with a federated ID](/docs/iam?topic=iam-federated_id) to learn more.
   {: .tip}
@@ -83,6 +86,7 @@ The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate wit
   ```
   ibmcloud target --cf
   ```
+  {: pre}
 
   Choose from the options provided, by using the same values that you used when you created the service.
 
@@ -114,6 +118,7 @@ The alias name can be the same as the database service instance name. For exampl
     services:
       - example-psql
   ```
+  {: pre}
 
 2. Change the `route` value to something unique. The route that you choose determines the subdomain of your application's URL:  `<route>.{region}.cf.appdomain.cloud`.
 3. Change the `name` value. The name that you choose is displayed in your {{site.data.keyword.cloud_notm}} dashboard.
@@ -129,6 +134,7 @@ When you push the app, it is automatically bound to the service specified in the
 ```
 ibmcloud cf push
 ```
+{: pre}
 
 ## Step 9. Check that the app is connected to your {{site.data.keyword.databases-for-postgresql}} service
 
@@ -163,6 +169,7 @@ Instead of pushing the app into {{site.data.keyword.cloud_notm}} you can run it 
     }
   }
   ```
+  {: pre}
 7. Save the file as `vcap-local.json` in the directory where the sample app is located.
 
 To avoid accidentally exposing your credentials when you push an application to GitHub or {{site.data.keyword.cloud_notm}}, make sure that the file that contains your credentials is listed in the relevant ignore file. If you open `.cfignore` and `.gitignore` in your application directory, you can see that `vcap-local.json` is listed in both. It is not included in the files that are uploaded when you push the app to either GitHub or {{site.data.keyword.cloud_notm}}.
@@ -172,6 +179,7 @@ Now start the local server.
 ```
 npm start
 ```
+{: pre}
 
 The app is now running at http://localhost:8080. You can add words and definitions to your {{site.data.keyword.databases-for-postgresql}} database. When you stop and restart the app, any added words are displayed when you refresh the page.
 

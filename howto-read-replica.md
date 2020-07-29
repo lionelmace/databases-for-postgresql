@@ -76,6 +76,7 @@ ibmcloud resource service-instance-create <replica_name> databases-for-postgresq
   "members_disk_allocation_mb": "10240"
 }'
 ```
+{: pre}
 
 The same parameter is used to provision a read-only replica through the Resource Controller API.
 ```
@@ -93,6 +94,7 @@ curl -X POST \
     "members_disk_allocation_mb": "10240"
   }'
 ```
+{: pre}
 
 For both the CLI and API commands, you have to specify both the RAM and disk amounts, keeping in mind the minimum size is 2 GB RAM and 10 GB disk. You can optionally specify whether the read-only replica uses public or private endpoints. You are not able to specify a version for the read-only replica. The version is automatically set to the same major version as the leader deployment.
 
@@ -138,6 +140,7 @@ To start a resync through the CLI, use the [`cdb read-replica-resync`](/docs/dat
 ```
 ibmcloud cdb read-replica-resync <deployment name>
 ```
+{: pre}
 
 To start a resync through the API, send a POST to the [`/deployments/{id}/remotes/resync`](https://cloud.ibm.com/apidocs/cloud-databases-api#resync-read-only-replica) endpoint.
 ```
@@ -145,6 +148,7 @@ curl -X POST \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/resync \
   -H 'Authorization: Bearer <>' 
 ```
+{: pre}
 
 ## Promoting a Read-only Replica
 
@@ -162,6 +166,7 @@ To promote through the CLI, use the [`cdb read-replica-promote`](/docs/databases
 ```
 ibmcloud cdb read-replica-promote <deployment name>
 ```
+{: pre}
 
 To promote through the API, send a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#modify-read-only-replication-on-a-deployment) endpoint.
 ```
@@ -171,6 +176,7 @@ curl -X POST \
  -H 'Content-Type: application/json' \
  -d '{"promotion": {}}' \ 
 ```
+{: pre}
 
 To promote and skip the initial backup after the promotion, also set `skip_initial_backup` in the json body.
 ```
@@ -180,6 +186,7 @@ curl -X POST \
  -H 'Content-Type: application/json' \
  -d '{"promotion": {"skip_initial_backup": true}}' \ 
  ```
+ {: pre}
 
 
 ### Upgrading while Promoting

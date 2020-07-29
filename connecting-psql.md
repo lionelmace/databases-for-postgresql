@@ -59,10 +59,13 @@ The `ibmcloud cdb deployment-connections` command handles everything that is inv
 ```
 ibmcloud cdb deployment-connections example-postgres --start
 ```
+{: pre}
+
 Or
 ```
 ibmcloud cdb cxn example-postgres -s
 ```
+{: pre}
 
 The command prompts for the admin password and then runs the `psql` command line client to connect to the database.
 
@@ -71,6 +74,8 @@ If you have not installed the cloud databases plug-in, connect to your PostgreSQ
 ```
 PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'host=4a8148fa-3806-4f9c-b3fc-6467f11b13bd.8f7bfd7f3faa4218aec56e069eb46187.databases.appdomain.cloud port=32325 dbname=ibmclouddb user=admin sslmode=verify-full'
 ```
+{: pre}
+
 ## Using the self-signed certificate
 
 1. Copy the certificate information from the _Connections_ panel or the Base64 field of the connection information. 
@@ -78,4 +83,10 @@ PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'ho
 3. Save the certificate  to a file. (You can use the Name that is provided or your own file name).
 4. Provide the path to the certificate to the `ROOTCERT` environment variable.
 
-You can display the decoded certificate for your deployment with the CLI plug-in with the command `ibmcloud cdb deployment-cacert "your-service-name"`. It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the `ROOTCERT` environment variable.
+You can display the decoded certificate for your deployment with the CLI plug-in with the command:
+```
+ibmcloud cdb deployment-cacert "your-service-name"
+```
+{: pre}
+
+It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the `ROOTCERT` environment variable.

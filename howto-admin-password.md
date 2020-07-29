@@ -33,6 +33,7 @@ For example, to set the admin password for a deployment named "example-deploymen
 ```
 ibmcloud cdb user-password example-deployment admin <newpassword>
 ```
+{: pre}
 
 ## Setting the admin password via the API
 
@@ -43,5 +44,6 @@ curl -X PATCH `https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
 -H "Content-Type: application/json" \
 -d '{"password":"newrootpasswordsupersecure21"}'
 ```
+{: pre}
 
 For more information, see the [API Reference](https://{DomainName}/apidocs/cloud-databases-api#set-database-level-user-s-password).

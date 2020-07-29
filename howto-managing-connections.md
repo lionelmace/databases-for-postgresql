@@ -47,16 +47,19 @@ You can check the number of connections to your deployment with the admin user, 
 ```sql
 SELECT count(distinct(numbackends)) FROM pg_stat_database;
 ```
+{: pre}
 
 If you need to figure out where the connections are going, you can break down the connections by database.
 ```sql
 SELECT datname, numbackends FROM pg_stat_database;
 ```
+{: pre}
 
 To further investigate connections to a specific database, query `pg_stat_activity`.
 ```sql
 SELECT * FROM pg_stat_activity WHERE datname='ibmclouddb';
 ```
+{: pre}
 
 ## Terminating Connections
 
@@ -66,11 +69,13 @@ If you are on PostgreSQL 9.6 and above, your admin user has the `pg_signal_backe
   ```sql
   SELECT pg_cancel_backend(pid);
   ```
+  {: pre}
 
 - `pg_terminate_backend` stops the entire process and closes the connection. 
   ```sql
   SELECT pg_terminate_backend(pid);
   ```
+  {: pre}
 
 The admin user does have the power to reset or close the connections for any user on the deployment except superusers. Be careful not to terminate replication connections from the `ibm-replication` user, as it interferes with the high-availability of your deployment.
 
@@ -86,6 +91,7 @@ The CLI command to kill connections to the deployment is
 ```
 ibmcloud cdb deployment-kill-connections <deployment name or CRN>
 ```
+{: pre}
 
 You can also use the [{{site.data.keyword.databases-for}} API](https://cloud.ibm.com/apidocs/cloud-databases-api#kill-connections-to-a-postgresql-deployment) to perform the kill all connections operation.
 
@@ -106,9 +112,12 @@ Next, change the value of `max_connections` on your deployment. To make permanen
 For example, to raise `max_connections` to 215, it might be a good idea to scale your deployment to at least 2 GB of RAM per data member, for a total of 4 GB of RAM for your deployment. Once the scaling operation has finishes, then set the connection limit. In the CLI,
 ```
 ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
-
+```
+{: pre}
+```
 ibmcloud cdb deployment-configuration example-deployment '{"configuration":{"max_connections":215}}'
 ```
+{: pre}
 
 To make the changes through the API,
 ```
@@ -128,6 +137,7 @@ curl -X PATCH 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
       }
     }'
 ```
+{: pre}
 
 
 

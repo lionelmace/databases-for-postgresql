@@ -119,7 +119,7 @@ public class PGConnect {
 }
 ```
 {: java}
-
+{: pre}
 
 
 This example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
@@ -149,7 +149,7 @@ for row in rows:
     print("  ",row[0])
 ```
 {: python}
-
+{: pre}
 
 This example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
 {: javascript}
@@ -191,7 +191,7 @@ let client = new pg.Client({ connectionString: connectionString,
 });
 ```
 {: javascript}
-
+{: pre}
 
 ## Driver TLS and self-signed certificate support
 

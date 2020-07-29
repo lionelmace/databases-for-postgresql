@@ -25,6 +25,7 @@ The configuration is defined in a schema. To make a change, you send a JSON obje
 ```
 {"configuration":{"max_connections":150}}
 ```
+{: pre}
 to either the CLI or to the API.
 
 ## Using the CLI
@@ -33,11 +34,13 @@ You can check the current configuration of your deployment with
 ```
 ibmcloud cdb deployment-configuration-schema <deployment name or CRN>
 ```
+{: pre}
 
 To change your configuration through the {{site.data.keyword.databases-for}} cli-plugin, use `deployment-configuration` command. 
 ```
 ibmcloud cdb deployment-configuration <deployment name or CRN> [@JSON_FILE | JSON_STRING]
 ```
+{: pre}
 
 The command reads the changes that you would like to make from the JSON object or a file. For more information, see the [reference page](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-configuration).
 

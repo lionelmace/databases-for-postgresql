@@ -133,6 +133,7 @@ To configure your external PostgreSQL as a publisher,
     listen_addresses='*'
     wal_level = logical                   
     ```
+    {: pre}
 
 - Restart your PostgreSQL server.
 
@@ -142,14 +143,17 @@ Now you can define a publisher on the database and add the tables you want to re
     ```bash
         psql -U replicator -d exampledb
     ```
+    {: pre}
 - Create the publication channel.
     ```bash
         exampledb=> CREATE PUBLICATION my_publication;
     ``` 
+    {: pre}
 - Add tables to publisher.
     ```bash
        exampledb=> ALTER PUBLICATION my_publication ADD TABLE my_table;
     ```
+    {: pre}
 
 ## Setting up Logical Replication on the Subscriber
 
@@ -158,10 +162,12 @@ To configure your {{site.data.keyword.databases-for-postgresql}} deployment as a
     ```bash
     psql -U admin -d exampledb
     ```
+    {: pre}
 - Run the following query to call the `create_subscription` function and create the subscriber channel. 
     ```bash
         exampledb=> SELECT create_subscription('subs1','130.215.223.184','5432','admin','password','exampledb','my_publication');
     ```
+    {: pre}
 
 ## Monitoring Replication
 
@@ -169,3 +175,4 @@ You can monitor the status of logical replication from both the publisher and th
 ```bash
     exampledb=> SELECT * FROM pg_stat_replication;
 ```
+{: pre}

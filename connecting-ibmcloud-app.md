@@ -37,20 +37,24 @@ Before connecting your Kubernetes Service application to a deployment, make sure
 ```shell
 ibmcloud ks cluster service bind <your_cluster_name> <resource_group> <your_database_deployment>
 ```
+{: pre}
 OR
 **Private Endpoints** - If you want to use a private endpoint (if one is enabled on your deployment), then first you need to create a service key for your database so Kubernetes can use it when binding to the database. 
 ```
 ibmcloud resource service-key-create <your-private-key> --instance-name <your_database_deployment> --service-endpoint private  
 ```
+{: pre}
 The private service endpoint is selected with `--service-endpoint private`. After that, you bind the database to the Kubernetes cluster through the private endpoint with the `cluster service bind` command.
 ```
 ibmcloud ks cluster service bind <your_cluster_name> <resource_group> <your_database_deployment> --key <your-private-key>
 ```
+{: pre}
 
 **Verify** - Verify that the Kubernetes secret was created in your cluster namespace. Running the following command, you get the API key for accessing the instance of your deployment that's provisioned in your account.
 ```shell
 kubectl get secrets --namespace=default
 ```
+{: pre}
 More information on binding services is found in the [Kubernetes Service documentation](/docs/containers?topic=containers-service-binding#bind-services).
 
 ### Configuring in your Kubernetes app 
@@ -71,12 +75,16 @@ The sample app in the [Getting Started](/docs/databases-for-postgresql?topic=dat
 ### Creating a Cloud Foundry alias
 
 Log in to the {{site.data.keyword.cloud_notm}} CLI and use the command:
-
-`ibmcloud resource service-alias-create alias-name --instance-name instance-name`
+```
+ibmcloud resource service-alias-create alias-name --instance-name instance-name
+```
+{: pre}
 
 The alias name can be the same as the database service instance name. So, for a {{site.data.keyword.databases-for-postgresql}} service named "example-es", use the following command:
-
-`ibmcloud resource service-alias-create example-es --instance-name example-es`
+```
+ibmcloud resource service-alias-create example-es --instance-name example-es
+```
+{: pre}
 
 The alias appears in the list of _Cloud Foundry Apps_ in your _Resource List_. More information on aliases is available in the [Cloud Foundry documentation](/docs/cloud-foundry-public?topic=cloud-foundry-public-connect_app).
 
@@ -95,6 +103,7 @@ To create the file, open a new file and add the text:
     services:
       - example-postgresql
   ```
+  {: pre}
 
 - Change the route value to something unique. The route that you choose determines the subdomain of your application's URL: `<route>.{region}.cf.appdomain.cloud`. Be sure the `{region}` matches where your application is deployed.
 - Change the name value. The value that you choose is the name of the app as it appears in your {{site.data.keyword.cloud_notm}} dashboard.
