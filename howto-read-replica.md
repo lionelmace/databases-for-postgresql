@@ -36,7 +36,7 @@ A read-only replica is set up to replicate all of your data from the leader depl
 
 - There is a limit of 5 read-only replicas per leader.
 
-- The read-only replica does not participate in master/follower elections for the leader cluster and failover to the read-only replica is not automated. Promotion of the read-only replica to a full deployment is a manual, user-initiated task.
+- The read-only replica does not participate in leader->follower elections for the leader cluster and failover to the read-only replica is not automated. Promotion of the read-only replica to a full deployment is a manual, user-initiated task.
 
 - The minimum size of a read-only replica is 2 GB RAM and 10 GB of disk. This is true even if your leader deployment is smaller.
 

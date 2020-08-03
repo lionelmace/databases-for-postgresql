@@ -82,7 +82,7 @@ The _Settings_ tab contains the UI for many of the tunable settings for your dep
 - [manage read-replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas)
 - [configure public and private endpoints](/docs/databases-for-postgresql?topic=cloud-databases-service-endpoints)
 - [change the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password)
-- [implement or modify an IP whitelist](/docs/databases-for-postgresql?topic=cloud-databases-whitelisting)
+- [implement or modify an IP allowlist](/docs/databases-for-postgresql?topic=cloud-databases-allowlisting)
 - [kill all connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) (active, idle, and zombie) to your PostgreSQL database.
 
 ## Observability

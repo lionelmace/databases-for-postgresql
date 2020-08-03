@@ -39,7 +39,7 @@ Pick one of the connection strings from your Compose deployment to have the repl
 
 Compose deployments support having only one read-only replica connected at a time. 
 
-If you use whitelists to limit connections to your Compose deployment, you need to either disable the whitelist before you create the read-only replica or whitelist the range of IP addresses that your new {{site.data.keyword.databases-for-postgresql}} uses. Use the subnets listed on the [Whitelisting](/docs/databases-for-postgresql?topic=cloud-databases-whitelisting#whitelisting-cloud-databases-in-your-environment) page, and add all the ranges for the region where your {{site.data.keyword.databases-for-postgresql}} deployment lives to your Compose whitelist.
+If you use allowlists to limit connections to your Compose deployment, you need to either disable the allowlist before you create the read-only replica or allowlist the range of IP addresses that your new {{site.data.keyword.databases-for-postgresql}} uses. Use the subnets listed on the [allowlisting](/docs/databases-for-postgresql?topic=cloud-databases-allowlisting#allowlisting-cloud-databases-in-your-environment) page, and add all the ranges for the region where your {{site.data.keyword.databases-for-postgresql}} deployment lives to your Compose allowlist.
 
 ## Setting Up on IBM Cloud
 
@@ -153,7 +153,7 @@ During the migration, the Compose deployment might scale. While the replica is s
 If you use the [Logging Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you may see logs that contain
 ```
 2019-11-13 22:02:00 UTC [1207]: [1-1] user=ibm,db=postgres,client=127.0.0.1 ERROR:  could not get commit timestamp data
-2019-11-13 22:02:00 UTC [1207]: [2-1] user=ibm,db=postgres,client=127.0.0.1 HINT:  Make sure the configuration parameter "track_commit_timestamp" is set on the master server.
+2019-11-13 22:02:00 UTC [1207]: [2-1] user=ibm,db=postgres,client=127.0.0.1 HINT:  Make sure the configuration parameter "track_commit_timestamp" is set on the primary server.
 ```
 They can be safely ignored and no longer appear after the read-only replica is promoted.
 
