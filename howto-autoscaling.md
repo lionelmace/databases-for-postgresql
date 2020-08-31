@@ -58,6 +58,8 @@ The resource numbers refer to each database node in a deployment. For example, t
 
 - If you just need to add resources to your deployment occasionally or rarely, you can [manually scale](/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling) your deployment.
 
+- Read-only replicas do not auto-scale to match the leader. If the amount of data you store outgrows the disk that is allocated to your deployments, scale the disk on the read-only replicas and then the leader. Scaling the read-only replica first ensures that you do not run out of space on the read-only replicas. If you scaled the leader's disk for performance and not for space, it is not necessary to scale the read-only replicas.
+
 ## Configuring Autoscaling in the UI
 
 The Autoscaling panel is on the _Resources_ tab of your deployment's _Manage_ page. To enable scaling, enter your parameters. Then, check the boxes to enable the parameters you are using. Be sure to click **Save Changes** for your configuration to be saved and your changes to take effect.

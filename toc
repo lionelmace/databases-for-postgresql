@@ -18,6 +18,7 @@ Databases For PostgreSQL
 	/cloud-databases/cloud-databases-provisioning
 	howto-admin-password.md
 	howto-getting-connection-strings.md
+	/cloud-databases/cloud-databases-deprovisioning
 	
 	{: .topicgroup}
 	Connecting to Databases for PostgreSQL
@@ -54,6 +55,7 @@ Databases For PostgreSQL
 		howto-changing-config.md
 		howto-extensions.md
 		howto-wal2json.md
+		howto-pgaudit.md
 
 	{: .topicgroup}
 	Tutorials
