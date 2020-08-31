@@ -69,11 +69,10 @@ Audit events appear in LogDNA with the following format:
 ```
 LOG: AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,create table f2 (id int);,<not logged>
 ```
-The format is documented here https://github.com/pgaudit/pgaudit/blob/master/README.md#format
+The format is documented [here](https://github.com/pgaudit/pgaudit/blob/master/README.md#format). 
 
 If you want to see the current log level, you can run the command:  
 ```
 show pgaudit.log;
 ```
-{: .pre
-}
+{: .pre}
