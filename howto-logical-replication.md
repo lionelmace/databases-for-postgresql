@@ -116,6 +116,7 @@ Arguments:
 Usage:
     exampledb=> SELECT refresh_subscription('subs1','exampledb');
 ```
+{: .codeblock}
 
 ## Setting up Logical Replication on the Publisher
 
@@ -133,7 +134,7 @@ To configure your external PostgreSQL as a publisher,
     listen_addresses='*'
     wal_level = logical                   
     ```
-    {: pre}
+    {: .codeblock}
 
 - Restart your PostgreSQL server.
 

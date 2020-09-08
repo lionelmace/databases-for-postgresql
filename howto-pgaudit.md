@@ -45,7 +45,7 @@ For example, to enable DDL and ROLE you would call:
 ```
 SELECT public.set_pgaudit_session_logging('{ddl, role}');
 ```
-{: .pre}
+{: .codeblock}
 
 Any subsequent calls replace the existing configuration; they are not additive. For example, a subsequent call to `SELECT public.set_pgaudit_session_logging('{misc}');` would log only `misc` but disable `ddl` and `role`.
 {: .note}
@@ -56,7 +56,7 @@ To disable audit logging: call the same function with `none` specified. For exam
 ```
 SELECT public.set_pgaudit_session_logging('{none}');
 ```
-{: .pre}
+{: .codeblock}
 
 Changing audit levels happens immediately when calling the function without interrupting the database activity.
 {: .note}
@@ -73,5 +73,5 @@ If you want to see the current log level, you can run the command:
 ```
 show pgaudit.log;
 ```
-{: .pre}
+{: .codeblock}
 

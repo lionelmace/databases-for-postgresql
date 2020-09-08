@@ -130,19 +130,19 @@ On the Compose deployment run
 ```
 SELECT pg_current_xlog_flush_location();
 ```
-{: pre}
+{: .codeblock}
 
 On the {{site.data.keyword.databases-for-postgresql}} replica run
 ```
 SELECT pg_last_xlog_replay_location();
 ```
-{: pre}
+{: .codeblock}
 
 These commands output a PostgreSQL logical sequence number (`lsn`). If the two `lsn` match, the replica is caught up and synced to the Compose deployment. If the two `lsn` do not match, the replica still has to catch up. If you want to compare how far apart they are, you can run the following command on either member
 ```
 SELECT pg_size_pretty(pg_xlog_location_diff('<Output_from_Compose>','<Output_from_replica>'));
 ```
-{: pre}
+{: .codeblock}
 
 The goal is to make sure that replication catches up after the initial subscription (which might take a while), but after that you want to check that replication is close to up-to-date. When the replication is in sync or close to synced, you can shut down your applications that are writing to the Compose database. Perform a last check to ensure that the replica is completely caught up and all your data is migrated over.
 
@@ -163,13 +163,13 @@ If replication is lagging and does not appear to catch up, check the following. 
 ```
 SELECT count(*) FROM pg_replication_slots WHERE slot_name = 'ibm_cloud_databases_migration';
 ```
-{: pre}
+{: .codeblock}
 
 If the command does not return a result, run the following command against Compose as the admin user.
 ```
 SELECT pg_create_physical_replication_slot('ibm_cloud_databases_migration');
 ```
-{: pre}
+{: .codeblock}
 
 If replication does not start catching up, check the [logs](/docs/databases-for-postgresql?topic=cloud-databases-logging) on the {{site.data.keyword.databases-for-postgresql}} deployment for the following error message.
 ```
@@ -212,12 +212,12 @@ On your new {{site.data.keyword.databases-for-postgresql}} deployment, certain P
 ```
 SELECT name, version FROM pg_available_extension_versions; 
 ```
-{: pre}
+{: .codeblock}
 and then update the extension appropriately.
 ```
 ALTER EXTENSION postgis UPDATE TO '2.4.6';
 ```
-{: pre}
+{: .codeblock}
 
 On the Compose deployment, you might have to perform a few actions post-migration to clean up the replication slots and log archive settings. This is especially true if the promotion fails, or if you create a replica and then delete it without promoting it.
 

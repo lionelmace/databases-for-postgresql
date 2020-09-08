@@ -54,13 +54,13 @@ The plugin type must be `wal2json`. The database must be an existing database. T
 ```
 SELECT * FROM pg_replication_slots WHERE slot_name = '<slot_name>';
 ```
-{: pre}
+{: .codeblock}
 
 4. To test the plugin run `pg_recvlogical` from the terminal. The command is available with an installation of PostgreSQL. Use the host and port from your deployment, and the database and slot name you created via the API,
 ```
 PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT> --slot <SLOT NAME> --start -o pretty-print=1 -f -
 ```
-{: pre}
+{: .codeblock}
 
 5. Create a table on `ibmclouddb` and insert some data. You should see that the inserts come out in the terminal that is running `pg_recvlogical`. Note that table creates do not appear.
 
@@ -79,10 +79,10 @@ PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT> 
 ```
 SELECT slot_name, pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(),restart_lsn)) AS lag, active from pg_replication_slots WHERE slot_type='logical';
 ```
-{: pre}
+{: .codeblock}
 **PostgreSQL 9.x**
 ```
 SELECT slot_name, pg_size_pretty(pg_xlog_location_diff(pg_current_xlog_location(),restart_lsn)) AS lag, active FROM pg_replication_slots WHERE slot_type='logical';
 ```
-{: pre}
+{: .codeblock}
 Checking to see that your replication slot has a consumer and isn't running your deployment out of disk space can help troubleshoot if you see higher than expected disk usage on your deployment.

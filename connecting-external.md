@@ -47,18 +47,13 @@ Field Name|Index|Description
 * `0...` indicates that there might be one or more of these entries in an array.
 
 
-
 Many PostgreSQL drivers are able to make a connection to your deployment when given the URI-formatted connection string found in the "composed" field of the connection information. For example,
-{: generic}
 ```
 postgres://ibm_cloud_30399dec_4835_4967_a23d_30587a08d9a8:$PASSWORD@981ac415-5a35-4ac7-b6bb-fb609326dc42.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud:32704/ibmclouddb?sslmode=verify-full
 ```
-{: generic}
-
-
+{: .codeblock}
 
 This example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html) to connect to your database.
-{: java}
 
 ```java
 import java.sql.Connection;
@@ -118,12 +113,10 @@ public class PGConnect {
     }
 }
 ```
-{: java}
-{: pre}
+{: .codeblock}
 
 
 This example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
-{: python}
 
 ```python
 import psycopg2
@@ -148,13 +141,11 @@ print("List of databases:")
 for row in rows:
     print("  ",row[0])
 ```
-{: python}
-{: pre}
+{: .codeblock}
 
 This example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
-{: javascript}
 
-```javascript
+```java
 const pg = require("pg");
 const fs = require("fs");
 
@@ -190,8 +181,7 @@ let client = new pg.Client({ connectionString: connectionString,
     }
 });
 ```
-{: javascript}
-{: pre}
+{: .codeblock}
 
 ## Driver TLS and self-signed certificate support
 

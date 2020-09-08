@@ -50,6 +50,7 @@ If you have deployments that are in a Single-zone Region (SZR) - `osl01`, `che01
 | [Read replica replication lag.](#ibm_databases_for_postgresql_read_replica_replication_lag_bytes) | 
 | [The total number of PostgreSQL connections being used.](#ibm_databases_for_postgresql_total_connections) | 
 | [Total disk space for an instance.](#ibm_databases_for_postgresql_disk_total_bytes) | 
+| [WAL usage for an instance.](#ibm_databases_for_postgresql_wal_usage) |
 | [Used CPU for an instance.](#ibm_databases_for_postgresql_cpu_used_percent) | 
 | [Used disk space for an instance.](#ibm_databases_for_postgresql_disk_used_bytes) | 
 | [Used memory for an instance.](#ibm_databases_for_postgresql_memory_used_bytes) | 
@@ -172,6 +173,19 @@ Represents the total amount of disk available to your deployment.
 | `Segment By` | `Service instance` |
 {: caption="Table 10. Total disk space for an instance metric metadata" caption-side="top"}
 
+### WAL usage for an instance.
+{: #ibm_databases_for_postgresql_wal_usage}
+
+Represents the total amount of disk space used by the database transaction logs (WAL files) in your deployment.
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_wal_used_bytes`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `byte` |
+| `Segment By` | `Service instance` |
+{: caption="Table 11. Total WAL usage for an instance metric metadata" caption-side="top"}
+
 ### Used CPU for an instance
 {: #ibm_databases_for_postgresql_cpu_used_percent}
 
@@ -183,7 +197,7 @@ How much CPU is used as a percentage of total CPU available. Only for deployment
 | `Metric Type` | `gauge` |
 | `Value Type`  | `percent` |
 | `Segment By` | `Service instance` |
-{: caption="Table 11. Used CPU for an instance metric metadata" caption-side="top"}
+{: caption="Table 12. Used CPU for an instance metric metadata" caption-side="top"}
 
 ### Used disk space for an instance
 {: #ibm_databases_for_postgresql_disk_used_bytes}
@@ -196,7 +210,7 @@ How much disk your deployment is using.
 | `Metric Type` | `gauge` |
 | `Value Type`  | `byte` |
 | `Segment By` | `Service instance` |
-{: caption="Table 12. Used disk space for an instance metric metadata" caption-side="top"}
+{: caption="Table 13. Used disk space for an instance metric metadata" caption-side="top"}
 
 ### Used memory for an instance
 {: #ibm_databases_for_postgresql_memory_used_bytes}
@@ -209,7 +223,7 @@ How much memory your deployment is using.
 | `Metric Type` | `gauge` |
 | `Value Type`  | `byte` |
 | `Segment By` | `Service instance` |
-{: caption="Table 13. Used memory for an instance metric metadata" caption-side="top"}
+{: caption="Table 14. Used memory for an instance metric metadata" caption-side="top"}
 
 ## Attributes for Segmentation
 {: #attributes}
@@ -226,7 +240,7 @@ The following attributes are available for segmenting all of the metrics listed.
 | `Resource` | `ibm_resource` | The resource being measured by the service - typically a identifying name or GUID. |
 | `Resource Type` | `ibm_resource_type` | The type of the resource being measured by the service. |
 | `Scope` | `ibm_scope` | The scope is the account, organization, or space GUID associated with this metric. |
-{: caption="Table 14. Global Attributes Metadata" caption-side="top"}
+{: caption="Table 15. Global Attributes Metadata" caption-side="top"}
 
 ### Additional Attributes
 {: #additional-attributes}
@@ -236,5 +250,5 @@ The following attributes are available for segmenting one or more attributes as 
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
 | `Service instance` | `ibm_service_instance` | The service instance segment identifies the instance the metric is associated with. |
-{: caption="Table 15. Additional Attributes Metadata" caption-side="top"}
+{: caption="Table 16. Additional Attributes Metadata" caption-side="top"}
 

@@ -30,6 +30,7 @@ ibmclouddb=> SHOW max_connections;
  115
 (1 row)
 ```
+{: .codeblock}
 
 Many of the queries rely on the admin user's role as `pg_monitor`, which is only available in PostgreSQL 10 and above. Users on PostgreSQL 9.x, might not have permissions to run all of the queries in these docs.
 {: .tip}
@@ -47,19 +48,19 @@ You can check the number of connections to your deployment with the admin user, 
 ```sql
 SELECT count(distinct(numbackends)) FROM pg_stat_database;
 ```
-{: pre}
+{: .codeblock}
 
 If you need to figure out where the connections are going, you can break down the connections by database.
 ```sql
 SELECT datname, numbackends FROM pg_stat_database;
 ```
-{: pre}
+{: .codeblock}
 
 To further investigate connections to a specific database, query `pg_stat_activity`.
 ```sql
 SELECT * FROM pg_stat_activity WHERE datname='ibmclouddb';
 ```
-{: pre}
+{: .codeblock}
 
 ## Terminating Connections
 
@@ -69,13 +70,13 @@ If you are on PostgreSQL 9.6 and above, your admin user has the `pg_signal_backe
   ```sql
   SELECT pg_cancel_backend(pid);
   ```
-  {: pre}
+  {: .codeblock}
 
 - `pg_terminate_backend` stops the entire process and closes the connection. 
   ```sql
   SELECT pg_terminate_backend(pid);
   ```
-  {: pre}
+  {: .codeblock}{: pre}
 
 The admin user does have the power to reset or close the connections for any user on the deployment except superusers. Be careful not to terminate replication connections from the `ibm-replication` user, as it interferes with the high-availability of your deployment.
 

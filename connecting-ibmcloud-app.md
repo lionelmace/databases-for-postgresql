@@ -103,7 +103,7 @@ To create the file, open a new file and add the text:
     services:
       - example-postgresql
   ```
-  {: pre}
+  {: .codeblock}
 
 - Change the route value to something unique. The route that you choose determines the subdomain of your application's URL: `<route>.{region}.cf.appdomain.cloud`. Be sure the `{region}` matches where your application is deployed.
 - Change the name value. The value that you choose is the name of the app as it appears in your {{site.data.keyword.cloud_notm}} dashboard.

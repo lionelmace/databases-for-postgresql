@@ -39,7 +39,7 @@ To discover the earliest recovery point through the API, use the [`/deployments/
     }
 }
 ```
-{: pre}
+{: .codeblock}
 
 ## Recovery
 

@@ -25,7 +25,7 @@ The configuration is defined in a schema. To make a change, you send a JSON obje
 ```
 {"configuration":{"max_connections":150}}
 ```
-{: pre}
+{: .codeblock}
 to either the CLI or to the API.
 
 ## Using the CLI

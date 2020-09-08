@@ -44,25 +44,25 @@ If you want to expose the ability to cancel queries to other database users, you
 ```sql
 GRANT pg_signal_backend TO joe;
 ```
-{: pre}
+{: .codeblock}
 
 to allow the user `joe` to cancel backends. You can also grant `pg_signal_backend` to all the users with the `ibm-cloud-base-user` role with 
 ```sql
 GRANT pg_signal_backend TO "ibm-cloud-base-user";
 ``` 
-{: pre}
+{: .codeblock}
 Be aware this privilege allows the user or users to terminate any connections to the database, so assign it with care.
 
 Similarly, if you want to setup a specific monitoring user, `mary`, you can use
 ```
 GRANT pg_monitor TO mary;
 ```
-{: pre}
+{: .codeblock}
 You can also grant `pg_signal_backend` to all the users with the `ibm-cloud-base-user` role with 
 ```sql
 GRANT pg_monitor TO "ibm-cloud-base-user";
 ```
-{: pre}
+{: .codeblock}
 
 ## _Service Credential_ Users
 

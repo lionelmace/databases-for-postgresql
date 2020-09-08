@@ -74,7 +74,7 @@ If you have not installed the cloud databases plug-in, connect to your PostgreSQ
 ```
 PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'host=4a8148fa-3806-4f9c-b3fc-6467f11b13bd.8f7bfd7f3faa4218aec56e069eb46187.databases.appdomain.cloud port=32325 dbname=ibmclouddb user=admin sslmode=verify-full'
 ```
-{: pre}
+{: .codeblock}
 
 ## Using the self-signed certificate
 
