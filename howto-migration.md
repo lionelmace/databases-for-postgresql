@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017,2018
-lastupdated: "2018-12-03"
+  years: 2017,2020
+lastupdated: "2020-09-09"
 
 keywords: postgresql, databases
 
@@ -55,3 +55,12 @@ ibmcloud cdb deployment-connections example-psql -s -- -f dump.sql
 The command automatically uses the admin user, if no user is specified. It also interactively prompts for the password. The TLS certificate is automatically retrieved and used. The `-s` starts `psql` (or whatever command has been configured) once the details are established from the API. Anything after the `--` is passed to the command.
 
 While the restore process is running, it emits a number of messages about changes it is making to the database deployment.
+
+### Additional migration option using pg_retsore
+For users with a tar file containing sql and data separately, the command `pg_restore` can be used to migrate your data in addition to the `psql` commands previously noted. An example of the `pg_restore` command is:
+
+```shell
+ PGPASSWORD=yourpasswordhere PGSSLROOTCERT=cert.crt pg_restore -h c7798cf6-e5d2-4513-b17f-3d3fa67d8291.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud -p 32484 -U admin -F t -d ibmclouddb tarfile.tar
+ ```
+ {: .pre}
+

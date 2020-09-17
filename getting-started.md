@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2020
-lastupdated: "2020-03-27"
+lastupdated: "2020-09-09"
 
 keywords: pgAdmin, postgresql gui
 
@@ -30,6 +30,21 @@ This tutorial is a short introduction to using an {{site.data.keyword.databases-
 - [Set the Admin Password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your deployment.
 - An installation of [pgAdmin4](https://www.pgadmin.org/download/).
 
+## Connecting to your database with the CLI
+
+There are two main documentation locations that reference the appropriate commands to connect to your database from the CLI:
+- The [Cloud Databases CLI Reference](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference) document. 
+- The [Connecting with psql](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) document 
+
+The `ibmcloud cdb deployment-connections` command handles everything that is involved in creating a command line client connection. For example, to connect to a deployment named  "example-postgres", use the following command:
+
+```shell
+ibmcloud cdb deployment-connections example-postgres --start
+```
+{: pre}
+
+The command prompts for the admin password and then runs the `psql` command line client to connect to the database. If you have not installed the cloud databases plug-in, review the [Connecting with psql documentation here](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) for more detailed connection information.
+
 ## Connecting with pgAdmin
 
 pgAdmin runs as a server and you connect to it through a browser. When the server is started, it runs on localhost, at default `http://127.0.0.1:53113/browser/`.
@@ -56,7 +71,7 @@ First, fill out the _Connection_ information,
 ![Completed Connection information](images/getting-started-connection-info.png)
 
 Then, configure the _SSL_ settings.
-- Copy the certificate information from the _Connections_ panel.
+- Copy the certificate information from the [_Connections_ panel](/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-connection-strings) in your deployment's `Dashboard overview` page.
 - Save the certificate  to a file. (You can use the Name that is provided or your own file name).
 - Set the _SSL mode_ field to _Verify-Full_.
 - In the _Root certificate_ field, select the file where you saved your deployment's certificate.
@@ -88,7 +103,7 @@ If you are just using PostgreSQL for the first time, it is a good idea to take a
 
 You can connect to and manage your databases and data with PostgreSQL's command-line tool [`psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 
-Looking for more tools on managing your deployment? You can connect to your deployment with [IBM Cloud CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli) and the [Cloud Databases CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference). Or use the [Cloud Databases API](https://cloud.ibm.com/apidocs/cloud-databases-api).
+Looking for more tools on managing your deployment? You can connect to your deployment with [IBM Cloud CLI](/docs/cli?topic=cli-install-ibmcloud-cli) and the [Cloud Databases CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference). Or use the [Cloud Databases API](https://cloud.ibm.com/apidocs/cloud-databases-api).
 
 If you are planning to use {{site.data.keyword.databases-for-postgresql}} for your applications, check out some of our other documentation pages.
 - [Connecting an external application](/docs/databases-for-postgresql?topic=databases-for-postgresql-external-app)
@@ -97,9 +112,5 @@ If you are planning to use {{site.data.keyword.databases-for-postgresql}} for yo
 Also, to ensure the stability of your applications and your database, check out the pages on 
 - [High-Availability](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability)
 - [Performance](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance)
-
-
-
-
 
 

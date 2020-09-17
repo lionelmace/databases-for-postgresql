@@ -32,7 +32,7 @@ The type of database that is offered by the service, and the database version th
 
 ### ID
 
-The ID is a [CRN (Cloud Resource Name)](/docs/resources?topic=resources-crn) which uniquely identifies the database deployment. The CRN is used to refer to the database in the API and can be used with the CLI.
+The ID is a [CRN (Cloud Resource Name)](/docs/account?topic=account-crn) which uniquely identifies the database deployment. The CRN is used to refer to the database in the API and can be used with the CLI.
 
 ## Recent Tasks
 
@@ -79,7 +79,7 @@ The _Backups_ tab is the UI for managing your deployments backups. All of the av
 ## Settings
 
 The _Settings_ tab contains the UI for many of the tunable settings for your deployment. You can 
-- [manage read-replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas)
+- [manage read-replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicass)
 - [configure public and private endpoints](/docs/databases-for-postgresql?topic=cloud-databases-service-endpoints)
 - [change the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password)
 - [implement or modify an IP allowlist](/docs/databases-for-postgresql?topic=cloud-databases-allowlisting)

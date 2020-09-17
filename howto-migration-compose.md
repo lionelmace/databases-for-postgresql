@@ -45,13 +45,13 @@ If you use allowlists to limit connections to your Compose deployment, you need 
 
 First, if you don't already have one, you need to have an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/registration){:new_window}. 
 
-You are going to provision a {{site.data.keyword.databases-for-postgresql}} read-only replica by using either the Resource Controller API or CLI. Using the CLI is a little easier, so you can also install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-getting-started). If you install the CLI from the cURL command that is provided, you get a selection of extra plug-ins and extensions for multiple IDEs. You can install just the stand-alone package from the [Installing the stand-alone IBM Cloud CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli) page. 
+You are going to provision a {{site.data.keyword.databases-for-postgresql}} read-only replica by using either the Resource Controller API or CLI. Using the CLI is a little easier, so you can also install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started). If you install the CLI from the cURL command that is provided, you get a selection of extra plug-ins and extensions for multiple IDEs. You can install just the stand-alone package from the [Installing the stand-alone IBM Cloud CLI](/docs/cli?topic=cli-install-ibmcloud-cli) page. 
 
 
 ## Provisioning the Read-only Replica
 
 To provision the {{site.data.keyword.databases-for-postgresql}} deployment using the `ibmcloud` CLI, log in to your account with the `ibmcloud login` command. Provisioning of services is handled by the Resource Controller, so you use the
-[`ibmcloud resource service-instance-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_service_instance_create) command to provision {{site.data.keyword.databases-for-postgresql}}.
+[`ibmcloud resource service-instance-create`](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_service_instance_create) command to provision {{site.data.keyword.databases-for-postgresql}}.
 ```
 ibmcloud resource service-instance-create <your-new-deployment-name> databases-for-postgresql standard <region> \
 -p '{
@@ -79,7 +79,7 @@ ibmcloud resource service-instance-create <your-new-deployment-name> databases-f
 - `members_memory_allocation_mb` - The total amount of memory you need for the {{site.data.keyword.databases-for-postgresql}} deployment. If omitted the minimum allocation of 4096 MB.
 - `members_disk_allocation_mb` - The total amount of disk space you need for the {{site.data.keyword.databases-for-postgresql}} deployment. If omitted the minimum allocation of 10240 MB.
 
-This command kicks off provisioning a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replica) of your Compose deployment. 
+This command kicks off provisioning a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) of your Compose deployment. 
 
 
 ### Provisioning through the Resource Controller API
@@ -113,7 +113,7 @@ The `target` is the region where you would like your {{site.data.keyword.databas
 
 ## Performing the Migration
 
-Once provisioning is finished, you have a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) of your Compose deployment. Replication begins as soon as the provisioning is complete.
+Once provisioning is finished, you have a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicass) of your Compose deployment. Replication begins as soon as the provisioning is complete.
 
 You can access the {{site.data.keyword.databases-for-postgresql}} deployment in a few different ways.
 - The deployment's UI is accessible by clicking its name from the [Resource List](https://cloud.ibm.com/resources) in your IBM Cloud account.
