@@ -25,7 +25,8 @@ The general process for a migration is to create an {{site.data.keyword.database
 
 When you want to migrate and switch your applications to use {{site.data.keyword.databases-for-postgresql}}, disconnect your applications from the Compose deployment, promote the replica to a stand-alone {{site.data.keyword.databases-for-postgresql}} deployment, and reconnect your applications to {{site.data.keyword.databases-for-postgresql}}. 
 
-Replication between Compose and {{site.data.keyword.databases-for-postgresql}} is set up to be a short-term operation only for the purposes of migration. It is not supported as a permanent replication strategy.
+**Warning**, replication between Compose and {{site.data.keyword.databases-for-postgresql}} is set up to be a **short-term operation only** for the purposes of migration. It is not supported as a permanent replication strategy.
+{: .note}
 
 Downtime is limited to the window where you stop your applications that use the Compose deployment, promote the replica, and reconnect your applications to the new {{site.data.keyword.databases-for-postgresql}} deployment.
 
