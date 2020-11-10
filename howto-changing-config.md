@@ -59,9 +59,39 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
 
 [`shared_buffers`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS)
   - Default - `32000` (number of 8 KiB buffers, or about 262 MB) 
-  - Recommended max value: 1/4 of available RAM
+  - Recommended max value: 25% of available RAM
   - Restarts database? - **Yes** 
-  - Notes - The recommended memory allocation for shared_buffers is 1/4 of the deployment's RAM. **Warning: Setting `shared_buffers` any higher can result in memory issues that cause the database to crash, and might decrease the performance of your Database as data is most likely buffered by the OS already.** Setting `shared_buffers` equal, close to equal, or higher than the amount of allocated memory prevents the database from starting. The setting specifies the number of 8 KiB shared memory buffers. For example, 1 GB of `shared_buffers` space is `1048576 KiB`, and (`1048576 KiB / 8 KiB`) is `131072` buffers.  Your deployment can make use of additional RAM for caching and performance, even without allocating it to `shared_buffers`. You do not have to configure the database to use all of the allocated RAM in order for your deployment to use it.
+  
+**Note:** The recommended memory allocation for shared_buffers is 25% of the deployment's RAM. **Warning: Setting `shared_buffers` any higher can result in memory issues that cause the database to crash, and might decrease the performance of your Database as data is most likely buffered by the OS already.** Setting `shared_buffers` equal, close to equal, or higher than the amount of allocated memory prevents the database from starting. The setting specifies the number of 8 KiB shared memory buffers. 
+  
+For example, 1 GB of `shared_buffers` space is `1048576 KiB`, and (`1048576 KiB / 8 KiB`) is `131072` buffers. Your deployment can use extra RAM for caching and performance, even without allocating it to `shared_buffers`. You do not have to configure the database to use all of the allocated RAM in order for your deployment to use it.
+
+For existing workloads, or when scaling RAM, increasing memory to shared buffers might not be the best course of action. Instead, track your table and index cache hit ratios. If the cache hit ratios are in the high nineties, you should let the OS use the memory in other areas instead of increasing shared_buffers.
+
+You can use these queries as the `admin` user, or any user with the `pg_monitor` role to track the cache hit ratios:
+
+**Tables**
+```
+SELECT 
+  sum(heap_blks_read) as heap_read,
+  sum(heap_blks_hit)  as heap_hit,
+  (sum(heap_blks_hit) / (sum(heap_blks_hit) + sum(heap_blks_read)) as table_hit_ratio
+FROM 
+  pg_statio_user_tables;
+```
+{: .pre}
+
+**Indexes**
+```
+SELECT 
+  sum(idx_blks_read) as idx_read,
+  sum(idx_blks_hit)  as idx_hit,
+  (sum(idx_blks_hit) - sum(idx_blks_read)) / sum(idx_blks_hit) as index_hit_ratio
+FROM 
+pg_statio_user_indexes;
+```
+{: .pre}
+
 
 ### General Settings
 
@@ -79,12 +109,12 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
   - Default - `local`
   - Restarts database? - No
   - Options - `local` or `off`
-  - Notes - Setting `synchronous_commit` to `off` increases transaction commit rate at the expense of a loss of committed transactions in the event of an unclean shutdown.
+  - Notes - Setting `synchronous_commit` to `off` increases transaction commit rate at the expense of a loss of committed transactions if an unclean shutdown occurs.
 
 [`effective_io_concurrency`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-EFFECTIVE-IO-CONCURRENCY)
   - Default - `12`
   - Restarts database - No
-  - Notes - It is recommended to leave this setting at the default. Only increase it you have profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
+  - Notes - It is recommended to leave this setting at the default. Only increase it if you profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
 
 [`deadlock_timeout`](https://www.postgresql.org/docs/current/runtime-config-locks.html)
   - Default - 10000
@@ -98,7 +128,7 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
   - Default - `1800`
   - Restarts database - No
   - Options - Minimum value of 300
-  - Notes - The number of seconds to wait before forcing a switch to the next WAL file. If the amount of seconds has passed and if there has been database activity, the server switches to a new segment. Effectively limits the amount of time data can remain unarchived.
+  - Notes - The number of seconds to wait before forcing a switch to the next WAL file. If the number of seconds has passed and if there has been database activity, the server switches to a new segment. Effectively limits the amount of time data can remain unarchived.
 
 [`log_min_duration_statement`](https://www.postgresql.org/docs/current/runtime-config-logging.html)
   - Default - `100`
@@ -107,7 +137,7 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
   - Notes - Statements that take longer than the specified number of milliseconds are logged.
 
 
-The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plugin](/docs/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plugin should leave these settings at the default.
+The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plug-in](/docs/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plug-in should leave these settings at the default.
 
 [`wal_level`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
   - Default - `hot_standby`
@@ -117,11 +147,11 @@ The next three settings `wal_level`, `max_replication_slots` and `max_wal_sender
 [`max_replication_slots`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
   - Default - `10`
   - Restarts database - **YES**
-  - Notes - The maximum number of simultaneously defined replication slots. The default and minimum number of slots is 10. 20 slots are reserved for internal use by your deployment for High-Availability (HA) purposes. To use slots, you need to set the value above 20 and have 1 slot per consumer. It is recommended to add one additional slot over the minimum per expected consumer. Using `wal2json` and not increasing `max_replication_slots` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
+  - Notes - The maximum number of simultaneously defined replication slots. The default and minimum number of slots is 10. Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. To use slots, you need to set the value above 20 and have 1 slot per consumer. It is recommended to add one additional slot over the minimum per expected consumer. Using `wal2json` and not increasing `max_replication_slots` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
 
 [`max_wal_senders`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
   - Default - `12`
   - Restarts database - **YES**
-  - Notes - The maximum number of simultaneously running WAL sender processes. The default and minimum is 12. One `wal_sender` per consumer is required.  20 slots are reserved for internal use by your deployment for High-Availability (HA) purposes. You need to set the value above 20 and it is recommended to add one additional `wal_sender` over the minimum per expected consumer. Using `wal2json` and not increasing `max_wal_senders` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
+  - Notes - The maximum number of simultaneously running WAL sender processes. The default and minimum is 12. One `wal_sender` per consumer is required.  Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. You need to set the value above 20 and it is recommended to add one additional `wal_sender` over the minimum per expected consumer. Using `wal2json` and not increasing `max_wal_senders` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
 
 
