@@ -86,3 +86,4 @@ SELECT slot_name, pg_size_pretty(pg_xlog_location_diff(pg_current_xlog_location(
 ```
 {: .codeblock}
 Checking to see that your replication slot has a consumer and isn't running your deployment out of disk space can help troubleshoot if you see higher than expected disk usage on your deployment.
+
