@@ -19,7 +19,7 @@ subcollection: databases-for-postgresql
 
 # Configuring Wal2json
 {: #wal2json}
-
+   
 {{site.data.keyword.databases-for-postgresql_full}} deployments support the [wal2json](https://github.com/eulerto/wal2json) plug-in, enabling [logical decoding](https://www.postgresql.org/docs/current/logicaldecoding-explanation.html) on your deployment. The plug-in is already installed, but you must configure your deployment and databases in order to start using it.
    
 1. First, you need to [configure](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) the `wal_level`, `max_replication_slots`, and `max_wal_senders` settings. Change the `wal_level` to `logical`. The `max_replication_slots`, and `max_wal_senders` both need to be set to a value greater than 20. {{site.data.keyword.databases-for-postgresql}} reserves 20 replication slots and WAL senders for current and future operational purposes.
@@ -71,7 +71,7 @@ The plug-in type must be `wal2json`. The database must be an existing database. 
    
 - Logical decoding has a set of restrictions on what replicates. Some of these include schema/DDL, sequences, TRUNCATE, and Large Objects.
    
-- Logical replication slots do not sync between a primary (leader) and a replica. In the event of controlled switchover or failover, the slot is re-created on the new leader automatically, but it does not maintain the place in the replication stream that it was before switchover or failover. This can result in downstream consumers missing changes. Systems must be able to detect when failover happens and resync as needed.
+- Logical replication slots do not sync between a primary (leader) and a replica. If a controlled switchover or failover occurs, the slot is re-created on the new leader automatically, but it does not maintain the place in the replication stream that it was before switchover or failover. This can result in downstream consumers missing changes. Systems must be able to detect when failover happens and resync as needed.
    
 - If you create a logical replication slot, and a consumer is not connected and consuming the changes, you run the risk of running your deployment out of disk space. The replication slot tells PostgreSQL to keep all the transaction logs that have the changes that the consumer needs. If nothing is consuming those changes, PostgreSQL continues collecting them until it is out of disk space. You can monitor disk space with the [monitoring integration](/docs/databases-for-postgresql?topic=databases-for-postgresql-sysdig-monitoring). If you run out of space, you can [scale up disk](/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling), which allows the database to start. Then, you can either start consuming the changes or drop the slot.
    
