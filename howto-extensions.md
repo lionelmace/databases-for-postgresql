@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017,2019
-lastupdated: "2019-09-10"
+  years: 2017, 2020
+lastupdated: "2020-11-17"
 
 keywords: postgresql, databases
 
@@ -72,73 +72,80 @@ If there is a newer version of an extension available than the one you currently
   ```
   {: pre}
 - For `pg_repack` to run reliably, your deployment should be on PostgreSQL 9.6 and above.
-- Any user can run `pg_repack`, but the command is only be able to repack a table that they have permissions on.
-- `pg_repack` needs to take an exclusive lock on objects it is reorganizing at the end of the reorganization. If it can't get this lock after a certain period, it cancels all conflicting queries. If it can't do so, the reorg will fail. By default, only the admin user on PostgreSQL 9.6 and greater has the ability to cancel conflicting queries. If you want to expose the ability to cancel queries to other database users, you can grant the `pg_signal_backend` role [from the admin user](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user).
+- Any user can run `pg_repack`, but the command is only able to repack a table that they have permissions on.
+- `pg_repack` needs to take an exclusive lock on objects it is reorganizing at the end of the reorganization. If it can't get this lock after a certain period, it cancels all conflicting queries. If it can't do so, the reorg fails. By default, only the admin user on PostgreSQL 9.6 and greater is able to cancel conflicting queries. If you want to expose the ability to cancel queries to other database users, you can grant the `pg_signal_backend` role [from the admin user](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user).
 
 ## Available Extensions
 
 This list is what is returned from a {{site.data.keyword.databases-for-postgresql}} deployment running PostgreSQL version 10. For a list of available extensions on your deployment, use `SELECT name FROM pg_available_extensions;` in `psql`.
 
 ```
-ibmclouddb=> SELECT name FROM pg_available_extensions;
+ibmclouddb=> SELECT name FROM pg_available_extensions order by 1;
 ```
 {: pre}
 ```
-              name
+             name             
 ------------------------------
- refint
- uuid-ossp
- sslinfo
- pg_stat_statements
- unaccent
- hstore_plperlu
- pg_freespacemap
- pg_visibility
- moddatetime
- cube
- fuzzystrmatch
- earthdistance
- pageinspect
- tablefunc
- tsm_system_time
- plperl
- postgres_fdw
- intarray
- ltree
- pgrowlocks
- dict_int
- file_fdw
- hstore_plperl
- lo
- seg
- isn
- plpgsql
- chkpass
- insert_username
- btree_gist
- tsm_system_rows
- autoinc
- dblink
- bloom
- pg_trgm
- btree_gin
- xml2
- pg_prewarm
- intagg
- hstore
- amcheck
- pgcrypto
- timetravel
- tcn
- pg_buffercache
- citext
- dict_xsyn
- pgstattuple
- postgis_topology
- postgis
  address_standardizer
- postgis_tiger_geocoder
  address_standardizer_data_us
+ amcheck
+ autoinc
+ bloom
+ btree_gin
+ btree_gist
+ citext
+ cube
+ dblink
+ dict_int
+ dict_xsyn
+ earthdistance
+ file_fdw
+ fuzzystrmatch
+ hstore
+ hstore_plperl
+ hstore_plperlu
+ insert_username
+ intagg
+ intarray
+ isn
+ jsonb_plperl
+ jsonb_plperlu
+ lo
+ ltree
+ moddatetime
+ pageinspect
+ pg_buffercache
+ pg_freespacemap
+ pg_prewarm
+ pg_repack
+ pg_stat_statements
+ pg_trgm
+ pg_visibility
+ pgaudit
+ pgcrypto
  pgrouting
-(54 rows)
+ pgrowlocks
+ pgstattuple
+ plperl
+ plpgsql
+ postgis
+ postgis_tiger_geocoder
+ postgis_topology
+ postgres_fdw
+ refint
+ seg
+ sslinfo
+ tablefunc
+ tcn
+ tsm_system_rows
+ tsm_system_time
+ unaccent
+ uuid-ossp
+ xml2
+(56 rows)
+ibmclouddb=> select version();
+                                                 version                                                 
+---------------------------------------------------------------------------------------------------------
+ PostgreSQL 12.4 on x86_64-pc-linux-gnu, compiled by gcc (Debian 6.3.0-18+deb9u1) 6.3.0 20170516, 64-bit
+(1 row)
  ```
