@@ -40,7 +40,7 @@ Every time that you make administrative changes to your service (such as scaling
 
 ## Connections
 
-The _Connections_ panel contains connection strings for your deployment. Each tab contains connection information tailored to the type of connection or the protocol that uses it. Basic information includes things like _hostname_ and _port_, as well as the TLS self-signed certificate, TLS/SSL parameters, and the default database of your deployment.
+The _Endpoints_ panel contains connection strings for your deployment. Each tab contains connection information tailored to the type of connection or the protocol that uses it. Basic information includes things like _hostname_ and _port_, as well as the TLS self-signed certificate, TLS/SSL parameters, and the default database of your deployment.
 
 Reference tables for the different connection types are available on the [Getting Credentials and Connection Strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings) page.
 

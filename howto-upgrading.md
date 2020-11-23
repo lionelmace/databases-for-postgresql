@@ -31,7 +31,7 @@ One way to upgrade your database version is to [restore a backup](/docs/database
 
 ### Upgrading in the UI
 
-You can upgrade to a new version when [restoring a backup](/docs/databases-for-postgresql?topic=cloud-databases-dashboard-backups#restoring-a-backup) from the _Backups_ tab of your _Deployment Overview_. Clicking **Restore** on a backup brings up a dialog box where you can change some options for the new deployment. One of them is the database version, which is auto-populated with the versions available for you to upgrade to. Select a version and click **Restore** to start the provision and restore process.
+You can upgrade to a new version when [restoring a backup](/docs/databases-for-postgresql?topic=cloud-databases-dashboard-backups#restoring-a-backup) from the _Backups_ menu of your _Deployment dashboard_. Clicking **Restore** on a backup brings up a dialog box where you can change some options for the new deployment. One of them is the database version, which is auto-populated with the versions available for you to upgrade to. Select a version and click **Restore** to start the provision and restore process.
 
 ### Upgrading through the CLI
 

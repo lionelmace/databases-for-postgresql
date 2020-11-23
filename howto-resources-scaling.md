@@ -122,7 +122,7 @@ ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
 
 ## Scaling in the API
 
-The _Foundation Endpoint_ that is shown on the _Overview_ panel of your service provides the base URL to access this deployment through the API. Use it with the `/groups` endpoint if you need to manage or automate scaling programmatically. 
+The _Foundation Endpoint_ that is shown on the _Overview_ panel _Deployment details_ of your service provides the base URL to access this deployment through the API. Use it with the `/groups` endpoint if you need to manage or automate scaling programmatically. 
 
 To view the current and scalable resources on a deployment, use
 ```

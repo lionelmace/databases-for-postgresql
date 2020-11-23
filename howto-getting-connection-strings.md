@@ -20,9 +20,9 @@ subcollection: databases-for-postgresql
 # Getting Connection Strings
 {: #connection-strings}
 
-In order to connect to {{site.data.keyword.databases-for-postgresql_full}}, you need some users and connection strings. Connection Strings for your deployment are displayed on the _Dashboard Overview_, in the _Connections_ panel. 
+In order to connect to {{site.data.keyword.databases-for-postgresql_full}}, you need some users and connection strings. Connection Strings for your deployment are displayed on the _Dashboard Overview_, in the _Endpoints_ panel. 
 
-![Connections panel on the Dashboard Overview](images/connections_panel.png)
+![Endpoints panel on the Dashboard Overview](images/getting-started-endpoints-panel.png)
 
 A {{site.data.keyword.databases-for-postgresql}} deployment is provisioned with an admin user, and after [setting the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password), you can use its connection strings to connect to your deployment.
 {: .tip}

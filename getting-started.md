@@ -55,9 +55,9 @@ The _Dashboard_ panel has a _Welcome_ screen. From the _Quick Links_, click _Add
 
 ![The pgAdmin Welcome](images/getting-started-pgAdmin-welcome.png)
 
-On your deployment's _Manage_ page, there is a panel with all the relevant connection information.
+On your deployment's _Overview_ page, there is an _Endpoints_ panel with all the relevant connection information.
 
-![Connections panel](images/getting-started-connections-panel.png)
+![Endpoints panel](images/getting-started-endpoints-panel.png)
 
 Back in pgAdmin, provide pgAdmin with the information it needs to connect to your deployment. 
 
@@ -71,8 +71,8 @@ First, fill out the _Connection_ information,
 ![Completed Connection information](images/getting-started-connection-info.png)
 
 Then, configure the _SSL_ settings.
-- Copy the certificate information from the [_Connections_ panel](/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-connection-strings) in your deployment's `Dashboard overview` page.
-- Save the certificate  to a file. (You can use the Name that is provided or your own file name).
+- Copy the certificate information from the [_Endpoints_ panel](/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-connection-strings) in your deployment's `Dashboard overview` page.
+- Save the certificate  to a file. (You can use the name that is provided in the download, or your own file name.)
 - Set the _SSL mode_ field to _Verify-Full_.
 - In the _Root certificate_ field, select the file where you saved your deployment's certificate.
 

@@ -136,7 +136,7 @@ Once the task has finished, you can retrieve the new user's connection strings w
 
 ### Creating Users from the API
 
-The _Foundation Endpoint_ that is shown on the _Overview_ panel of your service provides the base URL to access this deployment through the API. To create and manage users, use the base URL with the `/users` endpoint.
+The _Foundation Endpoint_ that is shown on the _Overview_ panel _Deployment details_ of your service provides the base URL to access this deployment through the API. To create and manage users, use the base URL with the `/users` endpoint.
 ```
 curl -X POST 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/users' \
 -H "Authorization: Bearer $APIKEY" \
