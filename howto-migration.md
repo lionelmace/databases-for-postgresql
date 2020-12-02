@@ -56,7 +56,7 @@ The command automatically uses the admin user, if no user is specified. It also 
 
 While the restore process is running, it emits a number of messages about changes it is making to the database deployment.
 
-### Additional migration option using pg_retsore
+### Additional migration option using pg_restore
 For users with a tar file containing sql and data separately, the command `pg_restore` can be used to migrate your data in addition to the `psql` commands previously noted. An example of the `pg_restore` command is:
 
 ```shell
