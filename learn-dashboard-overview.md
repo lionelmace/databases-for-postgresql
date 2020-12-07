@@ -79,7 +79,7 @@ The _Backups_ tab is the UI for managing your deployments backups. All of the av
 ## Settings
 
 The _Settings_ tab contains the UI for many of the tunable settings for your deployment. You can 
-- [manage read-replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicass)
+- [manage read-replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas)
 - [configure public and private endpoints](/docs/databases-for-postgresql?topic=cloud-databases-service-endpoints)
 - [change the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password)
 - [implement or modify an IP allowlist](/docs/databases-for-postgresql?topic=cloud-databases-allowlisting)

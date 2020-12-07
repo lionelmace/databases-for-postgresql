@@ -80,7 +80,7 @@ Users that are created directly from the API and CLI do not appear in _Service C
 
 ## The read-only user
 
-The `ibm-cloud-base-user-ro` manages privileges for users that are created to access read-only replicas. More information can be found on the [Configuring Read-only Replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicass) page.
+The `ibm-cloud-base-user-ro` manages privileges for users that are created to access read-only replicas. More information can be found on the [Configuring Read-only Replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) page.
 
 ## The `repl` user
 
