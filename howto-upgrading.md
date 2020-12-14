@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020
-lastupdated: "2020-05-19"
+lastupdated: "2020-12-14"
 
 keyowrds: postgresql, databases, upgrading, major versions, changing versions
 
@@ -22,10 +22,10 @@ subcollection: databases-for-postgresql
 
 Once a major version of a database is at its End Of Life (EOL), it is a good idea to upgrade to a current major version. 
 
-You can find the available versions of PostgreSQL on the [{{site.data.keyword.databases-for-postgresql_full}} the catalog](https://cloud.ibm.com/catalog/databases-for-postgresql) page, from the cloud databases cli plugin command [`ibmcloud cdb deployables-show`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployables-show), or from the cloud databases API [`/deployables`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-all-deployable-databases) endpoint.
+You can find the available versions of PostgreSQL on the [{{site.data.keyword.databases-for-postgresql_full}} the catalog](https://cloud.ibm.com/catalog/databases-for-postgresql) page, from the cloud databases cli plug-in command [`ibmcloud cdb deployables-show`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployables-show), or from the cloud databases API [`/deployables`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-all-deployable-databases) endpoint.
 
 
-## Backup/Restore Upgrade
+## Backup and Restore Upgrade
 
 One way to upgrade your database version is to [restore a backup](/docs/databases-for-postgresql?topic=cloud-databases-dashboard-backups#restoring-a-backup) of your data into a new deployment that is running the new database version.
 
@@ -35,7 +35,7 @@ You can upgrade to a new version when [restoring a backup](/docs/databases-for-p
 
 ### Upgrading through the CLI
 
-When you upgrade and restore from backup through the  {{site.data.keyword.cloud_notm}} CLI, use the provisioning command from the resource controller.
+When you upgrade and restore from backup through the {{site.data.keyword.cloud_notm}} CLI, use the provisioning command from the resource controller.
 ```
 ibmcloud resource service-instance-create <service-name> <service-id> <service-plan-id> <region>
 ```
@@ -90,13 +90,13 @@ curl -X POST \
 ```
 {: pre}
 
-`skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup after running the promotion. You're new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
+`skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup when the promotion completes. You're new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
 
-### Dry-running the Upgrade
+### Dry running the promotion and upgrade
 
-In order to evaluate the affects of upgrading, you can perform a dry-run. A dry-run does not perform the promotion and upgrade, but it does simulate it, with the results printed to the database logs. (You can access/view your database logs through the [Log Analysis Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging)). This is mostly so you can ensure that the version you are currently running with it's extensions can be successfully upgraded to your desired version.
+In order to evaluate the effects of major version upgrades, you can trigger a dry run. A dry run does not perform the promotion and upgrade, but it does simulate it, with the results printed to the database logs. (You can access and view your database logs through the [Log Analysis Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging)). This is mostly so you can ensure that the version you are currently running with its extensions can be successfully upgraded to your intended version.
 
-The dry-run can only be run with `skip_initial_backup` set to `false`, and `version` defined.
+The dry run must be run with `skip_initial_backup` set to `false`, and `version` defined.
 ```
 curl -X POST \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \

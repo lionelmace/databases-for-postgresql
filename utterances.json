@@ -1,0 +1,22 @@
+{
+    "troubleshoot-connect": [
+        "How do I connect to my PostgreSQL deployment?",
+        "cannot connect to my Postgres instance",
+        "can't connect to PostgreSQL database",
+        "error connecting to PostgreSQL deployment ",
+        "issue connecting to PostgeSQL Via Command line",
+        "problem connecting to my PostgreSQL production db",
+        "errors connecting external application to PostgreSQL database ",
+        "application recieving timeouts when connecting to PostgreSQL Database",
+        "external application logging Intermittent connection timeouts to ICD postgres Deployment",
+        "error when connecting External app to Databases for PostgreSQL",
+        "PostgreSQL Database will not connect to my external application ",
+        "VMware vSphere VMs unable to connect to PostgreSQL",
+        "AppConnect in IBM Cloud cannot connect to PostgreSQL DB",
+        "Cloud foundry performance issues connecting to PostgreSQL ",
+        "Cloud Application lost connection to PostgreSQL database",
+        "Exception when connecting Cloud Application to PostgreSQL",
+        "Why can't I connect to my PostgreSQL deployment",
+        "intermittent connection timeouts for PostgreSQL"
+    ]
+}
