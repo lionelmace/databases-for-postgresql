@@ -67,6 +67,7 @@ Databases For PostgreSQL
 
 	{: .navgroup id="help"}
 		ts-connect.md
+	{: .navgroup-end}
 
 	{: .navgroup id="reference"}
 	/databases-cli-plugin/databases-cli-plugin-cdb-reference
