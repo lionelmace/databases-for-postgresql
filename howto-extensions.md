@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2020
-lastupdated: "2020-11-17"
+lastupdated: "2020-12-14"
 
 keywords: postgresql, databases
 
@@ -77,7 +77,7 @@ If there is a newer version of an extension available than the one you currently
 
 ## Available Extensions
 
-This list is what is returned from a {{site.data.keyword.databases-for-postgresql}} deployment running PostgreSQL version 10. For a list of available extensions on your deployment, use `SELECT name FROM pg_available_extensions;` in `psql`.
+This list is what is returned from a {{site.data.keyword.databases-for-postgresql}} deployment running PostgreSQL version 12. For a list of available extensions on your deployment, use `SELECT name FROM pg_available_extensions;` in `psql`.
 
 ```
 ibmclouddb=> SELECT name FROM pg_available_extensions order by 1;
