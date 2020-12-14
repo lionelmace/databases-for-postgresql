@@ -66,7 +66,7 @@ Databases For PostgreSQL
 	{: .navgroup-end}
 
 	{: .topicgroup}
-	Help
+	Help 
 		ts-connect.md
 
 	{: .navgroup id="reference"}
