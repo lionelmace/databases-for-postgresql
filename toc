@@ -65,8 +65,7 @@ Databases For PostgreSQL
 		/cloud-databases/cloud-databases-tutorial-cf-app
 	{: .navgroup-end}
 
-	{: .topicgroup}
-	Help 
+	{: .navgroup id="help"}
 		ts-connect.md
 
 	{: .navgroup id="reference"}
