@@ -27,7 +27,7 @@ content-type: troubleshoot
 # Why can’t I connect to my PostgreSQL deployment?
 {: #troubleshoot-connect}
 {: troubleshoot}
-{: support} <!-- Only add this attribute to entries that you want to display in the support center. -->
+{: support} 
 
 If you encounter errors when connecting to your {{site.data.keyword.databases-for-postgresql_full}} deployment, review these common causes and resolutions.
 {:shortdesc}
