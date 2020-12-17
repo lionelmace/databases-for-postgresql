@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020
-lastupdated: "2020-03-02"
+lastupdated: "2020-12-17"
 
 keywords: postgresql, sysdig, monitoring, metrics, iops, disk usage, memory usage, connection usage
 
@@ -41,6 +41,7 @@ If you have deployments that are in a Single-zone Region (SZR) - `osl01`, `che01
 
 | Metric Name |
 |-----------|
+| [Deadlocks count](#ibm_databases_for_postgresql_deadlocks_count) |
 | [IO utilization in percent 5 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_5m) |
 | [IO utilization in percent 15 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_15m) | 
 | [IO utilization in percent 30 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_30m) | 
@@ -48,14 +49,33 @@ If you have deployments that are in a Single-zone Region (SZR) - `osl01`, `che01
 | [IOPS read & write total count for an instance.](#ibm_databases_for_postgresql_disk_iops_read_write_total) | 
 | [Max allowed memory for an instance.](#ibm_databases_for_postgresql_memory_limit_bytes) | 
 | [Read replica replication lag.](#ibm_databases_for_postgresql_read_replica_replication_lag_bytes) | 
+| [Temporary files size in bytes](#ibm_databases_for_postgresql_temp_bytes_count) |
 | [The total number of PostgreSQL connections being used.](#ibm_databases_for_postgresql_total_connections) | 
 | [Total disk space for an instance.](#ibm_databases_for_postgresql_disk_total_bytes) | 
-| [WAL usage for an instance.](#ibm_databases_for_postgresql_wal_usage) |
+| [Transaction commit count](#ibm_databases_for_postgresql_transaction_commit_count) |
+| [Transaction rollback count](#ibm_databases_for_postgresql_transaction_rollback_count) |
+| [Tuples deleted count](#ibm_databases_for_postgresql_tuples_deleted_count) |
+| [Tuples fetched count](#ibm_databases_for_postgresql_tuples_fetched_count) |
+| [Tuples inserted count](#ibm_databases_for_postgresql_tuples_inserted_count) |
+| [Tuples updated count](#ibm_databases_for_postgresql_tuples_updated_count) |
 | [Used CPU for an instance.](#ibm_databases_for_postgresql_cpu_used_percent) | 
 | [Used disk space for an instance.](#ibm_databases_for_postgresql_disk_used_bytes) | 
 | [Used memory for an instance.](#ibm_databases_for_postgresql_memory_used_bytes) | 
+| [WAL logs used bytes](#ibm_databases_for_postgresql_wal_used_bytes) |
 {: caption="Table 1. Available Metrics" caption-side="top"}
 
+### Deadlocks count
+{: #ibm_databases_for_postgresql_deadlocks_count}
+
+Deadlocks count
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_deadlocks_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance` |
+{: caption="Table 7: Deadlocks count metric metadata" caption-side="top"}
 ### IO utilization in percent 5 minute average
 {: #ibm_databases_for_postgresql_disk_io_utilization_percent_average_5m}
 
@@ -147,6 +167,19 @@ How far behind a PostgreSQL read-only replica is, in bytes.
 | `Segment By` | `Service instance` |
 {: caption="Table 8. Read replica replication lag metric metadata" caption-side="top"}
 
+### Temporary files size in bytes
+{: #ibm_databases_for_postgresql_temp_bytes_count}
+
+Temporary files size in bytes
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_temp_bytes_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance` |
+{: caption="Table 70: Temporary files size in bytes metric metadata" caption-side="top"}
+
 ### The total number of PostgreSQL connections being used
 {: #ibm_databases_for_postgresql_total_connections}
 
@@ -173,18 +206,84 @@ Represents the total amount of disk available to your deployment.
 | `Segment By` | `Service instance` |
 {: caption="Table 10. Total disk space for an instance metric metadata" caption-side="top"}
 
-### WAL usage for an instance.
-{: #ibm_databases_for_postgresql_wal_usage}
+### Transaction commit count
+{: #ibm_databases_for_postgresql_transaction_commit_count}
 
-Represents the total amount of disk space used by the database transaction logs (WAL files) in your deployment.
+Transaction commit count
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_databases_for_postgresql_wal_used_bytes`|
+| `Metric Name` | `ibm_databases_for_postgresql_transaction_commit_count`|
 | `Metric Type` | `gauge` |
-| `Value Type`  | `byte` |
+| `Value Type`  | `none` |
 | `Segment By` | `Service instance` |
-{: caption="Table 11. Total WAL usage for an instance metric metadata" caption-side="top"}
+{: caption="Table 82: Transaction commit count metric metadata" caption-side="top"}
+
+### Transaction rollback count
+{: #ibm_databases_for_postgresql_transaction_rollback_count}
+
+Transaction rollback count
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_transaction_rollback_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance` |
+{: caption="Table 85: Transaction rollback count metric metadata" caption-side="top"}
+
+### Tuples deleted count
+{: #ibm_databases_for_postgresql_tuples_deleted_count}
+
+Tuples deleted count
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_tuples_deleted_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance` |
+{: caption="Table 87: Tuples deleted count metric metadata" caption-side="top"}
+
+### Tuples fetched count
+{: #ibm_databases_for_postgresql_tuples_fetched_count}
+
+Tuples fetched count
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_tuples_fetched_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance` |
+{: caption="Table 89: Tuples fetched count metric metadata" caption-side="top"}
+
+### Tuples inserted count
+{: #ibm_databases_for_postgresql_tuples_inserted_count}
+
+Tuples inserted count
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_tuples_inserted_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance` |
+{: caption="Table 90: Tuples inserted count metric metadata" caption-side="top"}
+
+
+### Tuples updated count
+{: #ibm_databases_for_postgresql_tuples_updated_count}
+
+Tuples updated count
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_tuples_updated_count`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `none` |
+| `Segment By` | `Service instance` |
+{: caption="Table 93: Tuples updated count metric metadata" caption-side="top"}
 
 ### Used CPU for an instance
 {: #ibm_databases_for_postgresql_cpu_used_percent}
@@ -224,6 +323,19 @@ How much memory your deployment is using.
 | `Value Type`  | `byte` |
 | `Segment By` | `Service instance` |
 {: caption="Table 14. Used memory for an instance metric metadata" caption-side="top"}
+
+### WAL logs used bytes
+{: #ibm_databases_for_postgresql_wal_used_bytes}
+
+how much wal log file uses, in bytes
+
+| Metadata | Description |
+|----------|-------------|
+| `Metric Name` | `ibm_databases_for_postgresql_wal_used_bytes`|
+| `Metric Type` | `gauge` |
+| `Value Type`  | `count` |
+| `Segment By` | `Service instance` |
+{: caption="Table 137: WAL logs used bytes metric metadata" caption-side="top"}
 
 ## Attributes for Segmentation
 {: #attributes}
