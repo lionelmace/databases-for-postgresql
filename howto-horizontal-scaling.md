@@ -21,14 +21,14 @@ subcollection: databases-for-postgresql
 # Adding PostgreSQL Nodes
 {: #horizontal-scaling}
 
-It is possible to scale your {{site.data.keyword.databases-for-postgresql_full}} deployment horizontally by adding more nodes. If your deployment starts to strain or slowdown, adding nodes increases capacity and reliability. When a node is added, {{site.data.keyword.databases-for-postgresql}} automatically balances the workload across all the nodes in your deployment.
+It is possible to scale your {{site.data.keyword.databases-for-postgresql_full}} deployment horizontally by adding more nodes. If your deployment starts to strain or slow down, adding nodes increases capacity and reliability. When a node is added, {{site.data.keyword.databases-for-postgresql}} automatically balances the workload across all the nodes in your deployment.
 
 Horizontal scaling can only increase disk and memory allotments. Nodes cannot be scaled down. 
 {: .note}
 
-Nodes that you add to your deployment are added with the amount of disk, memory, and CPU as the other nodes currently in your deployment. A visual representation of your data members and their resource allocation is available on the _Settings_ tab of your deployment's _Manage_ page. 
+Nodes that you add to your deployment are added with the amount of disk, memory, and CPU as the other nodes currently in your deployment. A visual representation of your data members and their resource allocation is available on the _Settings_ tab of your deployment's _Manage_ page. However, horizontal scaling is only available by using the API.
 
-![The Scale Resources Panel in _Settings_](images/settings-scaling.png)
+![The Scale Resources Pane in _Settings_](images/settings-scaling.png)
 
 {{site.data.keyword.databases-for-postgresql}} deployments have two data members in a cluster, and resources are allocated to both members equally. For example, the minimum storage of a PostgreSQL deployment is 10240 MB, which equates to an initial size of 5120 MB per member. The minimum RAM for a PostgreSQL deployment is 2048 MB, which equates to an initial allocation of 1028 MB per member.
 

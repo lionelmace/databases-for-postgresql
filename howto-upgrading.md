@@ -90,7 +90,7 @@ curl -X POST \
 ```
 {: pre}
 
-`skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup when the promotion completes. You're new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
+`skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup when the promotion completes. Your new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
 
 ### Dry running the promotion and upgrade
 
