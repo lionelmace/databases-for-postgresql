@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017,2020
-lastupdated: "2020-04-09"
+  years: 2017,2021
+lastupdated: "2021-02-11"
 
 keywords: postgresql drivers, python, java, javascript, certificate
 
@@ -13,7 +13,6 @@ subcollection: databases-for-postgresql
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
-{:generic: .ph data-hd-programlang='generic'}
 {:java: .ph data-hd-programlang='java'}
 {:python: .ph data-hd-programlang='python'}
 {:javascript: .ph data-hd-programlang='javascript'}
@@ -54,6 +53,11 @@ postgres://ibm_cloud_30399dec_4835_4967_a23d_30587a08d9a8:$PASSWORD@981ac415-5a3
 {: .codeblock}
 
 This example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html) to connect to your database.
+
+This example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
+
+This example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
+
 
 ```java
 import java.sql.Connection;
@@ -115,9 +119,6 @@ public class PGConnect {
 ```
 {: .codeblock}
 
-
-This example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
-
 ```python
 import psycopg2
 
@@ -142,8 +143,6 @@ for row in rows:
     print("  ",row[0])
 ```
 {: .codeblock}
-
-This example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
 
 ```java
 const pg = require("pg");
