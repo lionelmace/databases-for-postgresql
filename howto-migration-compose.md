@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2019
-lastupdated: "2019-11-12"
+  years: 2019, 2021
+lastupdated: "2021-02-04"
 
 keywords: postgresql, databases, compose
 
@@ -187,7 +187,7 @@ It is important promote the replica to a full {{site.data.keyword.databases-for-
 
 To get the {{site.data.keyword.databases-for-postgresql}} deployment up and minimize your downtime, check the **Skip Initial Backup** option, which makes the deployment available more quickly. You can start an on-demand backup after promotion is finished.
 
-You can either perform the promotion by using the UI of your deployment, the promotion button is on the _Settings_ tab, in the _Replication_ section.
+You can either perform the promotion by using the UI of your deployment, the promotion button is on the _Read Replicas_ tab, in the _Promote Read-Only Replica_ section.
 
 If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-replica-promote`](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-promote) command. 
 ```

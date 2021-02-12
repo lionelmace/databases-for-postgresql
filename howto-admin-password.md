@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017,2019
-lastupdated: "2019-05-03"
+  years: 2017,2021
+lastupdated: "2021-02-04"
 
 keywords: postgresql, databases
 
@@ -21,9 +21,9 @@ subcollection: databases-for-postgresql
 
 The {{site.data.keyword.databases-for-postgresql_full}} service is provisioned with an admin user, so you can manage PostgreSQL by using its command line tool, `psql`.
 
-You have to set the admin password before you can use it to connect. To set the password through the {{site.data.keyword.cloud_notm}} dashboard, select _Manage_ from the service dashboard to open the management panel for your service. Open the _Settings_ tab, and use the _Change Password_ panel to set a new admin password.
+You have to set the admin password before you can use it to connect. To set the password through the {{site.data.keyword.cloud_notm}} dashboard, select _Manage_ from the service dashboard to open the management panel for your service. Open the _Settings_ tab, and use the _Change Database Admin Password_ pane to set a new admin password.
 
-![The Admin Password Panel in _Settings_](images/settings-admin-password.png)
+![The Change Database Admin Password pane in _Settings_](images/settings-admin-password.png)
 
 ## Setting the admin password via the command line
 
