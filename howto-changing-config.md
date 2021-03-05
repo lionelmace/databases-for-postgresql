@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-12-04"
+  years: 2019, 2021
+lastupdated: "2021-03-02"
 
-keywords: postgresql, databases
+keywords: postgresql, databases, config
 
 subcollection: databases-for-postgresql
 
@@ -103,7 +103,7 @@ pg_statio_user_indexes;
   - Notes - [You might need to scale before you increase max connections.](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability#connection-limits-ha)
 
 [`max_prepared_transactions`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAX-PREPARED-TRANSACTIONS)
-  - Default - 0
+  - Default - `0`
   - Restarts database? - **YES**
   - Notes - The default value of `0` disables use of [prepared transactions](https://www.postgresql.org/docs/current/sql-prepare-transaction.html) and is strongly recommended unless you need to use them.
 
@@ -119,11 +119,36 @@ pg_statio_user_indexes;
   - Notes - It is recommended to leave this setting at the default. Only increase it if you profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
 
 [`deadlock_timeout`](https://www.postgresql.org/docs/current/runtime-config-locks.html)
-  - Default - 10000
+  - Default - `10000`
   - Restarts database - No
   - Options - Minimum value of 100
   - Notes - The number of milliseconds to wait before checking for deadlock and the duration where lock waits are logged. Logs available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). Setting this number too low negatively impacts performance.
 
+[`log_connections`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-CONNECTIONS)
+  - Default - `off`
+  - Restarts database - No
+  - Options - Values of `on` or `off` 
+  - Notes - Setting this value to `on` will make the logs very verbose. It also shows the connections of the monitoring tool as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no connections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example, where the application name is set as `test-app`:
+    ```
+    $ kubectl logs c-$ID-m-1 -c db --since 10m | grep icd-test
+    2021-03-01 10:27:56 UTC [[unknown]] [00000] [708]: [2-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  connection authorized: user=admin database=ibmclouddb application_name=test-app SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256, compression=off)
+    ```
+
+[`log_disconnections`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-DISCONNECTIONS)
+  - Default - `off`
+  - Restarts database - No
+  - Options - Values of `on` or `off` 
+  - Notes - Setting this value to `on` will make the logs very verbose. It will also show the disconnections of the monitoring tooling as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no disconnections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example where the application name is set as `test-app`:
+    ```
+    2021-03-01 10:27:56 UTC [test-app] [00000] [708]: [3-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  disconnection: session time: 0:00:00.793 user=admin database=ibmclouddb host=127.0.0.1 port=50638
+    ```    
+
+[`log_min_duration_statement`](https://www.postgresql.org/docs/current/runtime-config-logging.html)
+  - Default - `100`
+  - Restarts database - No
+  - Options - Minimum value of 100
+  - Notes - Statements that take longer than the specified number of milliseconds are logged.   
+  
 ### WAL Settings
 
 [`archive_timeout`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
@@ -131,13 +156,6 @@ pg_statio_user_indexes;
   - Restarts database - No
   - Options - Minimum value of 300
   - Notes - The number of seconds to wait before forcing a switch to the next WAL file. If the number of seconds has passed and if there has been database activity, the server switches to a new segment. Effectively limits the amount of time data can remain unarchived.
-
-[`log_min_duration_statement`](https://www.postgresql.org/docs/current/runtime-config-logging.html)
-  - Default - `100`
-  - Restarts database - No
-  - Options - Minimum value of 100
-  - Notes - Statements that take longer than the specified number of milliseconds are logged.
-
 
 The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plug-in](/docs/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plug-in should leave these settings at the default.
 
