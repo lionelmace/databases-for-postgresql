@@ -32,7 +32,7 @@ ibmclouddb=> SHOW max_connections;
 ```
 {: .codeblock}
 
-Many of the queries rely on the admin user's role as `pg_monitor`, which is only available in PostgreSQL 10 and above. Users on PostgreSQL 9.x, might not have permissions to run all of the queries in these docs.
+Many of the queries rely on the admin user's role as `pg_monitor`, which is only available in PostgreSQL 10 and newer. Users on PostgreSQL 9.x, might not have permissions to run all of the queries in these docs.
 {: .tip}
 
 ## PostgreSQL Connection Limits 
@@ -64,7 +64,7 @@ SELECT * FROM pg_stat_activity WHERE datname='ibmclouddb';
 
 ## Terminating Connections
 
-If you are on PostgreSQL 9.6 and above, your admin user has the `pg_signal_backend` role. If you find connections that need to be reset or closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). The `pid` of a process is found from the `pg_stat_activity` table.
+If you are on PostgreSQL 9.6 and newer, your admin user has the `pg_signal_backend` role. If you find connections that need to be reset or closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). The `pid` of a process is found from the `pg_stat_activity` table.
 
 - `pg_cancel_backend` cancels a connection's current query without terminating the connection, and without stopping any other queries that it might be running.
   ```sql
@@ -105,7 +105,7 @@ Alternatively, you can use a third-party tool such as [PgBouncer](https://pgboun
 
 ## Raising the Connection Limit
 
-PostgreSQL allocates some amount of memory on a per connection basis. It is important to consider the total amount of memory that is available to your deployment before increasing the connection limit. To raise the connection limit, first you might want to [scale your deployment](/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling) to ensure that you have enough memory to accommodate more connections.
+PostgreSQL allocates some amount of memory on a per connection basis, typically around 5 - 10 MB per connection. It is important to consider the total amount of memory that is available to your deployment before increasing the connection limit. To raise the connection limit, first you might want to [scale your deployment](/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling) to ensure that you have enough memory to accommodate more connections.
 
 Next, change the value of `max_connections` on your deployment. To make permanent changes to the [PostgreSQL configuration](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration#changing-configuration), you want to use the {{site.data.keyword.databases-for}} [cli-plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-configuration) or [API](https://{DomainName}/apidocs/cloud-databases-api#change-your-database-configuration) to write the changes to the configuration file for your deployment. 
 
