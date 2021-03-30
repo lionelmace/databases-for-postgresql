@@ -38,9 +38,9 @@ Next, you are going to want to take note of the size of your Compose deployment.
 
 Pick one of the connection strings from your Compose deployment to have the replica connect to. You provide the hostname and port to the replica when you provision it.
 
-Compose deployments support having only one read-only replica connected at a time. 
+Compose deployments support having only one read-only replica that is connected at a time. 
 
-If you use allowlists to limit connections to your Compose deployment, you need to either disable the allowlist before you create the read-only replica or allowlist the range of IP addresses that your new {{site.data.keyword.databases-for-postgresql}} uses. Use the subnets listed on the [allowlisting](/docs/databases-for-postgresql?topic=cloud-databases-allowlisting#allowlisting-cloud-databases-in-your-environment) page, and add all the ranges for the region where your {{site.data.keyword.databases-for-postgresql}} deployment lives to your Compose allowlist.
+If you use allowlists to limit connections to your Compose deployment, you need to either disable the allowlist before you create the read-only replica or allowlist the range of IP addresses that your new {{site.data.keyword.databases-for-postgresql}} uses. Use the subnets listed on the [allowlisting](/docs/databases-for-postgresql?topic=cloud-databases-allowlisting#allowlist-ips) page, and add all the ranges for the region where your {{site.data.keyword.databases-for-postgresql}} deployment lives to your Compose allowlist.
 
 ## Setting Up on IBM Cloud
 
@@ -51,7 +51,7 @@ You are going to provision a {{site.data.keyword.databases-for-postgresql}} read
 
 ## Provisioning the Read-only Replica
 
-To provision the {{site.data.keyword.databases-for-postgresql}} deployment using the `ibmcloud` CLI, log in to your account with the `ibmcloud login` command. Provisioning of services is handled by the Resource Controller, so you use the
+To provision the {{site.data.keyword.databases-for-postgresql}} deployment by using the `ibmcloud` CLI, log in to your account with the `ibmcloud login` command. Provisioning of services is handled by the Resource Controller, so you use the
 [`ibmcloud resource service-instance-create`](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_service_instance_create) command to provision {{site.data.keyword.databases-for-postgresql}}.
 ```
 ibmcloud resource service-instance-create <your-new-deployment-name> databases-for-postgresql standard <region> \
@@ -80,7 +80,7 @@ ibmcloud resource service-instance-create <your-new-deployment-name> databases-f
 - `members_memory_allocation_mb` - The total amount of memory you need for the {{site.data.keyword.databases-for-postgresql}} deployment. If omitted the minimum allocation of 4096 MB.
 - `members_disk_allocation_mb` - The total amount of disk space you need for the {{site.data.keyword.databases-for-postgresql}} deployment. If omitted the minimum allocation of 10240 MB.
 
-This command kicks off provisioning a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) of your Compose deployment. 
+This command starts provisioning a {{site.data.keyword.databases-for-postgresql}} deployment that is configured as a [read-only replica](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) of your Compose deployment. 
 
 
 ### Provisioning through the Resource Controller API
@@ -118,14 +118,14 @@ Once provisioning is finished, you have a {{site.data.keyword.databases-for-post
 
 You can access the {{site.data.keyword.databases-for-postgresql}} deployment in a few different ways.
 - The deployment's UI is accessible by clicking its name from the [Resource List](https://cloud.ibm.com/resources) in your IBM Cloud account.
-- You can use the [Cloud Databases CLI Plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference). The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line, and the plugin contains the commands that you use to communicate with your database deployments. 
+- You can use the [Cloud Databases CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference). The {{site.data.keyword.cloud_notm}} CLI tool is what you use to communicate with {{site.data.keyword.cloud_notm}} from your terminal or command line, and the plug-in contains the commands that you use to communicate with your database deployments. 
 - Or you can also use the [{{site.data.keyword.databases-for}} API](https://{DomainName}/apidocs/cloud-databases-api)
 
-Most importantly, you can access the PostgreSQL database directly using `psql`, which can be used to monitor the replication status.
+Most importantly, you can access the PostgreSQL database directly by using `psql`, which can be used to monitor the replication status.
 
 ### Monitoring the Migration
 
-The admin user from your Compose deployment can log in to and execute commands on the read-only replica. Connect to both the Compose deployment and the {{site.data.keyword.databases-for-postgresql}} replica using `psql` and the admin user.
+The admin user from your Compose deployment can log in to and run commands on the read-only replica. Connect to both the Compose deployment and the {{site.data.keyword.databases-for-postgresql}} replica by using `psql` and the admin user.
 
 On the Compose deployment run
 ```
@@ -139,19 +139,19 @@ SELECT pg_last_xlog_replay_location();
 ```
 {: .codeblock}
 
-These commands output a PostgreSQL logical sequence number (`lsn`). If the two `lsn` match, the replica is caught up and synced to the Compose deployment. If the two `lsn` do not match, the replica still has to catch up. If you want to compare how far apart they are, you can run the following command on either member
+These commands output a PostgreSQL logical sequence number (`lsn`). If the two `lsn` match, the replica is caught up and synced to the Compose deployment. If the two `lsn` do not match, the replica still must catch up. If you want to compare how far apart they are, you can run the following command on either member
 ```
 SELECT pg_size_pretty(pg_xlog_location_diff('<Output_from_Compose>','<Output_from_replica>'));
 ```
 {: .codeblock}
 
-The goal is to make sure that replication catches up after the initial subscription (which might take a while), but after that you want to check that replication is close to up-to-date. When the replication is in sync or close to synced, you can shut down your applications that are writing to the Compose database. Perform a last check to ensure that the replica is completely caught up and all your data is migrated over.
+The goal is to make sure that replication catches up after the initial subscription (which might take a while), but after that you want to check that replication is close to up-to-date. When the replication is in sync or close to synced, you can shut down your applications that are writing to the Compose database. Perform a last check to ensure that the replica is caught up and all your data is migrated over.
 
 ### Things to note on Compose
 During the migration, the Compose deployment might scale. While the replica is subscribed to the deployment, transaction logs on the Compose deployment are kept to catch the replica up later. The extra logs might cause the Compose deployment to grow and scale. As the replication catches up, you might be able to scale the deployment back down.
 
 ### Things to note on the Replica
-If you use the [Logging Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you may see logs that contain
+If you use the [{{site.data.keyword.loganalysisfull}} Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you might see logs that contain
 ```
 2019-11-13 22:02:00 UTC [1207]: [1-1] user=ibm,db=postgres,client=127.0.0.1 ERROR:  could not get commit timestamp data
 2019-11-13 22:02:00 UTC [1207]: [2-1] user=ibm,db=postgres,client=127.0.0.1 HINT:  Make sure the configuration parameter "track_commit_timestamp" is set on the primary server.
@@ -181,7 +181,7 @@ If you see the message, {{site.data.keyword.databases-for-postgresql}} deploymen
 
 ## Promoting the Read-only Replica
 
-After the replication is complete, you need to promote the read-only replica into a stand-alone deployment. Promotion severs the connection between the replica and your source Compose deployment and they can not be rejoined. 
+After the replication is complete, you need to promote the read-only replica into a stand-alone deployment. Promotion severs the connection between the replica and your source Compose deployment and they cannot be rejoined. 
 
 It is important promote the replica to a full {{site.data.keyword.databases-for-postgresql}} deployment promptly after the migration of your data is finished. The replication operation between Compose and {{site.data.keyword.databases-for-postgresql}} is not intended to be a long-term arrangement. Keep the window between creating the replica and promoting it as small as possible, ideally within a few days.
 
@@ -214,7 +214,7 @@ On your new {{site.data.keyword.databases-for-postgresql}} deployment, certain P
 SELECT name, version FROM pg_available_extension_versions; 
 ```
 {: .codeblock}
-and then update the extension appropriately.
+and then update the extension.
 ```
 ALTER EXTENSION postgis UPDATE TO '2.4.6';
 ```

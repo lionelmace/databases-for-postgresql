@@ -1,8 +1,8 @@
 ---
 
 Copyright:
-  years: 2019, 2020
-lastupdated: "2020-11-11"
+  years: 2019, 20201
+lastupdated: "2021-03-30"
 
 keywords: postgresql, databases, wal2json
 
@@ -73,7 +73,7 @@ The plug-in type must be `wal2json`. The database must be an existing database. 
    
 - Logical replication slots do not sync between a primary (leader) and a replica. If a controlled switchover or failover occurs, the slot is re-created on the new leader automatically, but it does not maintain the place in the replication stream that it was before switchover or failover. This can result in downstream consumers missing changes. Systems must be able to detect when failover happens and resync as needed.
    
-- If you create a logical replication slot, and a consumer is not connected and consuming the changes, you run the risk of running your deployment out of disk space. The replication slot tells PostgreSQL to keep all the transaction logs that have the changes that the consumer needs. If nothing is consuming those changes, PostgreSQL continues collecting them until it is out of disk space. You can monitor disk space with the [monitoring integration](/docs/databases-for-postgresql?topic=databases-for-postgresql-sysdig-monitoring). If you run out of space, you can [scale up disk](/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling), which allows the database to start. Then, you can either start consuming the changes or drop the slot.
+- If you create a logical replication slot, and a consumer is not connected and consuming the changes, you run the risk of running your deployment out of disk space. The replication slot tells PostgreSQL to keep all the transaction logs that have the changes that the consumer needs. If nothing is consuming those changes, PostgreSQL continues collecting them until it is out of disk space. You can monitor disk space with the [{{site.data.keyword.monitoringfull}} integration](/docs/databases-for-postgresql?topic=databases-for-postgresql-sysdig-monitoring). If you run out of space, you can [scale up disk](/docs/databases-for-postgresql?topic=databases-for-postgresql-resources-scaling), which allows the database to start. Then, you can either start consuming the changes or drop the slot.
    
 - You can check how much disk space is being used by a specific replication slot and whether that replication slot has an active consumer. Use the `admin` user to run one of the following commands:  
    
