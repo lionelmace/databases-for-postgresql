@@ -63,7 +63,7 @@ Changing audit levels happens immediately when calling the function without inte
 
 ## Audit Logs
 
-Audit events appear in {{site.data.keyword.loganalysisfull}} with the following format:
+Audit events appear in {{site.data.keyword.la_full}} with the following format:
 ```
 LOG: AUDIT: SESSION,1,1,DDL,CREATE TABLE,,,create table f2 (id int);,<not logged>
 ```

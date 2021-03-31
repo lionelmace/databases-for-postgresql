@@ -151,7 +151,7 @@ The goal is to make sure that replication catches up after the initial subscript
 During the migration, the Compose deployment might scale. While the replica is subscribed to the deployment, transaction logs on the Compose deployment are kept to catch the replica up later. The extra logs might cause the Compose deployment to grow and scale. As the replication catches up, you might be able to scale the deployment back down.
 
 ### Things to note on the Replica
-If you use the [{{site.data.keyword.loganalysisfull}} Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you might see logs that contain
+If you use the [Logging Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you might see logs that contain
 ```
 2019-11-13 22:02:00 UTC [1207]: [1-1] user=ibm,db=postgres,client=127.0.0.1 ERROR:  could not get commit timestamp data
 2019-11-13 22:02:00 UTC [1207]: [2-1] user=ibm,db=postgres,client=127.0.0.1 HINT:  Make sure the configuration parameter "track_commit_timestamp" is set on the primary server.

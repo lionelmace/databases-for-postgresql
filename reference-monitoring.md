@@ -3,7 +3,7 @@ copyright:
   years: 2020, 2021
 lastupdated: "2021-03-30"
 
-keywords: postgresql, sysdig, monitoring, metrics, iops, disk usage, memory usage, connection usage
+keywords: postgresql, monitoring, metrics, iops, disk usage, memory usage, connection usage
 
 subcollection: databases-for-postgresql
 
@@ -18,7 +18,7 @@ subcollection: databases-for-postgresql
 {:important: .important}
 
 # Monitoring Integration
-{: #sysdig-monitoring}
+{: #monitoring}
 
 Monitoring for {{site.data.keyword.databases-for-postgresql_full}} deployments is provided through integration with the {{site.data.keyword.monitoringfull}} Monitoring service. Your deployments forward selected information so you can monitor deployment health and resource usage. To see your {{site.data.keyword.databases-for-postgresql}} dashboards in {{site.data.keyword.monitoringfull_notm}}, you have to [Enable Platform Metrics](/docs/Monitoring-with-Sysdig?topic=Monitoring-with-Sysdig-platform_metrics_enabling) in the same region as your deployment. If you have deployments in more than one region, you have to provision {{site.data.keyword.monitoringfull_notm}} and enable platform metrics in each region.
 

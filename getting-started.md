@@ -72,7 +72,7 @@ First, fill out the _Connection_ information,
 ![Completed Connection information](images/getting-started-connection-info.png)
 
 Then, configure the _SSL_ settings.
-- Copy the certificate information from the [_Endpoints_ panel](/docs/databases-for-postgresql?topic=databases-for-postgresql-getting-connection-strings) in your deployment's `Dashboard overview` page.
+- Copy the certificate information from the [_Endpoints_ panel](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings) in your deployment's `Dashboard overview` page.
 - Save the certificate  to a file. (You can use the name that is provided in the download, or your own file name.)
 - Set the _SSL mode_ field to _Verify-Full_.
 - In the _Root certificate_ field, select the file where you saved your deployment's certificate.
