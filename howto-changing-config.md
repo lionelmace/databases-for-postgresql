@@ -77,7 +77,7 @@ You can use these queries as the `admin` user, or any user with the `pg_monitor`
 SELECT 
   sum(heap_blks_read) as heap_read,
   sum(heap_blks_hit)  as heap_hit,
-  (sum(heap_blks_hit) / (sum(heap_blks_hit) + sum(heap_blks_read)) as table_hit_ratio
+  sum(heap_blks_hit) / (sum(heap_blks_hit) + sum(heap_blks_read)) as table_hit_ratio
 FROM 
   pg_statio_user_tables;
 ```
