@@ -17,7 +17,7 @@ subcollection: databases-for-postgresql
 {:pre: .pre}
 {:tip: .tip}
 
-# The UI - Dashboard Overview
+# The Dashboard Overview
 {: #dashboard-overview}
 
 The _Overview_ page shows you information about your {{site.data.keyword.databases-for-postgresql_full}} deployment. The overview includes essential identifying information.
