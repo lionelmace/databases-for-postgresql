@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2019, 20201
-lastupdated: "2021-03-30"
+lastupdated: "2021-04-21"
 
 keywords: postgresql, databases, wal2json
 
@@ -20,7 +20,7 @@ subcollection: databases-for-postgresql
 # Configuring Wal2json
 {: #wal2json}
    
-{{site.data.keyword.databases-for-postgresql_full}} deployments support the [wal2json](https://github.com/eulerto/wal2json) plug-in, enabling [logical decoding](https://www.postgresql.org/docs/current/logicaldecoding-explanation.html) on your deployment. The plug-in is already installed, but you must configure your deployment and databases in order to start using it.
+{{site.data.keyword.databases-for-postgresql_full}} deployments support the [wal2json](https://github.com/eulerto/wal2json) plug-in, enabling [logical decoding](https://www.postgresql.org/docs/current/logicaldecoding-explanation.html) on your deployment. The plug-in is deprecated on PostgreSQL version 9.6 and 10, and is only supported on PostgreSQL versions 11 and 12. The plug-in is already installed, but you must configure your deployment and databases to start using it. 
    
 1. First, you need to [configure](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) the `wal_level`, `max_replication_slots`, and `max_wal_senders` settings. Change the `wal_level` to `logical`. The `max_replication_slots`, and `max_wal_senders` both need to be set to a value greater than 20. {{site.data.keyword.databases-for-postgresql}} reserves 20 replication slots and WAL senders for current and future operational purposes.
   ```
