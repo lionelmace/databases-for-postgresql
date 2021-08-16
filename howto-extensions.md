@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2020
-lastupdated: "2020-12-14"
+lastupdated: "2021-08-16"
 
 keywords: postgresql, databases
 
@@ -83,6 +83,7 @@ This list is what is returned from a {{site.data.keyword.databases-for-postgresq
 ibmclouddb=> SELECT name FROM pg_available_extensions order by 1;
 ```
 {: pre}
+
 ```
              name             
 ------------------------------
@@ -102,14 +103,10 @@ ibmclouddb=> SELECT name FROM pg_available_extensions order by 1;
  file_fdw
  fuzzystrmatch
  hstore
- hstore_plperl
- hstore_plperlu
  insert_username
  intagg
  intarray
  isn
- jsonb_plperl
- jsonb_plperlu
  lo
  ltree
  moddatetime
@@ -126,7 +123,6 @@ ibmclouddb=> SELECT name FROM pg_available_extensions order by 1;
  pgrouting
  pgrowlocks
  pgstattuple
- plperl
  plpgsql
  postgis
  postgis_tiger_geocoder
@@ -142,7 +138,7 @@ ibmclouddb=> SELECT name FROM pg_available_extensions order by 1;
  unaccent
  uuid-ossp
  xml2
-(56 rows)
+(51 rows)
 ibmclouddb=> select version();
                                                  version                                                 
 ---------------------------------------------------------------------------------------------------------
