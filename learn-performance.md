@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2020, 2021 
-lastupdated: "2021-03-30"
+lastupdated: "2021-08-18"
 
 keywords: postgresql, databases, monitoring, scaling, autoscaling, resources, connection limits
 
@@ -15,6 +15,7 @@ subcollection: databases-for-postgresql
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Performance
 {: #performance}
@@ -27,7 +28,10 @@ subcollection: databases-for-postgresql
 
 ## Disk IOPS
 
-The number of Input-Output Operations Per Second (IOPS) is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-postgresql}} deployments are provisioned on [Block Storage Endurance Volumes in the 10 IOPS per GB tier](/docs/BlockStorage?topic=BlockStorage-orderingthroughConsole#orderingthroughConsoleEndurance). If your operational load saturates or exceeds the IOPS limit, database requests and operations are delayed until the disk can catch up. Extended periods of heavy-load can cause your deployment to be unable to process queries and become effectively unavailable. If you experience delayed responses and failing operations, you could be exceeding the disk's IOPS limit. You can increase the number IOPS available to your deployment by increasing disk space.
+The number of Input-Output Operations Per Second (IOPS) is limited by the type of storage volume. Storage volumes for {{site.data.keyword.databases-for-postgresql}} deployments are provisioned on [Block Storage Endurance Volumes in the 10 IOPS per GB tier](/docs/BlockStorage?topic=BlockStorage-orderingBlockStorage&interface=ui). If your operational load saturates or exceeds the IOPS limit, database requests and operations are delayed until the disk can catch up. Extended periods of heavy-load can cause your deployment to be unable to process queries and become effectively unavailable. If you experience delayed responses and failing operations, you could be exceeding the disk's IOPS limit. You can increase the number IOPS available to your deployment by increasing disk space.
+
+We recommend at least 100 GB disk (1,000 IOPS) for production environments.
+{: .tip}
 
 ## Memory Usage
 
