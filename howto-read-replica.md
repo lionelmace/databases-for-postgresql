@@ -190,13 +190,13 @@ curl -X POST \
 
 ### Time to completion
 
-The promote recipe completes only when the database is highly available. However, read/write availability occurs after about 10 minutes with one major caveat: the database is not highly available until the recipe completes. 
+The promote task completes only when the database is highly available. However, read/write availability occurs after about 10 minutes with one major caveat: the database is not highly available until the task completes. 
 
 The full promotion time of a read-replica is determined by the size of the data in two possible ways:
-- Read replicas are single members. When promoted, the formation spec is changed to two members, which creates a second replica. The creation time of that replica depends on the size of the data. The creation of that replica runs at 25 MB/s to avoid saturating the network. As databases grow, the creation can take a substantial amount of time. The recipe does not complete until the creation of that replica is done.
-- If you choose to take a backup as part of the promotion, the completion of that backup also needs to finish before the recipe completes. Again, this depends on the size of the database.
+- Read replicas are single members. When promoted, the formation spec is changed to two members, which creates a second replica. The creation time of that replica depends on the size of the data. The creation of that replica runs at 25 MB/s to avoid saturating the network. As databases grow, the creation can take a substantial amount of time. The task does not complete until the creation of that replica is done.
+- If you choose to take a backup as part of the promotion, the completion of that backup also needs to finish before the task completes. Again, this depends on the size of the database.
 
-Remember that there is no High-Availability member until the promotion recipe completes. Likewise, if you have selected to have an initial backup, no backup exists until the second point completes or a manual backup is created. 
+Remember that there is no High-Availability member until the promotion task completes. Likewise, if you have selected to have an initial backup, no backup exists until the second point completes or a manual backup is created. 
 
 ### Upgrading while Promoting
 
