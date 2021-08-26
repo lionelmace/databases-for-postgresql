@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2019, 2020
-lastupdated: "2020-02-18"
+lastupdated: "2021-08-21"
 
 keywords: postgresql, databases, connection limits, terminating connections, connection pooling
 
@@ -108,16 +108,19 @@ PostgreSQL allocates some amount of memory on a per connection basis, typically 
 Next, change the value of `max_connections` on your deployment. To make permanent changes to the [PostgreSQL configuration](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration#changing-configuration), you want to use the {{site.data.keyword.databases-for}} [cli-plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-configuration) or [API](https://{DomainName}/apidocs/cloud-databases-api#change-your-database-configuration) to write the changes to the configuration file for your deployment. 
 
 For example, to raise `max_connections` to 215, it might be a good idea to scale your deployment to at least 2 GB of RAM per data member, for a total of 4 GB of RAM for your deployment. Once the scaling operation has finishes, then set the connection limit. In the CLI,
+
 ```
 ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
 ```
 {: pre}
+
 ```
 ibmcloud cdb deployment-configuration example-deployment '{"configuration":{"max_connections":215}}'
 ```
 {: pre}
 
 To make the changes through the API,
+
 ```
 curl -X PATCH `https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups/member' \
 -H "Authorization: Bearer $APIKEY" \
@@ -137,9 +140,16 @@ curl -X PATCH 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
 ```
 {: pre}
 
+### Connection Limits and TCP/IP keepalives Settings
 
+In the event of a network connection reset or failover, it is possible that broken TCP/IP connections remain in a half-opened/closed state until the tcp keepalive timeouts are reached. To avoid this scenario it is recommended to set the `socket_timeout` and `connection_timeout` settings in your specific application drivers as well. The correct settings _vary based on the specific workload and it is important to run load tests before going to production_. A good starting point for the `connection_timeout` is between 2 to 5 seconds. For the `socket_timeout` a good starting point is between 30 to 60 seconds.
 
+Furthermore on the server side the following [keepalive configurations](https://www.postgresql.org/docs/12/runtime-config-connection.html) are used as the default.
 
+- `tcp_keepalives_idle` is set to 5 minutes
+- `tcp_keepalives_interval` probe interval is set to 10 seconds
+- `tcp_keepalives_count` is set to 6
 
+To prevent half-open/closed connections or bursts in connection attempts from overwhelming your deployment it is also encouraged to [set the `max_connections` paremeter](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) for Postgres to at least double your expected connection count.
 
-
+If you connection limit is reached, you can [end all connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections#end-connections) immediately.
