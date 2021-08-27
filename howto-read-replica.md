@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2019, 2021
-lastupdated: "2021-02-04"
+lastupdated: "2021-08-26"
 
 keywords: postgresql, databases, read-only replica, resync, promote, cross-region replication
 
@@ -57,6 +57,9 @@ If a deployment is a leader and has a read-only replica that is already attached
 ![List of replicas that are attached to a leader](images/replica-after.png)
 
 ## Provisioning a Read-only Replica
+
+Resources for PostgreSQL deployments are allocated per-deployment, and normal deployments have two members. Since a read-only replica has only one member, and provisioning currently uses values that are half of the requested values for memory and storage, provisioning may fail. The web UI cannot modify the value for storage and it will automatically use the leader deployment’s value - which will be cut in half. If that is insufficient for your data to fit, you will need to use the API or CLI to specify twice the storage you actually want to be provisioned. (The same applies to memory, although a lower amount of memory may not prevent the restore from being successful.) An update is in progress to remediate this situation. 
+{:important: .important}
 
 You can provision a read-only replica from the leader's _Read Replicas_ tab by clicking **Create Read-Only Replica**. The source instance is automatically filled in. The read-only replica's name is auto-generated in the _Service Name_ field, but you can rename it freely. You can choose the region to deploy it in, and its initial memory allocation. Disk size, version, and public or private endpoints are automatically configured to match the settings of the leader deployment.
 
