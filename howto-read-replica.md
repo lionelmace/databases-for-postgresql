@@ -16,6 +16,7 @@ subcollection: databases-for-postgresql
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:important: .important}
 
 # Configuring Read-only Replicas
 {: #read-only-replicas}
