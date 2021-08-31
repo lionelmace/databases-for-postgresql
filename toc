@@ -22,7 +22,6 @@ Databases For PostgreSQL
 		/cloud-databases/cloud-databases-satellite-aws
 		/cloud-databases/cloud-databases-satellite-on-prem
 		
-	/cloud-databases/cloud-databases-provisioning
 	howto-admin-password.md
 	howto-getting-connection-strings.md
 	/cloud-databases/cloud-databases-deprovisioning
