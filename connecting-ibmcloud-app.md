@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2018, 2019
-lastupdated: "2019-07-16"
+lastupdated: "2019-08-31"
 
 keywords: postgresql, databases
 
