@@ -25,7 +25,7 @@ subcollection: databases-for-postgresql
 
 {{site.data.keyword.databases-for-postgresql}} will, at times, do controlled switchovers under normal operation. These switchovers are no-data-loss events that result in resets of active connections. There is a period of up to 15 seconds where reconnections can fail. At times, unplanned failovers might occur due to unforeseen events on the operating environment. These can take up to 45 seconds, but can be less. In both cases, potential exists for the downtime to be longer.
 
-You can extend high-availability to more regions and spread to more replicas by adding [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas). 
+You can extend high-availability further by either adding [PostgreSQL members](https://test.cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling) to the instance for greater in region redundancy, as well as provisioning [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regionial failover or read offloading. 
 
 ## Application-level High-Availability
 
