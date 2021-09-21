@@ -24,6 +24,26 @@ Once a major version of a database is at its End Of Life (EOL), it is a good ide
 
 You can find the available versions of PostgreSQL on the [{{site.data.keyword.databases-for-postgresql_full}} the catalog](https://cloud.ibm.com/catalog/databases-for-postgresql) page, from the cloud databases cli plug-in command [`ibmcloud cdb deployables-show`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployables-show), or from the cloud databases API [`/deployables`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-all-deployable-databases) endpoint.
 
+## Upgrading from a Read-only Replica
+
+You can also upgrade by setting up a read-only replica. A quick summary: you provision a read-only replica with the same database version as your deployment, and wait while it replicates all of your data. Once your deployment and its replica are synced, you can promote and upgrade the read-only replica to a full, stand-alone deployment running the new version of the database.
+
+The [Configuring Read-only Replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) doc covers the provisioning, syncing, and other details for read-only replicas. To perform the upgrade and promotion step, use a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#promote-read-only-replica-to-a-full-deployment) endpoint with the version that you want to upgrade to in the body of the request.
+```
+curl -X POST \
+  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
+  -H 'Authorization: Bearer <>'  \
+ -H 'Content-Type: application/json' \
+ -d '{
+    "promotion": {
+        "version": "11",
+        "skip_initial_backup": false
+    }
+}' \
+```
+{: pre}
+
+`skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup when the promotion completes. Your new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
 
 ## Backup and Restore Upgrade
 
@@ -70,27 +90,6 @@ curl -X POST \
   }'
 ```
 {: pre}
-
-## Upgrading from a Read-only Replica
-
-You can also upgrade by setting up a read-only replica. A quick summary: you provision a read-only replica with the same database version as your deployment, and wait while it replicates all of your data. Once your deployment and its replica are synced, you can promote and upgrade the read-only replica to a full, stand-alone deployment running the new version of the database.
-
-The [Configuring Read-only Replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) doc covers the provisioning, syncing, and other details for read-only replicas. To perform the upgrade and promotion step, use a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#promote-read-only-replica-to-a-full-deployment) endpoint with the version that you want to upgrade to in the body of the request.
-```
-curl -X POST \
-  https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
-  -H 'Authorization: Bearer <>'  \
- -H 'Content-Type: application/json' \
- -d '{
-    "promotion": {
-        "version": "11",
-        "skip_initial_backup": false
-    }
-}' \
-```
-{: pre}
-
-`skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup when the promotion completes. Your new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
 
 ### Dry running the promotion and upgrade
 
