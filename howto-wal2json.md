@@ -77,13 +77,13 @@ The plug-in type must be `wal2json`. The database must be an existing database. 
    
 - You can check how much disk space is being used by a specific replication slot and whether that replication slot has an active consumer. Use the `admin` user to run one of the following commands:  
    
-  **PostgreSQL 10.x and newer**
+   **PostgreSQL 10.x and newer**
     ```
     SELECT slot_name, pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(),restart_lsn)) AS lag, active from pg_replication_slots WHERE slot_type='logical';
     ```
     {: pre}
    
-  **PostgreSQL 9.x**
+   **PostgreSQL 9.x**
     ```
     SELECT slot_name, pg_size_pretty(pg_xlog_location_diff(pg_current_xlog_location(),restart_lsn)) AS lag, active FROM pg_replication_slots WHERE slot_type='logical';
     ```
