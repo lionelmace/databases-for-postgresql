@@ -123,16 +123,16 @@ public class PGConnect {
 import psycopg2
 
 try:
-  conn = psycopg2.connect(
-    host="hostname.databases.appdomain.cloud",
-    port= 31525,
-    user="username",
-    password="password",
-    sslmode="verify-full",
-    sslrootcert="/path/to/cert/ca-certificate.crt",
-    database="ibmclouddb")
+    conn = psycopg2.connect(
+      host="hostname.databases.appdomain.cloud",
+      port= 31525,
+      user="username",
+      password="password",
+      sslmode="verify-full",
+      sslrootcert="/path/to/cert/ca-certificate.crt",
+      database="ibmclouddb")
 except: 
-  print("Unable to connect to database")
+    print("Unable to connect to database")
 
 cur = conn.cursor()
 cur.execute("SELECT datname FROM pg_database")
