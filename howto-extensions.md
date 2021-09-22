@@ -19,7 +19,7 @@ subcollection: databases-for-postgresql
 # Managing PostgreSQL Extensions
 {: #extensions}
 
-In PostgreSQL, extensions are modules that supply extra functions, operators, or types. Many extensions are available in {{site.data.keyword.databases-for-postgresql_full}}. In order to use them, you need to [set the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your service and use it to [connect with `psql` ](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
+In PostgreSQL, extensions are modules that supply extra functions, operators, or types. Many extensions are available in {{site.data.keyword.databases-for-postgresql_full}}. In order to use them, you need to [set the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your service and use it to [connect with `psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 
 ## Listing Installed Extensions
 
@@ -67,10 +67,10 @@ If there is a newer version of an extension available than the one you currently
 ### pg_repack
 - [The `pg_repack` documentation](http://reorg.github.io/pg_repack/)
 - When you run the `pg_repack` command, you need to pass the -k flag in to bypass the check for superuser. Example,
-  ```
-  pg_repack -k [OPTION]... [DBNAME]
-  ```
-  {: pre}
+   ```
+   pg_repack -k [OPTION]... [DBNAME]
+   ```
+   {: pre}
 
 - For `pg_repack` to run reliably, your deployment should be on PostgreSQL 9.6 and above.
 - Any user can run `pg_repack`, but the command is only able to repack a table that they have permissions on.

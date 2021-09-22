@@ -145,11 +145,13 @@ Now you can define a publisher on the database and add the tables you want to re
         psql -U replicator -d exampledb
     ```
     {: pre}
+
 - Create the publication channel.
     ```bash
         exampledb=> CREATE PUBLICATION my_publication;
     ``` 
     {: pre}
+
 - Add tables to publisher.
     ```bash
        exampledb=> ALTER PUBLICATION my_publication ADD TABLE my_table;
@@ -164,6 +166,7 @@ To configure your {{site.data.keyword.databases-for-postgresql}} deployment as a
     psql -U admin -d exampledb
     ```
     {: pre}
+    
 - Run the following query to call the `create_subscription` function and create the subscriber channel. 
     ```bash
         exampledb=> SELECT create_subscription('subs1','130.215.223.184','5432','admin','password','exampledb','my_publication');

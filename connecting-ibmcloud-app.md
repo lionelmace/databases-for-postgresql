@@ -96,17 +96,17 @@ The alias appears in the list of _Cloud Foundry Apps_ in your _Resource List_. M
 Cloud Foundry uses a manifest file - `manifest.yml` to associate an application with another {{site.data.keyword.cloud_notm}} service.
 
 To create the file, open a new file and add the text:
-  ```
-  ---
-  applications:
-  - name:    example-application
-    routes:
-    - route: example-application.us-south.cf.appdomain.cloud
-    memory:  128M
-    services:
-      - example-postgresql
-  ```
-  {: .codeblock}
+   ```
+   ---
+   applications:
+   - name:    example-application
+     routes:
+     - route: example-application.us-south.cf.appdomain.cloud
+     memory:  128M
+     services:
+       - example-postgresql
+   ```
+   {: .codeblock}
 
 - Change the route value to something unique. The route that you choose determines the subdomain of your application's URL: `<route>.{region}.cf.appdomain.cloud`. Be sure the `{region}` matches where your application is deployed.
 - Change the name value. The value that you choose is the name of the app as it appears in your {{site.data.keyword.cloud_notm}} dashboard.
