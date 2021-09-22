@@ -16,7 +16,6 @@ subcollection: databases-for-postgresql
 {:pre: .pre}
 {:tip: .tip}
 
-
 # Upgrading to a new Major Version
 {: #upgrading}
 
