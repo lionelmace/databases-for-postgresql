@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2018, 2019
-lastupdated: "2019-08-31"
+lastupdated: "2021-08-31"
 
 keywords: postgresql, databases
 
@@ -38,12 +38,14 @@ Before connecting your Kubernetes Service application to a deployment, make sure
 ibmcloud ks cluster service bind <your_cluster_name> <resource_group> <your_database_deployment>
 ```
 {: pre}
+
 OR
 **Private Endpoints** - If you want to use a private endpoint (if one is enabled on your deployment), then first you need to create a service key for your database so Kubernetes can use it when binding to the database. 
 ```
 ibmcloud resource service-key-create <your-private-key> --instance-name <your_database_deployment> --service-endpoint private  
 ```
 {: pre}
+
 The private service endpoint is selected with `--service-endpoint private`. After that, you bind the database to the Kubernetes cluster through the private endpoint with the `cluster service bind` command.
 ```
 ibmcloud ks cluster service bind <your_cluster_name> <resource_group> <your_database_deployment> --key <your-private-key>
@@ -55,6 +57,7 @@ ibmcloud ks cluster service bind <your_cluster_name> <resource_group> <your_data
 kubectl get secrets --namespace=default
 ```
 {: pre}
+
 More information on binding services is found in the [Kubernetes Service documentation](/docs/containers?topic=containers-service-binding#bind-services).
 
 ### Configuring in your Kubernetes app 
