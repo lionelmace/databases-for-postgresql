@@ -281,6 +281,7 @@ How far behind a PostgreSQL read-only replica is, in bytes.
 | `Value Type`  | `count` |
 | `Segment By` | `Service instance` |
 {: caption="Table 8. Read replica replication lag metric metadata" caption-side="top"}
+
 ### Successful archive rate
 {: #ibm_databases_for_postgresql_successful_archive_rate}
 
