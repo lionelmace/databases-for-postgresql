@@ -12,7 +12,7 @@ subcollection: databases-for-postgresql
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
+{:codeblock: .codeblock}	
 {:pre: .pre}
 {:tip: .tip}
 
@@ -26,9 +26,10 @@ The configuration is defined in a schema. To make a change, you send a JSON obje
 {"configuration":{"max_connections":150}}
 ```
 {: .codeblock}
+
 to either the CLI or to the API. 
 
-For more information on checking the current value of `max_connections`, see the [Managing PostreSQL Connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) documentation. 
+For more information on checking the current value of `max_connections`, see the [Managing PostgreSQL Connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) documentation. 
 
 ## Using the CLI
 
@@ -60,9 +61,9 @@ For more information, see the [API Reference](https://cloud.ibm.com/apidocs/clou
 ### Memory Settings
 
 [`shared_buffers`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS)
-  - Default - `32000` (number of 8 KiB buffers, or about 262 MB) 
-  - Recommended max value: 25% of available RAM
-  - Restarts database? - **Yes** 
+- Default - `32000` (number of 8 KiB buffers, or about 262 MB) 
+- Recommended max value: 25% of available RAM
+- Restarts database? - **Yes** 
   
 **Note:** The recommended memory allocation for shared_buffers is 25% of the deployment's RAM. **Warning: Setting `shared_buffers` any higher can result in memory issues that cause the database to crash, and might decrease the performance of your Database as data is most likely buffered by the OS already.** Setting `shared_buffers` equal, close to equal, or higher than the amount of allocated memory prevents the database from starting. The setting specifies the number of 8 KiB shared memory buffers. 
   
@@ -98,55 +99,55 @@ pg_statio_user_indexes;
 ### General Settings
 
 [`max_connections`](https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS)
-  - Default - 115
-  - Restarts database? - **YES**
-  - Notes - [You might need to scale before you increase max connections.](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability#connection-limits-ha)
+- Default - 115
+- Restarts database? - **YES**
+- Notes - [You might need to scale before you increase max connections.](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability#connection-limits-ha)
 
 [`max_prepared_transactions`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAX-PREPARED-TRANSACTIONS)
-  - Default - `0`
-  - Restarts database? - **YES**
-  - Notes - The default value of `0` disables use of [prepared transactions](https://www.postgresql.org/docs/current/sql-prepare-transaction.html) and is strongly recommended unless you need to use them.
+- Default - `0`
+- Restarts database? - **YES**
+- Notes - The default value of `0` disables use of [prepared transactions](https://www.postgresql.org/docs/current/sql-prepare-transaction.html) and is strongly recommended unless you need to use them.
 
 [`synchronous_commit`](https://www.postgresql.org/docs/current/wal-async-commit.html)
-  - Default - `local`
-  - Restarts database? - No
-  - Options - `local` or `off`
-  - Notes - Setting `synchronous_commit` to `off` increases transaction commit rate at the expense of a loss of committed transactions if an unclean shutdown occurs.
+- Default - `local`
+- Restarts database? - No
+- Options - `local` or `off`
+- Notes - Setting `synchronous_commit` to `off` increases transaction commit rate at the expense of a loss of committed transactions if an unclean shutdown occurs.
 
 [`effective_io_concurrency`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-EFFECTIVE-IO-CONCURRENCY)
-  - Default - `12`
-  - Restarts database - No
-  - Notes - It is recommended to leave this setting at the default. Only increase it if you profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
+- Default - `12`
+- Restarts database - No
+- Notes - It is recommended to leave this setting at the default. Only increase it if you profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
 
 [`deadlock_timeout`](https://www.postgresql.org/docs/current/runtime-config-locks.html)
-  - Default - `10000`
-  - Restarts database - No
-  - Options - Minimum value of 100
-  - Notes - The number of milliseconds to wait before checking for deadlock and the duration where lock waits are logged. Logs available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). Setting this number too low negatively impacts performance.
+- Default - `10000`
+- Restarts database - No
+- Options - Minimum value of 100
+- Notes - The number of milliseconds to wait before checking for deadlock and the duration where lock waits are logged. Logs available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). Setting this number too low negatively impacts performance.
 
 [`log_connections`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-CONNECTIONS)
-  - Default - `off`
-  - Restarts database - No
-  - Options - Values of `on` or `off` 
-  - Notes - Setting this value to `on` will make the logs very verbose. It also shows the connections of the monitoring tool as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no connections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example, where the application name is set as `test-app`:
-    ```
-    2021-03-01 10:27:56 UTC [[unknown]] [00000] [708]: [2-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  connection authorized: user=admin database=ibmclouddb application_name=test-app SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256, compression=off)
-    ```
+- Default - `off`
+- Restarts database - No
+- Options - Values of `on` or `off` 
+- Notes - Setting this value to `on` will make the logs very verbose. It also shows the connections of the monitoring tool as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no connections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example, where the application name is set as `test-app`:
+```
+2021-03-01 10:27:56 UTC [[unknown]] [00000] [708]: [2-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  connection authorized: user=admin database=ibmclouddb application_name=test-app SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256, compression=off)
+```
 
 [`log_disconnections`](https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-DISCONNECTIONS)
-  - Default - `off`
-  - Restarts database - No
-  - Options - Values of `on` or `off` 
-  - Notes - Setting this value to `on` will make the logs very verbose. It will also show the disconnections of the monitoring tooling as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no disconnections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example where the application name is set as `test-app`:
-    ```
-    2021-03-01 10:27:56 UTC [test-app] [00000] [708]: [3-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  disconnection: session time: 0:00:00.793 user=admin database=ibmclouddb host=127.0.0.1 port=50638
-    ```    
+- Default - `off`
+- Restarts database - No
+- Options - Values of `on` or `off` 
+- Notes - Setting this value to `on` will make the logs very verbose. It will also show the disconnections of the monitoring tooling as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no disconnections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example where the application name is set as `test-app`:
+```
+2021-03-01 10:27:56 UTC [test-app] [00000] [708]: [3-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  disconnection: session time: 0:00:00.793 user=admin database=ibmclouddb host=127.0.0.1 port=50638
+```    
 
 [`log_min_duration_statement`](https://www.postgresql.org/docs/current/runtime-config-logging.html)
 - Default - `100`
 - Restarts database - No
 - Options - Minimum value of 100
-- Notes - Statements that take longer than the specified number of milliseconds are logged.   
+- Notes - Statements that take longer than the specified number of milliseconds are logged.  
 
 [`tcp_keepalives_idle`](https://www.postgresql.org/docs/10/runtime-config-connection.html)
 - Default - `300`
@@ -159,30 +160,28 @@ pg_statio_user_indexes;
 [`tcp_keepalives_count`](https://www.postgresql.org/docs/10/runtime-config-connection.html)
 - Default - `6`
 - Restarts database - No
-  
+
 ### WAL Settings
 
 [`archive_timeout`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
-  - Default - `1800`
-  - Restarts database - No
-  - Options - Minimum value of 300
-  - Notes - The number of seconds to wait before forcing a switch to the next WAL file. If the number of seconds has passed and if there has been database activity, the server switches to a new segment. Effectively limits the amount of time data can remain unarchived.
+- Default - `1800`
+- Restarts database - No
+- Options - Minimum value of 300
+- Notes - The number of seconds to wait before forcing a switch to the next WAL file. If the number of seconds has passed and if there has been database activity, the server switches to a new segment. Effectively limits the amount of time data can remain unarchived.
 
 The next three settings `wal_level`, `max_replication_slots` and `max_wal_senders` enable use of the [`wal2json` logical decoding plug-in](/docs/databases-for-postgresql?topic=databases-for-postgresql-wal2json). Anyone not using this plug-in should leave these settings at the default.
 
 [`wal_level`](https://www.postgresql.org/docs/current/runtime-config-wal.html)
-  - Default - `hot_standby`
-  - Restarts database - **YES**
-  - Notes - Controls WAL level. Allowed values are `hot_standby` or `logical`. Set to logical to use logical decoding. If you are not using logical decoding, using `logical` increases the WAL size, which has several disadvantages and no real advantage. If you check your configuration using `SHOW wal_level;` in `psql`, note that as of version 9.6 the value `hot_standby` is mapped to `replica`.
+- Default - `hot_standby`
+- Restarts database - **YES**
+- Notes - Controls WAL level. Allowed values are `hot_standby` or `logical`. Set to logical to use logical decoding. If you are not using logical decoding, using `logical` increases the WAL size, which has several disadvantages and no real advantage. If you check your configuration using `SHOW wal_level;` in `psql`, note that as of version 9.6 the value `hot_standby` is mapped to `replica`.
 
 [`max_replication_slots`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
-  - Default - `10`
-  - Restarts database - **YES**
-  - Notes - The maximum number of simultaneously defined replication slots. The default and minimum number of slots is 10. Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. To use slots, you need to set the value above 20 and have 1 slot per consumer. It is recommended to add one additional slot over the minimum per expected consumer. Using `wal2json` and not increasing `max_replication_slots` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
+- Default - `10`
+- Restarts database - **YES**
+- Notes - The maximum number of simultaneously defined replication slots. The default and minimum number of slots is 10. Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. To use slots, you need to set the value above 20 and have 1 slot per consumer. It is recommended to add one additional slot over the minimum per expected consumer. Using `wal2json` and not increasing `max_replication_slots` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
 
 [`max_wal_senders`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
-  - Default - `12`
-  - Restarts database - **YES**
-  - Notes - The maximum number of simultaneously running WAL sender processes. The default and minimum is 12. One `wal_sender` per consumer is required.  Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. You need to set the value above 20 and it is recommended to add one additional `wal_sender` over the minimum per expected consumer. Using `wal2json` and not increasing `max_wal_senders` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
-
-
+- Default - `12`
+- Restarts database - **YES**
+- Notes - The maximum number of simultaneously running WAL sender processes. The default and minimum is 12. One `wal_sender` per consumer is required.  Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. You need to set the value above 20 and it is recommended to add one additional `wal_sender` over the minimum per expected consumer. Using `wal2json` and not increasing `max_wal_senders` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
