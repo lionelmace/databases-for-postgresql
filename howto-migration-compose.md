@@ -44,7 +44,7 @@ If you use allowlists to limit connections to your Compose deployment, you need 
 
 ## Setting Up on IBM Cloud
 
-First, if you don't already have one, you need to have an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/registration){:new_window}. 
+First, if you don't already have one, you need to have an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/registration){: new_window}. 
 
 You are going to provision a {{site.data.keyword.databases-for-postgresql}} read-only replica by using either the Resource Controller API or CLI. Using the CLI is a little easier, so you can also install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-getting-started). If you install the CLI from the cURL command that is provided, you get a selection of extra plug-ins and extensions for multiple IDEs. You can install just the stand-alone package from the [Installing the stand-alone IBM Cloud CLI](/docs/cli?topic=cli-install-ibmcloud-cli) page. 
 
@@ -224,9 +224,9 @@ On the Compose deployment, you might have to perform a few actions post-migratio
 
 1. Connect to the `template1` database on your Compose deployment as the `admin` user.
 2. Run the following commands.
-  - ```SELECT pg_drop_replication_slot('ibm_cloud_databases_migration');``` {: pre}
-  - ```DROP ROLE ibm;```{: pre}
-  - ```SELECT public.set_wal_keep_segments(0);``` {: pre} (specifying 0 sets it back to the default of 16 internally)
+    - ```SELECT pg_drop_replication_slot('ibm_cloud_databases_migration');``` {: pre}
+    - ```DROP ROLE ibm;```{: pre}
+    - ```SELECT public.set_wal_keep_segments(0);``` {: pre} (specifying 0 sets it back to the default of 16 internally)
 
 You should also now be able to scale your Compose deployment back down to a pre-migration size if you experienced it growing during the migration.
 
