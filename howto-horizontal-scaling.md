@@ -21,7 +21,7 @@ subcollection: databases-for-postgresql
 # Adding PostgreSQL Members
 {: #horizontal-scaling}
 
-It is possible to scale your {{site.data.keyword.databases-for-postgresql_full}} deployment horizontally by adding more members. Adding members increases the reliability of deployment by spreading data across extra `Availability Zones` (where available) and allow for more reliably synchronous replication. Adding a member does not spread loads nor help with capacity in your deployment. 
+By adding more members, it's possible to scale your {{site.data.keyword.databases-for-postgresql_full}} deployment horizontally, which increases deployment reliability by spreading data across extra `Availability Zones`, where available. Horizontally scaling deployments to three PostgreSQL members is required before enabling [synchronous replication.](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration#general-settings) Adding a member does not spread loads nor help with capacity in your deployment; however, PostgreSQL members are eligible for failovers.
 
 Horizontal scaling can only increase disk and memory allotments. Members cannot be scaled down. 
 {: .note}
