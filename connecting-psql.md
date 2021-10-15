@@ -52,17 +52,19 @@ Field Name|Index|Description
 
 * `0...` indicates that there might be one or more of these entries in an array.
 
-## Connecting
+## Creating a command line client connection
 
-The `ibmcloud cdb deployment-connections` command handles everything that is involved in creating a command line client connection. For example, to connect to a deployment named  "example-postgres", use the following command.
+Before creating a command line client connection, ensure that you have [set the Admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your deployment.
 
-```
+The `ibmcloud cdb deployment-connections` command handles everything that is involved in creating a command line client connection. For example, to connect to a deployment named "example-postgres", use the following command:
+
+```shell
 ibmcloud cdb deployment-connections example-postgres --start
 ```
 {: pre}
 
-Or
-```
+or
+```shell
 ibmcloud cdb cxn example-postgres -s
 ```
 {: pre}
