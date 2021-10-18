@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2021
-lastupdated: "2021-02-02"
+lastupdated: "2021-10-18"
 
 keywords: pgAdmin, postgresql gui
 
