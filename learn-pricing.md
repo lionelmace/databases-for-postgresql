@@ -22,7 +22,7 @@ subcollection: databases-for-postgresql
 
 A {{site.data.keyword.databases-for-postgresql}} Standard plan deploys as one highly available PostgreSQL cluster with two data members, with your data replicated on both members. The Standard plan is priced based on the total amount of disk storage, RAM, dedicated cores, and backup storage that is allocated to deployments, prorated hourly. {{site.data.keyword.databases-for-postgresql}} deployments have a minimum of 5 GB of disk and 1 GB of RAM per data member.
 
-Templates are provided for ease of use and provide balanced resource allocations appropriate for general purpose workloads. The Custom tab can be used to configure Disk, RAM, and vCPU, as desired.
+Templates are provided for ease of use and provide balanced resource allocations appropriate for general purpose workloads. The **Custom** tab can be used to configure Disk, RAM, and vCPU, as desired.
 
 ## Cost Breakdown
 
@@ -39,7 +39,7 @@ Resources | Breakdown | Price
 Total per month = $15.80/Month
 Total per hour = $.02/Hour
 
-All prices here are in US dollars. To see pricing in your local currency, you can to use the pricing calculator.
+All prices here are in US dollars. To see pricing in your local currency, you can use the pricing calculator.
 {: .tip}
 
 ## Using the Pricing Calculator
