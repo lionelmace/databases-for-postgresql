@@ -31,6 +31,7 @@ This tutorial is a short introduction to using an {{site.data.keyword.databases-
 - An installation of [pgAdmin4](https://www.pgadmin.org/download/).
 
 Review the [`Getting to production`](/docs/cloud-databases?topic=cloud-databases-best-practices) documentation for general guidance on setting up a basic {{site.data.keyword.databases-for-postgresql_full}} deployment.
+
 ## Connecting to your database with the CLI
 
 There are two main documentation locations that reference the appropriate commands to connect to your database from the CLI:
