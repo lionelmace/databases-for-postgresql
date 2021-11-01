@@ -1,7 +1,7 @@
 ---
 
-Copyright:
-  years: 2018, 2019
+copyright:
+  years: 2017, 2019
 lastupdated: "2021-08-31"
 
 keywords: postgresql, databases
