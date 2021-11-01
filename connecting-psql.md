@@ -28,12 +28,14 @@ You have to set the admin password before you use it to connect to the database.
 {: .tip}
 
 ## Installing `psql`
+{: #installing-psql}
 
 Install the command line client for PostgreSQL, `psql`. To use `psql`, the PostgreSQL client tools need to be installed on the local system. They can be installed with the full PostgreSQL package that is provided from [postgresql.org](https://www.postgresql.org/download/), or as a [package from your operating system's package manager](https://www.compose.com/articles/postgresql-tips-installing-the-postgresql-client/). 
 
 For more information about `psql`, see the [PostgreSQL documentation](https://www.postgresql.org/docs/current/static/app-psql.html).
 
 ## `psql` Connection Strings
+{: #psql-connection-strings}
 
 Connection strings are displayed in the _Endpoints_ panel of your deployment's _Overview_, and can also be retrieved from the [cloud databases CLI plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections), and the [API](https://{DomainName}/apidocs/cloud-databases-api#discover-connection-information-for-a-deployment-f-e81026).
 
@@ -53,6 +55,7 @@ Field Name|Index|Description
 * `0...` indicates that there might be one or more of these entries in an array.
 
 ## Creating a command line client connection
+{: #create-cli-connection}
 
 Before creating a command line client connection, ensure that you have [set the Admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your deployment.
 
@@ -73,12 +76,13 @@ The command prompts for the admin password and then runs the `psql` command line
 
 If you have not installed the cloud databases plug-in, connect to your PostgreSQL databases using `psql` by giving it the "composed" connection string. It provides environment variables `PGPASSWORD` and `PGSSLROOTCERT`. Set `PGPASSWORD` to the admin's password and `PGSSLROOTCERT` to the path or file name for the self-signed certificate. 
 
-```
+```shell
 PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'host=4a8148fa-3806-4f9c-b3fc-6467f11b13bd.8f7bfd7f3faa4218aec56e069eb46187.databases.appdomain.cloud port=32325 dbname=ibmclouddb user=admin sslmode=verify-full'
 ```
 {: .codeblock}
 
 ## Using the self-signed certificate
+{: #using-certificate}
 
 1. Copy the certificate information from the _Endpoints_ panel or the Base64 field of the connection information. 
 2. If needed, decode the Base64 string into text. 
@@ -86,7 +90,7 @@ PGPASSWORD=$PASSWORD PGSSLROOTCERT=0b22f14b-7ba2-11e8-b8e9-568642342d40 psql 'ho
 4. Provide the path to the certificate to the `ROOTCERT` environment variable.
 
 You can display the decoded certificate for your deployment with the CLI plug-in with the command:
-```
+```shell
 ibmcloud cdb deployment-cacert "your-service-name"
 ```
 {: pre}
