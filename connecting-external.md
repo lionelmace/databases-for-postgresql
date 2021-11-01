@@ -26,6 +26,7 @@ Your applications and drivers use connection strings to make a connection to {{s
 The connection strings can be used by any of the credentials you have created on your deployment. While you can use the admin user for all of your connections and applications, it might be better to create users specifically for your applications to connect with. Documentation on generating credentials is on the [Creating Users and Getting Connection Strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings) page.
 
 ## Connecting with a language's driver
+{: #connect-language-driver}
 
 All the information a driver needs to make a connection to your deployment is in the "postgres" section of your connection strings. The table contains a breakdown for reference.
 
@@ -50,7 +51,6 @@ Many PostgreSQL drivers are able to make a connection to your deployment when gi
 ```shell
 postgres://ibm_cloud_30399dec_4835_4967_a23d_30587a08d9a8:$PASSWORD@981ac415-5a35-4ac7-b6bb-fb609326dc42.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud:32704/ibmclouddb?sslmode=verify-full
 ```
-
 {: .codeblock}
 
 The following example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html) to connect to your database.
@@ -113,7 +113,6 @@ public class PGConnect {
     }
 }
 ```
-
 {: .codeblock}
 
 The following example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
@@ -141,7 +140,6 @@ print("List of databases:")
 for row in rows:
     print("  ",row[0])
 ```
-
 {: .codeblock}
 
 The following example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
@@ -182,27 +180,30 @@ let client = new pg.Client({ connectionString: connectionString,
     }
 });
 ```
-
 {: .codeblock}
 
 ## Driver TLS and self-signed certificate support
+{: #tls-certificate-support}
 
 All connections to {{site.data.keyword.databases-for-postgresql}} are TLS 1.2 enabled, so the driver you use to connect needs to be able to support encryption. Your deployment also comes with a self-signed certificate so the driver can verify the server upon connection.
 
 ### Using the self-signed certificate
+{: #selfsigned-cert}
 
 1. Copy the certificate information from the _Endpoints_ panel or the Base64 field of the connection information.
 2. If needed, decode the Base64 string into text.
 3. Save the certificate  to a file. (You can use the name that is provided or your own file name).
 4. Provide the path to the certificate to the driver or client.
 
-![CLI Endpoints panel](images/cli-endpoints-pane.png)
+![CLI Endpoints panel](images/cli-endpoints-pane.png){: caption="Figure 1. The CLI plug-in information tab" caption-side="bottom"}
 
 ### CLI plug-in support for the self-signed certificate
+{: #cli-support}
 
 You can display the decoded certificate for your deployment with the CLI plug-in with the command `ibmcloud cdb deployment-cacert "your-service-name"`. It decodes the base64 into text. Copy and save the command's output to a file and provide the file's path to the driver.
 
 ## Other Drivers
+{: #other-drivers}
 
 PostgreSQL has a vast array of language drivers. The table covers a few of the most common.
 
