@@ -1,6 +1,6 @@
 ---
 
-Copyright:
+copyright:
   years: 2019
 lastupdated: "2019-01-14"
 
@@ -27,6 +27,7 @@ Logical Replication is only available on deployments running PostgreSQL 10 or ab
 {: .tip}
 
 ## Configuring the Publisher
+{: #configure-publisher}
 
 The external PostgreSQL instance is the publisher, and needs to be configured in order for your {{site.data.keyword.databases-for-postgresql}} deployment to connect and be able to pull the data in correctly.
 
@@ -38,6 +39,7 @@ There are inherent limitations and some restrictions to logical replication outl
 {: .tip}
 
 ## Configuring the Subscriber
+{: #configure-subscriber}
 
 To configure your {{site.data.keyword.databases-for-postgresql}} deployment and to make sure that your data is replicated across correctly,
 
@@ -50,6 +52,7 @@ Only the admin user that is provided by {{site.data.keyword.databases-for-postgr
 {: .tip}
 
 ### Subscriber Functions
+{: #subscriber-functions}
 
 **`create_subscription`**
 ```bash
@@ -119,6 +122,7 @@ Usage:
 {: .codeblock}
 
 ## Setting up Logical Replication on the Publisher
+{: #setting-up-logical-replication-publisher}
 
 To configure your external PostgreSQL as a publisher,
 
@@ -159,6 +163,7 @@ Now you can define a publisher on the database and add the tables you want to re
     {: pre}
 
 ## Setting up Logical Replication on the Subscriber
+{: #setting-up-logical-replication-subscriber}
 
 To configure your {{site.data.keyword.databases-for-postgresql}} deployment as a subscriber,
 - Log in to the database created for replication with `admin` user.
@@ -174,6 +179,7 @@ To configure your {{site.data.keyword.databases-for-postgresql}} deployment as a
     {: pre}
 
 ## Monitoring Replication
+{: #monitor-replication}
 
 You can monitor the status of logical replication from both the publisher and the subscriber by running the following query on either.
 ```bash
