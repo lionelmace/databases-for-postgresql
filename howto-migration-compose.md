@@ -206,7 +206,7 @@ To get the {{site.data.keyword.databases-for-postgresql}} deployment up and mini
 You can either perform the promotion by using the UI of your deployment, the promotion button is on the _Read Replicas_ tab, in the _Promote Read-Only Replica_ section.
 
 If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-replica-promote`](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-promote) command. 
-```
+```shell
 ibmcloud cdb read-replica-promote <your-new-deployment-name> --skip-initial-backup
 ```
 {: pre}
