@@ -21,7 +21,7 @@ subcollection: databases-for-postgresql
 # Connecting an external application
 {: #external-app}
 
-Your applications and drivers use connection strings to make a connection to {{site.data.keyword.databases-for-postgresql_full}}. The service provides connection strings specifically for drivers and applications. Connection strings are displayed in the _Endpoints_ panel of your deployment's _Overview_, and can also be retrieved from the [cloud databases CLI plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections), and the [API](https://{DomainName}/apidocs/cloud-databases-api#discover-connection-information-for-a-deployment-f-e81026).
+Your applications and drivers use connection strings to make a connection to {{site.data.keyword.databases-for-postgresql_full}}. The service provides connection strings specifically for drivers and applications. Connection strings are displayed in the *Endpoints* panel of your deployment's *Overview*, and can also be retrieved from the [cloud databases CLI plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections), and the [API](https://{DomainName}/apidocs/cloud-databases-api#discover-connection-information-for-a-deployment-f-e81026).
 
 The connection strings can be used by any of the credentials you have created on your deployment. While you can use the admin user for all of your connections and applications, it might be better to create users specifically for your applications to connect with. Documentation on generating credentials is on the [Creating Users and Getting Connection Strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings) page.
 
@@ -45,19 +45,15 @@ Field Name|Index|Description
 
 * `0...` indicates that there might be one or more of these entries in an array.
 
-
 Many PostgreSQL drivers are able to make a connection to your deployment when given the URI-formatted connection string found in the "composed" field of the connection information. For example,
-```
+
+```shell
 postgres://ibm_cloud_30399dec_4835_4967_a23d_30587a08d9a8:$PASSWORD@981ac415-5a35-4ac7-b6bb-fb609326dc42.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud:32704/ibmclouddb?sslmode=verify-full
 ```
+
 {: .codeblock}
 
-This example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html) to connect to your database.
-
-This example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
-
-This example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
-
+The following example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html) to connect to your database.
 
 ```java
 import java.sql.Connection;
@@ -117,7 +113,10 @@ public class PGConnect {
     }
 }
 ```
+
 {: .codeblock}
+
+The following example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
 
 ```python
 import psycopg2
@@ -142,7 +141,10 @@ print("List of databases:")
 for row in rows:
     print("  ",row[0])
 ```
+
 {: .codeblock}
+
+The following example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
 
 ```java
 const pg = require("pg");
@@ -180,16 +182,17 @@ let client = new pg.Client({ connectionString: connectionString,
     }
 });
 ```
+
 {: .codeblock}
 
 ## Driver TLS and self-signed certificate support
 
-All connections to {{site.data.keyword.databases-for-postgresql}} are TLS 1.2 enabled, so the driver you use to connect needs to be able to support encryption. Your deployment also comes with a self-signed certificate so the driver can verify the server upon connection. 
+All connections to {{site.data.keyword.databases-for-postgresql}} are TLS 1.2 enabled, so the driver you use to connect needs to be able to support encryption. Your deployment also comes with a self-signed certificate so the driver can verify the server upon connection.
 
 ### Using the self-signed certificate
 
-1. Copy the certificate information from the _Endpoints_ panel or the Base64 field of the connection information. 
-2. If needed, decode the Base64 string into text. 
+1. Copy the certificate information from the _Endpoints_ panel or the Base64 field of the connection information.
+2. If needed, decode the Base64 string into text.
 3. Save the certificate  to a file. (You can use the name that is provided or your own file name).
 4. Provide the path to the certificate to the driver or client.
 
@@ -203,8 +206,8 @@ You can display the decoded certificate for your deployment with the CLI plug-in
 
 PostgreSQL has a vast array of language drivers. The table covers a few of the most common.
 
-Language|Driver|Examples
-----------|-----------
+Language | Driver | Examples
+-------|-------|-------
 PHP|`pgsql`|[Link](http://php.net/manual/en/pgsql.examples-basic.php)
 Ruby|`ruby-pg`|[Link](https://github.com/ged/ruby-pg)
 Ruby on Rails|Rails|[Rails Guide](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-postgresql-database)
@@ -212,4 +215,3 @@ C#|`ODBC`|[Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_
 Go|`pq`|[Link](https://godoc.org/github.com/lib/pq)
 Node|`node-postgres`|[Link](https://node-postgres.com/)
 {: caption="Table 2. PostgreSQL drivers" caption-side="top"}
-
