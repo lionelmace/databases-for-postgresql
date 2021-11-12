@@ -1,8 +1,8 @@
 ---
 
-Copyright:
+copyright:
   years: 2018, 2020
-lastupdated: "2020-09-25"
+lastupdated: "2021-11-11"
 
 keywords: postgresql, databases, connection limits
 
@@ -10,11 +10,12 @@ subcollection: databases-for-postgresql
 
 ---
 
-{:new_window: target="_blank"}
+{:external: .external target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
+{:note: .note}
 
 # High-Availability
 {: #high-availability}
@@ -25,9 +26,17 @@ subcollection: databases-for-postgresql
 
 {{site.data.keyword.databases-for-postgresql}} will, at times, do controlled switchovers under normal operation. These switchovers are no-data-loss events that result in resets of active connections. There is a period of up to 15 seconds where reconnections can fail. At times, unplanned failovers might occur due to unforeseen events on the operating environment. These can take up to 45 seconds, but can be less. In both cases, potential exists for the downtime to be longer.
 
-You can extend high-availability further by either adding [PostgreSQL members](https://test.cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling) to the instance for greater in region redundancy, as well as provisioning [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regionial failover or read offloading. 
+You can extend high-availability further by adding [PostgreSQL members](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-horizontal-scaling) to the instance, for greater in-region redundancy, or by provisioning [read-only replicas](/docs/databases-for-postgresql?topic=databases-for-postgresql-read-only-replicas) for cross-regional failover or read offloading. 
+
+{{site.data.keyword.databases-for-postgresql}} is designed and built to provide a robust, resilient, and performant Database as a Service offering. We highly recommend reviewing the PostgreSQL documentation on [replication techniques](https://www.postgresql.org/docs/current/wal-async-commit.html) to understand the constraints and tradeoffs associated with the asynchronous replication strategy deployed by default with {{site.data.keyword.databases-for-postgresql}}.
+
+In scenarios where a database becomes critically unhealthy, such as a server crash on the leader, {{site.data.keyword.databases-for-postgresql}} will attempt to initiate a failover. This auto failover capability is capped at 1 MB of data lag from leader to follower (a few rows of data once accounting for additional PostgreSQL data overhead) and will not be performed if the lag threshold is exceeded. If the potential for 1 MB of data loss is intolerable for the application, you can horizontally scale your {{site.data.keyword.databases-for-postgresql}} instance to 3 members and configure {{site.data.keyword.databases-for-postgresql}} to use a synchronous replication strategy on a per user or per database basis.
+
+Employing synchronous commits can potentially slow down database performance by a measurable degree. Typically, a performant and effective way to employ this feature is by using it only on specific databases or users within PostgreSQL that must have the highest degree of data durability available. 
+{: .note}
 
 ## Application-level High-Availability
+{: #application-level-ha}
 
 Applications that communicate over networks and cloud services are subject to transient connection failures. You want to design your applications to retry connections when errors are caused by a temporary loss in connectivity to your deployment or to {{site.data.keyword.cloud_notm}}.
 
@@ -43,6 +52,7 @@ Several minutes of database unavailability or connection interruption are not ex
 {{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. After the connection limit has been reached, any attempts at starting a new connection results in an error. To prevent overwhelming your deployment with connections, use connection pooling, or scale your deployment and increase its connection limit. For more information, see the [Managing PostgreSQL Connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) page.
 
 ## High availability, disaster recovery, and SLA resources
+{: #ha-recovery-sla}
 
 {{site.data.keyword.databases-for-postgresql}} deployments conform to the {{site.data.keyword.cloud_notm}} Databases [HA, DR, and SLA](/docs/cloud-databases?topic=cloud-databases-ha-dr) information and terms.
 

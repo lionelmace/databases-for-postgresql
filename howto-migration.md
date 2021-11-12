@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017,2020
-lastupdated: "2020-09-09"
+  years: 2017, 2020
+lastupdated: "2021-11-11"
 
 keywords: postgresql, databases
 
@@ -9,7 +9,7 @@ subcollection: databases-for-postgresql
 
 ---
 
-{:new_window: target="_blank"}
+{:external: .external target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -22,6 +22,7 @@ subcollection: databases-for-postgresql
 Various options exist to migrate data from existing PostgreSQL databases to {{site.data.keyword.databases-for-postgresql_full}}. We focus on the simplest and most effective. To get started, you need PostgreSQL installed locally so you have the `psql` and `pg_dump` tools. And while not strictly required, the {{site.data.keyword.databases-for}} CLI makes it easier to connect and restore to a new {{site.data.keyword.databases-for-postgresql}} deployment. 
 
 ## pg_dump
+{: #pg_dump}
 
 On your source database run `pg_dump` to create an SQL file, which can be used to re-create the database. At a minimum, `pg_dump` takes a host name (`-h` flag), port number (`-p` flag), database name (`-d` flag), user name (`-U` flag), and a file (or directory name) to write the dump to (`-f` flag). 
 
@@ -35,6 +36,7 @@ pg_dump -h sl-eu-lon-2-portal.4.dblayer.com -p 17980 -d compose -U admin -f dump
 The `pg_dump` command has many options and it is recommended that you [consult the official documentation](https://www.postgresql.org/docs/9.6/static/backup-dump.html) and [command reference](https://www.postgresql.org/docs/9.6/static/app-pgdump.html) for a fuller view of its capabilities.
 
 ## Restoring pg_dump's output
+{: #restore-pg_dump-output}
 
 The resulting output of `pg_dump` can then be uploaded into a new {{site.data.keyword.databases-for-postgresql}} deployment. As the output is SQL, it can simply be sent to the database through the `psql` command. We recommend that imports be performed with the admin user. 
 
@@ -57,6 +59,8 @@ The command automatically uses the admin user, if no user is specified. It also 
 While the restore process is running, it emits a number of messages about changes it is making to the database deployment.
 
 ### Additional migration option using pg_restore
+{: #pg_restore}
+
 For users with a tar file containing sql and data separately, the command `pg_restore` can be used to migrate your data in addition to the `psql` commands previously noted. An example of the `pg_restore` command is:
 
 ```shell

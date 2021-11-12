@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020, 2021
-lastupdated: "2021-09-02"
+lastupdated: "2021-11-11"
 
 keywords: postgresql, monitoring, metrics, iops, disk usage, memory usage, connection usage
 
@@ -9,7 +9,7 @@ subcollection: databases-for-postgresql
 
 ---
 
-{:new_window: target="_blank"}
+{:external: .external target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -24,20 +24,21 @@ Monitoring for {{site.data.keyword.databases-for-postgresql_full}} deployments i
 
 To access {{site.data.keyword.monitoringfull_notm}} from your deployment, use the _Monitoring_ link from the right menu. (If you do not already have a monitoring service in the same region as your deployment it says _Add monitoring_.)
 
-![The Monitoring link in a deployment](images/monitoring-ui-link.png)
+![The Monitoring link in a deployment](images/monitoring-ui-link.png){: caption="Figure 1. The Monitoring link in a deployment" caption-side="top"}
 
 To access your deployment's monitoring dashboard from {{site.data.keyword.monitoringfull_notm}}, it's in the sidebar, under _IBM_.
 
-![Cloud databases dashboard in monitoring](images/monitoring-ibm-list.png)
+![Cloud databases dashboard in monitoring](images/monitoring-ibm-list.png){: caption="Figure 2. Cloud databases dashboard in monitoring" caption-side="top"}
 
 ## Monitoring Availability
+{: #monitoring-availability}
 
 {{site.data.keyword.monitoringfull_notm}} monitoring is available for deployments in every region. Deployments in Multi-zone Regions (MZRs) - `eu-gb`, `eu-de`, `us-east`, `us-south`, `jp-tok`, `jp-osa` `au-syd` - have their metrics in the corresponding region.
 
 If you have deployments that are in a Single-zone Region (SZR) - `che01`, or `seo01` - then your logs are forwarded to a {{site.data.keyword.monitoringfull_notm}} instance in another region. You need to provision monitoring instances in the region where your metrics are forwarded to. Metrics for deployments in `seo01` and `che01` go to `jp-tok`. 
 
 ## Available Metrics
-{: metrics-by-plan}
+{: #metrics-by-plan}
 
 | Metric Name |
 |-----------|
@@ -92,6 +93,7 @@ Blocks hit rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 4: Blocks hit rate metric metadata" caption-side="top"}
+
 ### Blocks read rate
 {: #ibm_databases_for_postgresql_blocks_read_rate}
 
@@ -130,6 +132,7 @@ Buffers checkpoint rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 10: Buffers checkpoint rate metric metadata" caption-side="top"}
+
 ### Cache hit ratio
 {: #ibm_databases_for_postgresql_cache_hit_ratio}
 
@@ -142,6 +145,7 @@ Cache hit ratio
 | `Value Type`  | `percent` |
 | `Segment By` | `Service instance` |
 {: caption="Table 12: Cache hit ratio metric metadata" caption-side="top"}
+
 ### Deadlocks count
 {: #ibm_databases_for_postgresql_deadlocks_count}
 
@@ -154,6 +158,7 @@ Deadlocks count
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance` |
 {: caption="Table 7: Deadlocks count metric metadata" caption-side="top"}
+
 ### Deadlocks rate
 {: #ibm_databases_for_postgresql_deadlocks_rate}
 
@@ -166,6 +171,7 @@ Deadlocks rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 18: Deadlocks rate metric metadata" caption-side="top"}
+
 ### Disk read latency mean
 {: #ibm_databases_for_postgresql_disk_read_latency_mean}
 
@@ -178,6 +184,7 @@ Disk read latency mean
 | `Value Type`  | `count` |
 | `Segment By` | `Service instance` |
 {: caption="Table 25: Disk read latency mean metric metadata" caption-side="top"}
+
 ### Disk write latency mean
 {: #ibm_databases_for_postgresql_disk_write_latency_mean}
 
@@ -294,6 +301,7 @@ Successful archive rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 94: Successful archive rate metric metadata" caption-side="top"}
+
 ### Temporary files size in bytes
 {: #ibm_databases_for_postgresql_temp_bytes_count}
 
@@ -358,6 +366,7 @@ Transaction commit rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 111: Transaction commit rate metric metadata" caption-side="top"}
+
 ### Transaction rollback count
 {: #ibm_databases_for_postgresql_transaction_rollback_count}
 
@@ -370,6 +379,7 @@ Transaction rollback count
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance` |
 {: caption="Table 85: Transaction rollback count metric metadata" caption-side="top"}
+
 ### Transaction rollback rate
 {: #ibm_databases_for_postgresql_transaction_rollback_rate}
 
@@ -382,6 +392,7 @@ Transaction rollback rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 115: Transaction rollback rate metric metadata" caption-side="top"}
+
 ### Tuples deleted count
 {: #ibm_databases_for_postgresql_tuples_deleted_count}
 
@@ -394,6 +405,7 @@ Tuples deleted count
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance` |
 {: caption="Table 87: Tuples deleted count metric metadata" caption-side="top"}
+
 ### Tuples deleted rate
 {: #ibm_databases_for_postgresql_tuples_deleted_rate}
 
@@ -406,6 +418,7 @@ Tuples deleted rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 118: Tuples deleted rate metric metadata" caption-side="top"}
+
 ### Tuples fetched count
 {: #ibm_databases_for_postgresql_tuples_fetched_count}
 
@@ -418,6 +431,7 @@ Tuples fetched count
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance` |
 {: caption="Table 89: Tuples fetched count metric metadata" caption-side="top"}
+
 ### Tuples fetched rate
 {: #ibm_databases_for_postgresql_tuples_fetched_rate}
 
@@ -430,6 +444,7 @@ Tuples fetched rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 122: Tuples fetched rate metric metadata" caption-side="top"}
+
 ### Tuples inserted count
 {: #ibm_databases_for_postgresql_tuples_inserted_count}
 
@@ -442,6 +457,7 @@ Tuples inserted count
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance` |
 {: caption="Table 90: Tuples inserted count metric metadata" caption-side="top"}
+
 ### Tuples inserted rate
 {: #ibm_databases_for_postgresql_tuples_inserted_rate}
 
@@ -454,6 +470,7 @@ Tuples inserted rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 127: Tuples inserted rate metric metadata" caption-side="top"}
+
 ### Tuples returned rate
 {: #ibm_databases_for_postgresql_tuples_returned_rate}
 
@@ -466,6 +483,7 @@ Tuples returned rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 129: Tuples returned rate metric metadata" caption-side="top"}
+
 ### Tuples updated count
 {: #ibm_databases_for_postgresql_tuples_updated_count}
 
@@ -478,6 +496,7 @@ Tuples updated count
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance` |
 {: caption="Table 93: Tuples updated count metric metadata" caption-side="top"}
+
 ### Tuples updated rate
 {: #ibm_databases_for_postgresql_tuples_updated_rate}
 
@@ -490,6 +509,7 @@ Tuples updated rate
 | `Value Type`  | `rate` |
 | `Segment By` | `Service instance` |
 {: caption="Table 132: Tuples updated rate metric metadata" caption-side="top"}
+
 ### Used CPU for an instance
 {: #ibm_databases_for_postgresql_cpu_used_percent}
 
@@ -570,4 +590,3 @@ The following attributes are available for segmenting one or more attributes as 
 | `Service instance name` | `ibm_service_instance_name` | The service instance name provides the user-provided name of the service instance, which isn't necessarily a unique value depending on the name provided by the user. |
 | `Resource group` | `ibm_resource_group_name` | The resource group where the service instance was created. |
 {: caption="Table 16. Additional Attributes Metadata" caption-side="top"}
-

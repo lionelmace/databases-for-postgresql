@@ -1,8 +1,8 @@
 ---
 
-Copyright:
+copyright:
   years: 2020, 2021
-lastupdated: "2021-03-30"
+lastupdated: "2021-11-11"
 
 keywords: postgresql, databases, scaling, autoscaling, memory, disk I/O
 
@@ -10,7 +10,7 @@ subcollection: databases-for-postgresql
 
 ---
 
-{:new_window: target="_blank"}
+{:external: .external target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -31,7 +31,7 @@ General Autoscaling parameters
 - How often to scale, measured either in seconds, minutes, or hours.
 - A hard limit on scaling, your deployment stops scaling at the limit.
 
-![Example Autoscaling panel](images/autoscaling-update.png)
+![Example Autoscaling panel](images/autoscaling-update.png){: caption="Figure 1. Example Autoscaling panel" caption-side="bottom"}
 
 Memory - Memory autoscaling is based on Disk I/O utilization in order to provide more memory for disk caching as your read/write load increases. The benefit is that additional memory might alleviate pressure on disk I/O by supporting more caching. Autoscaling configurations based on memory usage are currently not available. 
 
@@ -40,6 +40,7 @@ Disk - Disk autoscaling can scale when either disk usage reaches a certain thres
 The resource numbers refer to each database member in a deployment. For example, there are two data members in a PostgreSQL deployment and if the deployment is scaled with 10 GB of disk and 1 GB of RAM, that means each member gets 10 GB of disk and 1 GB of RAM. The total resources added to your deployment is 20 GB of disk and 2 GB of RAM.
 
 ## Autoscaling Considerations
+{: #autoscaling-consider}
 
 - Scaling your deployment up might cause your databases to restart. If you scale RAM or CPU and your deployment needs to be moved to a host with more capacity, then the databases are restarted as part of the move.
 
@@ -61,35 +62,38 @@ The resource numbers refer to each database member in a deployment. For example,
 - Read-only replicas do not auto-scale to match the leader. If the amount of data you store outgrows the disk that is allocated to your deployments, scale the disk on the read-only replicas and then the leader. Scaling the read-only replica first ensures that you do not run out of space on the read-only replicas. If you scaled the leader's disk for performance and not for space, it is not necessary to scale the read-only replicas.
 
 ## Configuring Autoscaling in the UI
+{: #-config-autoscaling-ui}
 
 The Autoscaling panel is on the _Resources_ tab of your deployment's _Manage_ page. To enable scaling, enter your parameters. Then, check the boxes to enable the parameters you are using. Be sure to click **Save Changes** for your configuration to be saved and your changes to take effect.
 
 To disable autoscaling, clear the boxes for the parameters that you no longer want to use. If you clear all the boxes, autoscaling is disabled. Click **Save Changes** to save the configuration.
 
 ## Configuring Autoscaling in the CLI
+{: #config-autoscaling-cli}
 
 You can get the autoscaling parameters for your deployment through the CLI by using the [`cdb deployment-autoscaling`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#-ibmcloud-cdb-deployment-autoscaling-) command.
-```
+```shell
 ibmcloud cdb deployment-autoscaling <deployment name or CRN> member
 ```
 {: pre}
 
 To enable and set autoscaling parameters through the CLI, use a JSON object or file with the [`cdb deployment-autoscaling-set`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#-ibmcloud-cdb-deployment-autoscaling-set-) command.
-```
+```shell
 ibmcloud cdb deployment-autoscaling-set <deployment name or CRN> member '{"autoscaling": { "memory": {"scalers": {"io_utilization": {"enabled": true, "over_period": "5m","above_percent": 90}},"rate": {"increase_percent": 10.0, "period_seconds": 300,"limit_mb_per_member": 125952,"units": "mb"}}}}'
 ```
 {: pre}
 
 ## Configuring Autoscaling in the API
+{: #config-autoscaling-api}
 
 You can get the autoscaling parameters for your deployment through the API by sending a `GET` request to the [`/deployments/{id}/groups/{group_id}/autoscaling`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-the-autoscaling-configuration-from-a-deploymen) endpoint. 
-```
+```shell
 curl -X GET -H "Authorization: Bearer $APIKEY" 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups/member/autoscaling'
 ```
 {: pre}
 
 To enable and set the autoscaling parameters for your deployment through the API, send a `POST` request to the endpoint. Enabling autoscaling works by setting the `scalers` (`io_utilization` or `capacity`) to `true`.
-```
+```shell
 curl -X PATCH https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups/member/autoscaling -H 'Authorization: Bearer <>' 
 -H 'Content-Type: application/json' 
 -d '{"autoscaling": {
