@@ -64,7 +64,7 @@ ibmcloud resource service-instance-create <your-new-deployment-name> databases-f
   "source_password": "your-compose-admin-password",
   "source_host":"sl-us-south-1-portal.52.dblayer.com",
   "source_port":"25417",
-  "version":"9.6",
+  "version":"12",
   "members_memory_allocation_mb": "8192",
   "members_disk_allocation_mb": "20480"
  }'
@@ -112,7 +112,7 @@ curl -X POST \
     "source_password": "your-compose-admin-password",
     "source_host":"sl-us-south-1-portal.52.dblayer.com",
     "source_port":"25417"
-    "version":"9.6",
+    "version":"12",
     "members_memory_allocation_mb": "8192",
     "members_disk_allocation_mb": "20480"
     }'
@@ -140,19 +140,19 @@ The admin user from your Compose deployment can log in to and run commands on th
 
 On the Compose deployment run
 ```shell
-SELECT pg_current_xlog_flush_location();
+SELECT pg_current_wal_flush_lsn();
 ```
 {: .codeblock}
 
 On the {{site.data.keyword.databases-for-postgresql}} replica run
 ```shell
-SELECT pg_last_xlog_replay_location();
+SELECT pg_last_wal_replay_lsn();
 ```
 {: .codeblock}
 
 These commands output a PostgreSQL logical sequence number (`lsn`). If the two `lsn` match, the replica is caught up and synced to the Compose deployment. If the two `lsn` do not match, the replica still must catch up. If you want to compare how far apart they are, you can run the following command on either member
 ```shell
-SELECT pg_size_pretty(pg_xlog_location_diff('<Output_from_Compose>','<Output_from_replica>'));
+SELECT pg_size_pretty(pg_wal_lsn_diff('<Output_from_Compose>','<Output_from_replica>'));
 ```
 {: .codeblock}
 
@@ -226,19 +226,6 @@ After the promotion is complete, you can switch your applications to connect to 
 
 ## Cleaning Up
 {: #clean-up}
-
-On your new {{site.data.keyword.databases-for-postgresql}} deployment, certain PostgreSQL extensions might need to be updated. You can connect with `pqsl` and check which extensions are available and what versions you should update. Users of PostGIS, for example, should check its versions from the table,
-```shell
-SELECT name, version FROM pg_available_extension_versions; 
-```
-{: .codeblock}
-
-and then update the extension.
-
-```shell
-ALTER EXTENSION postgis UPDATE TO '2.4.6';
-```
-{: .codeblock}
 
 On the Compose deployment, you might have to perform a few actions post-migration to clean up the replication slots and log archive settings. This is especially true if the promotion fails, or if you create a replica and then delete it without promoting it.
 
