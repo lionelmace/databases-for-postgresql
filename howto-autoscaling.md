@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2021
-lastupdated: "2021-11-30"
+lastupdated: "2022-01-06"
 
 keywords: postgresql, databases, scaling, autoscaling, memory, disk I/O
 
@@ -96,22 +96,25 @@ To enable and set the autoscaling parameters for your deployment through the API
 ```shell
 curl -X PATCH https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups/member/autoscaling -H 'Authorization: Bearer <>' 
 -H 'Content-Type: application/json' 
--d '{"autoscaling": {
+-d '{
+    "autoscaling": {
       "memory": {
         "scalers": {
           "io_utilization": {
-            "enabled": true, 
+            "enabled": true,
             "over_period": "5m",
-            "above_percent": 90}
-          },
-          "limits": {
-            "scale_increase_percent": 10.0,
-            "scale_period_seconds": 30,
-            "scale_maximum_mb": 125952,
-            "units": "mb"
+            "above_percent": 90
           }
+        },
+        "limits": {
+          "scale_increase_percent": 10,
+          "scale_period_seconds": 30,
+          "scale_maximum_mb": 125952,
+          "units": "mb"
+        }
       }
-    }'
+    }
+  }'
 ```
 {: pre}
 
