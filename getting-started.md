@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2021
-lastupdated: "2021-11-12"
+lastupdated: "2022-02-21"
 
 keywords: pgAdmin, postgresql gui
 
@@ -18,7 +18,18 @@ subcollection: databases-for-postgresql
 {:tip: .tip}
 
 
-# Getting Started
+# {{site.data.keyword.databases-for-postgresql_full}}
+{: #postgresql-product-description}
+
+{{site.data.keyword.databases-for-postgresql_full}} is a serverless, cloud database service that is fully integrated into the {{site.data.keyword.cloud_notm}} environment. This offering lets users access and use a cloud database system without purchasing and setting up their own hardware, installing their own database software, or managing the database themselves.
+
+{{site.data.keyword.databases-for-postgresql_full}} requires no software, infrastructure, network, or OS administration. IBM continuously provides fully automated and automatic updates to the service, such as security patches and minor version upgrades. A database instance is deployed by default as highly available across multiple data centers in an IBM Cloud Multi-Zone region with synchronous replication. Customers need only connect to a single database endpoint and IBM automatically manages the failover between Availability Zones. {{site.data.keyword.databases-for-postgresql_full}} provides the ability to horizontally scale the MySQL instance with Read Replicas in region or cross-regionally. {{site.data.keyword.databases-for-postgresql_full}} Read Replicas can be easily transformed into fully functioning {{site.data.keyword.databases-for-postgresql_full}} instances, an especially useful feature for online cross-regional disaster recovery strategies.
+
+{{site.data.keyword.databases-for-postgresql_full}} additionally provides independent scaling of disk, RAM, and vCPU, as well as auto-scaling capabilities and hourly billing. These features help provide greatly increase granularity on right-sizing database use for application workload.
+
+{{site.data.keyword.databases-for-postgresql_full}} is a multi-tenant offering by design and customers have multiple levers for increased isolation detailed in our [Security and Compliance section](/docs/cloud-databases?topic=cloud-databases-manage-security-compliance). For example, configuring a database with vCPUs (referred to as Dedicated Cores) introduces hypervisor-level isolation. Alternatively, if that particular lever of isolation is not necessary, customers can configure databases to pay solely for RAM and disk capacity. There are no restrictions on movement between these modes and it is an online activity to introduce or remove your usage of Dedicated Cores.
+
+## Getting Started
 {: #getting-started}
 
 This tutorial is a short introduction to using an {{site.data.keyword.databases-for-postgresql_full}} deployment. [pgAdmin](https://www.pgadmin.org/) is an open-source administration platform for PostgreSQL, and provides many tools for managing your data and databases. [Download and install](https://www.pgadmin.org/download/) the version that is appropriate to your environment, and then follow the steps to connect it to your {{site.data.keyword.databases-for-postgresql}} deployment.
@@ -33,7 +44,7 @@ This tutorial is a short introduction to using an {{site.data.keyword.databases-
 
 Review the [`Getting to production`](/docs/cloud-databases?topic=cloud-databases-best-practices) documentation for general guidance on setting up a basic {{site.data.keyword.databases-for-postgresql_full}} deployment.
 
-## Connecting to your database with the CLI
+### Connecting to your database with the CLI
 {: #connecting-cli}
 
 There are two main documentation locations that reference the appropriate commands to connect to your database from the CLI:
@@ -49,7 +60,7 @@ ibmcloud cdb deployment-connections example-postgres --start
 
 The command prompts for the admin password and then runs the `psql` command line client to connect to the database. If you have not installed the cloud databases plug-in, review the [Connecting with psql documentation here](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) for more detailed connection information.
 
-## Connecting with pgAdmin
+### Connecting with pgAdmin
 {: #connecting-pgadmin}
 
 pgAdmin runs as a server and you connect to it through a browser. When the server is started, it runs on localhost, at default `http://127.0.0.1:53113/browser/`.
@@ -89,7 +100,7 @@ Back on the _General_ tab, give your deployment a name and add any comments you 
 
 If the _Connect now?_ field is checked, pgAdmin attempts to connect to your deployment when you click the **Save** button.
 
-## Using pgAdmin
+### Using pgAdmin
 {: #using-pgadmin}
 
 Once pgAdmin connects, your deployment appears in the _Servers_ list and you get a _Dashboard_ with information and statistics. 
@@ -119,5 +130,3 @@ If you are planning to use {{site.data.keyword.databases-for-postgresql}} for yo
 Also, to ensure the stability of your applications and your database, check out the pages on 
 - [High-Availability](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability)
 - [Performance](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance)
-
-
