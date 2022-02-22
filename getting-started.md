@@ -17,8 +17,12 @@ subcollection: databases-for-postgresql
 {:screen: .screen}
 {:tip: .tip}
 
+# Getting Started
+{: #getting-started}
 
-# {{site.data.keyword.databases-for-postgresql_full}}
+This tutorial is a short introduction to using an {{site.data.keyword.databases-for-postgresql_full}} deployment. [pgAdmin](https://www.pgadmin.org/) is an open-source administration platform for PostgreSQL, and provides many tools for managing your data and databases. [Download and install](https://www.pgadmin.org/download/) the version that is appropriate to your environment, and then follow the steps to connect it to your {{site.data.keyword.databases-for-postgresql}} deployment.
+
+## {{site.data.keyword.databases-for-postgresql_full}}
 {: #postgresql-product-description}
 
 {{site.data.keyword.databases-for-postgresql_full}} is a serverless, cloud database service that is fully integrated into the {{site.data.keyword.cloud_notm}} environment. This offering lets users access and use a cloud database system without purchasing and setting up their own hardware, installing their own database software, or managing the database themselves.
@@ -28,11 +32,6 @@ subcollection: databases-for-postgresql
 {{site.data.keyword.databases-for-postgresql_full}} additionally provides independent scaling of disk, RAM, and vCPU, as well as auto-scaling capabilities and hourly billing. These features help provide greatly increase granularity on right-sizing database use for application workload.
 
 {{site.data.keyword.databases-for-postgresql_full}} is a multi-tenant offering by design and customers have multiple levers for increased isolation detailed in our [Security and Compliance section](/docs/cloud-databases?topic=cloud-databases-manage-security-compliance). For example, configuring a database with vCPUs (referred to as Dedicated Cores) introduces hypervisor-level isolation. Alternatively, if that particular lever of isolation is not necessary, customers can configure databases to pay solely for RAM and disk capacity. There are no restrictions on movement between these modes and it is an online activity to introduce or remove your usage of Dedicated Cores.
-
-## Getting Started
-{: #getting-started}
-
-This tutorial is a short introduction to using an {{site.data.keyword.databases-for-postgresql_full}} deployment. [pgAdmin](https://www.pgadmin.org/) is an open-source administration platform for PostgreSQL, and provides many tools for managing your data and databases. [Download and install](https://www.pgadmin.org/download/) the version that is appropriate to your environment, and then follow the steps to connect it to your {{site.data.keyword.databases-for-postgresql}} deployment.
 
 ## Before you begin
 {: #before-begin}
