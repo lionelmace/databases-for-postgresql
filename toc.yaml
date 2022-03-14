@@ -1,6 +1,7 @@
 toc:
   properties:
     subcollection: databases-for-postgresql
+    service-name: databases-for-mongodb-group
     version: 2
     category: database
     audience: service
