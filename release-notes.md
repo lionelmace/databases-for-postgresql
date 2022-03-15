@@ -4,7 +4,7 @@ copyright:
   years: 2019, 2021
 lastupdated: "2022-03-15"
 
-keywords: databases-for-postgresql release notes
+keywords: databases-for-postgresql-group release notes
 
 subcollection: databases-for-postgresql
 
