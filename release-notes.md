@@ -31,6 +31,13 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 General Availability of {{site.data.keyword.databases-for-postgresql_full}}
 :  {{site.data.keyword.databases-for-postgresql_full}} added to the [IBM Cloud Databases](https://www.ibm.com/cloud/databases) family. See blog post announcement [here](https://www.ibm.com/cloud/blog/ibm-cloud-databases-for-postgresql-and-databases-for-redis-are-now-generally-available).
 
+## 13 April 2020
+{: #databases-for-postgresql-13apr2020}
+{: release-note}
+
+{{site.data.keyword.databases-for-postgresql_full}} autoscaling
+:  We are excited to announce that autoscaling of your deployments based on disk capacity and disk I/O utilization is now available for {{site.data.keyword.databases-for-postgresql_full}}via the UI, API, and CLI. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/ibm-cloud-databases-portfolio-introduces-autoscaling).
+
 ## 9 Sept 2020
 {: #databases-for-postgresql-09sept2020}
 {: release-note}
