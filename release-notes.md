@@ -31,6 +31,13 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 General Availability of {{site.data.keyword.databases-for-postgresql_full}}
 :  {{site.data.keyword.databases-for-postgresql_full}} added to the [IBM Cloud Databases](https://www.ibm.com/cloud/databases) family. See blog post announcement [here](https://www.ibm.com/cloud/blog/ibm-cloud-databases-for-postgresql-and-databases-for-redis-are-now-generally-available).
 
+## 9 Sept 2020
+{: #databases-for-postgresql-09sept2020}
+{: release-note}
+
+{{site.data.keyword.databases-for-postgresql_full}} 9.5 End of Life
+:  On November 11, 2021, all IBM Cloud Databases for PostgreSQL instances on version 9.5 that are still active will be disabled. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/postgresql-9-5-end-of-life).
+
 ## 5 May 2021
 {: #databases-for-postgresql-05may2021}
 {: release-note}
