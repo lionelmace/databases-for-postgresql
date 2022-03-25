@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2022-03-23"
+lastupdated: "2022-03-25"
 
 keywords: databases-for-postgresql release notes
 
@@ -23,6 +23,13 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-postgresql_full}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+## 25 March 2022
+{: #databases-for-postgresql-25mar2022}
+{: release-note}
+
+{{site.data.keyword.databases-for-postgresql_full}} Security Goals Updated
+:  Available security and compliance goals updated. See updated goals [here](/docs/databases-for-redis?topic=databases-for-redis-manage-security-compliance).
 
 ## 5 May 2021
 {: #databases-for-postgresql-05may2021}
