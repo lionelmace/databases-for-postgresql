@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020
-lastupdated: "2022-03-28"
+lastupdated: "2022-03-29"
 
 keyowrds: postgresql, databases, upgrading, major versions, changing versions
 
