@@ -24,6 +24,13 @@ content-type: release-note
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-postgresql_full}} that are grouped by _date_ or _build number_.
 {: shortdesc}
 
+## 28 March 2022
+{: #databases-for-postgresql-28mar2022}
+{: release-note}
+
+{{site.data.keyword.databases-for-postgresql_full}} Requirements for upgrading to PostgreSQL (v 13, 14) from PostgreSQL (v10, 11, 12)
+:  See information regarding updating to versions 13 and 14 [here](/docs/databases-for-postgresql?topic=databases-for-postgresql-upgrading#upgrading-reqs).
+
 ## 25 March 2022
 {: #databases-for-postgresql-25mar2022}
 {: release-note}
