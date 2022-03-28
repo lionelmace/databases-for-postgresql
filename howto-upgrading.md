@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2020
-lastupdated: "2021-11-11"
+lastupdated: "2022-03-28"
 
 keyowrds: postgresql, databases, upgrading, major versions, changing versions
 
@@ -22,6 +22,23 @@ subcollection: databases-for-postgresql
 Once a major version of a database is at its End Of Life (EOL), it is a good idea to upgrade to a current major version. 
 
 You can find the available versions of PostgreSQL on the [{{site.data.keyword.databases-for-postgresql_full}} the catalog](https://cloud.ibm.com/catalog/databases-for-postgresql) page, from the cloud databases cli plug-in command [`ibmcloud cdb deployables-show`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployables-show), or from the cloud databases API [`/deployables`](https://cloud.ibm.com/apidocs/cloud-databases-api#get-all-deployable-databases) endpoint.
+
+## Requirements for upgrading to PostgreSQL (v 13, 14) from PostgreSQL (v10, 11, 12)
+{: #upgrading-reqs}
+
+- If you have `pg_repack` installed, you need to remove it before performing the upgrade. This can be done with 
+
+```shell
+DROP EXTENSION pg_repack; 
+```
+
+After upgrading, you can re-install `pg_repack`.
+
+- If you are using PostGIS, you must upgrade to PostGIS 3.1 prior to upgrading. This can by done by running the following against a database with PostGIS installed 
+
+```shell
+SELECT * FROM update_to_postgis_31();
+```
 
 ## Upgrading from a Read-only Replica
 {: #upgrading-replica}
@@ -122,3 +139,5 @@ curl -X POST \
 - [PostgreSQL 10](https://www.postgresql.org/docs/10/release-10.html)
 - [PostgreSQL 11](https://www.postgresql.org/docs/11/release-11.html)
 - [PostgreSQL 12](https://www.postgresql.org/docs/current/release-12.html)
+- [PostgreSQL 13](https://www.postgresql.org/docs/13/release-13.html)
+- [PostgreSQL 14](https://www.postgresql.org/docs/14/release-14.html)
