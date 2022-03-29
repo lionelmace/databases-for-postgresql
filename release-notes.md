@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2022-03-28"
+  years: 2019, 2022
+lastupdated: "2022-03-29"
 
 keywords: databases-for-postgresql release notes
 
@@ -23,6 +23,13 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-postgresql_full}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+## 29 March 2022
+{: #databases-for-postgresql-29mar2022}
+{: release-note}
+
+{{site.data.keyword.databases-for-postgresql_full}} supports synchronous replication
+:  {{site.data.keyword.databases-for-postgresql_full}} now supports synchronous replication. See documentation [here](/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability#sync-repl).
 
 ## 28 March 2022
 {: #databases-for-postgresql-28mar2022}
