@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2021-11-01"
+  years: 2019, 2022
+lastupdated: "2022-04-01"
 
 keywords: postgresql, databases, connection limits, terminating connections, connection pooling
 
@@ -148,14 +148,14 @@ curl -X PATCH 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
 ### Connection Limits and TCP/IP keepalives Settings
 {: #keepalives}
 
-In the event of a network connection reset or failover, it is possible that broken TCP/IP connections remain in a half-opened/closed state until the tcp keepalive timeouts are reached. To avoid this scenario it is recommended to set the `socket_timeout` and `connection_timeout` settings in your specific application drivers as well. The correct settings _vary based on the specific workload and it is important to run load tests before going to production_. A good starting point for the `connection_timeout` is between 2 to 5 seconds. For the `socket_timeout` a good starting point is between 30 to 60 seconds.
+In the event of a network connection reset or failover, it is possible that broken TCP/IP connections remain in a half-opened/closed state until the tcp keepalive timeouts are reached. To avoid this scenario, set the `socket_timeout` and `connection_timeout` settings in your specific application drivers, as well. The correct settings _vary based on the specific workload and it is important to run load tests before going to production_. A good starting point for the `connection_timeout` is between 2 and 5 seconds. For the `socket_timeout`, a good starting point is between 30 and 60 seconds.
 
-Furthermore on the server side the following [keepalive configurations](https://www.postgresql.org/docs/12/runtime-config-connection.html) are used as the default.
+Furthermore, on the server side, the following [keepalive configurations](https://www.postgresql.org/docs/12/runtime-config-connection.html) are used as the default.
 
 - `tcp_keepalives_idle` is set to 5 minutes
 - `tcp_keepalives_interval` probe interval is set to 10 seconds
 - `tcp_keepalives_count` is set to 6
 
-To prevent half-open/closed connections or bursts in connection attempts from overwhelming your deployment it is also encouraged to [set the `max_connections` paremeter](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) for Postgres to at least double your expected connection count.
+To prevent half-open/closed connections or bursts in connection attempts from overwhelming your deployment, set the [`max_connections` paremeter](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) for Postgres to at least double your expected connection count.
 
-If you connection limit is reached, you can [end all connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections#end-connections) immediately.
+If your connection limit is reached, you can [end all connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections#end-connections) immediately.
