@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-03-29"
+lastupdated: "2022-04-01"
 
 keywords: databases-for-postgresql release notes
 
@@ -80,19 +80,19 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 Changes to {{site.data.keyword.databases-for-postgresql_full}} Logging
 :  We are excited to announce that autoscaling of your deployments based on disk capacity and disk I/O utilization is now available for {{site.data.keyword.databases-for-postgresql_full}}via the UI, API, and CLI. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/changes-to-databases-for-postgresql-logging).
 
-## 6 August 2019
-{: #databases-for-postgresql-06aug2019}
-{: release-note}
-
-New Regions Available for IBM Cloud Database Services
-:  {{site.data.keyword.databases-for-postgresql_full}} is now available to be deployed in Seoul; South Korea; and Chennai, India. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/new-regions-available-for-ibm-cloud-database-services).
-
 ## 2 October 2019
 {: #databases-for-postgresql-02oct2019}
 {: release-note}
 
 {{site.data.keyword.databases-for-postgresql_full}} Announces Point-In-Time Recovery
 :  {{site.data.keyword.databases-for-postgresql_full}} now allows you to restore a database into a new instance from a specific timestamp. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/ibm-cloud-databases-for-postgresql-announces-point-in-time-recovery).
+
+## 6 August 2019
+{: #databases-for-postgresql-06aug2019}
+{: release-note}
+
+New Regions Available for IBM Cloud Database Services
+:  {{site.data.keyword.databases-for-postgresql_full}} is now available to be deployed in Seoul; South Korea; and Chennai, India. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/new-regions-available-for-ibm-cloud-database-services).
 
 ## 2 October 2018
 {: #databases-for-postgresql-02oct2018}
