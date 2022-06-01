@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-04-23"
+lastupdated: "2022-05-31"
 
 keywords: databases-for-postgresql release notes
 
@@ -14,15 +14,18 @@ content-type: release-note
 
 {{site.data.keyword.attribute-definition-list}}
 
-<!-- You must add the release-note content type in your attribute definitions AND to each release note H2. This will ensure that the release note entry is pulled into the notifications library. -->
-
 # Release notes for {{site.data.keyword.databases-for-postgresql_full}}
 {: #postgresql-relnotes}
 
-<!-- The title of your H1 should be Release notes for _service-name_, where _service-name_ is the non-trademarked short version keyref. Include your service name as a search keyword at the top of your Markdown file. See the example keywords above. -->
-
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-postgresql_full}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+## 31 May 2022
+{: #databases-for-postgresql-31may2022}
+{: release-note}
+
+Provision a {{site.data.keyword.databases-for-postgresql_full}} instance with Terraform tutorial published
+:  In this tutorial, you learn how to use Terraform to provision a {{site.data.keyword.databases-for-postgresql_full}} instance. For more information, see [Provision a Databases for PostgreSQL instance with Terraform](/docs/databases-for-postgresql?topic=cloud-databases-tutorial-provision-postgres-tf).
 
 ## 29 March 2022
 {: #databases-for-postgresql-29mar2022}
@@ -57,14 +60,14 @@ General Availability of {{site.data.keyword.databases-for-postgresql_full}} supp
 {: release-note}
 
 {{site.data.keyword.databases-for-postgresql_full}} 9.6 End of Life
-:  On November 11, 2021, all IBM Cloud Databases for PostgreSQL instances on version 9.6 that are still active will be disabled. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/ibm-cloud-databases-postgresql-9-6-end-of-life).
+:  On 11 November 2021, all IBM Cloud Databases for PostgreSQL instances on version 9.6 that are still active will be disabled. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/ibm-cloud-databases-postgresql-9-6-end-of-life).
 
 ## 15 February 2021
 {: #databases-for-postgresql-15feb2021}
 {: release-note}
 
 {{site.data.keyword.databases-for-postgresql_full}} Horizontal Scaling
-:  Customers may scale {{site.data.keyword.databases-for-postgresql_full}} by adding members to their database instance. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/whats-new-in-ibm-cloud-databases).
+:  Customers can scale {{site.data.keyword.databases-for-postgresql_full}} by adding members to their database instance. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/whats-new-in-ibm-cloud-databases).
 
 ## 9 Sept 2020
 {: #databases-for-postgresql-09sep2020}
