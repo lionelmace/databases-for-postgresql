@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-05-31"
+lastupdated: "2022-06-27"
 
 keywords: databases-for-postgresql release notes
 
@@ -20,12 +20,19 @@ content-type: release-note
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-postgresql_full}} that are grouped by _date_ or _build number_.
 {: shortdesc}
 
+## 27 June 2022
+{: #databases-for-postgresql-27june2022}
+{: release-note}
+
+{{site.data.keyword.databases-for-postgresql_full}} 10: End-of-Life in November 2022
+:  On 3 November 2022, all {{site.data.keyword.databases-for-postgresql_full}} instances on version 10 that are still active will be disabled. For more information, see [{{site.data.keyword.databases-for-postgresql_full}} 10: End-of-Life in November 2022](https://www.ibm.com/cloud/blog/announcements/ibm-cloud-databases-for-postgresql-10-end-of-life-in-november-2022).
+
 ## 31 May 2022
 {: #databases-for-postgresql-31may2022}
 {: release-note}
 
 Provision a {{site.data.keyword.databases-for-postgresql_full}} instance with Terraform tutorial published
-:  In this tutorial, you learn how to use Terraform to provision a {{site.data.keyword.databases-for-postgresql_full}} instance. For more information, see [Provision a Databases for PostgreSQL instance with Terraform](/docs/databases-for-postgresql?topic=cloud-databases-tutorial-provision-postgres-tf).
+:  In this tutorial, you learn how to use Terraform to provision a {{site.data.keyword.databases-for-postgresql_full}} instance. For more information, see [Provision a {{site.data.keyword.databases-for-postgresql_full}} instance with Terraform](/docs/databases-for-postgresql?topic=cloud-databases-tutorial-provision-postgres-tf).
 
 ## 29 March 2022
 {: #databases-for-postgresql-29mar2022}
@@ -53,7 +60,7 @@ Provision a {{site.data.keyword.databases-for-postgresql_full}} instance with Te
 {: release-note}
 
 General Availability of {{site.data.keyword.databases-for-postgresql_full}} support for IBM Cloud Databases enabled by IBM Cloud Satellite.
-:  A distributed cloud provides consistent security and services across environments, centralized workload visibility, reduced latency, easier compliance and higher application development velocity. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/deploy-managed-cloud-native-databases-anywhere-with-ibm-cloud-satellite).
+:  A distributed cloud provides consistent security and services across environments, centralized workload visibility, reduced latency, easier compliance, and higher application development velocity. See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/deploy-managed-cloud-native-databases-anywhere-with-ibm-cloud-satellite).
 
 ## 5 May 2021
 {: #databases-for-postgresql-05may2021}
@@ -81,7 +88,7 @@ General Availability of {{site.data.keyword.databases-for-postgresql_full}} supp
 {: release-note}
 
 {{site.data.keyword.databases-for-postgresql_full}} autoscaling
-:  Starting after April 26, 2020, all deployments of {{site.data.keyword.databases-for-postgresql_full}} will have a minor change in the format of PostgreSQL logs emitted into Log Analysis with LogDNA.  See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/ibm-cloud-databases-portfolio-introduces-autoscaling).
+:  Starting after 26 April 2020, all deployments of {{site.data.keyword.databases-for-postgresql_full}} will have a minor change in the format of PostgreSQL logs emitted into Log Analysis with LogDNA.  See blog post announcement [here](https://www.ibm.com/cloud/blog/announcements/ibm-cloud-databases-portfolio-introduces-autoscaling).
 
 ## 27 March 2020
 {: #databases-for-postgresql-27mar2020}
