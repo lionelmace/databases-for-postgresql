@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-02-11"
+  years: 2017, 2022
+lastupdated: "2022-06-30"
 
-keywords: postgresql drivers, python, java, javascript, certificate
+keywords: postgresql drivers, python, java, javascript, certificate, postgresql connection string, postgresql connecting external application
 
 subcollection: databases-for-postgresql
 
@@ -21,9 +21,9 @@ subcollection: databases-for-postgresql
 # Connecting an external application
 {: #external-app}
 
-Your applications and drivers use connection strings to make a connection to {{site.data.keyword.databases-for-postgresql_full}}. The service provides connection strings specifically for drivers and applications. Connection strings are displayed in the *Endpoints* panel of your deployment's *Overview*, and can also be retrieved from the [cloud databases CLI plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections), and the [API](https://{DomainName}/apidocs/cloud-databases-api#discover-connection-information-for-a-deployment-f-e81026).
+Your applications and drivers use connection strings to make a connection to {{site.data.keyword.databases-for-postgresql_full}}. The service provides connection strings specifically for drivers and applications. Connection strings are displayed in the *Endpoints* panel of your deployment's *Overview*, and can also be retrieved from the [cloud databases CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections), and the [API](https://{DomainName}/apidocs/cloud-databases-api#discover-connection-information-for-a-deployment-f-e81026).
 
-The connection strings can be used by any of the credentials you have created on your deployment. While you can use the admin user for all of your connections and applications, it might be better to create users specifically for your applications to connect with. Documentation on generating credentials is on the [Creating Users and Getting Connection Strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings) page.
+The connection strings can be used by any of the credentials you create on your deployment. While you can use the admin user for all of your connections and applications, it might be better to create users specifically for your applications to connect with. Documentation on generating credentials is on the [Creating Users and Getting Connection Strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings) page.
 
 ## Connecting with a language's driver
 {: #connect-language-driver}
@@ -48,7 +48,7 @@ Field Name|Index|Description
 
 Many PostgreSQL drivers are able to make a connection to your deployment when given the URI-formatted connection string found in the "composed" field of the connection information. For example,
 
-```shell
+```sh
 postgres://ibm_cloud_30399dec_4835_4967_a23d_30587a08d9a8:$PASSWORD@981ac415-5a35-4ac7-b6bb-fb609326dc42.8f7bfd8f3faa4218aec56e069eb46187.databases.appdomain.cloud:32704/ibmclouddb?sslmode=verify-full
 ```
 {: .codeblock}
@@ -115,7 +115,7 @@ public class PGConnect {
 ```
 {: .codeblock}
 
-The following example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and may not be suitable for production.
+The following example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and might not be suitable for production.
 
 ```python
 import psycopg2
@@ -190,9 +190,9 @@ All connections to {{site.data.keyword.databases-for-postgresql}} are TLS 1.2 en
 ### Using the self-signed certificate
 {: #selfsigned-cert}
 
-1. Copy the certificate information from the _Endpoints_ panel or the Base64 field of the connection information.
+1. Copy the certificate information from the *Endpoints* panel or the Base64 field of the connection information.
 2. If needed, decode the Base64 string into text.
-3. Save the certificate  to a file. (You can use the name that is provided or your own file name).
+3. Save the certificate to a file. (You can use the name that is provided or your own file name).
 4. Provide the path to the certificate to the driver or client.
 
 ![CLI Endpoints panel](images/cli-endpoints-pane.png){: caption="Figure 1. The CLI plug-in information tab" caption-side="bottom"}
