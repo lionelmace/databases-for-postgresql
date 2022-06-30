@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2019, 2021
-lastupdated: "2022-03-07"
+  years: 2019, 2022
+lastupdated: "2022-06-30"
 
-keywords: postgresql, databases, config
+keywords: postgresql, databases, config, postgresql uri, postgresql logging integration, changing postgresql configuration
 
 subcollection: databases-for-postgresql
 
@@ -21,27 +21,27 @@ subcollection: databases-for-postgresql
 
 {{site.data.keyword.databases-for-postgresql_full}} allows you to change some of the PostgreSQL configuration settings so you can tune your PostgreSQL databases to your use-case. To make permanent changes to the database configuration, use the {{site.data.keyword.databases-for}} [cli-plugin](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-configuration) or [API](https://{DomainName}/apidocs/cloud-databases-api#change-your-database-configuration) to write the changes to the configuration file for your deployment.
 
-The configuration is defined in a schema. To make a change, you send a JSON object with the settings and their new values to the API or the CLI.  For example, to set the `max_connections` setting to 150, you would supply 
-```shell
+The configuration is defined in a schema. To make a change, you send a JSON object with the settings and their new values to the API or the CLI. For example, to set the `max_connections` setting to 150, you would supply 
+```sh
 {"configuration":{"max_connections":150}}
 ```
 {: .codeblock}
 
 to either the CLI or to the API. 
 
-For more information on checking the current value of `max_connections`, see the [Managing PostgreSQL Connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections) documentation. 
+For more information, see [Managing PostgreSQL Connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections). 
 
 ## Using the CLI
 {: #using-cli}
 
 You can check the current configuration of your deployment with 
-```shell
+```sh
 ibmcloud cdb deployment-configuration-schema <deployment name or CRN>
 ```
 {: pre}
 
 To change your configuration through the {{site.data.keyword.databases-for}} cli-plugin, use `deployment-configuration` command. 
-```shell
+```sh
 ibmcloud cdb deployment-configuration <deployment name or CRN> [@JSON_FILE | JSON_STRING]
 ```
 {: pre}
@@ -80,7 +80,7 @@ You can use these queries as the `admin` user, or any user with the `pg_monitor`
 #### Tables
 {: #tables}
 
-```shell
+```sh
 SELECT 
   sum(heap_blks_read) as heap_read,
   sum(heap_blks_hit)  as heap_hit,
@@ -93,7 +93,7 @@ FROM
 #### Indexes
 {: #indexes}
 
-```shell
+```sh
 SELECT 
   sum(idx_blks_read) as idx_read,
   sum(idx_blks_hit)  as idx_hit,
@@ -114,18 +114,18 @@ pg_statio_user_indexes;
 [`max_prepared_transactions`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAX-PREPARED-TRANSACTIONS)
 - Default - `0`
 - Restarts database? - **YES**
-- Notes - The default value of `0` disables use of [prepared transactions](https://www.postgresql.org/docs/current/sql-prepare-transaction.html) and is strongly recommended unless you need to use them.
+- Notes - The default value of `0` disables use of [prepared transactions](https://www.postgresql.org/docs/current/sql-prepare-transaction.html) and is recommended unless you need to use them.
 
 [`synchronous_commit`](https://www.postgresql.org/docs/current/wal-async-commit.html)
 - Default - `local`
 - Restarts database? - No
 - Options - `local`, `on`, or `off`
-- Notes - Setting `synchronous_commit` to off increases transaction commit rate at the expense of a loss of committed transactions if an unclean shutdown occurs. With `synchronous_commit` set to `on`, a transaction is committed only when written to the leader and at least one replica. Therefore, the `on` setting is only available on formations that have been horizontally scaled to at least three members. Before implementing this change, please read through the [High-Availability page](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability).
+- Notes - Setting `synchronous_commit` to off increases transaction commit rate at the expense of a loss of committed transactions if an unclean shutdown occurs. With `synchronous_commit` set to `on`, a transaction is committed only when written to the leader and at least one replica. Therefore, the `on` setting is only available on formations that have been horizontally scaled to at least three members. Before implementing this change, read through the [High-Availability page](https://cloud.ibm.com/docs/databases-for-postgresql?topic=databases-for-postgresql-high-availability).
 
 [`effective_io_concurrency`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-EFFECTIVE-IO-CONCURRENCY)
 - Default - `12`
 - Restarts database - No
-- Notes - It is recommended to leave this setting at the default. Only increase it if you profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS are tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
+- Notes - It is recommended to leave this setting at the default. Only increase it if you profiled SQL queries and have observed inefficient bitmap heap scans. As [IOPS is tied to disk size](/docs/databases-for-postgresql?topic=databases-for-postgresql-performance#disk-iops), increasing this setting on default or smaller sized disks is also not recommended.
 
 [`deadlock_timeout`](https://www.postgresql.org/docs/current/runtime-config-locks.html)
 - Default - `10000`
@@ -137,9 +137,9 @@ pg_statio_user_indexes;
 - Default - `off`
 - Restarts database - No
 - Options - Values of `on` or `off` 
-- Notes - Setting this value to `on` will make the logs very verbose. It also shows the connections of the monitoring tool as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no connections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example, where the application name is set as `test-app`:
+- Notes - Setting this value to `on` makes the logs verbose. It also shows the connections of the monitoring tool as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no connections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example, where the application name is set as `test-app`:
 
-```shell
+```sh
 2021-03-01 10:27:56 UTC [[unknown]] [00000] [708]: [2-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  connection authorized: user=admin database=ibmclouddb application_name=test-app SSL enabled (protocol=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384, bits=256, compression=off)
 ```
 
@@ -147,9 +147,9 @@ pg_statio_user_indexes;
 - Default - `off`
 - Restarts database - No
 - Options - Values of `on` or `off` 
-- Notes - Setting this value to `on` will make the logs very verbose. It will also show the disconnections of the monitoring tooling as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no disconnections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example where the application name is set as `test-app`:
+- Notes - Setting this value to `on` makes the logs verbose. It will also show the disconnections of the monitoring tools as it extracts metrics every 60 seconds. When this is set to `on`, it is recommended to set the application_name in the connection URI to keep an overview in the logs, as the IP addresses shown are the Kubernetes internal IPs. Details about adjusting the connection URI are found in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). When set to `off`, there is no change in behavior to the default setting and no disconnections are logged. Logs are available through the [logging integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). If `on` is set, the logs show lines similar to this example where the application name is set as `test-app`:
 
-```shell
+```sh
 2021-03-01 10:27:56 UTC [test-app] [00000] [708]: [3-1] user=admin,db=ibmclouddb,client=127.0.0.1 LOG:  disconnection: session time: 0:00:00.793 user=admin database=ibmclouddb host=127.0.0.1 port=50638
 ```    
 
@@ -190,7 +190,7 @@ The next three settings `wal_level`, `max_replication_slots` and `max_wal_sender
 [`max_replication_slots`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
 - Default - `10`
 - Restarts database - **YES**
-- Notes - The maximum number of simultaneously defined replication slots. The default and minimum number of slots is 10. Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. To use slots, you need to set the value above 20 and have 1 slot per consumer. It is recommended to add one additional slot over the minimum per expected consumer. Using `wal2json` and not increasing `max_replication_slots` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
+- Notes - The maximum number of simultaneously defined replication slots. The default and minimum number of slots is 10. Twenty slots are reserved for internal use by your deployment for High-Availability (HA) purposes. To use slots, you need to set the value above 20 and have one slot per consumer. Add one additional slot over the minimum per expected consumer. Using `wal2json` and not increasing `max_replication_slots` can impact HA and read-only replicas. If you are not using `wal2json`, you should leave this setting at the default.
 
 [`max_wal_senders`](https://www.postgresql.org/docs/current/runtime-config-replication.html)
 - Default - `12`
