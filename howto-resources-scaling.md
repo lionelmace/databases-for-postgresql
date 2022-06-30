@@ -74,7 +74,8 @@ You can enable or increase the CPU allocation to the deployment. With dedicated 
 
 A visual representation of your data members and their resource allocation is available on the _Resources_ tab of your deployment's _Manage_ page. 
 
-![The Scale Resources Panel in Resources](images/scaling-update.png){: caption="Figure 1. The Scale Resources Panel in _Resources_" caption-side="bottom"}
+![The Scale Resources Panel in Resources](images/scaling-update.png){: caption="Figure 1. The Scale Resources Panel" caption-side="bottom"}
+
 
 Adjust the slider to increase or decrease the resources that are allocated to your service. The slider controls how much memory or disk is allocated per member. The UI shows the total allocated memory or disk for the position of the slider. Click **Scale** to trigger the scaling operations and return to the dashboard overview. 
 
