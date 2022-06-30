@@ -1,9 +1,9 @@
 ---
 copyright:
   years: 2020, 2022
-lastupdated: "2022-03-28"
+lastupdated: "2022-06-30"
 
-keyowrds: postgresql, databases, upgrading, major versions, changing versions
+keyowrds: postgresql, databases, upgrading, major versions, postgresql new deployment, postgresql database version, postgresql major version
 
 subcollection: databases-for-postgresql
 
@@ -28,17 +28,19 @@ You can find the available versions of PostgreSQL on the [{{site.data.keyword.da
 
 - If you have `pg_repack` installed, you need to remove it before performing the upgrade. This can be done with 
 
-```shell
+```sh
 DROP EXTENSION pg_repack; 
 ```
+{: pre}
 
-After upgrading, you can re-install `pg_repack`.
+After upgrading, you can reinstall `pg_repack`.
 
-- If you are using PostGIS, you must upgrade to PostGIS 3.1 prior to upgrading. This can by done by running the following against a database with PostGIS installed 
+- If you are using PostGIS, you must upgrade to PostGIS 3.1 before upgrading. This can by done by running the following against a database with PostGIS installed 
 
-```shell
+```sh
 SELECT * FROM update_to_postgis_31();
 ```
+{: pre}
 
 ## Upgrading from a Read-only Replica
 {: #upgrading-replica}
@@ -62,7 +64,7 @@ curl -X POST \
 
 `skip_initial_backup` is optional. If set to `true`, the new deployment does not take an initial backup when the promotion completes. Your new deployment is available in a shorter amount of time, at the expense of not being backed up until the next automatic backup is run, or you take an on-demand backup.
 
-## Backup and Restore Upgrade
+## Back up and Restore Upgrade
 {: #backup-restore}
 
 One way to upgrade your database version is to [restore a backup](/docs/databases-for-postgresql?topic=cloud-databases-dashboard-backups#restoring-a-backup) of your data into a new deployment that is running the new database version.
@@ -76,14 +78,14 @@ You can upgrade to a new version when [restoring a backup](/docs/databases-for-p
 {: #upgrading-cli}
 
 When you upgrade and restore from backup through the {{site.data.keyword.cloud_notm}} CLI, use the provisioning command from the resource controller.
-```shell
+```sh
 ibmcloud resource service-instance-create <service-name> <service-id> <service-plan-id> <region>
 ```
 {: pre}
 
 The parameters `service-name`, `service-id`, `service-plan-id`, and `region` are all required. You also supply the `-p` with the version and backup ID parameters in a JSON object. The new deployment is automatically sized with the same disk and memory as the source deployment at the time of the backup.
 
-```shell
+```sh
 ibmcloud resource service-instance-create example-upgrade databases-for-postgresql standard us-south \
 -p \ '{
   "backup_id": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71717:backup:06392e97-df90-46d8-98e8-cb67e9e0a8e6",
@@ -115,7 +117,7 @@ curl -X POST \
 ### Dry running the promotion and upgrade
 {: #promotion-dry-run}
 
-In order to evaluate the effects of major version upgrades, you can trigger a dry run. A dry run does not perform the promotion and upgrade, but it does simulate it, with the results printed to the database logs. You can access and view your database logs through the [Log Analysis Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). This ensures the version you are currently running with its extensions can be successfully upgraded to your intended version.
+In order to evaluate the effects of major version upgrades, you can trigger a dry run. A dry run does not perform the promotion and upgrade, but it does simulate it, with the results printed to the database logs. You can access and view your database logs through the [Log Analysis Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging). This ensures the version that you are currently running with its extensions can be successfully upgraded to your intended version.
 
 The dry run must be run with `skip_initial_backup` set to `false`, and `version` defined.
 ```curl
