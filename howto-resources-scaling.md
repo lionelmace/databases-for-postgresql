@@ -87,13 +87,13 @@ The UI currently uses a coarser-grained resolution for scaling than the CLI or A
 [{{site.data.keyword.cloud_notm}} CLI cloud databases plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference) supports viewing and scaling the resources on your deployment. To scale any of the available resource groups, use `cdb deployment-groups-set` command. 
 
 For example, the command to view the resource groups for a deployment named "example-deployment" is, 
-```shell
+```sh
 ibmcloud cdb deployment-groups example-deployment
 ```
 {: pre}
 
 This produces the output,
-```shell
+```sh
 Group   member
 Count   2
 |
@@ -122,7 +122,7 @@ Count   2
 The deployment has two members, with 4096 MB of RAM and 10240 MB of disk allocated in total. The "per member" allocation is 2048 MB of RAM and 5120 MB of disk. The minimum value is the lowest the total allocation can be set. The step size is the smallest amount by which the total allocation can be adjusted.
 
 The `cdb deployment-groups-set` command allows either the total RAM or total disk allocation to be set, in MB. For example, to scale the memory of the "example-deployment" to 2048 MB of RAM for each memory member (for a total memory of 4096 MB), you use the command 
-```shell
+```sh
 ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
 ```
 {: pre}
