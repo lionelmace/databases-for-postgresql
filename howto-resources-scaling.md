@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2021-11-30"
+  years: 2019, 2022
+lastupdated: "2022-06-30"
 
-keywords: postgresql, databases, scaling, memory, disk IOPS, CPU
+keywords: postgresql, scaling, memory, disk IOPS, CPU, postgresql dedicated cores, scaling postgresql
 
 subcollection: databases-for-postgresql
 
@@ -33,9 +33,9 @@ Billing is based on the _total_ amount of resources that are allocated to the se
 ### Disk
 {: #disk-allocation}
 
-Your disk allocation has to be enough to store all of your data. Your data is replicated to both data members so the total amount of disk you use is at least twice the size of your data set. 
+Your disk allocation must be enough to store all of your data. Your data is replicated to both data members so the total amount of disk that you use is at least twice the size of your data set. 
 
-Disk allocation also affects the performance of the disk, with larger disks having higher performance. Baseline Input-Output Operations per second (IOPS) performance for disk is 10 IOPS for each GB. Scale disk to increase the IOPS your deployment can handle.
+Disk allocation also affects the performance of the disk, with larger disks having higher performance. Baseline input/output operations per second (IOPS) performance for disk is 10 IOPS for each GB. Scale disk to increase the IOPS that your deployment can handle.
 
 You cannot scale down storage.
 {: .tip} 
@@ -47,7 +47,7 @@ If you find that your deployment is suffering from performance issues due to a l
 
 [`work_mem`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-WORK-MEM), [`maintenance_work_mem`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-MAINTENANCE-WORK-MEM), and [`effective_cache_size`](https://www.postgresql.org/docs/current/runtime-config-query.html#GUC-EFFECTIVE-CACHE-SIZE) are auto-tuned based on the deployment's total memory. They are also set when you scale memory on your deployment. When you scale, the values are adjusted without outage to the running deployment.
 
-The amount of memory allocated to the database's shared buffer pool is **not** adjusted automatically when you scale your deployment. Its recommended to be set to 25% of the deployment's total memory. You can manually tune the shared buffer pool through the [`shared_buffer`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS) setting in your [PostgreSQL's configuration](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration). It is not auto-tuned because changing the `shared_buffer` requires a database restart.
+The amount of memory allocated to the database's shared buffer pool is **not** adjusted automatically when you scale your deployment. Setting it to 25% of the deployment's total memory is recommended. You can manually tune the shared buffer pool through the [`shared_buffer`](https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS) setting in your [PostgreSQL's configuration](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration). It is not auto-tuned because changing the `shared_buffer` requires a database restart.
 
 ### Dedicated Cores
 {: #resources-dedicated-cores}
@@ -59,15 +59,15 @@ You can enable or increase the CPU allocation to the deployment. With dedicated 
 
 - Scaling your deployment up might cause your databases to restart. If your scaled deployment needs to be moved to a host with more capacity, then the databases are restarted as part of the move.
 
-- Scaling down RAM or CPU does not trigger database restarts.
+- Scaling down RAM or CPU will only trigger database restarts if CPU reaches zero, in which case pods will move back to the shared host. 
 
-- Disk can not be scaled down.
+- Disk cannot be scaled down.
 
 - A few scaling operations can be more long running than others. Enabling dedicated cores moves your deployment to its own host and can take longer than just adding more cores. Similarly, drastically increasing CPU, RAM, or Disk can take longer than smaller increases to account for provisioning more underlying hardware resources.
 
 - Scaling operations are logged in [{{site.data.keyword.at_full}}](/docs/databases-for-postgresql?topic=cloud-databases-activity-tracker).
 
-- If you find consistent trends in resource usage or would like to set up scaling when certain resource thresholds are reached, checkout enabling [autoscaling](/docs/databases-for-postgresql?topic=databases-for-postgresql-autoscaling) on your deployment.
+- If you find consistent trends in resource usage or would like to set up scaling when certain resource thresholds are reached, see [enabling autoscaling](/docs/databases-for-postgresql?topic=databases-for-postgresql-autoscaling).
 
 ## Scaling in the UI
 {: #resources-scaling-ui}
