@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2018, 2021
-lastupdated: "2022-05-13"
+  years: 2018, 2022
+lastupdated: "2022-06-30"
 
-keywords: pgAdmin, postgresql gui, postgresql, postgres
+keywords: pgAdmin, postgresql gui, postgresql, postgres, postgresql cloud database, potgres getting started
 
 subcollection: databases-for-postgresql
 
@@ -20,7 +20,7 @@ subcollection: databases-for-postgresql
 # Getting Started
 {: #getting-started}
 
-This tutorial is a short introduction to using an {{site.data.keyword.databases-for-postgresql_full}} deployment. [pgAdmin](https://www.pgadmin.org/) is an open source administration platform for PostgreSQL, and provides many tools for managing your data and databases. [Download and install](https://www.pgadmin.org/download/) the version that is appropriate to your environment, and then follow the steps to connect it to your {{site.data.keyword.databases-for-postgresql}} deployment.
+This tutorial is a short introduction to using an {{site.data.keyword.databases-for-postgresql_full}} deployment. [pgAdmin](https://www.pgadmin.org/){: .external} is an open source administration platform for PostgreSQL, and provides many tools for managing your data and databases. [Download and install](https://www.pgadmin.org/download/){: .external} the version that is appropriate to your environment, and then follow the steps to connect it to your {{site.data.keyword.databases-for-postgresql}} deployment.
 
 ## {{site.data.keyword.databases-for-postgresql_full}}
 {: #postgresql-product-description}
@@ -57,7 +57,7 @@ ibmcloud cdb deployment-connections example-postgres --start
 ```
 {: pre}
 
-The command prompts for the admin password and then runs the `psql` command-line client to connect to the database. If you have not installed the cloud databases plug-in, review the [Connecting with psql documentation here](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) for more detailed connection information.
+The command prompts for the admin password and then runs the `psql` command-line client to connect to the database. To install the Cloud Databases plug-in, review [Connecting with psql documentation here](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) for more detailed connection information.
 
 ### Connecting with pgAdmin
 {: #connecting-pgadmin}
@@ -80,7 +80,7 @@ First, complete the _Connection_ information,
 - For _Host name/address_, use the _Hostname_ of your deployment.
 - For the _Port_, use the _Port_ of your deployment.
 - The _Maintenance database_ remains `postgres`.
-- For _Username_ and _Password_, use the `admin` credentials that you set after provisioning your deployment. You can choose to have pgAdmin save the password.
+- For _Username_ and _Password_, use the `admin` credentials that you set after provisioning your deployment. You can choose for pgAdmin to save the password.
 - The _Role_ and _Service_ fields can be left empty.
 
 ![Completed Connection information](images/getting-started-connection-info.png){: caption="Figure 3. Completed Connection information" caption-side="bottom"}
@@ -116,7 +116,7 @@ Administrative features that require a superuser are not available through pgAdm
 ## Next Steps
 {: #next-steps}
 
-If you are just using PostgreSQL for the first time, it is a good idea to take a tour through the [official PostgreSQL documentation](https://www.postgresql.org/docs/). 
+If you are just using PostgreSQL for the first time, it is a good idea to take a tour through the [official PostgreSQL documentation](https://www.postgresql.org/docs/){: .external}. 
 
 You can connect to and manage your databases and data with PostgreSQL's command-line tool [`psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 
