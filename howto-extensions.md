@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2017, 2020
-lastupdated: "2021-11-11"
+  years: 2017, 2022
+lastupdated: "2022-07-07"
 
-keywords: postgresql, databases
+keywords: postgresql, databases, postgresql extensions, postgres extensions
 
 subcollection: databases-for-postgresql
 
@@ -19,7 +19,7 @@ subcollection: databases-for-postgresql
 # Managing PostgreSQL Extensions
 {: #extensions}
 
-In PostgreSQL, extensions are modules that supply extra functions, operators, or types. Many extensions are available in {{site.data.keyword.databases-for-postgresql_full}}. In order to use them, you need to [set the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your service and use it to [connect with `psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
+In PostgreSQL, extensions are modules that supply extra functions, operators, or types. Many extensions are available in {{site.data.keyword.databases-for-postgresql_full}}. To use them, [set the admin password](/docs/databases-for-postgresql?topic=databases-for-postgresql-admin-password) for your service and use it to [connect with `psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
 
 ## Listing Installed Extensions
 {: #listing-installed-extensions}
@@ -27,7 +27,7 @@ In PostgreSQL, extensions are modules that supply extra functions, operators, or
 Get a list of all the extensions installed on a database by using the `\dx` command.
 
 For example, the output for `\dx` when run on the {{site.data.keyword.databases-for-postgresql}} default database shows the only installed extension.
-```shell
+```sh
 ibmclouddb=> \dx
                  List of installed extensions
   Name   | Version |   Schema   |         Description
@@ -41,14 +41,14 @@ ibmclouddb=> \dx
 
 To install an extension on to a database use [`CREATE EXTENSION`](https://www.postgresql.org/docs/current/static/sql-createextension.html). For example, to install `pg_stat_statements` on the `ibmclouddb` database, 
 
-```shell
+```sh
 ibmclouddb=> CREATE EXTENSION pg_stat_statements;
 CREATE EXTENSION
 ```
 {: pre}
 
 If you run the `\dx` command after installing an extension, it appears in the table.
-```shell
+```sh
 ibmclouddb=> \dx
                                      List of installed extensions
         Name        | Version |   Schema   |                        Description
@@ -73,7 +73,7 @@ If there is a newer version of an extension available than the one you currently
 
 - [The `pg_repack` documentation](http://reorg.github.io/pg_repack/)
 - When you run the `pg_repack` command, you need to pass the -k flag in to bypass the check for superuser. Example,
-   ```shell
+   ```sh
    pg_repack -k [OPTION]... [DBNAME]
    ```
    {: pre}
@@ -87,12 +87,12 @@ If there is a newer version of an extension available than the one you currently
 
 This list is what is returned from a {{site.data.keyword.databases-for-postgresql}} deployment running PostgreSQL version 12. For a list of available extensions on your deployment, use `SELECT name FROM pg_available_extensions;` in `psql`.
 
-```shell
+```sh
 ibmclouddb=> SELECT name FROM pg_available_extensions order by 1;
 ```
 {: pre}
 
-```shell
+```sh
              name             
 ------------------------------
  address_standardizer
