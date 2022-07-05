@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-11-11"
+  years: 2017, 2022
+lastupdated: "2022-07-05"
 
-keywords: postgresql, databases
+keywords: postgresql, databases, postgresql admin password, postgres admin password
 
 subcollection: databases-for-postgresql
 
@@ -21,26 +21,26 @@ subcollection: databases-for-postgresql
 
 The {{site.data.keyword.databases-for-postgresql_full}} service is provisioned with an admin user, so you can manage PostgreSQL by using its command line tool, `psql`.
 
-You have to set the admin password before you can use it to connect. To set the password through the {{site.data.keyword.cloud_notm}} dashboard, select _Manage_ from the service dashboard to open the management panel for your service. Open the _Settings_ tab, and use the _Change Database Admin Password_ pane to set a new admin password.
+You must set the admin password before you can use it to connect. To set the password through the {{site.data.keyword.cloud_notm}} dashboard, select _Manage_ from the service dashboard to open the management panel for your service. Open the _Settings_ tab, and use the _Change Database Admin Password_ pane to set a new admin password.
 
 ![The Change Database Admin Password pane in Settings](images/settings-admin-password.png){: caption="Figure 1. The Change Database Admin Password pane in _Settings_" caption-side="bottom"}
 
-## Setting the admin password via the command line
+## Setting the admin password through the command line
 {: #setting-admin-password-cli}
 
 Use the `cdb user-password` command from the {{site.data.keyword.cloud_notm}} CLI cloud databases plug-in to set the admin password with the command line.
 
 For example, to set the admin password for a deployment named "example-deployment", use the following command.
-```shell
+```sh
 ibmcloud cdb user-password example-deployment admin <newpassword>
 ```
 {: pre}
 
-## Setting the admin password via the API
+## Setting the admin password through the API
 {: #setting-admin-password-api}
 
 The _Foundation Endpoint_ that is shown on the _Overview_ panel _Deployment Details_ section of your service provides the base URL to access this deployment through the API. Use it with the `/deployments/{id}/users/{username}` endpoint to set the admin password.
-```shell
+```curl
 curl -X PATCH `https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/users/admin' \
 -H "Authorization: Bearer $APIKEY" \
 -H "Content-Type: application/json" \
@@ -48,4 +48,4 @@ curl -X PATCH `https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
 ```
 {: pre}
 
-For more information, see the [API Reference](https://{DomainName}/apidocs/cloud-databases-api#set-database-level-user-s-password).
+For more information, see [API Reference](https://{DomainName}/apidocs/cloud-databases-api#set-database-level-user-s-password).
