@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-04-01"
+lastupdated: "2022-07-06"
 
-keywords: postgresql, databases, connection limits, terminating connections, connection pooling
+keywords: postgresql, databases, connection limits, terminating connections, postgresql connection pooling, postgres connection pooling
 
 subcollection: databases-for-postgresql
 
@@ -23,7 +23,7 @@ subcollection: databases-for-postgresql
 Connections to your {{site.data.keyword.databases-for-postgresql_full}} deployment use resources, so it is important to consider how many connections you need when tuning your deployment's performance. PostgreSQL uses a `max_connections` setting to limit the number of connections (and resources that are consumed by connections) to prevent run-away connection behavior from overwhelming your deployment's resources.
 
 You can check the value of `max_connections` with your [admin user](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user) and [`psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql).
-```shell
+```sh
 ibmclouddb=> SHOW max_connections;
  max_connections
 -----------------
@@ -38,8 +38,8 @@ Many of the queries rely on the admin user's role as `pg_monitor`, which is only
 ## PostgreSQL Connection Limits
 {: #postgres-connection-limits}
 
-At provision, {{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. If the number of connections to the database exceeds the 100 connection limit, new connections fail and return an error.
-```shell
+At provision, {{site.data.keyword.databases-for-postgresql}} sets the maximum number of connections to your PostgreSQL database to **115**. 15 connections are reserved for the superuser to maintain the state and integrity of your database, and 100 connections are available for you and your applications. If the number of connections to the database exceeds the 100-connection limit, new connections fail and return an error.
+```sh
 FATAL: remaining connection slots are reserved for
 non-replication superuser connections
 ```
@@ -66,7 +66,7 @@ SELECT * FROM pg_stat_activity WHERE datname='ibmclouddb';
 ## Terminating Connections
 {: #terminate-connections}
 
-If you are on PostgreSQL 9.6 and newer, your admin user has the `pg_signal_backend` role. If you find connections that need to be reset or closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). The `pid` of a process is found from the `pg_stat_activity` table.
+If you are on PostgreSQL 9.6 and newer, your admin user has the `pg_signal_backend` role. If you find connections that need to reset or be closed, the admin user can use both [`pg_cancel_backend` and `pg_terminate_backend`](https://www.postgresql.org/docs/current/functions-admin.html#FUNCTIONS-ADMIN-SIGNAL-TABLE). The `pid` of a process is found from the `pg_stat_activity` table.
 
 - `pg_cancel_backend` cancels a connection's current query without terminating the connection, and without stopping any other queries that it might be running.
    ```sql
@@ -85,12 +85,12 @@ The admin user does have the power to reset or close the connections for any use
 ### End Connections
 {: #end-connections}
 
-If your deployment reaches the connection limit or you are having trouble connecting to your deployment and suspect that a high number of connections is a problem, you can disconnect (or end) all of the connections to your deployment. 
+If your deployment reaches the connection limit or you are having trouble connecting to your deployment and suspect that a high number of connections is a problem, disconnect all of the connections to your deployment. 
 
 In the UI, on the _Settings_ tab, there is a button to `End Connections` to your deployment. Use caution, as it disrupts anything that is connected to your deployment.
 
 The CLI command to end connections to the deployment is 
-```shell
+```sh
 ibmcloud cdb deployment-kill-connections <deployment name or CRN>
 ```
 
@@ -114,19 +114,19 @@ Next, change the value of `max_connections` on your deployment. To make permanen
 
 For example, to raise `max_connections` to 215, it might be a good idea to scale your deployment to at least 2 GB of RAM per data member, for a total of 4 GB of RAM for your deployment. Once the scaling operation has finishes, then set the connection limit. In the CLI,
 
-```shell
+```sh
 ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
 ```
 {: pre}
 
-```shell
+```sh
 ibmcloud cdb deployment-configuration example-deployment '{"configuration":{"max_connections":215}}'
 ```
 {: pre}
 
 To make the changes through the API,
 
-```shell
+```sh
 curl -X PATCH `https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups/member' \
 -H "Authorization: Bearer $APIKEY" \
 -H "Content-Type: application/json" \
@@ -148,7 +148,7 @@ curl -X PATCH 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{
 ### Connection Limits and TCP/IP keepalives Settings
 {: #keepalives}
 
-In the event of a network connection reset or failover, it is possible that broken TCP/IP connections remain in a half-opened/closed state until the tcp keepalive timeouts are reached. To avoid this scenario, set the `socket_timeout` and `connection_timeout` settings in your specific application drivers, as well. The correct settings _vary based on the specific workload and it is important to run load tests before going to production_. A good starting point for the `connection_timeout` is between 2 and 5 seconds. For the `socket_timeout`, a good starting point is between 30 and 60 seconds.
+In the event of a network connection reset or failover, it is possible that broken TCP/IP connections remain in a half-opened/closed state until the tcp keepalive timeouts are reached. To avoid this scenario, set the `socket_timeout` and `connection_timeout` settings in your specific application drivers, as well. The correct settings _vary based on the specific workload and it is important to run load tests before going to production_. A good starting point for the `connection_timeout` is 2 - 5 seconds. For the `socket_timeout`, a good starting point is 30 - 60 seconds.
 
 Furthermore, on the server side, the following [keepalive configurations](https://www.postgresql.org/docs/12/runtime-config-connection.html) are used as the default.
 
@@ -156,6 +156,6 @@ Furthermore, on the server side, the following [keepalive configurations](https:
 - `tcp_keepalives_interval` probe interval is set to 10 seconds
 - `tcp_keepalives_count` is set to 6
 
-To prevent half-open/closed connections or bursts in connection attempts from overwhelming your deployment, set the [`max_connections` paremeter](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) for Postgres to at least double your expected connection count.
+To prevent half-open/closed connections or bursts in connection attempts from overwhelming your deployment, set the [`max_connections` parameter](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) for Postgres to at least double your expected connection count.
 
 If your connection limit is reached, you can [end all connections](/docs/databases-for-postgresql?topic=databases-for-postgresql-managing-connections#end-connections) immediately.
