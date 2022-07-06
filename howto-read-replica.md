@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2022-01-27"
+  years: 2019, 2022
+lastupdated: "2022-07-06"
 
-keywords: postgresql, databases, read-only replica, resync, promote, cross-region replication
+keywords: postgresql, databases, read-only replica, resync, promote, cross-region replication, postgres replica, postgresql replica
 
 subcollection: databases-for-postgresql
 
@@ -24,7 +24,7 @@ subcollection: databases-for-postgresql
 
 You can set up your {{site.data.keyword.databases-for-postgresql_full}} deployment to be a read-only replica of another {{site.data.keyword.databases-for-postgresql}} deployment. 
 
-A read-only replica is set up to replicate all of your data from the leader deployment to the replica deployment using asynchronous replication. As the name implies, read-only replicas support read transactions and can be used to balance databases that have both write-heavy and read-heavy operations. The read-only replica has a single PostgreSQL data member, and it is billed at the [same per member consumption rates as the leader](https://{DomainName}/catalog/services/databases-for-postgresql/).
+A read-only replica is set up to replicate all of your data from the leader deployment to the replica deployment through asynchronous replication. As the name implies, read-only replicas support read transactions and can be used to balance databases that have both write-heavy and read-heavy operations. The read-only replica has a single PostgreSQL data member, and it is billed at the [same per member consumption rates as the leader](https://{DomainName}/catalog/services/databases-for-postgresql/).
  
 ## Read-only Replica Considerations
 {: #read-only-replicas-consider}
@@ -37,7 +37,7 @@ A read-only replica is set up to replicate all of your data from the leader depl
 
 - Replicas are restorable to other regions, except for EU Cloud-enabled regions (currently `eu-de` and `par-01`), which are only restorable with each other (e.g., `par-01` replicas can be restored to `eu-de`, and vice versa).
 
-- There is a limit of 5 read-only replicas per leader.
+- There is a limit of five read-only replicas per leader.
 
 - The read-only replica does not participate in leader->follower elections for the leader cluster and failover to the read-only replica is not automated. Promotion of the read-only replica to a full deployment is a manual, user-initiated task.
 
@@ -47,7 +47,7 @@ A read-only replica is set up to replicate all of your data from the leader depl
 
 - Replication is asynchronous, and might be subject to replication lag. By default, there is no communication between the primary and replica regarding consistency. It is possible for a read-only replica to fall far enough behind that it needs to be resynced. Replication lag can be greater when the replica is in a region far away geographically from its leader.
 
-- A read-only replica is a deployment with single data member and does not have any internal high-availability. It is prone to temporary interruptions and downtime during maintenance. If you have applications that rely on read-only replicas, be sure to have logic to retry failed queries, or load-balancing over multiple read-only replicas.
+- A read-only replica is a deployment with single data member and does not have any internal high availability. It is prone to temporary interruptions and downtime during maintenance. If you have applications that rely on read-only replicas, be sure to have logic to retry failed queries, or load-balancing over multiple read-only replicas.
 
 ## The Leader
 {: #read-only-replicas-leader}
@@ -63,7 +63,7 @@ If a deployment is a leader and has a read-only replica that is already attached
 ## Provisioning a Read-only Replica
 {: #read-only-replicas-provision}
 
-Resources for PostgreSQL deployments are allocated per-deployment, and normal deployments have two members. Since a read-only replica has only one member, and provisioning currently uses values that are half of the requested values for memory and storage, provisioning may fail. The web UI cannot modify the value for storage and it will automatically use the leader deployment’s value - which will be cut in half. If that is insufficient for your data to fit, you will need to use the API or CLI to specify twice the storage you actually want to be provisioned. (The same applies to memory, although a lower amount of memory may not prevent the restore from being successful.) An update is in progress to remediate this situation.
+Resources for PostgreSQL deployments are allocated per-deployment, and normal deployments have two members. Since a read-only replica has only one member, and provisioning currently uses values that are half of the requested values for memory and storage, provisioning can fail. The web UI cannot modify the value for storage and it automatically uses the leader deployment’s value - which is cut in half. If that is insufficient for your data to fit, you need to use the API or CLI to specify twice the storage you want to be provisioned. (The same applies to memory, although a lower amount of memory might not prevent the restore from being successful.) An update is in progress to remediate this situation.
 {: important}
 
 You can provision a read-only replica from the leader's _Read Replicas_ tab by clicking **Create Read-Only Replica**. The source instance is automatically filled in. The read-only replica's name is auto-generated in the _Service Name_ field, but you can rename it freely. You can choose the region to deploy it in, and its initial memory allocation. Disk size, version, and public or private endpoints are automatically configured to match the settings of the leader deployment.
@@ -77,7 +77,7 @@ If you use [Key Protect](/docs/databases-for-postgresql?topic=cloud-databases-ke
 Provisioning a read-only replica through the CLI and the API works similarly to [provisioning a standard {{site.data.keyword.databases-for-postgresql}} deployment](/docs/databases-for-postgresql?topic=cloud-databases-provisioning). Provisioning is handled by the Resource Controller, and it uses a parameter `{"remote_leader_id": "crn:v1:..."}` to specify the leader of the replica you are provisioning.
 
 For example, to provision a read-only replica through the CLI,
-```shell
+```sh
 ibmcloud resource service-instance-create <replica_name> databases-for-postgresql standard <region> \
 -p \ '{
   "remote_leader_id": "crn:v1:bluemix:public:databases-for-postgresql:us-south:a/54e8ffe85dcedf470db5b5ee6ac4a8d8:1b8f53db-fc2d-4e24-8470-f82b15c71819::",
@@ -88,7 +88,7 @@ ibmcloud resource service-instance-create <replica_name> databases-for-postgresq
 {: pre}
 
 The same parameter is used to provision a read-only replica through the Resource Controller API.
-```shell
+```sh
 curl -X POST \
   https://resource-controller.cloud.ibm.com/v2/resource_instances \
   -H 'Authorization: Bearer <>' \
@@ -140,24 +140,24 @@ You can also create users with access to the read-only replica and no access to 
 
 Read-only replica users who are created on a read-only replica are able connect to the replicas and run reads. Read-only replica users are not able to connect and run operations on the leader. They also do not persist when a read-only replica is promoted to a stand-alone deployment.
 
-Read-only replica created users are assigned privileges by the leader, and are assigned the `ibm-cloud-base-user-ro` role, and are members of the `ibm-cloud-base-user` group. They have access to all of the objects that are created by other members of this group, including any users on the leader that were created through _Service Credentials_, the CLI, or the API. Consistent with privileges of the `ibm-cloud-base-user`, a read-only replica created user does not have access to objects created by the admin user, or other users created through `psql`. For more information, see the [PostgreSQL Roles and Privileges](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management) page.
+Read-only replica created users are assigned privileges by the leader, and are assigned the `ibm-cloud-base-user-ro` role, and are members of the `ibm-cloud-base-user` group. They have access to all of the objects that are created by other members of this group, including any users on the leader that were created through _Service Credentials_, the CLI, or the API. Consistent with privileges of the `ibm-cloud-base-user`, a read-only replica-created user does not have access to objects created by the admin user, or other users created through `psql`. For more information, see the [PostgreSQL Roles and Privileges](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management) page.
 
 ## Resyncing a Read-only Replica
 {: #resyncing-read-only-replica}
 
 If you need to resync a read-only replica, click the **Resync Read-Only Replica** button. Resyncing is a disruptive operation and performing a resync tears down and rebuilds the data in the read-only replica. The read-only replica is not able to perform any other operations or run any queries while a resync is running. Queries are not rerouted to the leader, so any connections to the read-only replica fail until it is finished resyncing. 
 
-The amount of time it takes to resync a read-only replica varies, but the process can be very long running.
+The amount of time it takes to resync a read-only replica varies, but the process can be long running.
 {: .tip}
 
 To start a resync through the CLI, use the [`cdb read-replica-resync`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-resync) command.
-```shell
+```sh
 ibmcloud cdb read-replica-resync <deployment name>
 ```
 {: pre}
 
 To start a resync through the API, send a POST to the [`/deployments/{id}/remotes/resync`](https://cloud.ibm.com/apidocs/cloud-databases-api#resync-read-only-replica) endpoint.
-```shell
+```sh
 curl -X POST \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/resync \
   -H 'Authorization: Bearer <>' 
@@ -178,7 +178,7 @@ When you promote a read-only replica, you can skip the initial backup that would
 Once a read-only replica is promoted to an independent deployment, it is not possible to revert it back to a read-only replica or have it rejoin a leader.
 
 To promote through the CLI, use the [`cdb read-replica-promote`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-promote) command.
-```shell
+```sh
 ibmcloud cdb read-replica-promote <deployment name>
 ```
 {: pre}
@@ -193,7 +193,7 @@ curl -X POST \
 ```
 {: pre}
 
-To promote and skip the initial backup after the promotion, also set `skip_initial_backup` in the json body.
+To promote and skip the initial backup after the promotion, also set `skip_initial_backup` in the JSON body.
 ```curl
 curl -X POST \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
