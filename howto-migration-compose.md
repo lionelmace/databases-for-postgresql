@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2019, 2021
-lastupdated: "2021-11-29"
+  years: 2019, 2022
+lastupdated: "2022-07-08"
 
 keywords: postgresql, databases, compose
 
@@ -98,7 +98,7 @@ You can also provision by using the Resource Controller API. More information on
 
 The provision request is a `POST` to the `https://resource-controller.cloud.ibm.com/v2/resource_instances` endpoint.
 
-```shell
+```sh
 curl -X POST \
   https://resource-controller.cloud.ibm.com/v2/resource_instances \
   -H 'Authorization: Bearer <>' \
@@ -139,24 +139,24 @@ Most importantly, you can access the PostgreSQL database directly by using `psql
 The admin user from your Compose deployment can log in to and run commands on the read-only replica. Connect to both the Compose deployment and the {{site.data.keyword.databases-for-postgresql}} replica by using `psql` and the admin user.
 
 On the Compose deployment run
-```shell
+```sh
 SELECT pg_current_wal_flush_lsn();
 ```
 {: .codeblock}
 
 On the {{site.data.keyword.databases-for-postgresql}} replica run
-```shell
+```sh
 SELECT pg_last_wal_replay_lsn();
 ```
 {: .codeblock}
 
-These commands output a PostgreSQL logical sequence number (`lsn`). If the two `lsn` match, the replica is caught up and synced to the Compose deployment. If the two `lsn` do not match, the replica still must catch up. If you want to compare how far apart they are, you can run the following command on either member
-```shell
+These commands output a PostgreSQL logical sequence number (`lsn`). If the two `lsn`'s match, the replica is caught up and synced to the Compose deployment. If the two `lsn` do not match, the replica still must catch up. If you want to compare how far apart they are, you can run the following command on either member
+```sh
 SELECT pg_size_pretty(pg_wal_lsn_diff('<Output_from_Compose>','<Output_from_replica>'));
 ```
 {: .codeblock}
 
-The goal is to make sure that replication catches up after the initial subscription (which might take a while), but after that you want to check that replication is close to up-to-date. When the replication is in sync or close to synced, you can shut down your applications that are writing to the Compose database. Perform a last check to ensure that the replica is caught up and all your data is migrated over.
+The goal is to make sure that replication catches up after the initial subscription (which might take a while), but after that you want to check that replication is close to up to date. When the replication is in sync or close to synced, you can shut down your applications that are writing to the Compose database. Perform a last check to ensure that the replica is caught up and all your data is migrated over.
 
 ### Things to note on Compose
 {: #compose-notes}
@@ -167,7 +167,7 @@ During the migration, the Compose deployment might scale. While the replica is s
 {: #note-replica}
 
 If you use the [Logging Integration](/docs/databases-for-postgresql?topic=cloud-databases-logging) to view logs on your {{site.data.keyword.databases-for-postgresql}} replica, you might see logs that contain
-```shell
+```sh
 2019-11-13 22:02:00 UTC [1207]: [1-1] user=ibm,db=postgres,client=127.0.0.1 ERROR:  could not get commit timestamp data
 2019-11-13 22:02:00 UTC [1207]: [2-1] user=ibm,db=postgres,client=127.0.0.1 HINT:  Make sure the configuration parameter "track_commit_timestamp" is set on the primary server.
 ```
@@ -177,19 +177,19 @@ They can be safely ignored and no longer appear after the read-only replica is p
 {: #troubleshoot-migration}
 
 If replication is lagging and does not appear to catch up, check the following. On the Compose deployment, as the admin user, run
-```shell
+```sh
 SELECT count(*) FROM pg_replication_slots WHERE slot_name = 'ibm_cloud_databases_migration';
 ```
 {: .codeblock}
 
 If the command does not return a result, run the following command against Compose as the admin user.
-```shell
+```sh
 SELECT pg_create_physical_replication_slot('ibm_cloud_databases_migration');
 ```
 {: .codeblock}
 
 If replication does not start catching up, check the [logs](/docs/databases-for-postgresql?topic=cloud-databases-logging) on the {{site.data.keyword.databases-for-postgresql}} deployment for the following error message.
-```shell
+```sh
 2019-11-25 17:04:16 UTC [296409]: [2-1] user=,db=,client= FATAL: could not receive data from WAL stream: ERROR: requested WAL segment 0000000C0000372C000000C5 has already been removed
 ```
 
@@ -207,13 +207,13 @@ To get the {{site.data.keyword.databases-for-postgresql}} deployment up and mini
 You can either perform the promotion by using the UI of your deployment, the promotion button is on the _Read Replicas_ tab, in the _Promote Read-Only Replica_ section.
 
 If you want to stick with using the CLI, you can use the [`ibmcloud cdb read-replica-promote`](https://cloud.ibm.com/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#read-replica-promote) command. 
-```shell
+```sh
 ibmcloud cdb read-replica-promote <your-new-deployment-name> --skip-initial-backup
 ```
 {: pre}
 
 To promote through the API and skip the initial backup after the promotion, send a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#promote-read-only-replica-to-a-full-deployment) endpoint.
-```shell
+```curl
 curl -X POST \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
   -H 'Authorization: Bearer <>'  \
@@ -232,17 +232,17 @@ On the Compose deployment, you might have to perform a few actions post-migratio
 1. Connect to the `template1` database on your Compose deployment as the `admin` user.
 2. Run the following commands:
 
-```shell
+```sh
 SELECT pg_drop_replication_slot('ibm_cloud_databases_migration');
 ```
 {: .codeblock}
 
-```shell
+```sh
 DROP ROLE ibm;
 ```
 {: .codeblock}
 
-```shell
+```sh
 SELECT public.set_wal_keep_segments(0);
 ```
 {: .codeblock}
