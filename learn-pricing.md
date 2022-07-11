@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2017, 2020
-lastupdated: "2021-11-02"
+  years: 2017, 2022
+lastupdated: "2022-07-11"
 
-keywords: postgresql, databases, pricing, resources, scaling
+keywords: postgresql pricing
 
 subcollection: databases-for-postgresql
 
@@ -32,7 +32,7 @@ A {{site.data.keyword.databases-for-postgresql}} Standard plan deploys as one hi
 Resources | Breakdown | Price
 -------|-------|-------
 5 GB-Month disk | 2 members x 5 GB x $0.58 | $5.80
-1 GB-Month RAM | 2 members x 1 GB  x $5 | $10
+1 GB-Month RAM | 2 members x 1 GB x $5 | $10
 {: caption="Table 1. Pricing example for two data members" caption-side="top"}
 
 Total per month = $15.80/Month
@@ -56,7 +56,7 @@ Total per month = $49.80/Month
 ## Using the Pricing Calculator
 {: #pricing-calc}
 
-Templates are provided for ease of use and provide balanced resource allocations appropriate for general purpose workloads. The **Custom** tab can be used to configure Disk, RAM, and vCPU, as desired.
+Templates are provided for ease of use and provide balanced resource allocations appropriate for general-purpose workloads. The **Custom** tab can be used to configure Disk, RAM, and vCPU, as wanted.
 
 For pricing estimation, use the **Add to Estimate** button on the [{{site.data.keyword.databases-for-postgresql}} catalog page](https://cloud.ibm.com/catalog/databases-for-postgresql). Input your total consumption across two data members into the calculator. This is roughly double the size of your data because your data is replicated to both members. For example, 5 GB of disk and 1 GB of RAM across two data members would be priced at 10 GB of disk and 2 GB of RAM respectively. 
 
@@ -65,12 +65,12 @@ For pricing estimation, use the **Add to Estimate** button on the [{{site.data.k
 ## Backups Pricing
 {: #backups-pricing}
 
-Users also receive their total disk space purchased, per database, in free backup storage. For example, in a given month, if you have a {{site.data.keyword.databases-for-postgresql}} deployment that has 5 GB of disk per member, and has two data members, you receive 10 GB of backup storage free for that month. If your backup storage utilization is greater than 10 GB for the month in this scenario, each gigabyte is charged at an overage $0.03/month. Most deployments will not ever go over the allotted credit.
+Users also receive their total disk space purchased, per database, in free backup storage. For example, in a given month, if you have a {{site.data.keyword.databases-for-postgresql}} deployment that has 5 GB of disk per member, and has two data members, you receive 10 GB of backup storage free for that month. If your backup storage usage is greater than 10 GB for the month in this scenario, each gigabyte is charged at an overage $0.03/month. Most deployments will not ever go over the allotted credit.
 
 ## Dedicated Cores Pricing
 {: #core-pricing}
 
-You have the option of selecting the CPU allocation for your deployment. With dedicated cores, your resource group is given a single-tenant host with a guaranteed minimum reserve of cpu shares. Your deployments are then allocated the number of CPUs you specify. The cost of dedicated cores is $30 per core per month, and each member gets the selected number of cores. For example, if you provision a deployment with 3 dedicated cores per member, that is a total of 6 cores, and billed at $180 per month. 
+You have the option of selecting the CPU allocation for your deployment. With dedicated cores, your resource group is given a single-tenant host with a guaranteed minimum reserve of cpu shares. Your deployments are then allocated the number of CPUs you specify. The cost of dedicated cores is $30 per core per month, and each member gets the selected number of cores. For example, if you provision a deployment with three dedicated cores per member that is a total of six cores and billed at $180 per month. 
 
 Dedicated cores are an optional feature. The default `Shared CPU` setting provisions your deployment on hosts with shared compute resources and incurs no additional charge.
 
