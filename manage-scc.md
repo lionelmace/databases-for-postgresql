@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2018, 2021
-lastupdated: "2022-03-25"
+  years: 2018, 2022
+lastupdated: "2022-07-11"
 
 subcollection: databases-for-postgresql
 
@@ -44,7 +44,7 @@ To start monitoring your resources, check out [Getting started with {{site.data.
 
 - **Check whether {{site.data.keyword.databases-for-postgresql_full}} is enabled with IBM-managed or customer-managed encryption and Bring Your Own Key (BYOK).** All {{site.data.keyword.databases-for-postgresql_full}} instances are automatically encrypted at rest with IBM-managed keys, for customer-managed encryption keys review the [following documentation.](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-key-protect)
 - **Check whether {{site.data.keyword.databases-for-postgresql_full}} is accessible only through HTTPS.** All {{site.data.keyword.databases-for}} connections use TLS/SSL encryption for data in transit. The current supported version of this encryption is TLS 1.2. 
-- **Check whether {{site.data.keyword.databases-for-postgresql_full}} is accessible only by using private endpoints.** Customers can disable public endpoints at provision time. For more information see [Service Endpoints Integration.](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-service-endpoints)
+- **Check whether {{site.data.keyword.databases-for-postgresql_full}} is accessible only by using private endpoints.** Customers can disable public endpoints at provision time. For more information, see [Service Endpoints Integration.](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-service-endpoints)
 - **Check whether {{site.data.keyword.databases-for-postgresql_full}} network access is restricted to a specific IP range.** To learn more about how to check or achieve this goal, review our [allowlisting documentation.](https://cloud.ibm.com/docs/cloud-databases?topic=cloud-databases-allowlisting)
 - **Check whether {{site.data.keyword.databases-for-postgresql_full}} version is up-to-date.**
 - **Check whether {{site.data.keyword.databases-for-postgresql_full}} disk space autoscales to avoid database downtime.**
