@@ -1,9 +1,9 @@
 ---
 copyright:
-  years: 2020, 2021
-lastupdated: "2021-11-11"
+  years: 2020, 2022
+lastupdated: "2022-07-11"
 
-keywords: postgresql, monitoring, metrics, iops, disk usage, memory usage, connection usage
+keywords: postgresql, monitoring, metrics, iops, disk usage, memory usage, connection usage, postgresql monitor integration, postgresql disk i/o
 
 subcollection: databases-for-postgresql
 
@@ -20,7 +20,7 @@ subcollection: databases-for-postgresql
 # Monitoring Integration
 {: #monitoring}
 
-Monitoring for {{site.data.keyword.databases-for-postgresql_full}} deployments is provided through integration with the {{site.data.keyword.monitoringfull}} Monitoring service. Your deployments forward selected information so you can monitor deployment health and resource usage. To see your {{site.data.keyword.databases-for-postgresql}} dashboards in {{site.data.keyword.monitoringfull_notm}}, you have to [Enable Platform Metrics](/docs/monitoring?topic=monitoring-platform_metrics_enabling) in the same region as your deployment. If you have deployments in more than one region, you have to provision {{site.data.keyword.monitoringfull_notm}} and enable platform metrics in each region.
+Monitoring for {{site.data.keyword.databases-for-postgresql_full}} deployments is provided through integration with the {{site.data.keyword.monitoringfull}} Monitoring service. Your deployments forward selected information so you can monitor deployment health and resource usage. To see your {{site.data.keyword.databases-for-postgresql}} dashboards in {{site.data.keyword.monitoringfull_notm}}, you must [Enable Platform Metrics](/docs/monitoring?topic=monitoring-platform_metrics_enabling) in the same region as your deployment. If you have deployments in more than one region, you must provision {{site.data.keyword.monitoringfull_notm}} and enable platform metrics in each region.
 
 To access {{site.data.keyword.monitoringfull_notm}} from your deployment, use the _Monitoring_ link from the right menu. (If you do not already have a monitoring service in the same region as your deployment it says _Add monitoring_.)
 
@@ -51,11 +51,11 @@ If you have deployments that are in a Single-zone Region (SZR) - `che01`, or `se
 | [Deadlocks rate](#ibm_databases_for_postgresql_deadlocks_rate) | 
 | [Disk read latency mean](#ibm_databases_for_postgresql_disk_read_latency_mean) | 
 | [Disk write latency mean](#ibm_databases_for_postgresql_disk_write_latency_mean) | 
-| [IO utilization in percent 5 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_5m) |
-| [IO utilization in percent 15 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_15m) | 
-| [IO utilization in percent 30 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_30m) | 
-| [IO utilization in percent 60 minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_60m) | 
-| [IOPS read & write total count for an instance.](#ibm_databases_for_postgresql_disk_iops_read_write_total) | 
+| [IO usage in percent 5-minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_5m) |
+| [IO usage in percent 15-minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_15m) | 
+| [IO usage in percent 30-minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_30m) | 
+| [IO usage in percent 60-minute average](#ibm_databases_for_postgresql_disk_io_utilization_percent_average_60m) | 
+| [IOPS read and write total count for an instance.](#ibm_databases_for_postgresql_disk_iops_read_write_total) | 
 | [Max allowed memory for an instance.](#ibm_databases_for_postgresql_memory_limit_bytes) | 
 | [Read replica replication lag.](#ibm_databases_for_postgresql_read_replica_replication_lag_bytes) | 
 | [Successful archive rate](#ibm_databases_for_postgresql_successful_archive_rate) | 
@@ -198,7 +198,7 @@ Disk write latency mean
 | `Segment By` | `Service instance` |
 {: caption="Table 30: Disk write latency mean metric metadata" caption-side="top"}
 
-### IO utilization in percent 5 minute average
+### IO usage in percent 5-minute average
 {: #ibm_databases_for_postgresql_disk_io_utilization_percent_average_5m}
 
 How much disk I/O has been used over 5 minutes as a percentage of total disk I/O available.
@@ -211,7 +211,7 @@ How much disk I/O has been used over 5 minutes as a percentage of total disk I/O
 | `Segment By` | `Service instance` |
 {: caption="Table 2. IO utilization in percent 5 minute average metric metadata" caption-side="top"}
 
-### IO utilization in percent 15 minute average
+### IO usage in percent 15-minute average
 {: #ibm_databases_for_postgresql_disk_io_utilization_percent_average_15m}
 
 How much disk I/O has been used over 15 minutes as a percentage of total disk I/O available.
@@ -224,7 +224,7 @@ How much disk I/O has been used over 15 minutes as a percentage of total disk I/
 | `Segment By` | `Service instance` |
 {: caption="Table 3. IO utilization in percent 15 minute average metric metadata" caption-side="top"}
 
-### IO utilization in percent 30 minute average
+### IO usage in percent 30-minute average
 {: #ibm_databases_for_postgresql_disk_io_utilization_percent_average_30m}
 
 How much disk I/O has been used over 30 minutes as a percentage of total disk I/O available.
@@ -237,7 +237,7 @@ How much disk I/O has been used over 30 minutes as a percentage of total disk I/
 | `Segment By` | `Service instance` |
 {: caption="Table 4. IO utilization in percent 30 minute average metric metadata" caption-side="top"}
 
-### IO utilization in percent 60 minute average
+### IO usage in percent 60-minute average
 {: #ibm_databases_for_postgresql_disk_io_utilization_percent_average_60m}
 
 How much disk I/O has been used over 60 minutes as a percentage of total disk I/O available.
@@ -250,7 +250,7 @@ How much disk I/O has been used over 60 minutes as a percentage of total disk I/
 | `Segment By` | `Service instance` |
 {: caption="Table 5. IO utilization in percent 60 minute average metric metadata" caption-side="top"}
 
-### IOPS read & write total count for an instance
+### IOPS read and write total count for an instance
 {: #ibm_databases_for_postgresql_disk_iops_read_write_total}
 
 How many input/output operations per second your deployment is performing.
@@ -552,7 +552,7 @@ How much memory your deployment is using.
 ### WAL logs used bytes
 {: #ibm_databases_for_postgresql_wal_used_bytes}
 
-how much wal log file uses, in bytes
+How much wal log file uses, in bytes
 
 | Metadata | Description |
 |----------|-------------|
@@ -573,20 +573,20 @@ The following attributes are available for segmenting all of the metrics listed.
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
 | `Cloud Type` | `ibm_ctype` | The cloud type is a value of public, dedicated, or local. |
-| `Location` | `ibm_location` | The location of the monitored resource - this may be a region, data center, or global. |
-| `Resource` | `ibm_resource` | The resource being measured by the service - typically a identifying name or GUID. |
+| `Location` | `ibm_location` | The location of the monitored resource - this can be a region, data center, or global. |
+| `Resource` | `ibm_resource` | The resource being measured by the service - typically an identifying name or GUID. |
 | `Resource Type` | `ibm_resource_type` | The type of the resource being measured by the service. |
 | `Scope` | `ibm_scope` | The scope is the account, organization, or space GUID associated with this metric. |
 {: caption="Table 15. Global Attributes Metadata" caption-side="top"}
 
-### Additional Attributes
+### More Attributes
 {: #additional-attributes}
 
-The following attributes are available for segmenting one or more attributes as described in the reference above.  Please see the individual metrics for segmentation options.
+The following attributes are available for segmenting one or more attributes as described in the reference above. See the individual metrics for segmentation options.
 
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
-| `Service instance` | `ibm_service_instance` | The service instance segment identifies the instance the metric is associated with. |
-| `Service instance name` | `ibm_service_instance_name` | The service instance name provides the user-provided name of the service instance, which isn't necessarily a unique value depending on the name provided by the user. |
+| `Service instance` | `ibm_service_instance` | The service instance segment identifies the instance that the metric is associated with. |
+| `Service instance name` | `ibm_service_instance_name` | The service instance name provides the user-provided name of the service instance, which isn't necessarily a unique value depending on the name that is provided by the user. |
 | `Resource group` | `ibm_resource_group_name` | The resource group where the service instance was created. |
 {: caption="Table 16. Additional Attributes Metadata" caption-side="top"}
