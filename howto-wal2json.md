@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2021-11-11"
+  years: 2019, 2022
+lastupdated: "2022-07-08"
 
 keywords: postgresql, databases, wal2json
 
@@ -16,14 +16,16 @@ subcollection: databases-for-postgresql
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:note: .note}
+
 
 # Configuring Wal2json
 {: #wal2json}
    
-{{site.data.keyword.databases-for-postgresql_full}} deployments support the [wal2json](https://github.com/eulerto/wal2json) plug-in, enabling [logical decoding](https://www.postgresql.org/docs/current/logicaldecoding-explanation.html) on your deployment. The plug-in is deprecated on PostgreSQL version 9.6 and 10, and is only supported on PostgreSQL versions 11 and 12. The plug-in is already installed, but you must configure your deployment and databases to start using it. 
+{{site.data.keyword.databases-for-postgresql_full}} deployments support the [wal2json](https://github.com/eulerto/wal2json){: external} plug-in, enabling [logical decoding](https://www.postgresql.org/docs/current/logicaldecoding-explanation.html){: external} on your deployment. The plug-in is deprecated on PostgreSQL version 9.6 and 10, and is only supported on PostgreSQL versions 11 and 12. The plug-in is already installed, but you must configure your deployment and databases to use it. 
    
 1. First, you need to [configure](/docs/databases-for-postgresql?topic=databases-for-postgresql-changing-configuration) the `wal_level`, `max_replication_slots`, and `max_wal_senders` settings. Change the `wal_level` to `logical`. The `max_replication_slots`, and `max_wal_senders` both need to be set to a value greater than 20. {{site.data.keyword.databases-for-postgresql}} reserves 20 replication slots and WAL senders for current and future operational purposes.
-   ```shell
+   ```sh
    curl -X PATCH https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/configuration 
      -H 'Authorization: Bearer <>'
      -H 'Content-Type: application/json'
@@ -40,7 +42,7 @@ subcollection: databases-for-postgresql
    Any user's password can be changed by using the {{site.data.keyword.databases-for}} CLI plug-in [`cdb deployment-user-password`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-user-password) command or {{site.data.keyword.databases-for}} API [`/deployments/{id}/users/{username}`](https://cloud.ibm.com/apidocs/cloud-databases-api#set-database-level-user-s-password) endpoint. The `repl` user has REPLICATION privileges and the `wal2json` plug-in uses it after you set a password for it.
    
 3. Create a replication slot on the database from the {{site.data.keyword.databases-for}} API. Send a POST request to the [`/deployments/{id}/postgresql/logical_replication_slots`](https://cloud.ibm.com/apidocs/cloud-databases-api#create-a-new-logical-replication-slot) endpoint.
-   ```curl
+   ```sh
    curl -X POST https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/postgresql/logical_replication_slots   -H 'Authorization: Bearer <>'
      -H 'Content-Type: application/json' 
      -d '{"logical_replication_slot": {
@@ -52,25 +54,27 @@ subcollection: databases-for-postgresql
    ```
    {: pre}
    
-   The plug-in type must be `wal2json`. The database must be an existing database. The slot name can only contain lowercase letters, numbers, and the underscore character. You can check the existence of the replication slot by connecting to any database and running 
-   ```curl
+   The plug-in type must be `wal2json`. The database must be an existing database. The slot name can contain only lowercase letters, numbers, and the underscore character. You can check the existence of the replication slot by connecting to any database and running 
+   ```sh
    SELECT * FROM pg_replication_slots WHERE slot_name = '<slot_name>';
    ```
    {: pre}
    
-4. To test the plug-in run `pg_recvlogical` from the command line. The command is available with an installation of PostgreSQL. Use the host and port from your deployment, and the database and slot name you created via the API,
+4. To test the plug-in run `pg_recvlogical` from the command-line. The command is available with an installation of PostgreSQL. Use the host and port from your deployment, and the database and slot name you created through the API,
 
-   ```curl
+   ```sh
    PGSSLMODE=require pg_recvlogical -d <DATABASE NAME> -U repl -h <HOST> -p <PORT>    --slot <SLOT NAME> --start -o pretty-print=1 -f -
    ```
    {: pre}
    
-5. Create a table on `ibmclouddb` and insert some data. You should see that the inserts come out in the terminal that is running `pg_recvlogical`. Note: table creates do not appear.
+5. Create a table on `ibmclouddb` and insert some data. Ensure that the inserts come out in the command-line that is running `pg_recvlogical`. 
+
+   Table creates do not appear.{: .note}
    
 ## Wal2json Considerations and Tips
 {: #wal2json-tips}
    
-- Setting `wal_level` to `logical` increases the size of the WAL files because PostgreSQL needs more data to accomplish logical decoding. If you aren't using `wal2json`, you should leave `wal_level` at the default. Larger WAL files potentially mean that more disk space is required, there can be decrease in write throughput, there is greater potential for replication lag to affect HA and read-only replicas, and longer times to restore from a backup.
+- Setting `wal_level` to `logical` increases the size of the WAL files because PostgreSQL needs more data to accomplish logical decoding. If you aren't using `wal2json`, leave `wal_level` at the default. Larger WAL files potentially mean that more disk space is required. Write throughput can decrease, along with replication lag that affects high availability and read-only replicas, and longer restore times from a backup.
    
 - Logical decoding has a set of restrictions on what replicates. Some of these include schema/DDL, sequences, TRUNCATE, and Large Objects.
    
@@ -81,16 +85,16 @@ subcollection: databases-for-postgresql
 - You can check how much disk space is being used by a specific replication slot and whether that replication slot has an active consumer. Use the `admin` user to run one of the following commands:  
    
    **PostgreSQL 10.x and newer**
-    ```curl
+    ```sh
     SELECT slot_name, pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(),restart_lsn)) AS lag, active from pg_replication_slots WHERE slot_type='logical';
     ```
     {: pre}
    
    **PostgreSQL 9.x**
-    ```curl
+    ```sh
     SELECT slot_name, pg_size_pretty(pg_xlog_location_diff(pg_current_xlog_location(),restart_lsn)) AS lag, active FROM pg_replication_slots WHERE slot_type='logical';
     ```
     {: pre}
    
-Checking to see that your replication slot has a consumer and isn't running your deployment out of disk space can help troubleshoot if you see higher than expected disk usage on your deployment.
+If you see higher than expected disk usage on your deployment, troubleshoot by checking that your replication slot has a consumer and isn't running your deployment out of disk space.  
    
