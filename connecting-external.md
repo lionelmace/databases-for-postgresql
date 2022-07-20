@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-07-20"
 
 keywords: postgresql drivers, python, java, javascript, certificate, postgresql connection string, postgresql connecting external application
 
@@ -30,18 +30,18 @@ The connection strings can be used by any of the credentials you create on your 
 
 All the information a driver needs to make a connection to your deployment is in the "postgres" section of your connection strings. The table contains a breakdown for reference.
 
-Field Name|Index|Description
-----------|-----|-----------
-`Type`||Type of connection - for PostgreSQL, it is "URI"
-`Scheme`||Scheme for a URI - for PostgreSQL, it is "postgresql"
-`Path`||Path for a URI - for PostgreSQL, it is the database name. The default is `ibmclouddb`.
-`Authentication`|`Username`|The username that you use to connect.
-`Authentication`|`Password`|A password for the user - might be shown as `$PASSWORD`
-`Authentication`|`Method`|How authentication takes place; "direct" authentication is handled by the driver.
-`Hosts`|`0...`|A hostname and port to connect to
-`Composed`|`0...`|A URI combining Scheme, Authentication, Host, and Path
-`Certificate`|`Name`|The allocated name for the self-signed certificate for database deployment
-`Certificate`|Base64|A base64 encoded version of the certificate.
+| Field Name | Index | Description |
+| ---------- | ----- | ----------- |
+| `Type` | | Type of connection - for PostgreSQL, it is "URI" |
+| `Scheme` | | Scheme for a URI - for PostgreSQL, it is "postgresql" |
+| `Path` | | Path for a URI - for PostgreSQL, it is the database name. The default is `ibmclouddb`. |
+| `Authentication` | `Username` | The username that you use to connect. |
+| `Authentication` | `Password` | A password for the user - might be shown as `$PASSWORD` |
+| `Authentication` | `Method` | How authentication takes place; "direct" authentication is handled by the driver. |
+| `Hosts` | `0...` | A hostname and port to connect to |
+| `Composed` | `0...` | A URI combining Scheme, Authentication, Host, and Path |
+| `Certificate` | `Name` | The allocated name for the self-signed certificate for database deployment |
+| `Certificate` | Base64 | A base64 encoded version of the certificate. |
 {: caption="Table 1. postgres/URI connection information" caption-side="top"}
 
 * `0...` indicates that there might be one or more of these entries in an array.
@@ -207,12 +207,12 @@ You can display the decoded certificate for your deployment with the CLI plug-in
 
 PostgreSQL has a vast array of language drivers. The table covers a few of the most common.
 
-Language | Driver | Examples
--------|-------|-------
-PHP|`pgsql`|[Link](http://php.net/manual/en/pgsql.examples-basic.php)
-Ruby|`ruby-pg`|[Link](https://github.com/ged/ruby-pg)
-Ruby on Rails|Rails|[Rails Guide](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-postgresql-database)
-C#|`ODBC`|[Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_PostgreSQL_Database_Server_via_ODBC)
-Go|`pq`|[Link](https://godoc.org/github.com/lib/pq)
-Node|`node-postgres`|[Link](https://node-postgres.com/)
+| Language | Driver | Examples |
+| ------- | ------- | ------- |
+| PHP | `pgsql` | [Link](http://php.net/manual/en/pgsql.examples-basic.php) |
+| Ruby| `ruby-pg` | [Link](https://github.com/ged/ruby-pg) |
+| Ruby on Rails | Rails | [Rails Guide](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-postgresql-database) |
+| C# | `ODBC` | [Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_PostgreSQL_Database_Server_via_ODBC) |
+| Go | `pq` | [Link](https://godoc.org/github.com/lib/pq) |
+| Node | `node-postgres` | [Link](https://node-postgres.com/) |
 {: caption="Table 2. PostgreSQL drivers" caption-side="top"}
