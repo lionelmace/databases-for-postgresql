@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-07-06"
+lastupdated: "2022-08-09"
 
 keywords: postgresql, databases, read-only replica, resync, promote, cross-region replication, postgres replica, postgresql replica
 
@@ -117,7 +117,7 @@ On the _Read Replicas_ tab of a read-only replica, the _Replication_ pane contai
 ### Checking Replication Status
 {: #checking-replication-status}
 
-Replication status is not automatically monitored, you must monitor replication.
+You must monitor replication as replication status is not automatically monitored.
 
 You can check the replication status of a read-only replica with `psql`, but only from its leader. [Connect to the leader deployment with `psql`](/docs/databases-for-postgresql?topic=databases-for-postgresql-connecting-psql) using the [admin credentials](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user). Once you are connected run either,
 - For PostgreSQL version 10 and above `SELECT * from pg_stat_replication;`.
@@ -184,7 +184,7 @@ ibmcloud cdb read-replica-promote <deployment name>
 {: pre}
 
 To promote through the API, send a POST to the [`/deployments/{id}/remotes/promotion`](https://cloud.ibm.com/apidocs/cloud-databases-api#modify-read-only-replication-on-a-deployment) endpoint.
-```curl
+```sh
 curl -X POST \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
   -H 'Authorization: Bearer <>'  \
@@ -194,7 +194,7 @@ curl -X POST \
 {: pre}
 
 To promote and skip the initial backup after the promotion, also set `skip_initial_backup` in the JSON body.
-```curl
+```sh
 curl -X POST \
   https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/remotes/promotion \
   -H 'Authorization: Bearer <>'  \
