@@ -1,9 +1,9 @@
 ---
 copyright:
   years: 2017, 2022
-lastupdated: "2022-07-20"
+lastupdated: "2022-08-17"
 
-keywords: postgresql drivers, python, java, javascript, certificate, postgresql connection string, postgresql connecting external application
+keywords: postgresql drivers, python, java, javascript, certificate, postgresql connection string, postgresql connecting external application, postgresql python
 
 subcollection: databases-for-postgresql
 
@@ -42,7 +42,7 @@ All the information a driver needs to make a connection to your deployment is in
 | `Composed` | `0...` | A URI combining Scheme, Authentication, Host, and Path |
 | `Certificate` | `Name` | The allocated name for the self-signed certificate for database deployment |
 | `Certificate` | Base64 | A base64 encoded version of the certificate. |
-{: caption="Table 1. postgres/URI connection information" caption-side="top"}
+{: caption="Table 1. postgres/URI connection information" caption-side="bottom"}
 
 * `0...` indicates that there might be one or more of these entries in an array.
 
@@ -53,7 +53,7 @@ postgres://ibm_cloud_30399dec_4835_4967_a23d_30587a08d9a8:$PASSWORD@981ac415-5a3
 ```
 {: .codeblock}
 
-The following example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html) to connect to your database.
+The following example uses the information from your connection string and the Java driver [`jdbc`](https://jdbc.postgresql.org/documentation/head/index.html){: .external} to connect to your database.
 
 ```java
 import java.sql.Connection;
@@ -115,7 +115,7 @@ public class PGConnect {
 ```
 {: .codeblock}
 
-The following example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial) to connect to your database. This is just a simple connection example, without error handling or retry logic and might not be suitable for production.
+The following example uses the information from your connection string and the Python driver [`Psycopg2`](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial){: .external} to connect to your database. This is just a simple connection example, without error handling or retry logic and might not be suitable for production.
 
 ```python
 import psycopg2
@@ -142,25 +142,26 @@ for row in rows:
 ```
 {: .codeblock}
 
-The following example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/) to connect to your database.
+The following example uses the information from your connection string and the Node driver [`node-postgres`](https://node-postgres.com/){: .external} to connect to your database.
 
 ```java
 const pg = require("pg");
 const fs = require("fs");
 
-let connectionString = "postgres://<username>:<password>@<host>:<port>/<database>?sslmode=verify-full";
+let connectionString = "postgres://<username>:<password>@<host>:<port>/<database>";
 let caCert = fs.readFileSync('/path/to/cert');
 
-// set up a client with your PostgreSQL connection string
-let client = new pg.Client({ connectionString: connectionString,
-    // set up the TLS options
+// set up a client with your PostgreSQL connection string and TLS options
+let client = new pg.Client({ 
+    connectionString: connectionString,
     ssl: {
-        ca: caCert,
-        rejectUnauthorized: true
+    ca: caCert,
+    rejectUnauthorized: true
     }
- });
+});
 
- client.connect(function(err) {
+
+client.connect(function(err) {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -181,6 +182,9 @@ let client = new pg.Client({ connectionString: connectionString,
 });
 ```
 {: .codeblock}
+
+To use the `node-postgres driver`, remove the `sslmode` parameter from the deployment's connection string. If not, this parameter overrides the `ssl: {...}` parameters, preventing the CA certificate from properly loading.
+{: .note}
 
 ## Driver TLS and self-signed certificate support
 {: #tls-certificate-support}
@@ -209,10 +213,10 @@ PostgreSQL has a vast array of language drivers. The table covers a few of the m
 
 | Language | Driver | Examples |
 | ------- | ------- | ------- |
-| PHP | `pgsql` | [Link](http://php.net/manual/en/pgsql.examples-basic.php) |
-| Ruby| `ruby-pg` | [Link](https://github.com/ged/ruby-pg) |
-| Ruby on Rails | Rails | [Rails Guide](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-postgresql-database) |
-| C# | `ODBC` | [Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_PostgreSQL_Database_Server_via_ODBC) |
-| Go | `pq` | [Link](https://godoc.org/github.com/lib/pq) |
-| Node | `node-postgres` | [Link](https://node-postgres.com/) |
-{: caption="Table 2. PostgreSQL drivers" caption-side="top"}
+| PHP | `pgsql` | [Link](http://php.net/manual/en/pgsql.examples-basic.php){: .external} |
+| Ruby| `ruby-pg` | [Link](https://github.com/ged/ruby-pg){: .external} |
+| Ruby on Rails | Rails | [Rails Guide](http://edgeguides.rubyonrails.org/configuring.html#configuring-a-postgresql-database){: .external} |
+| C# | `ODBC` | [Link](https://wiki.postgresql.org/wiki/Using_Microsoft_.NET_with_the_PostgreSQL_Database_Server_via_ODBC){: .external} |
+| Go | `pq` | [Link](https://godoc.org/github.com/lib/pq){: .external} |
+| Node | `node-postgres` | [Link](https://node-postgres.com/){: .external} |
+{: caption="Table 2. PostgreSQL drivers" caption-side="bottom"}
