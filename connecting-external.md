@@ -18,14 +18,14 @@ subcollection: databases-for-postgresql
 {:javascript: .ph data-hd-programlang='javascript'}
 {:pre: .pre}
 
-# Connecting an external application
+# Connecting an external application to your PostgreSQL deployment
 {: #external-app}
 
 Your applications and drivers use connection strings to make a connection to {{site.data.keyword.databases-for-postgresql_full}}. The service provides connection strings specifically for drivers and applications. Connection strings are displayed in the *Endpoints* panel of your deployment's *Overview*, and can also be retrieved from the [cloud databases CLI plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#deployment-connections), and the [API](https://{DomainName}/apidocs/cloud-databases-api#discover-connection-information-for-a-deployment-f-e81026).
 
 The connection strings can be used by any of the credentials you create on your deployment. While you can use the admin user for all of your connections and applications, it might be better to create users specifically for your applications to connect with. Documentation on generating credentials is on the [Creating Users and Getting Connection Strings](/docs/databases-for-postgresql?topic=databases-for-postgresql-connection-strings) page.
 
-## Connecting with a language's driver
+## Connecting to your PostgreSQL deployment with a language's driver
 {: #connect-language-driver}
 
 All the information a driver needs to make a connection to your deployment is in the "postgres" section of your connection strings. The table contains a breakdown for reference.
