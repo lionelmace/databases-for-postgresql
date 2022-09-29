@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-06-08"
+lastupdated: "2022-09-29"
 
 keywords: postgresql, databases, point in time recovery, backups, restore, pitr
 
@@ -15,6 +15,7 @@ subcollection: databases-for-postgresql
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
+{:note: .note}
 
 # Point-in-time Recovery
 {: #pitr}
@@ -24,6 +25,8 @@ subcollection: databases-for-postgresql
 The _Backups_ tab of your deployment's UI keeps all your PITR information under _Point-in-Time_.
 
 ![PITR section of the Backups tab](images/pitr-backups-tab.png){: caption="PITR section of the Backups tab" caption-side="bottom"}
+
+In PostgreSQL versions 13 and later, when restoring to a specific point within the last seven days, with a restore time after the last transaction, your restore fails with the message `recovery ended before configured recovery target is reached`. Before PostgreSQL v13, when restoring to a specific point within the last seven days, with a restore time after the last transaction, the latest restore point is used. If your restore fails for this reason, then `Restore to last available point` or choose an earlier date/time for `Restore to a specific point in the last 7 days`.{: note}
 
 Included information is the earliest time for a PITR. To discover the earliest recovery point through the CLI, use the [`cdb postgresql earliest-pitr-timestamp`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#postgresql-earliest-pitr-timestamp) command.
 ```sh
@@ -50,7 +53,7 @@ By default the new deployment is auto-sized to the same disk and memory allocati
 
 While storage and memory are restored to the same as the source deployment, specific instance configurations are not automatically set for the new instance. In this case, rerunning the configuration after a restore might be needed. Note any instance modifications before running the restore (parameters like shared_buffers, max_connections, deadlock_timeout, archive_timeout, and others) to ensure accurate setting for the instance after the restore is complete.
 
-It is important that you do not delete the source deployment while the backup is restoring. You must wait until the new deployment is provisioned and the backup is restored before deleting the old deployment. Deleting a deployment also deletes its backups so not only will the restore fail, you might not be able to recover the backup either.
+It is important that you do not delete the source deployment while the backup is restoring. You must wait until the new deployment is provisioned and the backup is restored before deleting the old deployment. Deleting a deployment also deletes its backups so not only does the restore fail, you might not be able to recover the backup either.
 {: .tip}
 
 ### In the UI
@@ -60,7 +63,7 @@ To initiate a PITR, enter the time that you want to restore back to in Coordinat
 
 ![Recovery Options dialog](images/pitr-dialog.png){: caption="Recovery Options Dialog" caption-side="bottom"}
 
-If you use Key Protect and have a key, you have to use the CLI to recover and a command is provided for your convenience.
+If you use Key Protect and have a key, you must use the CLI to recover, and a command is provided for your convenience.
 
 ### In the CLI
 {: #pitr-cli}
