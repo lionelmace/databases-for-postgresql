@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2022
-lastupdated: "2022-07-07"
+lastupdated: "2022-10-07"
 
 keywords: postgresql, databases, postgresql extensions, postgres extensions
 
@@ -47,14 +47,17 @@ CREATE EXTENSION
 ```
 {: pre}
 
+Extensions will be installed into the ibm_extension schema, the schema is part of the search_path so extension objects do not need to be qualified with a schema. 
+ibm_extension is a read only schema.
+
 If you run the `\dx` command after installing an extension, it appears in the table.
 ```sh
 ibmclouddb=> \dx
                                      List of installed extensions
-        Name        | Version |   Schema   |                        Description
---------------------+---------+------------+-----------------------------------------------------------
- pg_stat_statements | 1.5     | public     | track execution statistics of all SQL statements executed
- plpgsql            | 1.0     | pg_catalog | PL/pgSQL procedural language
+        Name        | Version |   Schema      |                        Description
+--------------------+---------+---------------+-----------------------------------------------------------
+ pg_stat_statements | 1.5     | ibm_extension | track execution statistics of all SQL statements executed
+ plpgsql            | 1.0     | pg_catalog    | PL/pgSQL procedural language
 (2 rows)
 ```
 
