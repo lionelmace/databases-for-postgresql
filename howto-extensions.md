@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2022
-lastupdated: "2022-10-07"
+lastupdated: "2022-10-17"
 
 keywords: postgresql, databases, postgresql extensions, postgres extensions
 
@@ -39,7 +39,7 @@ ibmclouddb=> \dx
 ## Installing Extensions
 {: #installing-extensions}
 
-To install an extension on to a database use [`CREATE EXTENSION`](https://www.postgresql.org/docs/current/static/sql-createextension.html). For example, to install `pg_stat_statements` on the `ibmclouddb` database, 
+To install an extension on to a database use [`CREATE EXTENSION`](https://www.postgresql.org/docs/current/static/sql-createextension.html){: .external}. For example, to install `pg_stat_statements` on the `ibmclouddb` database, 
 
 ```sh
 ibmclouddb=> CREATE EXTENSION pg_stat_statements;
@@ -47,8 +47,8 @@ CREATE EXTENSION
 ```
 {: pre}
 
-Extensions will be installed into the ibm_extension schema, the schema is part of the search_path so extension objects do not need to be qualified with a schema. 
-ibm_extension is a read only schema.
+Extensions are installed into the `ibm_extension` schema. The schema is part of the `search_path` so extension objects do not need to be qualified with a schema. 
+`ibm_extension` is a read-only schema.
 
 If you run the `\dx` command after installing an extension, it appears in the table.
 ```sh
@@ -61,7 +61,7 @@ ibmclouddb=> \dx
 (2 rows)
 ```
 
-Database extensions in PostgreSQL are managed per database. If you have multiple databases that you need to install an extension on, you run the `CREATE` command on each database.
+Database extensions in PostgreSQL are managed per database. If you have multiple databases that you need to install an extension on, run the `CREATE` command on each database.
 
 ## Upgrading Extensions
 {: #upgrading-extensions}
@@ -74,8 +74,8 @@ If there is a newer version of an extension available than the one you currently
 ### pg_repack
 {: #pg_repack}
 
-- [The `pg_repack` documentation](http://reorg.github.io/pg_repack/)
-- When you run the `pg_repack` command, you need to pass the -k flag in to bypass the check for superuser. Example,
+- [The `pg_repack` documentation](http://reorg.github.io/pg_repack/){: .external}
+- When you run the `pg_repack` command, pass the -k flag in to bypass the check for superuser. For example,
    ```sh
    pg_repack -k [OPTION]... [DBNAME]
    ```
@@ -83,7 +83,7 @@ If there is a newer version of an extension available than the one you currently
 
 - For `pg_repack` to run reliably, your deployment should be on PostgreSQL 9.6 and above.
 - Any user can run `pg_repack`, but the command is only able to repack a table that they have permissions on.
-- `pg_repack` needs to take an exclusive lock on objects it is reorganizing at the end of the reorganization. If it can't get this lock after a certain period, it cancels all conflicting queries. If it can't do so, the reorg fails. By default, only the admin user on PostgreSQL 9.6 and greater is able to cancel conflicting queries. If you want to expose the ability to cancel queries to other database users, you can grant the `pg_signal_backend` role [from the admin user](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user).
+- `pg_repack` needs to take an exclusive lock on objects it is reorganizing at the end of the reorganization. If it can't get this lock after a certain period, it cancels all conflicting queries. If it can't do so, the reorg fails. By default, only the admin user on PostgreSQL 9.6 and greater is able to cancel conflicting queries. To expose the ability to cancel queries to other database users, grant the `pg_signal_backend` role [from the admin user](/docs/databases-for-postgresql?topic=databases-for-postgresql-user-management#the-admin-user).
 
 ## Available Extensions
 {: #available-extensions}
