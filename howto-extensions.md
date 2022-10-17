@@ -3,7 +3,7 @@ copyright:
   years: 2017, 2022
 lastupdated: "2022-10-17"
 
-keywords: postgresql, databases, postgresql extensions, postgres extensions
+keywords: postgresql, databases, postgresql extensions, postgres extensions, ibm_extension
 
 subcollection: databases-for-postgresql
 
