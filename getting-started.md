@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018, 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-10-25"
 
 keywords: pgAdmin, postgresql gui, postgresql, postgres, postgresql cloud database, potgres getting started
 
@@ -25,7 +25,7 @@ This tutorial is a short introduction to using an {{site.data.keyword.databases-
 ## {{site.data.keyword.databases-for-postgresql_full}}
 {: #postgresql-product-description}
 
-{{site.data.keyword.databases-for-postgresql_full}} is a serverless, cloud database service that is fully integrated into the {{site.data.keyword.cloud_notm}} environment. You can access and use a cloud database system without purchasing and setting up their own hardware, installing their own database software, or managing the database themselves.
+{{site.data.keyword.databases-for-postgresql_full}} is a serverless, cloud database service that is fully integrated into the {{site.data.keyword.cloud_notm}} environment. You can access and use a cloud database system without purchasing and setting up your own hardware, installing your own database software, or managing the database yourself.
 
 {{site.data.keyword.databases-for-postgresql_full}} requires no software, infrastructure, network, or OS administration. IBM continuously provides fully automated and automatic updates to the service, such as security and minor version upgrades. A database instance is deployed by default as highly available across multiple data centers in an IBM Cloud Multi-Zone region with synchronous replication. Customers connect to a single database endpoint and IBM automatically manages the failover between Availability Zones. {{site.data.keyword.databases-for-postgresql_full}} can horizontally scale the PostgreSQL instance with read replicas in region or cross-regionally. {{site.data.keyword.databases-for-postgresql_full}} Read replicas can be easily transformed into fully functioning {{site.data.keyword.databases-for-postgresql_full}} instances, an especially useful feature for online cross-regional disaster recovery strategies.
 
