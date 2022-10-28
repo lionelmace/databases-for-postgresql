@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-10-27"
+lastupdated: "2022-10-28"
 
 keywords: databases-for-postgresql release notes
 
@@ -19,6 +19,14 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.databases-for-postgresql_full}} that are grouped by _date_ or _build number_.
 {: shortdesc}
+
+## 28 October 2022
+{: #databases-for-postgresql-28oct2022}
+{: release-note}
+
+{{site.data.keyword.databases-for-postgresql_full}} v10: End-of-Life Extension
+:  To ensure additional time for you to upgrade, {{site.data.keyword.databases-for}} is extending the EOL support for PostgreSQL v10 until February 22, 2023.
+Despite the extension, we strongly recommend our customers take prompt action and upgrade instances immediately. If no action is taken, databases will be disabled on February 22, 2023.
 
 ## 19 October 2022
 {: #databases-for-postgresql-19oct2022}
