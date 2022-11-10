@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-11-10"
 
 keywords: postgresql, scaling, memory, disk IOPS, CPU, postgresql dedicated cores, scaling postgresql
 
@@ -16,6 +16,7 @@ subcollection: databases-for-postgresql
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{{site.data.keyword.attribute-definition-list}}
 
 # Scaling Disk, RAM, and CPU
 {: #resources-scaling}
@@ -71,6 +72,7 @@ You can enable or increase the CPU allocation to the deployment. With dedicated 
 
 ## Scaling in the UI
 {: #resources-scaling-ui}
+{: ui}
 
 A visual representation of your data members and their resource allocation is available on the _Resources_ tab of your deployment's _Manage_ page. 
 
@@ -84,6 +86,7 @@ The UI currently uses a coarser-grained resolution for scaling than the CLI or A
 
 ## Scaling in the CLI 
 {: #resources-scaling-cli}
+{: cli}
 
 [{{site.data.keyword.cloud_notm}} CLI cloud databases plug-in](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference) supports viewing and scaling the resources on your deployment. To scale any of the available resource groups, use `cdb deployment-groups-set` command. 
 
@@ -130,17 +133,18 @@ ibmcloud cdb deployment-groups-set example-deployment member --memory 4096
 
 ## Scaling in the API
 {: #resources-scaling-api}
+{: api}
 
 The _Foundation Endpoint_ that is shown on the _Overview_ panel _Deployment details_ of your service provides the base URL to access this deployment through the API. Use it with the `/groups` endpoint if you need to manage or automate scaling programmatically. 
 
 To view the current and scalable resources on a deployment, use
-```curl
+```sh
 curl -X GET -H "Authorization: Bearer $APIKEY" 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups'
 ```
 {: pre}
 
 To scale the memory of a deployment to 2048 MB of RAM for each memory member (for a total memory of 4096 MB).
-```curl
+```sh
 curl -X PATCH 'https://api.{region}.databases.cloud.ibm.com/v4/ibm/deployments/{id}/groups/member' \
 -H "Authorization: Bearer $APIKEY" \
 -H "Content-Type: application/json" \
