@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-09-29"
+lastupdated: "2022-11-10"
 
 keywords: postgresql, databases, point in time recovery, backups, restore, pitr
 
@@ -16,6 +16,7 @@ subcollection: databases-for-postgresql
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:note: .note}
+{{site.data.keyword.attribute-definition-list}}
 
 # Point-in-time Recovery
 {: #pitr}
@@ -26,7 +27,8 @@ The _Backups_ tab of your deployment's UI keeps all your PITR information under 
 
 ![PITR section of the Backups tab](images/pitr-backups-tab.png){: caption="PITR section of the Backups tab" caption-side="bottom"}
 
-In PostgreSQL versions 13 and later, when restoring to a specific point within the last seven days, with a restore time after the last transaction, your restore fails with the message `recovery ended before configured recovery target is reached`. Before PostgreSQL v13, when restoring to a specific point within the last seven days, with a restore time after the last transaction, the latest restore point is used. If your restore fails for this reason, then `Restore to last available point` or choose an earlier date/time for `Restore to a specific point in the last 7 days`.{: note}
+In PostgreSQL versions 13 and later, when restoring to a specific point within the last seven days, with a restore time after the last transaction, your restore fails with the message `recovery ended before configured recovery target is reached`. Before PostgreSQL v13, when restoring to a specific point within the last seven days, with a restore time after the last transaction, the latest restore point is used. If your restore fails for this reason, then `Restore to last available point` or choose an earlier date/time for `Restore to a specific point in the last 7 days`.
+{: note}
 
 Included information is the earliest time for a PITR. To discover the earliest recovery point through the CLI, use the [`cdb postgresql earliest-pitr-timestamp`](/docs/databases-cli-plugin?topic=databases-cli-plugin-cdb-reference#postgresql-earliest-pitr-timestamp) command.
 ```sh
@@ -56,8 +58,9 @@ While storage and memory are restored to the same as the source deployment, spec
 It is important that you do not delete the source deployment while the backup is restoring. You must wait until the new deployment is provisioned and the backup is restored before deleting the old deployment. Deleting a deployment also deletes its backups so not only does the restore fail, you might not be able to recover the backup either.
 {: .tip}
 
-### In the UI
+### Recovery in the UI
 {: #pitr-ui}
+{: ui}
 
 To initiate a PITR, enter the time that you want to restore back to in Coordinated Universal Time. If you want to restore to the most recent available time, select that option. Clicking **Restore** brings up the options for your recovery. Enter a name, select the version, region, and allocated resources for the new deployment. Click **Recover** to start the process.
 
@@ -65,8 +68,9 @@ To initiate a PITR, enter the time that you want to restore back to in Coordinat
 
 If you use Key Protect and have a key, you must use the CLI to recover, and a command is provided for your convenience.
 
-### In the CLI
+### Recovery in the CLI
 {: #pitr-cli}
+{: cli}
 
 The Resource Controller supports provisioning of database deployments, and provisioning and restoring are the responsibility of the Resource Controller CLI. Use the [`resource service-instance-create`](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_service_instance_create) command.
 
@@ -87,8 +91,9 @@ ibmcloud resource service-instance-create <SERVICE_INSTANCE_NAME> <service-id> s
 ```
 {: pre}
 
-### In the API
+### Recovery in the AP
 {: #pitr-api}
+{: api}
 
 The Resource Controller supports provisioning of database deployments, and provisioning and restoring are the responsibility of the Resource Controller API. You need to complete [the necessary steps to use the resource controller API](/docs/databases-for-postgresql?topic=cloud-databases-provisioning#provisioning-through-the-resource-controller-api) before you can use it to restore from a backup. 
 
