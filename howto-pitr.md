@@ -91,7 +91,7 @@ ibmcloud resource service-instance-create <SERVICE_INSTANCE_NAME> <service-id> s
 ```
 {: pre}
 
-### Recovery in the AP
+### Recovery in the API
 {: #pitr-api}
 {: api}
 
