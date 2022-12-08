@@ -18,6 +18,7 @@ subcollection: databases-for-postgresql
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
+{{site.data.keyword.attribute-definition-list}}
 
 # Configuring Read-only Replicas
 {: #read-only-replicas}

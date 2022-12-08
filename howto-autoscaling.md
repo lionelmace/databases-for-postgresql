@@ -18,7 +18,6 @@ subcollection: databases-for-postgresql
 {:tip: .tip}
 {{site.data.keyword.attribute-definition-list}}
 
-
 # Autoscaling
 {: #autoscaling}
 
