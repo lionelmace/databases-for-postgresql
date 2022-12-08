@@ -22,7 +22,7 @@ subcollection: databases-for-postgresql
 {: #admin-password}
 
 # Setting the Admin Password in the UI
-{: #admin-password}
+{: #admin-password-ui}
 {: ui}
 
 The {{site.data.keyword.databases-for-postgresql_full}} service is provisioned with an admin user, so you can manage PostgreSQL by using its command line tool, `psql`.
