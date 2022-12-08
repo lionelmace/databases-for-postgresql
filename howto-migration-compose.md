@@ -16,6 +16,8 @@ subcollection: databases-for-postgresql
 {:pre: .pre}
 {:tip: .tip}
 {:note: .note}
+{{site.data.keyword.attribute-definition-list}}
+
 
 # Migrating from a Compose PostgreSQL
 {: #compose-migrating}

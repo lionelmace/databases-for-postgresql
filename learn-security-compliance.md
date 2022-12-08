@@ -14,6 +14,7 @@ subcollection: databases-for-postgresql
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
+{{site.data.keyword.attribute-definition-list}}
 
 # Security and Compliance
 {: #security-compliance}

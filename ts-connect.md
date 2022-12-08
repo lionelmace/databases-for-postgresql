@@ -22,6 +22,8 @@ content-type: troubleshoot
 {:pre: .pre}
 {:note:.deprecated}
 {:troubleshoot: data-hd-content-type='troubleshoot'}
+{{site.data.keyword.attribute-definition-list}}
+
  
 
 # Why can’t I connect to my PostgreSQL deployment?

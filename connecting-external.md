@@ -17,6 +17,8 @@ subcollection: databases-for-postgresql
 {:python: .ph data-hd-programlang='python'}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:pre: .pre}
+{{site.data.keyword.attribute-definition-list}}
+
 
 # Connecting an external application to your PostgreSQL deployment
 {: #external-app}

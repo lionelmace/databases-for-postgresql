@@ -22,6 +22,8 @@ content-type: troubleshoot
 {:pre: .pre}
 {:note:.deprecated}
 {:troubleshoot: data-hd-content-type='troubleshoot'}
+{{site.data.keyword.attribute-definition-list}}
+
  
 
 # How do I increase the max_connections on my {{site.data.keyword.databases-for-postgresql_full}} deployment?

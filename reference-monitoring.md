@@ -16,6 +16,8 @@ subcollection: databases-for-postgresql
 {:pre: .pre}
 {:tip: .tip}
 {:important: .important}
+{{site.data.keyword.attribute-definition-list}}
+
 
 # Monitoring Integration
 {: #monitoring}

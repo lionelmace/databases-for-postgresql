@@ -13,12 +13,13 @@ subcollection: databases-for-postgresql
 {:pre: .pre}
 {:screen: .screen}
 {:tip: .tip}
-
 {:external: .external target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
 {:pre: .pre}
+{{site.data.keyword.attribute-definition-list}}
+
 
 
 # Managing security and compliance with {{site.data.keyword.databases-for-postgresql_full}}
