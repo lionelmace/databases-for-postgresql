@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2022
-lastupdated: "2022-11-10"
+lastupdated: "2022-12-08"
 
 keywords: postgresql, databases, postgresql admin password, postgres admin password
 
@@ -9,19 +9,13 @@ subcollection: databases-for-postgresql
 
 ---
 
-{:external: .external target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
 {{site.data.keyword.attribute-definition-list}}
 
 
 # Setting the Admin Password
 {: #admin-password}
 
-# Setting the Admin Password in the UI
+## Setting the Admin Password in the UI
 {: #admin-password-ui}
 {: ui}
 
