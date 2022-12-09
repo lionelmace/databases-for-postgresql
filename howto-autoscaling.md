@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2022
-lastupdated: "2022-11-10"
+lastupdated: "2022-12-10"
 
 keywords: postgresql, databases, scaling, autoscaling, memory, disk I/O, postgresql autoscaling, postgres autoscaling
 
@@ -10,12 +10,6 @@ subcollection: databases-for-postgresql
 
 ---
 
-{:external: .external target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
 {{site.data.keyword.attribute-definition-list}}
 
 # Autoscaling
