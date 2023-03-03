@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-09-15"
+  years: 2017, 2023
+lastupdated: "2023-03-03"
 
 keywords: postgresql pricing
 
@@ -9,51 +9,12 @@ subcollection: databases-for-postgresql
 
 ---
 
-{:external: .external target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
 {{site.data.keyword.attribute-definition-list}}
-
-
 
 # Pricing
 {: #pricing}
 
 A {{site.data.keyword.databases-for-postgresql}} Standard plan deploys as one highly available PostgreSQL cluster with two data members, with your data replicated on both members. The Standard plan is priced based on the total amount of disk storage, RAM, dedicated cores, and backup storage that is allocated to deployments, prorated hourly. {{site.data.keyword.databases-for-postgresql}} deployments have a minimum of 5 GB of disk and 1 GB of RAM per data member.
-
-## Cost Breakdown
-{: #cost-breakdown}
-
-**Disk storage per data member** - gigabytes of disk that are allocated to a {{site.data.keyword.databases-for-postgresql}} data member, or the size of your data.  
-**RAM per data member** - gigabytes of RAM that are allocated to a {{site.data.keyword.databases-for-postgresql}} data member.  
-**Backup storage** - amount of storage used for backups by a {{site.data.keyword.databases-for-postgresql}} deployment.
-
-| Resources | Breakdown | Price |
-| ------- | ------- | ------- |
-| 5 GB-Month disk | 2 members x 5 GB x $0.58 | $5.80 |
-| 1 GB-Month RAM | 2 members x 1 GB x $5 | $10 |
-{: caption="Table 1. Pricing example for two data members" caption-side="top"}
-
-Total per month = $15.80/Month
-Total per hour = $.02/Hour
-
-All prices here are in US dollars. To see pricing in your local currency, you can use the pricing calculator.
-{: .tip}
-
-## IBM Cloud Databases enabled by IBM Cloud Satellite Pricing
-{: #satellite-pricing}
-
-{{site.data.keyword.databases-for-postgresql}} deployments are deployable into IBM Cloud Satellite locations. The management fee for these Cloud Databases is $45 per vCPU per month, with a 6 vCPU minimum.
-
-| Resources | Breakdown | Price |
-| ------- | ------- | ------- |
-| 6 vCPUs per month | 2 members x 6 GB x $45 | $540 |
-{: caption="Table 2. Pricing example for 6 vCPUs and two data members" caption-side="top"}
-
-Total per month = $49.80/Month
 
 ## Using the Pricing Calculator
 {: #pricing-calc}
@@ -61,8 +22,6 @@ Total per month = $49.80/Month
 Templates are provided for ease of use and provide balanced resource allocations appropriate for general-purpose workloads. The **Custom** tab can be used to configure Disk, RAM, and vCPU, as wanted.
 
 For pricing estimation, use the **Add to Estimate** button on the [{{site.data.keyword.databases-for-postgresql}} catalog page](https://cloud.ibm.com/catalog/databases-for-postgresql). Input your total consumption across two data members into the calculator. This is roughly double the size of your data because your data is replicated to both members. For example, 5 GB of disk and 1 GB of RAM across two data members would be priced at 10 GB of disk and 2 GB of RAM respectively. 
-
-![Pricing calculator estimation with 5 GB of disk and 1 GB of RAM, per member](images/pricing-calc.png){: caption="Figure 1. Pricing calculator estimation" caption-side="bottom"}
 
 ## Backups Pricing
 {: #pricing-backup}
@@ -94,4 +53,4 @@ Dedicated cores are an optional feature. The default `Shared CPU` setting provis
 | Disk | 5 GB per member | 4 TB per member | 1024 MB per member |
 | RAM | 1 GB per member | 112 GB per member | 128 MB per member |
 | CPU (if enabled) | 3 CPUs per member | 28 CPUs per member| 1 CPU per member |
-{: caption="Table 3. Per Member Scaling Limits" caption-side="top"}
+{: caption="Table 1. Per Member Scaling Limits" caption-side="top"}
